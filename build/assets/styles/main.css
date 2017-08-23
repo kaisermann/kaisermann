@@ -153,11 +153,14 @@ body {
   background-color: #000;
   color: #fff;
 }
-p {
+p,ul {
   margin-bottom: 25px;
 }
+ul li+li {
+  margin-top: 5px;
+}
 a {
-  display: inline-block;
+  display: inline;
   position: relative;
 }
 a:after,a:before {
@@ -177,7 +180,7 @@ a:after,a:before {
 a:after {
   z-index: -2;
   background-image: url(../images/rainbow-static.webp);
-  opacity: .2;
+  opacity: .4;
 }
 a:hover {
   color: #000;
@@ -190,20 +193,23 @@ a:hover:after {
   z-index: -1;
   height: 100%;
 }
-a[href*="tuut.com.br"] {
-  font-weight: 700;
-}
 a[href*="last.fm"] {
   color: inherit;
 }
 a[href*="last.fm"]:before {
   background-color: #b20000;
 }
+a[href*="last.fm"]:after {
+  opacity: .2;
+}
 a[href*=linkedin] {
   color: inherit;
 }
 a[href*=linkedin]:before {
   background-color: #0077b5;
+}
+a[href*=linkedin]:after {
+  opacity: .2;
 }
 a[href*="instagram.com"] {
   color: inherit;
@@ -214,6 +220,9 @@ a[href*="instagram.com"]:before {
 }
 a[href*="instagram.com"]:hover {
   color: #fff;
+}
+a[href*="instagram.com"]:after {
+  opacity: .2;
 }
 .page-content {
   padding: 50px;

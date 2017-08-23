@@ -8,9 +8,17 @@ body
 p
 	margin-bottom: 25px
 
+ul
+	margin-bottom: 25px
+
+	li
+		+ li
+			margin-top: 5px
+
 a
-	display: inline-block
+	display: inline
 	position: relative
+	
 	&::before
 	&::after
 		content: ''
@@ -26,7 +34,7 @@ a
 	&::after
 		z-index: layers.underline
 		background-image: url(../images/rainbow-static.webp)
-		opacity: .2
+		opacity: .4
 
 	&:hover
 		color: colors.black
@@ -39,18 +47,19 @@ a
 			z-index: layers.underlineStatic
 			height: 100%
 
-	&[href*='tuut.com.br']
-		font-weight: bold
-
 	&[href*='last.fm']
 		color: inherit
 		&::before
 			background-color: colors.lastfmRed
+		&::after
+			opacity: .2
 
 	&[href*='linkedin']
 		color: inherit
 		&::before
 			background-color: colors.linkedinBlue
+		&::after
+			opacity: .2
 
 	&[href*='instagram.com']
 		color: inherit
@@ -58,6 +67,8 @@ a
 			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
 		&:hover
 			color: colors.white
+		&::after
+			opacity: .2
 
 .page-content
 	padding: 50px
