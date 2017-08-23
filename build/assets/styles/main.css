@@ -217,6 +217,9 @@ a[href*="instagram.com"]:hover {
 }
 .page-content {
   padding: 50px;
+  -webkit-animation: b 1s linear infinite;
+       -o-animation: b 1s linear infinite;
+          animation: b 1s linear infinite;
 }
 .page-background {
   position: fixed;
@@ -228,6 +231,91 @@ a[href*="instagram.com"]:hover {
   background-image: url(../images/static.gif);
   background-size: cover;
   opacity: .05;
+}
+.page-background:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: -webkit-gradient(linear,left top,left bottom,from(rgba(255,0,0,0)),color-stop(50%,snow),color-stop(51%,hsla(0,0%,100%,.98)),to(rgba(255,0,0,0)));
+  background: -o-linear-gradient(top,rgba(255,0,0,0) 0,snow 50%,hsla(0,0%,100%,.98) 51%,rgba(255,0,0,0) 100%);
+  background: linear-gradient(180deg,rgba(255,0,0,0) 0,snow 50%,hsla(0,0%,100%,.98) 51%,rgba(255,0,0,0));
+  opacity: .8;
+  -webkit-animation: a 3s linear infinite;
+       -o-animation: a 3s linear infinite;
+          animation: a 3s linear infinite;
+  will-change: top;
+}
+@-webkit-keyframes a {
+  0% {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+@-o-keyframes a {
+  0% {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+@keyframes a {
+  0% {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+@-webkit-keyframes b {
+  0% {
+    -webkit-transform: scaleY(1.002);
+            transform: scaleY(1.002);
+  }
+  50% {
+    -webkit-transform: scaleY(1.0001);
+            transform: scaleY(1.0001);
+  }
+  to {
+    -webkit-transform: scaleX(1.001);
+            transform: scaleX(1.001);
+  }
+}
+@-o-keyframes b {
+  0% {
+    -o-transform: scaleY(1.002);
+       transform: scaleY(1.002);
+  }
+  50% {
+    -o-transform: scaleY(1.0001);
+       transform: scaleY(1.0001);
+  }
+  to {
+    -o-transform: scaleX(1.001);
+       transform: scaleX(1.001);
+  }
+}
+@keyframes b {
+  0% {
+    -webkit-transform: scaleY(1.002);
+         -o-transform: scaleY(1.002);
+            transform: scaleY(1.002);
+  }
+  50% {
+    -webkit-transform: scaleY(1.0001);
+         -o-transform: scaleY(1.0001);
+            transform: scaleY(1.0001);
+  }
+  to {
+    -webkit-transform: scaleX(1.001);
+         -o-transform: scaleX(1.001);
+            transform: scaleX(1.001);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
