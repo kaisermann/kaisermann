@@ -1,0 +1,130 @@
+{
+  "name": "hyperion",
+  "version": "1.0.0-alpha.1",
+  "author": "Christian Kaisermann <christian@kaisermann.me>",
+  "homepage": "https://github.com/kaisermann/hyperion",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kaisermann/hyperion.git"
+  },
+  "license": "(MIT)",
+  "eslintConfig": {
+    "root": true,
+    "extends": "standard",
+    "globals": {
+      "wp": true
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "amd": true,
+      "browser": true,
+      "jquery": false
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "globalReturn": true,
+        "generators": false,
+        "objectLiteralDuplicateProperties": false,
+        "experimentalObjectRestSpread": true
+      },
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "import",
+      "compat"
+    ],
+    "settings": {
+      "import/core-modules": [],
+      "import/ignore": [
+        "node_modules",
+        "\\.(coffee|scss|css|less|hbs|svg|json)$"
+      ]
+    },
+    "rules": {
+      "no-new": "off",
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }
+      ],
+      "no-console": "off",
+      "compat/compat": 2
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "no-empty-source": null
+    }
+  },
+  "scripts": {
+    "watch": "gulp watch -d --sync --report --maps",
+    "build": "export NODE_ENV='development'; gulp -d",
+    "build:staging": "export NODE_ENV='staging'; gulp",
+    "build:production": "export NODE_ENV='production'; gulp -p"
+  },
+  "engines": {
+    "node": ">= 6.9.4"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "opera 12",
+    "IE 11",
+    "Safari >= 8"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "browser-sync": "^2.18.13",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "deep-extend": "^0.5.0",
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-compat": "^1.0.4",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-better-rollup": "^1.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^4.0.0",
+    "gulp-flatten": "^0.3.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rev": "^8.0.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sizereport": "^1.2.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-stylus": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "lazypipe": "^1.0.1",
+    "merge-stream": "^1.0.1",
+    "minimist": "^1.2.0",
+    "require-directory": "^2.1.1",
+    "rimraf": "^2.6.1",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.2.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-sizes": "^0.4.0",
+    "uncss": "^0.15.0"
+  },
+  "dependencies": {
+    "rolleiflex": "^5.1.0",
+    "rupture": "^0.6.2"
+  }
+}

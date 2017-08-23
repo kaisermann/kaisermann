@@ -1,0 +1,26 @@
+# Arke bundle manifest #
+
+# Inclusions #
+/config/**
+/.env
+/composer.*
+/wp-cli.yml
+
+/web/index.php
+/web/wp-config.php
+/web/app/**
+
+# Exclusions #
+!yarn.lock
+!.gitkeep
+!*.deploy.zip
+
+!/web/app/uploads/**
+!/web/app/plugins/**
+!/web/app/themes/*/assets/**
+!/web/app/themes/*/.*
+!/web/app/themes/*/gulpfile.js
+!/web/app/themes/*/.crius/**
+
+!node_modules/
+!vendor/

@@ -1,0 +1,73 @@
+body
+	font-size: 26px
+	line-height: 1.4
+	font-family: Courier New, Courier, monospace
+	background-color: colors.black
+	color: colors.white
+
+p
+	margin-bottom: 25px
+
+a
+	display: inline-block
+	position: relative
+	&::before
+	&::after
+		content: ''
+		display: block
+		position: absolute
+		bottom: 0
+		left: 0
+		size: 100% 2px
+		background-color: colors.white
+		transition: height .3s ease
+		z-index: layers.underlineStatic
+
+	&::after
+		z-index: layers.underline
+		background-image: url(../images/rainbow-static.webp)
+		opacity: .2
+
+	&:hover
+		color: colors.black
+
+		&::before
+			z-index: layers.underline
+			height: 100%
+
+		&::after
+			z-index: layers.underlineStatic
+			height: 100%
+
+	&[href*='tuut.com.br']
+		font-weight: bold
+
+	&[href*='last.fm']
+		color: inherit
+		&::before
+			background-color: colors.lastfmRed
+
+	&[href*='linkedin']
+		color: inherit
+		&::before
+			background-color: colors.linkedinBlue
+
+	&[href*='instagram.com']
+		color: inherit
+		&::before
+			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
+		&:hover
+			color: colors.white
+
+.page-content
+	padding: 50px
+
+.page-background
+	position: fixed
+	top: 0
+	left: 0
+	size: 100%
+	z-index: layers.siteBackground
+	background-image: url(../images/static.gif)
+	background-size: cover
+	opacity: .05

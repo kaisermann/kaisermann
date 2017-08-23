@@ -1,0 +1,42 @@
+// Grid configuration
+_bps = {
+	xs: {
+		minWidth: 0
+		container: 100%
+	}
+
+	sm: {
+		minWidth: 768px
+		container: 740px
+	}
+
+	md: {
+		minWidth: 992px
+		container: 960px
+	}
+
+	lg: {
+		minWidth: 1201px
+		container: 1170px
+	}
+}
+
+// No need to modify anything below this line
+
+// Get list of breakpoints
+_bpsList = ()
+for scaleName, scaleOpts in _bps
+	push(_bpsList, max(scaleOpts.minWidth - 1, 0))
+
+// Configure rupture to work with rolleiflex breakpoints
+rupture = merge(rupture, {
+	"base-font-size":        app.baseFontSize
+	"scale":                 _bpsList
+	"scale-names":           keys(_bps)
+	"anti-overlap":          true
+	"enable-em-breakpoints": rolleiflex.use.em
+	"mobile-cutoff":         _bps.sm.minWidth - 1
+	"tablet-cutoff":         _bps.md.minWidth - 1
+	"desktop-cutoff":        _bps.md.minWidth - 1
+	"hd-cutoff":             _bps.lg.minWidth - 1
+})

@@ -1,0 +1,14 @@
+{
+  "title": "Kaisermann | Web Development",
+  "urls": {
+    "main": "http://localhost:3000",
+    "assets": "{{ urls.main }}/assets"
+  },
+  "environments": {
+    "production": {
+      "urls": {
+        "main": "https://kaisermann.me"
+      }
+    }
+  }
+}

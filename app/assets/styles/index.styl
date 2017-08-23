@@ -1,0 +1,25 @@
+/*
+	The '@require' can be relative to any of this items:
+	- 'node_modules' directory
+	- 'gulpfile.js' directory
+	- 'assets/styles' directory
+*/
+
+// Relative to node_modules directory
+@require "rolleiflex/src/index.styl"
+@require "rupture/rupture/index.styl"
+
+// Relative to assets/styles directory
+// Configuration files
+@require "config/setup"
+@require "config/external"
+@require "config/mixins"
+@require "config/*"
+
+// General style files
+@require "common/normalize"
+@require "common/helpers"
+@require "common/global"
+
+// Overrides
+@require "common/overrides"

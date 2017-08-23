@@ -1,0 +1,233 @@
+/*
+	The '@require' can be relative to any of this items:
+	- 'node_modules' directory
+	- 'gulpfile.js' directory
+	- 'assets/styles' directory
+*/
+*,:after,:before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font: 16px/1 sans-serif;
+}
+body {
+  margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+blockquote,figure,h1,h2,h3,h4,ol,p,ul {
+  margin: 0;
+  padding: 0;
+}
+li,main {
+  display: block;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size: inherit;
+}
+strong {
+  font-weight: 700;
+}
+a,button {
+  -webkit-transition: all .3s ease;
+  -o-transition: .3s all ease;
+  transition: all .3s ease;
+  color: inherit;
+}
+a {
+  text-decoration: none;
+}
+button,input,textarea {
+  margin: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+button:focus,button:focus:active,input:focus,input:focus:active,textarea:focus,textarea:focus:active {
+  outline: none;
+}
+button {
+  font: inherit;
+  overflow: visible;
+  cursor: pointer;
+  letter-spacing: inherit;
+  border: 0;
+  background: none;
+  -webkit-font-smoothing: inherit;
+}
+::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+:focus {
+  outline: 0;
+}
+img {
+  border: 0;
+}
+.h-img-responsive,img {
+  max-width: 100%;
+  height: auto;
+}
+.h-img-responsive {
+  display: block;
+}
+.h-color-pink {
+  color: #850047;
+}
+.h-bg-pink {
+  background-color: #850047;
+}
+.h-color-purple {
+  color: #93648d;
+}
+.h-bg-purple {
+  background-color: #93648d;
+}
+.h-color-green {
+  color: #7bc8a4;
+}
+.h-bg-green {
+  background-color: #7bc8a4;
+}
+.h-color-blue {
+  color: #4cc3d9;
+}
+.h-bg-blue {
+  background-color: #4cc3d9;
+}
+.h-color-yellow {
+  color: #ffc65d;
+}
+.h-bg-yellow {
+  background-color: #ffc65d;
+}
+.h-color-red {
+  color: #f16745;
+}
+.h-bg-red {
+  background-color: #f16745;
+}
+.h-color-brown {
+  color: #664f36;
+}
+.h-bg-brown {
+  background-color: #664f36;
+}
+.h-color-white {
+  color: #fff;
+}
+.h-bg-white {
+  background-color: #fff;
+}
+.h-color-gray {
+  color: #404040;
+}
+.h-bg-gray {
+  background-color: #404040;
+}
+.h-color-black {
+  color: #000;
+}
+.h-bg-black {
+  background-color: #000;
+}
+.h-color-lastfmRed {
+  color: #b20000;
+}
+.h-bg-lastfmRed {
+  background-color: #b20000;
+}
+.h-color-linkedinBlue {
+  color: #0077b5;
+}
+.h-bg-linkedinBlue {
+  background-color: #0077b5;
+}
+body {
+  font-size: 26px;
+  line-height: 1.4;
+  font-family: Courier New,Courier,monospace;
+  background-color: #000;
+  color: #fff;
+}
+p {
+  margin-bottom: 25px;
+}
+a {
+  display: inline-block;
+  position: relative;
+}
+a:after,a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  -webkit-transition: height .3s ease;
+  -o-transition: height .3s ease;
+  transition: height .3s ease;
+  z-index: -1;
+}
+a:after {
+  z-index: -2;
+  background-image: url(../images/rainbow-static.webp);
+  opacity: .2;
+}
+a:hover {
+  color: #000;
+}
+a:hover:before {
+  z-index: -2;
+  height: 100%;
+}
+a:hover:after {
+  z-index: -1;
+  height: 100%;
+}
+a[href*="tuut.com.br"] {
+  font-weight: 700;
+}
+a[href*="last.fm"] {
+  color: inherit;
+}
+a[href*="last.fm"]:before {
+  background-color: #b20000;
+}
+a[href*=linkedin] {
+  color: inherit;
+}
+a[href*=linkedin]:before {
+  background-color: #0077b5;
+}
+a[href*="instagram.com"] {
+  color: inherit;
+}
+a[href*="instagram.com"]:before {
+  background-image: -o-radial-gradient(33% 100% circle,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
+  background-image: radial-gradient(circle at 33% 100%,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
+}
+a[href*="instagram.com"]:hover {
+  color: #fff;
+}
+.page-content {
+  padding: 50px;
+}
+.page-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  background-image: url(../images/static.gif);
+  background-size: cover;
+  opacity: .05;
+}
+
+/*# sourceMappingURL=main.css.map */

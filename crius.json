@@ -1,0 +1,59 @@
+{
+  "config": {
+    "paths": {
+      "source": "app/",
+      "dist": "build/"
+    },
+    "browserSync": {
+      "mode": "server",
+      "baseDir": "build",
+      "index": "index.html",
+      "watch": []
+    }
+  },
+  "resources": {
+    "html": {
+      "pattern": "*.{njk,html,nunjucks}",
+      "directory": "",
+      "assets": {
+        "./": "*.{njk,html,nunjucks}"
+      },
+      "watch": ["app.json", "./.hyperion/*.js"]
+    },
+    "scripts": {
+      "pattern": "*.js",
+      "directory": "assets/scripts",
+      "assets": {
+        "main.js": {
+          "files": "index.js",
+          "autoload": "resources/assets/scripts/autoload/*.js"
+        }
+      }
+    },
+    "styles": {
+      "pattern": "*.{css,styl,scss,sass,less}",
+      "directory": "assets/styles",
+      "assets": {
+        "main.css": {
+          "files": "index.styl",
+          "autoload": "resources/assets/styles/autoload/*.css",
+          "uncss": true
+        }
+      }
+    },
+    "fonts": {
+      "pattern": "*.{eot,otf,svg,ttc,ttf,woff,woff2}",
+      "directory": "assets/fonts",
+      "assets": {
+        "./": "**/*"
+      }
+    },
+    "images": {
+      "pattern": "*.{jpg,png,gif,svg,webp}",
+      "directory": "assets/images",
+      "assets": {
+        "./": "**/*"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "project": {
+    "repo": "git@github.com:user/repo.git",
+    "type": "simple-wordpress",
+    "fileStructure": {
+      "toUpload": [
+        ["wp-content/themes/dist", "wp-content/themes/"]
+      ],
+      "shared": [
+        ["robots.txt"],
+        [".htaccess"],
+        ["wp-config.php"],
+        ["wp-content/uploads", "uploads"]
+      ]
+    },
+    "cmds": {
+      "install": [
+        ["wp-content/themes/selene", "composer install"],
+        ["wp-content/themes/selene", "yarn"]
+      ],
+      "afterDeploy": [
+        ["", "rm -rf fabfile.py arke.json .arke readme.md .editorconfig"],
+        ["wp-content/themes/selene", "composer install"]
+      ]
+    },
+    "maxReleases": 5
+  },
+  "hosts": {
+    "staging": {
+      "hosts": ["127.0.0.1"],
+      "name": "example.com",
+      "projectDir": "/var/www",
+      "projectPublicDir": "htdocs",
+      "webRootDir": "",
+      "hostnames": "example.com www.example.com",
+      "webServerUser": "www-data",
+      "webServerGroup": "www-data",
+      "services": {
+        "toRestart": ["php5.6-fpm"],
+        "toReload": ["nginx"]
+      }
+    }
+  }
+}

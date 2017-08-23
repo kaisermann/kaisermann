@@ -1,0 +1,72 @@
+// Mixin shortcuts
+max = to-width
+min = from-width
+
+// size(width, height)
+size($width, $height = $width)
+	width: $width
+	height: $height
+
+// rem(px [,base-font-size]), em(px [,base-font-size])
+rem($px, $base = app.baseFontSize)
+	return unit($px / $base, 'rem')
+
+em($px, $base = app.baseFontSize)
+	return unit($px / $base, 'em')
+
+/*
+ * Modified verson of Font-face mixin, by jackbrewer
+ * https://github.com/jackbrewer/stylus-mixins/
+ */
+font-face($font-name, $file-path, $weight = 'normal', $style = 'normal')
+	$url  = 'url("' + $file-path + '.woff2") format("woff2"),'
+	$url = $url + ' url("' + $file-path + '.woff") format("woff")'
+	@font-face
+		font-family: $font-name
+		src: unquote($url)
+		font-weight: unquote($weight)
+		font-style: unquote($style)
+
+/*
+ * Responsive property based on viewport units
+ *
+ * Usage:
+ * responsive: property viewportUnitBase minFontSize maxFontSize, fallbackSize
+ */
+responsive($prop, $responsive, $min, $max = false, $fallback = false)
+	$responsive-unit = unit($responsive)
+	$responsive-unitless = $responsive / ($responsive - $responsive + 1)
+	$min-bp = $min / $responsive-unitless * 100
+	$max-bp = ($max != false) ? $max / $responsive-unitless * 100 : 0
+
+	$minQueries = ()
+	$maxQueries = ()
+
+	$dimensions = (width height)
+	if ($responsive-unit == 'vw')
+		$dimensions = (width)
+	else if ($responsive-unit == 'vh')
+		$dimensions = (height)
+
+	for $dimension in $dimensions
+		push($minQueries, s('(max-%s: %s)', $dimension, $min-bp))
+
+		if ($max)
+			push($maxQueries, s('(min-%s: %s)', $dimension, $max-bp))
+
+	$minQuery = unquote(join(', ', $minQueries))
+	@media $minQuery
+		{$prop}: $min
+
+	if ($max)
+		$maxQuery = unquote(join(', ', $maxQueries))
+		@media $maxQuery
+			{$prop}: $max
+
+	if ($fallback)
+		{$prop}: $fallback
+
+	{$prop}: $responsive
+
+responsive-font-size($responsive, $min, $max = false, $fallback = false)
+	responsive(font-size, $responsive, $min, $max, $fallback)

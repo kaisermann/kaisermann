@@ -1,0 +1,14 @@
+{
+  "ignore": [
+    "/h\\d/",
+    "/expanded/",
+    "/js/",
+    "/wp-/",
+    "/is-/",
+    "/align(?!\\W)/",
+    "/admin-bar/"
+  ],
+  "ignoreSheets": [
+    "/fonts.googleapis/"
+  ]
+}

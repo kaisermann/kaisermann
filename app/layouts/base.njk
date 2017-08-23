@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>{% include "partials/head.njk" %}</head>
+  <body>
+    {% include "partials/header.njk" %}
+    <div class="page-content">
+      {% block content %}{% endblock %}
+    </div>
+    {% include "partials/footer.njk" %}
+    <script type="text/javascript" src="{{ asset('scripts/main.js') }}"></script>
+    <div class="page-background"></div>
+  </body>
+</html>

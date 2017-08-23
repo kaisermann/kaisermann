@@ -1,0 +1,60 @@
+{
+  "project": {
+    "repo": "git@github.com:user/repo.git", 
+    "type": "html", 
+    "fileStructure": {
+      "toUpload": [
+        [
+          "./build", 
+          "./"
+        ]
+      ], 
+      "shared": [
+        [
+          "robots.txt"
+        ]
+      ]
+    }, 
+    "cmds": {
+      "install": [
+        [
+          "", 
+          "yarn"
+        ]
+      ], 
+      "afterDeploy": [
+        [
+          "", 
+          "rm -rf fabfile.py arke.json .arke readme.md .editorconfig"
+        ], 
+        [
+          "", 
+          "shopt -s dotglob; mv build/* .; rm -rf build; shopt -u dotglob"
+        ]
+      ]
+    }, 
+    "maxReleases": 5
+  }, 
+  "hosts": {
+    "staging": {
+      "hosts": [
+        "127.0.0.1"
+      ], 
+      "name": "example.com", 
+      "projectDir": "/var/www", 
+      "projectPublicDir": "htdocs", 
+      "webRootDir": "", 
+      "hostnames": "example.com www.example.com", 
+      "webServerUser": "www-data", 
+      "webServerGroup": "www-data", 
+      "services": {
+        "toRestart": [
+          "php5.6-fpm"
+        ], 
+        "toReload": [
+          "nginx"
+        ]
+      }
+    }
+  }
+}
