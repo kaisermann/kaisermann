@@ -1,6 +1,6 @@
 {
   "title": "Kaisermann | Web Development",
-  "description": "",
+  "description": "Come say hi 🌳",
   "urls": {
     "main": "http://localhost:3000",
     "assets": "{{ urls.main }}/assets"
