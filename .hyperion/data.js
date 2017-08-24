@@ -32,7 +32,12 @@ const parseAppData = () => {
     }, {})
 
   // Reads the 'app.json' file
-  let appData = JSON.parse(readFileSync('app.json', 'utf8'))
+  let appData = {}
+  try {
+    appData = JSON.parse(readFileSync('app.json', 'utf8'))
+  } catch (e) {
+    console.error('Invalid JSON on "app.json"')
+  }
 
   /*
    * If NODE_ENV is set and inside the 'app.json[environments]',

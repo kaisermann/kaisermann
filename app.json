@@ -1,8 +1,85 @@
 {
   "title": "Kaisermann | Web Development",
+  "description": "",
   "urls": {
     "main": "http://localhost:3000",
     "assets": "{{ urls.main }}/assets"
+  },
+  "projects": {
+    "opensource": [
+      {
+        "url": "https://github.com/kaisermann/crius",
+        "name": "crius",
+        "desc": "(flexible front-end workflow)"
+      },
+      {
+        "url": "https://github.com/kaisermann/selene",
+        "name": "selene",
+        "desc": "(opinionated wordpress starter theme)"
+      },
+      {
+        "url": "https://github.com/kaisermann/hyperion",
+        "name": "hyperion",
+        "desc": "(static website workflow forked from Crius)"
+      },
+      {
+        "url": "https://github.com/kaisermann/rolleiflex",
+        "name": "rolleiflex",
+        "desc": "(css flexbox grid/helper framework)"
+      },
+      {
+        "url": "https://github.com/kaisermann/aph",
+        "name": "aph",
+        "desc": "(minimal DOM, barely api-less, manipulation library)"
+      },
+      {
+        "url": "https://github.com/kaisermann/textlooper",
+        "name": "textlooper",
+        "desc": "(lightweight text rotation based on CSS animations)"
+      }
+    ],
+    "sites": [
+      {
+        "url": "http://playground.kaisermann.me",
+        "name": "playground.kaisermann.me",
+        "desc": "(design/code)"
+      },
+      {
+        "url": "http://programadeindie.kaisermann.me",
+        "name": "programadeindie.kaisermann.me",
+        "desc": "(design/code)"
+      },
+      {
+        "url": "http://zebraa.com.br",
+        "name": "zebraa.com.br",
+        "desc": "(code)"
+      },
+      {
+        "url": "http://10de10.com.br",
+        "name": "10de10.com.br",
+        "desc": "(design/code)"
+      },
+      {
+        "url": "https://tuut.com.br",
+        "name": "tuut.com.br",
+        "desc": "(code)"
+      },
+      {
+        "url": "http://tcurbes.com.br",
+        "name": "tcurbes.com.br",
+        "desc": "(code)"
+      },
+      {
+        "url": "http://escolaeleva.com.br",
+        "name": "escolaeleva.com.br",
+        "desc": "(code)"
+      },
+      {
+        "url": "http://marcelod2.com.br",
+        "name": "marcelod2.com.br",
+        "desc": "(code)"
+      }
+    ]
   },
   "environments": {
     "production": {

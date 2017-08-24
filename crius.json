@@ -49,7 +49,7 @@
       }
     },
     "images": {
-      "pattern": "*.{jpg,png,gif,svg,webp}",
+      "pattern": "*.{jpg,png,gif,svg,webp,ico}",
       "directory": "assets/images",
       "assets": {
         "./": "**/*"

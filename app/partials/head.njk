@@ -1,3 +1,18 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+<meta name="description" content="{{ app.description }}"/>
+<meta name="web_author" content="Christian Kaisermann <christian@kaisermann.me>"/>
+
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ app.title }}" />
+<meta property="og:description" content="{{ app.description }}" />
+<meta property="og:url" content="{{ app.urls.main }}" />
+<meta property="og:site_name" content="{{ app.title }}" />
+<meta property="og:image" content="{{ asset('img/site_thumb.png') }}" />
+
+<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
 <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+
 <title>{{ app.title }}</title>
