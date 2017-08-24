@@ -1,9 +1,10 @@
 body
-	font-size: 26px
+	responsive-font-size: 2.2vw 20px
 	line-height: 1.4
 	font-family: Courier New, Courier, monospace
 	background-color: colors.black
 	color: colors.white
+	overflow-x: hidden
 
 p
 	margin-bottom: 25px
@@ -12,29 +13,40 @@ ul
 	margin-bottom: 25px
 
 	li
-		+ li
-			margin-top: 5px
+		margin-bottom: 5px
+		+max(xs)
+			margin-bottom: 25px
 
-a
+a:not(.k-sig)
 	display: inline
 	position: relative
+	word-wrap: break-word
 	
-	&::before
-	&::after
-		content: ''
-		display: block
-		position: absolute
-		bottom: 0
-		left: 0
-		size: 100% 2px
+	+max(xs)
+		color: colors.black
 		background-color: colors.white
-		transition: height .3s ease
-		z-index: layers.underlineStatic
+		
+		&:hover
+			background-size: 100% 100%
+		
+	+min(sm)
+		display: inline-block
+		&::before
+		&::after
+			content: ''
+			display: block
+			position: absolute
+			bottom: 0
+			left: 0
+			size: 100% 2px
+			background-color: colors.white
+			transition: height .3s ease
+			z-index: layers.underlineStatic
 
-	&::after
-		z-index: layers.underline
-		background-image: url(../images/rainbow-static.webp)
-		opacity: .4
+		&::after
+			z-index: layers.underline
+			background-image: url(../images/rainbow-static.webp)
+			opacity: .4
 
 	&:hover
 		color: colors.black
@@ -49,6 +61,8 @@ a
 
 	&[href*='last.fm']
 		color: inherit
+		+max(xs)
+			background-color: colors.lastfmRed
 		&::before
 			background-color: colors.lastfmRed
 		&::after
@@ -56,6 +70,8 @@ a
 
 	&[href*='linkedin']
 		color: inherit
+		+max(xs)
+			background-color: colors.linkedinBlue
 		&::before
 			background-color: colors.linkedinBlue
 		&::after
@@ -63,6 +79,9 @@ a
 
 	&[href*='instagram.com']
 		color: inherit
+		+max(xs)
+			background-color: transparent
+			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
 		&::before
 			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
 		&:hover

@@ -36,7 +36,7 @@
     "maxReleases": 5
   },
   "hosts": {
-    "staging": {
+    "bottura": {
       "hosts": [
         "bottura"
       ],

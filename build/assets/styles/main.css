@@ -147,81 +147,64 @@ img {
   background-color: #0077b5;
 }
 body {
-  font-size: 26px;
+  font-size: 2.2vw;
   line-height: 1.4;
   font-family: Courier New,Courier,monospace;
   background-color: #000;
   color: #fff;
+  overflow-x: hidden;
 }
 p,ul {
   margin-bottom: 25px;
 }
-ul li+li {
-  margin-top: 5px;
+ul li {
+  margin-bottom: 5px;
 }
-a {
+a:not(.k-sig) {
   display: inline;
   position: relative;
+  word-wrap: break-word;
 }
-a:after,a:before {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
-  -webkit-transition: height .3s ease;
-  -o-transition: height .3s ease;
-  transition: height .3s ease;
-  z-index: -1;
-}
-a:after {
-  z-index: -2;
-  background-image: url(../images/rainbow-static.webp);
-  opacity: .4;
-}
-a:hover {
+a:not(.k-sig):hover {
   color: #000;
 }
-a:hover:before {
+a:not(.k-sig):hover:before {
   z-index: -2;
   height: 100%;
 }
-a:hover:after {
+a:not(.k-sig):hover:after {
   z-index: -1;
   height: 100%;
 }
-a[href*="last.fm"] {
+a:not(.k-sig)[href*="last.fm"] {
   color: inherit;
 }
-a[href*="last.fm"]:before {
+a:not(.k-sig)[href*="last.fm"]:before {
   background-color: #b20000;
 }
-a[href*="last.fm"]:after {
+a:not(.k-sig)[href*="last.fm"]:after {
   opacity: .2;
 }
-a[href*=linkedin] {
+a:not(.k-sig)[href*=linkedin] {
   color: inherit;
 }
-a[href*=linkedin]:before {
+a:not(.k-sig)[href*=linkedin]:before {
   background-color: #0077b5;
 }
-a[href*=linkedin]:after {
+a:not(.k-sig)[href*=linkedin]:after {
   opacity: .2;
 }
-a[href*="instagram.com"] {
+a:not(.k-sig)[href*="instagram.com"] {
   color: inherit;
 }
-a[href*="instagram.com"]:before {
+a:not(.k-sig)[href*="instagram.com"]:before {
   background-image: -o-radial-gradient(33% 100% circle,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
   background-image: radial-gradient(circle at 33% 100%,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
 }
-a[href*="instagram.com"]:hover {
+a:not(.k-sig)[href*="instagram.com"]:hover {
   color: #fff;
 }
-a[href*="instagram.com"]:after {
+a:not(.k-sig)[href*="instagram.com"]:after {
   opacity: .2;
 }
 .page-content {
@@ -324,6 +307,58 @@ a[href*="instagram.com"]:after {
     -webkit-transform: scaleX(1.001);
          -o-transform: scaleX(1.001);
             transform: scaleX(1.001);
+  }
+}
+@media (max-width:909.090909090909px) {
+  body {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width:767px) {
+  ul li {
+    margin-bottom: 25px;
+  }
+  a:not(.k-sig) {
+    color: #000;
+    background-color: #fff;
+  }
+  a:not(.k-sig):hover {
+    background-size: 100% 100%;
+  }
+  a:not(.k-sig)[href*="last.fm"] {
+    background-color: #b20000;
+  }
+  a:not(.k-sig)[href*=linkedin] {
+    background-color: #0077b5;
+  }
+  a:not(.k-sig)[href*="instagram.com"] {
+    background-color: transparent;
+    background-image: -o-radial-gradient(33% 100% circle,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
+    background-image: radial-gradient(circle at 33% 100%,#fed373 4%,#f15245 30%,#d92e7f 62%,#9b36b7 85%,#515ecf);
+  }
+}
+@media only screen and (min-width:768px) {
+  a:not(.k-sig) {
+    display: inline-block;
+  }
+  a:not(.k-sig):after,a:not(.k-sig):before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    -webkit-transition: height .3s ease;
+    -o-transition: height .3s ease;
+    transition: height .3s ease;
+    z-index: -1;
+  }
+  a:not(.k-sig):after {
+    z-index: -2;
+    background-image: url(../images/rainbow-static.webp);
+    opacity: .4;
   }
 }
 
