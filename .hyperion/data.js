@@ -54,6 +54,7 @@ const parseAppData = () => {
   delete appData.environments
 
   appData = parseStringReferences(appData)
+  appData.env = process.env.NODE_ENV
   return appData
 }
 
