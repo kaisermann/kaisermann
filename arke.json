@@ -22,6 +22,12 @@
           "yarn"
         ]
       ],
+      "beforeDeploy": [
+        [
+          "",
+          "yarn build:production"
+        ]
+      ],
       "afterDeploy": [
         [
           "",

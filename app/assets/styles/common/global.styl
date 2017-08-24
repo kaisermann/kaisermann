@@ -17,81 +17,80 @@ ul
 		+max(xs)
 			margin-bottom: 25px
 
-a:not(.k-sig)
-	display: inline
-	position: relative
-	word-wrap: break-word
-	
-	+max(xs)
-		color: colors.black
-		background-color: colors.white
-		
-		&:hover
-			background-size: 100% 100%
-		
-	+min(sm)
-		display: inline-block
-		&::before
-		&::after
-			content: ''
-			display: block
-			position: absolute
-			bottom: 0
-			left: 0
-			size: 100% 2px
-			background-color: colors.white
-			transition: height .3s ease
-			z-index: layers.underlineStatic
-
-		&::after
-			z-index: layers.underline
-			background-image: url(../images/rainbow-static.webp)
-			opacity: .4
-
-	&:hover
-		color: colors.black
-
-		&::before
-			z-index: layers.underline
-			height: 100%
-
-		&::after
-			z-index: layers.underlineStatic
-			height: 100%
-
-	&[href*='last.fm']
-		color: inherit
-		+max(xs)
-			background-color: colors.lastfmRed
-		&::before
-			background-color: colors.lastfmRed
-		&::after
-			opacity: .2
-
-	&[href*='linkedin']
-		color: inherit
-		+max(xs)
-			background-color: colors.linkedinBlue
-		&::before
-			background-color: colors.linkedinBlue
-		&::after
-			opacity: .2
-
-	&[href*='instagram.com']
-		color: inherit
-		+max(xs)
-			background-color: transparent
-			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
-		&::before
-			background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
-		&:hover
-			color: colors.white
-		&::after
-			opacity: .2
-
 .page-content
 	padding: 50px
 	animation: glitch 1s linear infinite
+	a
+		display: inline
+		position: relative
+		word-wrap: break-word
+		
+		+max(xs)
+			color: colors.black
+			background-color: colors.white
+			
+			&:hover
+				background-size: 100% 100%
+			
+		+min(sm)
+			display: inline-block
+			&::before
+			&::after
+				content: ''
+				display: block
+				position: absolute
+				bottom: 0
+				left: 0
+				size: 100% 2px
+				background-color: colors.white
+				transition: height .3s ease
+				z-index: layers.underlineStatic
+
+			&::after
+				z-index: layers.underline
+				background-image: url(../images/rainbow-static.webp)
+				opacity: .4
+
+		&:hover
+			color: colors.black
+
+			&::before
+				z-index: layers.underline
+				height: 100%
+
+			&::after
+				z-index: layers.underlineStatic
+				height: 100%
+
+		&[href*='last.fm']
+			color: inherit
+			+max(xs)
+				background-color: colors.lastfmRed
+			&::before
+				background-color: colors.lastfmRed
+			&::after
+				opacity: .2
+
+		&[href*='linkedin']
+			color: inherit
+			+max(xs)
+				background-color: colors.linkedinBlue
+			&::before
+				background-color: colors.linkedinBlue
+			&::after
+				opacity: .2
+
+		&[href*='instagram.com']
+			color: inherit
+			+max(xs)
+				background-color: transparent
+				background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
+			&::before
+				background-image: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)
+			&:hover
+				color: colors.white
+			&::after
+				opacity: .2
 
 .page-background
 	position: fixed
