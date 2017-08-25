@@ -5272,10 +5272,6 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-rolleiflex@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/rolleiflex/-/rolleiflex-5.1.0.tgz#7d508bb57a6a0b735955c7e21ba17f276cac18cc"
-
 rollup-plugin-buble@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-buble/-/rollup-plugin-buble-0.15.0.tgz#83c3e89c7fd2266c7918f41ba3980313519c7fd0"

@@ -124,7 +124,6 @@
     "uncss": "^0.15.0"
   },
   "dependencies": {
-    "rolleiflex": "^5.1.0",
     "rupture": "^0.6.2"
   }
 }
