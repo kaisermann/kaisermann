@@ -1,5 +1,7 @@
 .page-content
-	max-width: 1020px
+	max-width: 900px
+	position: relative
+	z-index: layers.content
 	padding: 50px
 	opacity: 0
 	animation: glitch 1s linear infinite, flicker .3s infinite
@@ -19,6 +21,7 @@
 	background-image: url(../images/static.gif)
 	background-size: cover
 	opacity: .05
+	pointer-events: none
 
 	&::before
 		content: ''
