@@ -1,6 +1,17 @@
+import nms from '../vendor/no-more-secrets'
+
 export default {
-  init () {
-    const content = document.querySelector('.page-content').children
-    Array.from(content).forEach(element => {})
+  finalize () {
+    window.requestAnimationFrame(() => {
+      document.querySelectorAll('p:not(:first-child), ul, h2').forEach(el => {
+        nms(el, {
+          maxUpdateInterval: 45,
+          minUpdateInterval: 10,
+          maxUpdates: 3,
+          extraDelay: 10,
+          initialDelay: 900,
+        })
+      })
+    })
   },
 }
