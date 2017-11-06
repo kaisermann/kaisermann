@@ -72,7 +72,7 @@
     "build:production": "export NODE_ENV='production'; gulp -p"
   },
   "engines": {
-    "node": ">= 6.9.4"
+    "node": ">= 7.10.1"
   },
   "browserslist": [
     "last 2 versions",
