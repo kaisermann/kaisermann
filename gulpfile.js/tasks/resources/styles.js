@@ -5,7 +5,6 @@ const concat = require('gulp-concat')
 const postcss = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const stylus = require('gulp-stylus')
-const rev = require('gulp-rev')
 
 const postCSSautoprefixer = require('autoprefixer')
 const postCSSmqpacker = require('css-mqpacker')
@@ -13,7 +12,6 @@ const postCSSnano = require('cssnano')
 
 const crius = require('../../manifest')
 const params = require('../../params')
-const writeToManifest = require('../../utils/writeToManifest')
 
 const stylusOpts = {
   'include css': true,
@@ -60,13 +58,7 @@ module.exports = {
         })
       }
 
-      /** If production, create cache-busting files */
-      if (params.production) {
-        lazy = lazy.pipe(rev)
-      }
-
       return lazy
     },
-    merged: writeToManifest,
   },
 }

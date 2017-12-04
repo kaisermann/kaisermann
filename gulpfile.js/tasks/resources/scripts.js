@@ -3,13 +3,11 @@ const lazypipe = require('lazypipe')
 const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const sourcemaps = require('gulp-sourcemaps')
-const rev = require('gulp-rev')
 
 const crius = require('../../manifest')
 const params = require('../../params')
 
 const bundler = require('../../utils/rollup/bundler')
-const writeToManifest = require('../../utils/writeToManifest')
 
 module.exports = {
   tasks: {
@@ -47,13 +45,7 @@ module.exports = {
         })
       }
 
-      /** If production, create cache-busting files */
-      if (params.production) {
-        lazy = lazy.pipe(rev)
-      }
-
       return lazy
     },
-    merged: writeToManifest,
   },
 }
