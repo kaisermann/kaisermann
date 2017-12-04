@@ -12,7 +12,12 @@
   "engines": {
     "node": ">= 7.10.1"
   },
-  "browserslist": ["last 2 versions", "opera 12", "IE 11", "Safari >= 8"],
+  "browserslist": [
+    "last 2 versions",
+    "opera 12",
+    "IE 11",
+    "Safari >= 8"
+  ],
   "scripts": {
     "watch": "gulp watch -d --sync --report --maps",
     "start": "npm run -s watch",
@@ -48,7 +53,10 @@
       "ecmaVersion": 2017,
       "sourceType": "module"
     },
-    "plugins": ["import", "compat"],
+    "plugins": [
+      "import",
+      "compat"
+    ],
     "settings": {
       "import/core-modules": [],
       "import/ignore": [
@@ -141,6 +149,7 @@
     "gulp-nunjucks-render": "^2.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
+    "gulp-purifycss": "^0.2.0",
     "gulp-rev": "^8.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sizereport": "^1.2.0",
