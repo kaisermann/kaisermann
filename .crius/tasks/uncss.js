@@ -4,59 +4,51 @@ const { join } = require('path')
 const gulp = require('gulp')
 const plumber = require('gulp-plumber')
 const size = require('gulp-size')
-const postCSS = require('gulp-postcss')
-const { postcssPlugin: postCSSunCSS } = require('uncss')
+const purifyCSS = require('gulp-purifycss')
 
 const crius = require('../manifest')
-const getResourceDir = require('../utils/getResourceDir')
 const pathExists = require('../utils/doesPathExist')
-const onError = require('../utils/onError')
+const errorHandler = require('../utils/errorHandler')
 
 const auxSizeReport = msg =>
   size({ showFiles: true, showTotal: false, title: msg })
 
-const unCSSInternal = done => {
-  const stylesDir = getResourceDir('dist', 'styles')
+const distPath = crius.config.paths.dist
+
+gulp.task('purify', done => {
+  const stylesDir = join(distPath, 'styles')
 
   if (!pathExists(stylesDir)) {
     throw new Error('Styles distribution directory not found.')
   }
 
-  if (!pathExists('./sitemap.json')) {
-    throw new Error("Couldn't find the 'sitemap.json'")
-  }
-
-  const revManifestDir = getResourceDir(
-    'dist',
-    crius.config.paths.revisionManifest
-  )
-
-  const revManifest = pathExists(revManifestDir)
-    ? JSON.parse(readFileSync(revManifestDir, 'utf-8'))
+  const revManifestPath = join(distPath, crius.config.paths.manifest)
+  const revManifest = pathExists(revManifestPath)
+    ? JSON.parse(readFileSync(revManifestPath, 'utf-8'))
     : {}
 
-  // Let's get all assets with uncss:true
+  // Let's get all assets with purify:true
   const cssPaths = Object.entries(crius.resources.styles.assets)
-    .filter(([name, asset]) => asset.uncss)
+    .filter(([name, asset]) => asset.purify)
     .map(([name, asset]) => join(stylesDir, revManifest[name] || name))
+
+  const rootDir = process.cwd()
+  const globsToParse = [
+    join(distPath, '**', '*.{html,js}'),
+    join(rootDir, 'app', '**', '*.{njk,js}'),
+  ]
 
   return gulp
     .src(cssPaths, { base: './' })
-    .pipe(plumber({ errorHandler: onError }))
-    .pipe(auxSizeReport('Before unCSS:'))
+    .pipe(plumber({ errorHandler }))
+    .pipe(auxSizeReport('Before purifyCSS:'))
     .pipe(
-      postCSS([
-        postCSSunCSS({
-          html: JSON.parse(readFileSync('./sitemap.json', 'utf-8')),
-          uncssrc: '.uncssrc',
-        }),
-      ])
+      purifyCSS(globsToParse, {
+        whitelist: ['js-*', 'is-*', 'align-*', 'admin-bar*'],
+      })
     )
-    .pipe(auxSizeReport('Before unCSS:'))
+    .pipe(auxSizeReport('After purifyCSS:'))
     .pipe(gulp.dest('./'))
     .on('end', done)
     .on('error', done)
-}
-unCSSInternal.displayName = 'unCSS > inner task'
-
-gulp.task('uncss', gulp.series('styles', unCSSInternal))
+})

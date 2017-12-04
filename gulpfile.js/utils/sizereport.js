@@ -9,11 +9,7 @@ module.exports = function (fileGlob = '') {
         `${crius.config.paths.dist}/**/${fileGlob}`,
         `!${crius.config.paths.dist}/**/*.map`,
       ])
-      .pipe(
-        sizereport({
-          gzip: true,
-        })
-      )
+      .pipe(sizereport({ gzip: true }))
       .on('end', done)
       .on('error', done)
       .resume()

@@ -9,6 +9,22 @@
     "url": "git@github.com:kaisermann/hyperion.git"
   },
   "license": "(MIT)",
+  "engines": {
+    "node": ">= 7.10.1"
+  },
+  "browserslist": ["last 2 versions", "opera 12", "IE 11", "Safari >= 8"],
+  "scripts": {
+    "watch": "gulp watch -d --sync --report --maps",
+    "start": "npm run -s watch",
+    "build": "export NODE_ENV='staging'; gulp",
+    "build:dev": "export NODE_ENV='development'; gulp -d",
+    "build:production": "export NODE_ENV='production'; gulp -p; gulp purify",
+    "clean": "npm run -s clean:dist",
+    "clean:dist": "rimraf build",
+    "lint": "gulp lint",
+    "lint:styles": "gulp lint:styles",
+    "lint:scripts": "gulp lint:scripts"
+  },
   "eslintConfig": {
     "root": true,
     "extends": "standard",
@@ -32,10 +48,7 @@
       "ecmaVersion": 2017,
       "sourceType": "module"
     },
-    "plugins": [
-      "import",
-      "compat"
-    ],
+    "plugins": ["import", "compat"],
     "settings": {
       "import/core-modules": [],
       "import/ignore": [
@@ -59,55 +72,80 @@
       "compat/compat": 2
     }
   },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "no-empty-source": null
-    }
+  "stylintrc": {
+    "blocks": false,
+    "brackets": false,
+    "colons": "always",
+    "colors": false,
+    "commaSpace": "always",
+    "commentSpace": "always",
+    "cssLiteral": "never",
+    "customProperties": [],
+    "depthLimit": false,
+    "duplicates": true,
+    "efficient": "always",
+    "exclude": [],
+    "extendPref": false,
+    "globalDupe": true,
+    "groupOutputByFile": true,
+    "indentPref": 2,
+    "leadingZero": "never",
+    "maxErrors": false,
+    "maxWarnings": false,
+    "mixed": true,
+    "mixins": [],
+    "namingConvention": false,
+    "namingConventionStrict": false,
+    "none": false,
+    "noImportant": true,
+    "parenSpace": "never",
+    "placeholders": false,
+    "prefixVarsWithDollar": "always",
+    "quotePref": "single",
+    "reporter": "stylint-stylish",
+    "reporterOptions": {
+      "absolutePath": false,
+      "verbose": true,
+      "ruleName": true
+    },
+    "semicolons": "never",
+    "sortOrder": false,
+    "stackedProperties": "never",
+    "trailingWhitespace": "never",
+    "universal": "never",
+    "valid": false,
+    "zeroUnits": "never",
+    "zIndexNormalize": false
   },
-  "scripts": {
-    "watch": "gulp watch -d --sync --report --maps",
-    "build": "export NODE_ENV='development'; gulp -d",
-    "build:staging": "export NODE_ENV='staging'; gulp",
-    "build:production": "export NODE_ENV='production'; gulp -p"
-  },
-  "engines": {
-    "node": ">= 7.10.1"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "opera 12",
-    "IE 11",
-    "Safari >= 8"
-  ],
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
+    "autoprefixer": "^7.1.6",
     "browser-sync": "^2.18.13",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
     "deep-extend": "^0.5.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.12.1",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-compat": "^1.0.4",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-compat": "^2.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "filesize": "^3.5.11",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-better-rollup": "^1.1.1",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^4.0.0",
     "gulp-flatten": "^0.3.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.3.0",
-    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-nunjucks-render": "^2.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
-    "gulp-rev": "^8.0.0",
+    "gulp-rev": "^8.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sizereport": "^1.2.0",
     "gulp-sourcemaps": "^2.6.1",
+    "gulp-stylint": "^4.0.0",
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
@@ -115,15 +153,18 @@
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "require-directory": "^2.1.1",
-    "rimraf": "^2.6.1",
-    "rollup-plugin-buble": "^0.15.0",
-    "rollup-plugin-commonjs": "^8.2.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.52.0",
+    "rollup-plugin-buble": "^0.18.0",
+    "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-sizes": "^0.4.0",
-    "uncss": "^0.15.0"
+    "rollup-plugin-sizes": "^0.4.2",
+    "stylint-stylish": "^1.4.0",
+    "through2": "^2.0.3"
   },
   "dependencies": {
+    "nib": "^1.1.2",
     "rupture": "^0.6.2"
   }
 }

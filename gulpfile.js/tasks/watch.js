@@ -1,14 +1,27 @@
 const { join } = require('path')
+const { unlinkSync } = require('fs')
 const gulp = require('gulp')
 const util = require('gulp-util')
 
+const pathExists = require('../utils/doesPathExist')
+const params = require('../params')
 const crius = require('../manifest')
-const getResourceDir = require('../utils/getResourceDir')
 
 gulp.task('watch', done => {
   const bsConf = crius.config.browserSync
 
-  if (crius.params.sync && crius.browserSyncInstance) {
+  if (crius.config.paths.manifest !== undefined) {
+    const manifestPath = join(
+      crius.config.paths.dist,
+      crius.config.paths.manifest
+    )
+
+    if (pathExists(manifestPath)) {
+      unlinkSync(manifestPath)
+    }
+  }
+
+  if (params.sync && crius.browserSyncInstance) {
     if (bsConf) {
       let browserSyncOptions = {
         files: bsConf.watch,
@@ -22,8 +35,8 @@ gulp.task('watch', done => {
 
       if (bsConf.mode === 'server') {
         browserSyncOptions.server = {
-          // Resolves the path just for showing a complete path on the terminal
-          baseDir: join(process.cwd(), bsConf.baseDir),
+          /** Absolute path just for showing a complete path on the terminal */
+          baseDir: join(crius.config.paths.root, bsConf.baseDir),
           index: bsConf.index,
         }
       } else {
@@ -40,17 +53,17 @@ gulp.task('watch', done => {
     }
   }
 
-  // Watch based on resource-type-names
+  /** Watch based on resource-type-names */
   for (const [resourceType, resourceInfo] of Object.entries(crius.resources)) {
-    let filesToWatch = [
-      getResourceDir(
-        'source',
+    const filesToWatch = [
+      join(
+        crius.config.paths.source,
         resourceInfo.directory,
-        '**/',
+        '**',
         resourceInfo.pattern
       ),
-      // watches extra files
-    ].concat(resourceInfo.watch ? resourceInfo.watch : [])
+      /** watches extra files */
+    ].concat(resourceInfo.watch || [])
 
     gulp.watch(filesToWatch, gulp.series(resourceType))
   }
