@@ -62,7 +62,12 @@
       {
         "url": "http://10de10.com.br",
         "name": "10de10.com.br",
-        "desc": "(design/front/back)"
+        "desc": "(design/front-end/back-end)"
+      },
+      {
+        "url": "http://tuut.com.br",
+        "name": "tuut.com.br",
+        "desc": "(front-end/back-end)"
       },
       {
         "url": "http://museujudaicosp.org.br",
