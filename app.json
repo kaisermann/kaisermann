@@ -48,7 +48,7 @@
         "desc": "(open <a> links using POST instead of GET)"
       },
       {
-        "url": "https://github.com/kaisermann/post-links",
+        "url": "https://github.com/kaisermann/photoswippy",
         "name": "photoswippy",
         "desc": "(a PhotoSwipe friendly wrapper)"
       },
