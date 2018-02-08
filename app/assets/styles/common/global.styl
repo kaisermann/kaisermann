@@ -1,37 +1,37 @@
 html
-	font-size: app.baseFontSize
-	font-family: unquote(fonts.main)
-	line-height: 1.4
+  font-size: app.baseFontSize
+  font-family: fonts.main
+  line-height: 1.4
 
-	+max(xs)
-		line-height: 1.6
-		font-size: 18px
+  +below(xs)
+    line-height: 1.6
+    font-size: 18px
 
 body
-	background-color: colors.black
-	color: colors.white
-	overflow-x: hidden
-	animation: turn-on 2s linear
+  background-color: colors.black
+  color: colors.white
+  overflow-x: hidden
+  animation: turn-on 2s linear
 
 h2
-	font-size: 22px
-	margin-bottom: 5px
-	margin-top: 55px
+  font-size: 22px
+  margin-bottom: 5px
+  margin-top: 55px
 
 p
-	margin-bottom: 25px
-	+max(xs)
-		margin-bottom: 15px
+  margin-bottom: 25px
+
+  +below(xs)
+    margin-bottom: 15px
 
 ul
-	margin-bottom: 25px
+  margin-bottom: 25px
 
-	li
-		margin-bottom: 5px
-		+max(xs)
-			margin-bottom: 25px
+  li
+    margin-bottom: 5px
+
+    +below(xs)
+      margin-bottom: 25px
 
 small
-	font-size: 16px
-
-
+  font-size: 16px

@@ -1,62 +1,66 @@
 coloredLink($selector, $bg, $color = colors.white)
-    if(type($bg) == 'string')
-        $bg = unquote($bg)
-    &{$selector}
-        responsive: color inherit '<xs' $color
-        responsive: background none '<xs' $bg
-        &::before
-            background: $bg
-        &:hover
-            color: $color
+  if (type($bg) == 'string')
+    $bg = unquote($bg)
 
-.page-content a
-    position: relative
-    padding: 0 2px
-    word-wrap: break-word
+  &{$selector}
+    responsive: color inherit '<xs' $color
+    responsive: background none '<xs' $bg
 
-    coloredLink("[href*='twitter.com']", colors.twitterBlue)
-    coloredLink("[href*='spotify.com']", colors.spotifyGreen, colors.black)
-    coloredLink("[href*='last.fm']", colors.lastfmRed)
-    coloredLink("[href*='linkedin']", colors.linkedinBlue)
-    coloredLink("[href*='instagram']", "transparent radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)")
-
-    &::after
-        opacity: .2
+    &::before
+      background: $bg
 
     &:hover
-        color: colors.black
+      color: $color
 
-        &::before
-            z-index: layers.underline
-            height: 100%
+.page-content a
+  position: relative
+  padding: 0 2px
+  word-wrap: break-word
 
-        &::after
-            z-index: layers.underlineStatic
-            height: 100%
+  coloredLink('[href*="twitter.com"]', colors.twitterBlue)
+  coloredLink('[href*="spotify.com"]', colors.spotifyGreen, colors.black)
+  coloredLink('[href*="last.fm"]', colors.lastfmRed)
+  coloredLink('[href*="linkedin"]', colors.linkedinBlue)
+  coloredLink('[href*="instagram"]', 'transparent radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF)')
 
-    +max(xs)
-        color: colors.black
-        background-color: colors.white
+  &::after
+    opacity: .2
 
-        &:hover
-            background-size: 100% 100%
+  &:hover
+    color: colors.black
 
-    +min(sm)
-        display: inline-block
-        &::before
-        &::after
-            content: ''
-            display: block
-            position: absolute
-            bottom: 0
-            left: 0
-            size: 100% 2px
-            background-color: colors.white
-            transition: height .3s ease
-            z-index: layers.underlineStatic
+    &::before
+      z-index: layers.underline
+      height: 100%
 
-        &::after
-            z-index: layers.underline
-            background-image: url(../images/rainbow-static.gif)
-            background-position: center
-            opacity: .4
+    &::after
+      z-index: layers.underlineStatic
+      height: 100%
+
+  +below(xs)
+    color: colors.black
+    background-color: colors.white
+
+    &:hover
+      background-size: 100% 100%
+
+  +above(sm)
+    display: inline-block
+
+    &::before
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      size: 100% 2px
+      background-color: colors.white
+      transition: height .3s ease
+      z-index: layers.underlineStatic
+
+    &::after
+      z-index: layers.underline
+      background-image: url('../images/rainbow-static.gif')
+      background-position: center
+      opacity: .4

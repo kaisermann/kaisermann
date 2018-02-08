@@ -2,10 +2,10 @@ const { relative, basename } = require('path')
 const through2 = require('through2')
 const rollup = require('rollup')
 
-const { PluginError } = require('gulp-util')
+const PluginError = require('plugin-error')
 
-const params = require('../../params')
-const crius = require('../../manifest')
+const Flags = require('../Flags')
+const Manifest = require('../Manifest')
 
 const plugins = require('./plugins')
 
@@ -17,11 +17,13 @@ const rollupCache = new Map()
 module.exports = () =>
   through2.obj(async (file, enc, next) => {
     const opts = {
+      plugins,
       cache: rollupCache.get(file.path),
       input: file.path,
-      sourcemap: params.maps,
-      format: 'iife',
-      plugins,
+      output: {
+        sourcemap: Flags.maps,
+        format: 'iife',
+      },
     }
 
     try {
@@ -30,7 +32,7 @@ module.exports = () =>
       rollupCache.set(file.path, bundle)
 
       if (map) {
-        map.file = relative(crius.config.paths.root, file.path)
+        map.file = relative(Manifest.paths.root, file.path)
         map.sources = map.sources.map(
           source =>
             source === file.path

@@ -5,4 +5,6 @@
  */
 
 module.exports = str =>
-  str.slice(-1) === '/' || (str.indexOf('.') < 0 || str[0] === '.')
+  str.charAt(str.length - 1) === '/' ||
+  str.indexOf('.') < 0 ||
+  str.charAt(0) === '.'

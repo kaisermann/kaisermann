@@ -4,10 +4,10 @@ const concat = require('gulp-concat')
 const uglify = require('gulp-uglify')
 const sourcemaps = require('gulp-sourcemaps')
 
-const crius = require('../../manifest')
-const params = require('../../params')
+const Manifest = require('../Manifest')
+const Flags = require('../Flags')
 
-const bundler = require('../../utils/rollup/bundler')
+const bundler = require('../rollup/bundler')
 
 module.exports = {
   tasks: {
@@ -18,7 +18,7 @@ module.exports = {
       let lazy = lazypipe()
 
       /** Initialize sourcemaps */
-      if (params.maps) {
+      if (Flags.maps) {
         lazy = lazy.pipe(sourcemaps.init)
       }
 
@@ -34,14 +34,14 @@ module.exports = {
       lazy = lazy.pipe(concat, asset.outputName)
 
       /** Uglify if not debugging (-d) */
-      if (!params.debug) {
+      if (!Flags.debug) {
         lazy = lazy.pipe(uglify)
       }
 
       /** Write the sourcemaps */
-      if (params.maps) {
+      if (Flags.maps) {
         lazy = lazy.pipe(sourcemaps.write, '.', {
-          sourceRoot: crius.config.paths.distToRoot,
+          sourceRoot: Manifest.paths.distToRoot,
         })
       }
 

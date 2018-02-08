@@ -1,11 +1,11 @@
-const rollUpBuble = require('rollup-plugin-buble')
+const rollUpBabel = require('rollup-plugin-babel')
 const rollUpCommonjs = require('rollup-plugin-commonjs')
 const rollUpNodeResolve = require('rollup-plugin-node-resolve')
 const rollUpNodebuiltins = require('rollup-plugin-node-builtins')
 const rollUpSizes = require('rollup-plugin-sizes')
-const rollUpSizeReporter = require('./size-reporter')
 
-const params = require('../../params')
+const Flags = require('../Flags')
+const rollUpSizeReporter = require('./size-reporter')
 
 /** List of Rollup plugins to be used */
 const plugins = [
@@ -23,15 +23,12 @@ const plugins = [
   /** Transforms CommonJS modules into ES6 modules for RollUp */
   rollUpCommonjs(),
   /** Transpiles the code, ignoring coniguration from the `node_modules` */
-  rollUpBuble({
-    transforms: {
-      arrow: true,
-      dangerousForOf: true,
-    },
+  rollUpBabel({
+    exclude: 'node_modules/**',
   }),
 ]
 
-if (params.report) {
+if (Flags.report) {
   plugins.push(rollUpSizes({ report: rollUpSizeReporter }))
 }
 

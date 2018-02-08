@@ -2,12 +2,12 @@ const lazypipe = require('lazypipe')
 const nunjucksRender = require('gulp-nunjucks-render')
 const htmlmin = require('gulp-htmlmin')
 
-const crius = require('../../manifest')
-const params = require('../../params')
+const Manifest = require('../Manifest')
+const Flags = require('../Flags')
 
-const hyperionFilters = require('../../../.hyperion/filters')
-const hyperionMethods = require('../../../.hyperion/methods')
-const hyperionGetData = require('../../../.hyperion/data')
+const hyperionFilters = require('../../.hyperion/filters')
+const hyperionMethods = require('../../.hyperion/methods')
+const hyperionGetData = require('../../.hyperion/data')
 const htmlminConfig = {
   collapseWhitespace: true,
   minifyCSS: true,
@@ -29,7 +29,7 @@ module.exports = {
       let lazy = lazypipe()
 
       lazy = lazy.pipe(nunjucksRender, {
-        path: crius.config.paths.source,
+        path: Manifest.paths.source,
         manageEnv: environment => {
           Object.entries(hyperionFilters).forEach(entry =>
             environment.addFilter(...entry)
@@ -42,7 +42,7 @@ module.exports = {
         data: hyperionGetData(),
       })
 
-      if (params.production) {
+      if (Flags.production) {
         lazy = lazy.pipe(htmlmin, htmlminConfig)
       }
 

@@ -10,8 +10,8 @@ const postCSSautoprefixer = require('autoprefixer')
 const postCSSmqpacker = require('css-mqpacker')
 const postCSSnano = require('cssnano')
 
-const crius = require('../../manifest')
-const params = require('../../params')
+const Manifest = require('../Manifest')
+const Flags = require('../Flags')
 
 const stylusOpts = {
   'include css': true,
@@ -29,7 +29,7 @@ module.exports = {
       let lazy = lazypipe()
 
       /** Initialize sourcemaps */
-      if (params.maps) {
+      if (Flags.maps) {
         lazy = lazy.pipe(sourcemaps.init)
       }
 
@@ -46,15 +46,15 @@ module.exports = {
         postCSSautoprefixer(),
         postCSSmqpacker(),
         postCSSnano({
-          core: !params.debug,
-          discardComments: !params.debug,
+          core: !Flags.debug,
+          discardComments: !Flags.debug,
         }),
       ])
 
       /** Write the sourcemaps */
-      if (params.maps) {
+      if (Flags.maps) {
         lazy = lazy.pipe(sourcemaps.write, '.', {
-          sourceRoot: crius.config.paths.distToRoot,
+          sourceRoot: Manifest.paths.distToRoot,
         })
       }
 

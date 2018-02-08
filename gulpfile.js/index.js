@@ -1,15 +1,32 @@
-const requireDir = require('require-directory')
+const { join } = require('path')
+const { readdirSync } = require('fs')
+const gulp = require('gulp')
 
-/** Defaults NODE_ENV to 'dev' if not set */
+const Resource = require('./Resource')
+const Manifest = require('./Manifest')
+
+/** Default NODE_ENV to 'dev' if not set */
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development'
 }
 
-/** Load tasks before resource-tasks */
-requireDir(module, './tasks/before-resources')
+/** Load all but the 'main' gulp tasks */
+const tasksPath = join(Manifest.paths.root, 'gulpfile.js', 'tasks')
+readdirSync(tasksPath).forEach(fileName => {
+  if (fileName !== 'main.js') {
+    require(join(tasksPath, fileName))
+  }
+})
 
-/** Load resource tasks */
-require('./resourcesTasksLoader')
+/** Load resources modules */
+Resource.loadModules()
 
-/** Load the rest of gulp tasks */
-requireDir(module, './tasks', { recurse: false })
+/** Automatically create the resources tasks */
+for (const [resourceType, resourceInfo] of Object.entries(Manifest.resources)) {
+  /** Pushes the resource task and its dependencies  */
+  const taskQueue = Resource.getTasks(resourceType, resourceInfo)
+  gulp.task(resourceType, gulp.series(taskQueue))
+}
+
+/** Finally, load the main default tasks */
+require('./tasks/main.js')

@@ -1,27 +1,25 @@
 const { join } = require('path')
 const { unlinkSync } = require('fs')
+const PluginError = require('plugin-error')
+const colors = require('ansi-colors')
 const gulp = require('gulp')
-const util = require('gulp-util')
 
 const pathExists = require('../utils/doesPathExist')
-const params = require('../params')
-const crius = require('../manifest')
+const Flags = require('../Flags')
+const Manifest = require('../Manifest')
 
 gulp.task('watch', done => {
-  const bsConf = crius.config.browserSync
+  const bsConf = Manifest.browserSync
 
-  if (crius.config.paths.manifest !== undefined) {
-    const manifestPath = join(
-      crius.config.paths.dist,
-      crius.config.paths.manifest
-    )
+  if (Manifest.paths.manifest !== undefined) {
+    const manifestPath = join(Manifest.paths.dist, Manifest.paths.manifest)
 
     if (pathExists(manifestPath)) {
       unlinkSync(manifestPath)
     }
   }
 
-  if (params.sync && crius.browserSyncInstance) {
+  if (Flags.sync && Manifest.browserSyncInstance) {
     if (bsConf) {
       let browserSyncOptions = {
         files: bsConf.watch,
@@ -36,17 +34,17 @@ gulp.task('watch', done => {
       if (bsConf.mode === 'server') {
         browserSyncOptions.server = {
           /** Absolute path just for showing a complete path on the terminal */
-          baseDir: join(crius.config.paths.root, bsConf.baseDir),
+          baseDir: join(Manifest.paths.root, bsConf.baseDir),
           index: bsConf.index,
         }
       } else {
         browserSyncOptions.proxy = bsConf.devUrl
       }
-      crius.browserSyncInstance.init(browserSyncOptions)
+      Manifest.browserSyncInstance.init(browserSyncOptions)
     } else {
-      throw new util.PluginError(
+      throw new PluginError(
         'watch',
-        util.colors.red(
+        colors.red(
           'Passed "--sync" but no browser-sync configuration was found on "crius.json"'
         )
       )
@@ -54,18 +52,15 @@ gulp.task('watch', done => {
   }
 
   /** Watch based on resource-type-names */
-  for (const [resourceType, resourceInfo] of Object.entries(crius.resources)) {
+  for (const [resourceType, resourceInfo] of Object.entries(
+    Manifest.resources
+  )) {
     const filesToWatch = [
-      join(
-        crius.config.paths.source,
-        resourceInfo.directory,
-        '**',
-        resourceInfo.pattern
-      ),
+      Manifest.getSourceDir(resourceType, '**', resourceInfo.pattern),
+    ]
       /** watches extra files */
-    ].concat(resourceInfo.watch || [])
-
-    gulp.watch(filesToWatch, gulp.series(resourceType))
+      .concat(resourceInfo.watch || [])
+    gulp.watch(filesToWatch, gulp.task(resourceType))
   }
   done()
 })

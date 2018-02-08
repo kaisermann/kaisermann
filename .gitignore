@@ -1,2 +1,8 @@
-build/
-*.pyc
+.DS_Store
+./index.html
+./sitemap.json
+dist
+build
+node_modules
+npm-debug.log
+yarn-error.log

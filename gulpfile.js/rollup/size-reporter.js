@@ -1,20 +1,20 @@
 const { relative } = require('path')
-const { colors } = require('gulp-util')
+const colors = require('ansi-colors')
 const filesize = require('filesize')
 
-const crius = require('../../manifest')
+const Manifest = require('../Manifest')
 
 /** Custom reporter for rollup-plugin-sizes */
+const divisor = '---------------------------------------'
 module.exports = details => {
-  const divisor = '---------------------------------------'
   const args = { ...details }
 
   // Sort
   args.totals.sort((a, b) => b.size - a.size)
   console.log('\n' + divisor)
   console.log(
-    colors.blue.bold('  Module "%s":'),
-    relative(crius.config.paths.root, args.input)
+    colors.bold(colors.blue('  Module "%s":')),
+    relative(Manifest.paths.root, args.input)
   )
   console.log(divisor)
 
