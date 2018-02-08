@@ -41,6 +41,16 @@
         "url": "https://github.com/kaisermann/comicbubbles",
         "name": "comicbubbles",
         "desc": "(css-only 8 bit-like comic balloons)"
+      },
+      {
+        "url": "https://github.com/kaisermann/post-links",
+        "name": "post-links",
+        "desc": "(open <a> links using POST instead of GET)"
+      },
+      {
+        "url": "https://github.com/kaisermann/post-links",
+        "name": "photoswippy",
+        "desc": "(A PhotoSwipe friendly wrapper)"
       }
     ],
     "sites": [
@@ -101,7 +111,7 @@
       },
       {
         "url": "http://consuladoportugalrj.org.br/",
-        "name": "consuladoportugalrj.org.br/",
+        "name": "consuladoportugalrj.org.br",
         "desc": "(front-end/back-end)"
       }
     ]
