@@ -50,7 +50,12 @@
       {
         "url": "https://github.com/kaisermann/post-links",
         "name": "photoswippy",
-        "desc": "(A PhotoSwipe friendly wrapper)"
+        "desc": "(a PhotoSwipe friendly wrapper)"
+      },
+      {
+        "url": "https://github.com/kaisermann/WPDLS",
+        "name": "wpdls",
+        "desc": "(basic custom WordPress admin style made easy with stylus)"
       }
     ],
     "sites": [
