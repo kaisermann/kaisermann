@@ -93,6 +93,16 @@
         "url": "http://marcelod2.com.br",
         "name": "marcelod2.com.br",
         "desc": "(front-end/back-end)"
+      },
+      {
+        "url": "http://flup.net.br",
+        "name": "flup.net.br",
+        "desc": "(front-end/back-end)"
+      },
+      {
+        "url": "http://consuladoportugalrj.org.br/",
+        "name": "consuladoportugalrj.org.br/",
+        "desc": "(front-end/back-end)"
       }
     ]
   },
