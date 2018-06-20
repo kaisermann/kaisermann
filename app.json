@@ -8,29 +8,24 @@
   "projects": {
     "opensource": [
       {
-        "url": "https://github.com/kaisermann/crius",
-        "name": "crius",
-        "desc": "(flexible front-end workflow)"
+        "url": "https://github.com/kaisermann/svelte-loadable",
+        "name": "svelte-loadable",
+        "desc": "(dynamically load a svelte component)"
       },
       {
-        "url": "https://github.com/kaisermann/selene",
-        "name": "selene",
-        "desc": "(opinionated wordpress starter theme)"
+        "url": "https://github.com/kaisermann/svelte-preprocess",
+        "name": "svelte-proprocess",
+        "desc": "(quick and painless preprocess support for svelte)"
       },
       {
-        "url": "https://github.com/kaisermann/hyperion",
-        "name": "hyperion",
-        "desc": "(static website workflow forked from Crius)"
+        "url": "https://github.com/kaisermann/photoswippy",
+        "name": "photoswippy",
+        "desc": "(a PhotoSwipe friendly wrapper)"
       },
       {
         "url": "https://github.com/kaisermann/rolleiflex",
         "name": "rolleiflex",
         "desc": "(css flexbox grid/helper framework)"
-      },
-      {
-        "url": "https://github.com/kaisermann/aph",
-        "name": "aph",
-        "desc": "(minimal DOM, barely api-less, manipulation library)"
       },
       {
         "url": "https://github.com/kaisermann/textlooper",
@@ -48,14 +43,29 @@
         "desc": "(open <a> links using POST instead of GET)"
       },
       {
-        "url": "https://github.com/kaisermann/photoswippy",
-        "name": "photoswippy",
-        "desc": "(a PhotoSwipe friendly wrapper)"
+        "url": "https://github.com/kaisermann/aph",
+        "name": "aph",
+        "desc": "(minimal DOM, barely api-less, manipulation library)"
       },
       {
         "url": "https://github.com/kaisermann/WPDLS",
         "name": "wpdls",
         "desc": "(basic custom WordPress admin style made easy with stylus)"
+      },
+      {
+        "url": "https://github.com/kaisermann/crius",
+        "name": "crius",
+        "desc": "(flexible front-end workflow)"
+      },
+      {
+        "url": "https://github.com/kaisermann/selene",
+        "name": "selene",
+        "desc": "(opinionated wordpress starter theme)"
+      },
+      {
+        "url": "https://github.com/kaisermann/hyperion",
+        "name": "hyperion",
+        "desc": "(static website workflow forked from Crius)"
       }
     ],
     "sites": [
