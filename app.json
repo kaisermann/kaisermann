@@ -9,7 +9,7 @@
     "opensource": [
       {
         "url": "https://github.com/kaisermann/svelte-preprocess",
-        "name": "svelte-proprocess",
+        "name": "svelte-preprocess",
         "desc": "(quick and painless preprocess support for svelte)"
       },
       {
