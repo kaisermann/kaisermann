@@ -13,7 +13,7 @@
         "desc": "(SDK for developing apps for the Mamba POS system)"
       },
       {
-        "url": "https://github.com/stone-payments/pos-mamba-app=template",
+        "url": "https://github.com/stone-payments/pos-mamba-app-template",
         "name": "pos-mamba-app-template",
         "desc": "(template for creating apps for the Mamba POS system)"
       },
