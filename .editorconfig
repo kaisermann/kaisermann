@@ -8,12 +8,5 @@ charset = utf-8
 trim_trailing_whitespace = auto
 insert_final_newline = auto
 
-[*.php]
-indent_style = space
-indent_size = 4
-
-[*.txt]
-end_of_line = crlf
-
 [*.md]
 trim_trailing_whitespace = false

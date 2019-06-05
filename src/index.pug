@@ -1,0 +1,56 @@
+extends layouts/base.pug
+
+block content
+  p Hey 👋!
+
+  p
+    | My name is Christian Kaisermann and I'm web developer based on Rio with a information systems degree from PUC-Rio.
+    |  I'm a very outgoing, curious and passionate person who loves
+    |  #[a(href='https://github.com/kaisermann', target='_blank', rel='noopener') coding],
+    |  #[a(href='https://instagram.com/kiwistian', target='_blank', rel='noopener') photography, nature] and
+    |  #[a(href='https://www.last.fm/user/chrispif', target='_blank', rel='noopener') music].
+
+  p
+    | I've been involved with programming since my childhood, when I started taking an interest in computers thanks to
+    |  #[a(href='https://en.wikipedia.org/wiki/Ragnarok_Online', target='_blank', rel='noopener') MMO games].
+    |  Let's say I didn't have the most
+    |  #[a(href='https://github.com/kaisermann/ragnarok-scripts', target='_blank', rel='noopener') common teenager years].
+    |  Oh, I'm usually called "The human linter".
+
+  p
+    | I love to stare at a
+    |  #[a(href='https://justgetflux.com/', target='_blank', rel='noopener') not-so-bright screen]
+    |  while coding for hours on a constant state of
+    |  #[a(href='https://en.wikipedia.org/wiki/Flow_(psychology)', target='_blank', rel='noopener') Flow]
+    |  (here's a #[a(href='https://open.spotify.com/user/12142121799/playlist/1oKT4BwzBziaqIs80UPbJq', target='_blank', rel='noopener') playlist] to get you going).
+
+  p
+    | Currently, I work @#[a(href='https://www.vtex.com/', target='_blank', rel='noopener') VTEX]
+    |  as a Software Engineer. My main mission is to improve the the quality of its digital products,
+    |  infrastructure and workflow.
+
+  h2 open source
+
+  ul
+    each project in self.projects.opensource
+      li
+        a(target='_blank', rel='noopener', href=project.url) #{project.name}
+        | #[small #{project.desc}]
+
+  h2 websites
+
+  ul
+    each project in self.projects.sites
+      li
+        a(target='_blank', rel='noopener', href=project.url) #{project.name}
+        | #[small #{project.desc}]
+
+  h2 contact
+
+  p
+    | If you'd like to get in touch, feel free to send me an
+    |  #[a(href='mailto:christian@kaisermann.me') e-mail]
+    |  or maybe a
+    |  #[a(href='https://twitter.com/kiwistian', target='_blank', rel='noopener') tweet]
+    |  or, who knows, a message on
+    |  #[a(href='https://www.linkedin.com/in/kaisermann/', target='_blank', rel='noopener') linkedin].

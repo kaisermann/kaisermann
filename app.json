@@ -1,10 +1,6 @@
 {
   "title": "Kaisermann | Web Development",
   "description": "Come say hi 🌳",
-  "urls": {
-    "main": "http://localhost:3000",
-    "assets": "{{ urls.main }}/assets"
-  },
   "projects": {
     "opensource": [
       {
@@ -155,12 +151,5 @@
         "desc": "(front-end/back-end)"
       }
     ]
-  },
-  "environments": {
-    "production": {
-      "urls": {
-        "main": "https://kaisermann.me"
-      }
-    }
   }
 }
