@@ -1,0 +1,156 @@
+{
+	"opensource": [
+		{
+			"url": "https://github.com/stone-payments/pos-mamba-sdk",
+			"name": "pos-mamba-sdk",
+			"desc": "(SDK for developing apps for the Mamba POS system)"
+		},
+		{
+			"url": "https://github.com/stone-payments/pos-mamba-app-template",
+			"name": "pos-mamba-app-template",
+			"desc": "(template for creating apps for the Mamba POS system)"
+		},
+		{
+			"url": "https://github.com/kaisermann/svelte-preprocess",
+			"name": "svelte-preprocess",
+			"desc": "(quick and painless preprocess support for svelte)"
+		},
+		{
+			"url": "https://github.com/kaisermann/svelte-page",
+			"name": "svelte-page",
+			"desc": "(nested routing with page.js for svelte)"
+		},
+		{
+			"url": "https://github.com/kaisermann/svelte-i18n",
+			"name": "svelte-i18n",
+			"desc": "(internationalization library for Svelte)"
+		},
+		{
+			"url": "https://github.com/kaisermann/svelte-loadable",
+			"name": "svelte-loadable",
+			"desc": "(dynamically load a svelte component)"
+		},
+		{
+			"url": "https://github.com/kaisermann/photoswippy",
+			"name": "photoswippy",
+			"desc": "(a PhotoSwipe friendly wrapper)"
+		},
+		{
+			"url": "https://github.com/kaisermann/rolleiflex",
+			"name": "rolleiflex",
+			"desc": "(css flexbox grid/helper framework)"
+		},
+		{
+			"url": "https://github.com/kaisermann/textlooper",
+			"name": "textlooper",
+			"desc": "(lightweight text rotation based on css animations)"
+		},
+		{
+			"url": "https://github.com/kaisermann/comicbubbles",
+			"name": "comicbubbles",
+			"desc": "(css-only 8 bit-like comic balloons)"
+		},
+		{
+			"url": "https://github.com/kaisermann/post-links",
+			"name": "post-links",
+			"desc": "(open <a> links using POST instead of GET)"
+		},
+		{
+			"url": "https://github.com/kaisermann/aph",
+			"name": "aph",
+			"desc": "(minimal DOM, barely api-less, manipulation library)"
+		},
+		{
+			"url": "https://github.com/kaisermann/WPDLS",
+			"name": "wpdls",
+			"desc": "(basic custom WordPress admin style made easy with stylus)"
+		},
+		{
+			"url": "https://github.com/kaisermann/crius",
+			"name": "crius",
+			"desc": "(flexible front-end workflow)"
+		},
+		{
+			"url": "https://github.com/kaisermann/selene",
+			"name": "selene",
+			"desc": "(opinionated wordpress starter theme)"
+		},
+		{
+			"url": "https://github.com/kaisermann/hyperion",
+			"name": "hyperion",
+			"desc": "(static website workflow forked from Crius)"
+		}
+	],
+	"sites": [
+		{
+			"url": "http://playground.kaisermann.me",
+			"name": "playground.kaisermann.me",
+			"desc": "(design/front-end/back-end)"
+		},
+		{
+			"url": "http://programadeindie.kaisermann.me",
+			"name": "programadeindie.kaisermann.me",
+			"desc": "(design/front-end/back-end)"
+		},
+		{
+			"url": "http://zebraa.com.br",
+			"name": "zebraa.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://10de10.com.br",
+			"name": "10de10.com.br",
+			"desc": "(design/front-end/back-end)"
+		},
+		{
+			"url": "https://s.olar.dance",
+			"name": "s.olar.dance",
+			"desc": "(front-end)"
+		},
+		{
+			"url": "https://copymoji.netlify.com",
+			"name": "copymoji",
+			"desc": "(front-end)"
+		},
+		{
+			"url": "http://grupoaguasdobrasil.com.br",
+			"name": "grupoaguasdobrasil.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://tuut.com.br",
+			"name": "tuut.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://museujudaicosp.org.br",
+			"name": "museujudaicosp.org.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://saberesdovale.com.br",
+			"name": "saberesdovale.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://tcurbes.com.br",
+			"name": "tcurbes.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://escolaeleva.com.br",
+			"name": "escolaeleva.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://marcelod2.com.br",
+			"name": "marcelod2.com.br",
+			"desc": "(front-end/back-end)"
+		},
+		{
+			"url": "http://consuladoportugalrj.org.br/",
+			"name": "consuladoportugalrj.org.br",
+			"desc": "(front-end/back-end)"
+		}
+	]
+}
