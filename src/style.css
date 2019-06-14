@@ -12,36 +12,6 @@
 *,:after,:before {
   box-sizing: border-box;
 }
-html {
-  font: 16px/1 sans-serif;
-}
-
-body {
-  margin: 0;
-}
-
-h1,h2,p,ul {
-  margin: 0;
-  padding: 0;
-}
-
-li,main {
-  display: block;
-}
-
-h1,h2 {
-  font-size: inherit;
-}
-
-strong {
-  font-weight: 700;
-}
-
-a {
-  transition: all .3s ease;
-  text-decoration: none;
-  color: inherit;
-}
 
 html {
   --font-size: 22px;
@@ -52,16 +22,36 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: #000;
   color: #fff;
   overflow-x: hidden;
   animation: turn-on 2s linear;
 }
 
+h1,h2,p,ul {
+  margin: 0;
+  padding: 0;
+}
+
 h2 {
   font-size: 22px;
   margin-bottom: 5px;
   margin-top: 55px;
+}
+
+li, main {
+  display: block;
+}
+
+strong { font-weight: 700; }
+
+small { font-size: 0.7em; }
+
+a {
+  transition: all .3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 p {
@@ -73,13 +63,8 @@ p,ul {
   margin-bottom: var(--margin);
 }
 
-ul li {
+li {
   margin-bottom: 5px;
-}
-
-li small {
-  font-size: 16px;
-  margin-left: .75rem;
 }
 
 .page-background {
@@ -206,6 +191,11 @@ li small {
 
   ul li {
     margin-bottom: calc(var(--margin) / 2);
+  }
+
+  li small {
+    display: block;
+    margin: 2px 0 0;
   }
 
   .page-content a {
