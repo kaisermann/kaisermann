@@ -31,6 +31,11 @@
 			"desc": "(dynamically load a svelte component)"
 		},
 		{
+			"url": "https://github.com/kaisermann/svelte-css-vars",
+			"name": "svelte-css-vars",
+			"desc": "(reactive css variables in svelte)"
+		},
+		{
 			"url": "https://github.com/kaisermann/photoswippy",
 			"name": "photoswippy",
 			"desc": "(a PhotoSwipe friendly wrapper)"
