@@ -14,8 +14,8 @@
 }
 
 html {
-  --font-size: 22px;
-  --line-height: 1.4;
+  --font-size: 18px;
+  --line-height: 1.6;
   font-family: Courier New,Courier,monospace;
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -61,6 +61,10 @@ p {
 p,ul {
   --margin: 25px;
   margin-bottom: var(--margin);
+}
+
+ul {
+  max-width: 1540px;
 }
 
 li {
@@ -180,11 +184,6 @@ li {
 
 
 @media only screen and (max-width:767px) {
-  html {
-    --font-size: 18px;
-    --line-height: 1.6;
-  }
-
   p {
     --margin: 15px;
   }
@@ -237,6 +236,32 @@ li {
     background-image: url(./images/rainbow-static.gif);
     background-position: 50%;
     opacity: .5;
+  }
+
+  ul {
+    column-count: 2;
+    column-gap: 24px;
+  }
+
+  ul li {
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  ul li small {
+    display: block;
+    margin-top: .4rem;
+  }
+}
+@media only screen and (min-width:1024px) {
+  html {
+    --font-size: 22px;
+    --line-height: 1.4;
+  }
+
+  ul {
+    column-count: 3;
   }
 }
 
