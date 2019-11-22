@@ -1,24 +1,9 @@
 {
 	"opensource": [
 		{
-			"url": "https://github.com/stone-payments/pos-mamba-sdk",
-			"name": "pos-mamba-sdk",
-			"desc": "SDK for developing apps for the Mamba POS system"
-		},
-		{
-			"url": "https://github.com/stone-payments/pos-mamba-app-template",
-			"name": "pos-mamba-app-template",
-			"desc": "template for creating apps for the Mamba POS system"
-		},
-		{
 			"url": "https://github.com/kaisermann/svelte-preprocess",
 			"name": "svelte-preprocess",
 			"desc": "quick and painless preprocess support for svelte"
-		},
-		{
-			"url": "https://github.com/kaisermann/svelte-page",
-			"name": "svelte-page",
-			"desc": "nested routing with page.js for svelte"
 		},
 		{
 			"url": "https://github.com/kaisermann/svelte-i18n",
@@ -34,6 +19,21 @@
 			"url": "https://github.com/kaisermann/svelte-css-vars",
 			"name": "svelte-css-vars",
 			"desc": "reactive css variables in svelte"
+		},
+		{
+			"url": "https://github.com/kaisermann/svelte-page",
+			"name": "svelte-page",
+			"desc": "nested routing with page.js for svelte"
+		},
+		{
+			"url": "https://github.com/stone-payments/pos-mamba-sdk",
+			"name": "pos-mamba-sdk",
+			"desc": "SDK for developing apps for the Mamba POS system"
+		},
+		{
+			"url": "https://github.com/stone-payments/pos-mamba-app-template",
+			"name": "pos-mamba-app-template",
+			"desc": "template for creating apps for the Mamba POS system"
 		},
 		{
 			"url": "https://github.com/kaisermann/photoswippy",
