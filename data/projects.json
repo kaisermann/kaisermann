@@ -28,7 +28,7 @@
     {
       "url": "https://github.com/vtex/typescript",
       "name": "vtex/typescript",
-      "desc": "VTEX's typescript/javascript styleguide, tooling and recipes
+      "desc": "VTEX's typescript/javascript styleguide, tooling and recipes"
     },
 		{
 			"url": "https://github.com/stone-payments/pos-mamba-sdk",
