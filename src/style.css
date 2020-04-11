@@ -179,7 +179,7 @@ li {
   opacity: 0;
   animation: glitch 1s linear infinite,flicker .3s infinite;
   will-change: transform,opacity,text-shadow;
-  text-shadow: 0 0 2em #02b7b6,0 0 1em #02b7b6,1px 1px 5px #02b7b6;
+  text-shadow: 2px 2px 0 rgba(2, 183, 182, .6), -2px -2px 0 rgba(183, 2, 2, 0.6)
 }
 
 
