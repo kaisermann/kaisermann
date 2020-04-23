@@ -30,6 +30,11 @@
       "name": "vtex/typescript",
       "desc": "VTEX's typescript/javascript styleguide, tooling and recipes"
     },
+    {
+      "url": "https://github.com/vtex/danger",
+      "name": "vtex/danger",
+      "desc": "encapsulated danger ruleset and github action"
+    },
 		{
 			"url": "https://github.com/stone-payments/pos-mamba-sdk",
 			"name": "pos-mamba-sdk",
