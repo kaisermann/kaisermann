@@ -16,6 +16,13 @@ html(lang='en')
     link(rel='shortcut icon', href=self.asset('favicon.ico'))
     link(rel='stylesheet', href=self.asset('style.css'))
 
+    script(defer, src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1")
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-75837777-1');
+
     title #{self.title}
 
   body
