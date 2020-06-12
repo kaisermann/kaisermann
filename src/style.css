@@ -67,7 +67,7 @@ small {
 }
 
 a {
-	transition: all 0.3s ease;
+	transition: color 0.3s ease;
 	text-decoration: none;
 	color: inherit;
 }
@@ -96,25 +96,14 @@ li {
 	left: 0;
 	width: 100%;
 	height: 100%;
-}
-
-.page-background::before {
-	content: '';
-	display: block;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-	background-image: url(./images/static.gif);
+  background-image: url(./images/static.gif);
 	background-size: cover;
-	pointer-events: none;
 	opacity: 0.08;
 }
 
-.page-background:after {
-	content: '';
-	position: absolute;
+.page-background::before {
+  content: '';
+  position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -127,8 +116,8 @@ li {
 		transparent
 	);
 	animation: vline 8s linear infinite;
-	will-change: top;
-	opacity: 0.1;
+  will-change: transform;
+  opacity: .8;
 }
 
 .page-content a {
@@ -175,6 +164,7 @@ li {
 
 .page-content a[href*='spotify.com'] {
 	--link-bg: var(--spotify);
+	--link-color-hover: #fff;
 }
 
 .page-content a[href*='last.fm'] {
@@ -203,7 +193,7 @@ li {
 	padding: 50px;
 	opacity: 0;
 	animation: glitch 1s linear infinite, flicker 0.3s infinite;
-	will-change: transform, opacity, text-shadow;
+	will-change: transform, opacity;
 	text-shadow: 2px 2px 0 rgba(2, 183, 182, 0.6),
 		-2px -2px 0 rgba(183, 2, 2, 0.6);
 }
@@ -323,10 +313,11 @@ li {
 
 @keyframes vline {
 	0% {
-		top: 0;
+		transform: translateY(-100%);
 	}
+
 	to {
-		top: 100%;
+		transform: translateY(100vh);
 	}
 }
 
