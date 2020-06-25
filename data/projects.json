@@ -98,6 +98,11 @@
 	],
 	"sites": [
 		{
+			"url": "https://copymoji.kaisermann.me",
+			"name": "copymoji",
+			"desc": "front-end"
+		},
+		{
 			"url": "http://playground.kaisermann.me",
 			"name": "playground.kaisermann.me",
 			"desc": "design/front-end/back-end"
@@ -113,11 +118,6 @@
 			"desc": "front-end"
 		},
 		{
-			"url": "https://copymoji.kaisermann.me",
-			"name": "copymoji",
-			"desc": "front-end"
-		},
-		{
 			"url": "http://grupoaguasdobrasil.com.br",
 			"name": "grupoaguasdobrasil.com.br",
 			"desc": "front-end/back-end"
@@ -128,28 +128,8 @@
 			"desc": "front-end/back-end"
 		},
 		{
-			"url": "http://museujudaicosp.org.br",
-			"name": "museujudaicosp.org.br",
-			"desc": "front-end/back-end"
-		},
-		{
-			"url": "http://tcurbes.com.br",
-			"name": "tcurbes.com.br",
-			"desc": "front-end/back-end"
-		},
-		{
-			"url": "http://escolaeleva.com.br",
-			"name": "escolaeleva.com.br",
-			"desc": "front-end/back-end"
-		},
-		{
 			"url": "http://marcelod2.com.br",
 			"name": "marcelod2.com.br",
-			"desc": "front-end/back-end"
-		},
-		{
-			"url": "http://consuladoportugalrj.org.br/",
-			"name": "consuladoportugalrj.org.br",
 			"desc": "front-end/back-end"
 		}
 	]
