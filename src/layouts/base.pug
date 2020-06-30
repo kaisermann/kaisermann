@@ -9,7 +9,7 @@ html(lang='en')
     meta(property='og:type', content='website')
     meta(property='og:title', content=self.title)
     meta(property='og:description', content=self.description)
-    meta(property='og:url', content='http://localhost:3000')
+    meta(property='og:url', content=self.url)
     meta(property='og:site_name', content=self.title)
     meta(property='og:image', content=self.asset('images/rainbow-static.gif'))
 
@@ -26,6 +26,10 @@ html(lang='en')
     title #{self.title}
 
   body
-    .page-background
+    video.page-background(muted, autoplay, playsinline, loop)
+      source(src="images/static.webm", type="video/webm")
+      source(src="images/static.mp4", type="video/mp4")
+      img(src="images/static.gif")
+
     .page-content
       block content
