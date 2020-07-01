@@ -35,6 +35,42 @@ body {
 	animation: turn-on 2s linear;
 }
 
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90px;
+	background: linear-gradient(
+		180deg,
+		transparent 0,
+		snow 50%,
+		hsla(0, 0%, 100%, 0.98) 51%,
+		transparent
+	);
+	animation: vline 8s linear infinite;
+	will-change: transform;
+	opacity: 0.1;
+}
+
+body::after {
+	content: '';
+	display: block;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(
+		0deg,
+		rgba(255, 255, 255, 0.06) 50%,
+		transparent 0
+	);
+	background-size: 100% 0.7ch;
+}
+
 h1,
 h2,
 p,
@@ -87,34 +123,17 @@ li {
 }
 
 .page-background {
+	pointer-events: none;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	/* background-image: url(./images/static.gif); */
-	/* background-size: cover; */
-	object-fit: cover;
-	opacity: 0.06;
 }
 
-.page-background::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 90px;
-	background: linear-gradient(
-		180deg,
-		transparent 0,
-		snow 50%,
-		hsla(0, 0%, 100%, 0.98) 51%,
-		transparent
-	);
-	animation: vline 8s linear infinite;
-	will-change: transform;
-	opacity: 0.8;
+.page-background {
+	object-fit: cover;
+	opacity: 0.06;
 }
 
 .page-content a {
@@ -313,7 +332,8 @@ li {
 		transform: translateY(-100%);
 	}
 
-	to {
+	60%,
+	100% {
 		transform: translateY(100vh);
 	}
 }
