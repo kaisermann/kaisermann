@@ -15,6 +15,7 @@ html(lang='en')
 
     title #{self.title}
 
+    link(rel='stylesheet', href=self.asset('style.css'))
     link(rel='shortcut icon', href=self.asset('favicon.ico'))
 
     script.
@@ -37,4 +38,3 @@ html(lang='en')
 
 
   script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1")
-  link(rel='stylesheet', href=self.asset('style.css'))
