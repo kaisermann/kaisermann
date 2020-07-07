@@ -20,11 +20,6 @@
 			"name": "svelte-css-vars",
 			"desc": "reactive css variables in svelte"
 		},
-		{
-			"url": "https://github.com/kaisermann/svelte-page",
-			"name": "svelte-page",
-			"desc": "nested routing with page.js for svelte"
-		},
     {
       "url": "https://github.com/vtex/typescript",
       "name": "vtex/typescript",
