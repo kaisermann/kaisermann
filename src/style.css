@@ -100,7 +100,6 @@ small {
 }
 
 a {
-	transition: color 0.3s ease;
 	text-decoration: none;
 	color: inherit;
 }
@@ -144,25 +143,6 @@ li {
 	position: relative;
 	padding: 0 2px;
 	word-wrap: break-word;
-	color: var(--link-color);
-}
-
-.page-content a:after {
-	opacity: 0.2;
-}
-
-.page-content a:hover {
-	color: var(--link-color-hover);
-}
-
-.page-content a:hover:before {
-	z-index: -2;
-	height: 100%;
-}
-
-.page-content a:hover:after {
-	z-index: -1;
-	height: 100%;
 }
 
 .page-content a[href*='twitter.com'] {
@@ -236,7 +216,8 @@ li {
 		color: var(--link-color-hover);
 		background: var(--link-bg);
 		text-shadow: none;
-		box-shadow: 0 0 20px 2px #02b7b6;
+		box-shadow: 2px 2px 0 rgba(2, 183, 182, 0.6),
+			-2px -2px 0 rgba(183, 2, 2, 0.6);
 	}
 
 	.page-content a:hover {
@@ -250,38 +231,56 @@ li {
 
 @media only screen and (min-width: 768px) {
 	.page-content a {
+		color: var(--link-color);
 		display: inline-block;
+		border-bottom: 2px solid var(--link-bg);
 	}
 
-	.page-content a::after,
-	.page-content a::before {
+	.page-content a:hover,
+	.page-content a:focus {
+		--link-color: var(--link-color-hover);
+		background: var(--link-bg);
+  }
+
+  .page-content a:focus {
+    outline: none;
+  }
+
+	.page-content a:hover::after,
+	.page-content a:focus::after {
+		visibility: visible;
+		transform: scale(1.2, 1.5) skew(20deg, 0);
+	}
+
+	/* in lists */
+	.page-content li:nth-child(2n) a:hover::after,
+  .page-content li:nth-child(2n) a:focus::after,
+  /* in paragraphs */
+	.page-content a:nth-child(2n):hover::after,
+	.page-content a:nth-child(2n):focus::after {
+		transform: scale(1.2, 1.5) skew(-20deg, 0);
+	}
+
+	.page-content a::after {
 		content: '';
 		display: block;
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 2px;
-		background: var(--link-bg);
-		transition: height 0.3s ease;
+		height: 100%;
 		z-index: -1;
-	}
-	.page-content a::after {
-		z-index: -2;
+		visibility: hidden;
 		background-image: url(./images/rainbow-static.gif);
 		background-position: 50%;
+		transform-origin: 50%;
 		opacity: 0.5;
 	}
 
 	ul {
-		column-count: 2;
-		column-gap: 24px;
-	}
-
-	ul li {
-		break-inside: avoid-column;
-		page-break-inside: avoid;
-		margin-bottom: 1rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
 	}
 
 	ul li small {
@@ -297,7 +296,7 @@ li {
 	}
 
 	ul {
-		column-count: 3;
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
@@ -307,8 +306,8 @@ li {
 		animation: none;
 	}
 
-	.page-background:before,
-	.page-background:after {
+	.page-background::before,
+	.page-background::after {
 		display: none;
 	}
 
@@ -348,10 +347,10 @@ li {
 		opacity: 1;
 	}
 	33% {
-		opacity: 0.8;
+		opacity: 0.88;
 	}
 	66% {
-		opacity: 0.9;
+		opacity: 0.92;
 	}
 }
 
