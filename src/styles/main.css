@@ -1,0 +1,391 @@
+:root {
+  --twitter: #4099ff;
+  --vtex: #f71963;
+  --stone: #95c93f;
+  --spotify: #1db954;
+  --lastfm: #b20000;
+  --linkedin: #0077b5;
+  --svelte: #ff3e00;
+  --instagram: transparent
+    radial-gradient(
+      circle at 33% 100%,
+      #fed373 4%,
+      #f15245 30%,
+      #d92e7f 62%,
+      #9b36b7 85%,
+      #515ecf
+    );
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+html {
+  --font-size: 18px;
+  --line-height: 1.6;
+  font-family: Courier New, Courier, monospace;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+body {
+  animation: turn-on 1.6s linear;
+  overflow: auto;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    snow 50%,
+    hsla(0, 0%, 100%, 0.98) 51%,
+    transparent
+  );
+  animation: vline 8s linear infinite;
+  will-change: transform;
+  opacity: 0.1;
+}
+
+body::after {
+  content: '';
+  display: block;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 0
+  );
+  background-size: 100% 0.7ch;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+  margin-top: 55px;
+}
+
+li,
+main {
+  display: block;
+}
+
+strong {
+  font-weight: 700;
+}
+
+small {
+  font-size: 0.7em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  max-width: 900px;
+}
+
+p,
+ul {
+  --margin: 25px;
+  margin-bottom: var(--margin);
+}
+
+ul {
+  max-width: 1540px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.page-background {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-background {
+  object-fit: cover;
+  opacity: 0.03;
+}
+
+.page-content a {
+  --link-color: #fff;
+  --link-color-hover: #000;
+  --link-bg: #fff;
+  position: relative;
+  padding: 0 2px;
+  word-wrap: break-word;
+}
+
+.page-content a[href*='twitter.com'] {
+  --link-bg: var(--twitter);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='vtex'] {
+  --link-bg: var(--vtex);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='stone'] {
+  --link-bg: var(--stone);
+}
+
+.page-content a[href*='spotify.com'] {
+  --link-bg: var(--spotify);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='last.fm'] {
+  --link-bg: var(--lastfm);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='linkedin'] {
+  --link-bg: var(--linkedin);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='svelte'] {
+  --link-bg: var(--svelte);
+  --link-color-hover: #fff;
+}
+
+.page-content a[href*='instagram'] {
+  --link-color-hover: #fff;
+  --link-bg: var(--instagram);
+}
+
+.page-content {
+  position: relative;
+  z-index: 3;
+  padding: 50px;
+  text-shadow: 2px 2px 0 rgba(2, 183, 182, 0.6),
+    -2px -2px 0 rgba(183, 2, 2, 0.6);
+}
+
+.page-content > * {
+  opacity: 0;
+  animation: flicker 0.3s infinite;
+  will-change: opacity;
+}
+
+@media only screen and (max-width: 767px) {
+  p {
+    --margin: 15px;
+  }
+
+  ul li {
+    margin-bottom: calc(var(--margin) / 2);
+  }
+
+  li small {
+    display: block;
+    margin: 2px 0 0;
+  }
+
+  .page-content a {
+    color: var(--link-color-hover);
+    background: var(--link-bg);
+    text-shadow: none;
+    box-shadow: 2px 2px 0 rgba(2, 183, 182, 0.6),
+      -2px -2px 0 rgba(183, 2, 2, 0.6);
+  }
+
+  .page-content a:hover {
+    background-size: 100% 100%;
+  }
+
+  .page-content {
+    padding: 50px 25px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .page-content a {
+    color: var(--link-color);
+    display: inline-block;
+    border-bottom: 2px solid var(--link-bg);
+  }
+
+  .page-content a:hover,
+  .page-content a:focus {
+    --link-color: var(--link-color-hover);
+    background: var(--link-bg);
+  }
+
+  .page-content a:focus {
+    outline: none;
+  }
+
+  .page-content a:hover::after,
+  .page-content a:focus::after {
+    visibility: visible;
+    transform: scale(1.2, 1.5) skew(20deg, 0);
+  }
+
+  /* in lists */
+  .page-content li:nth-child(2n) a:hover::after,
+  .page-content li:nth-child(2n) a:focus::after,
+  /* in paragraphs */
+	.page-content a:nth-child(2n):hover::after,
+	.page-content a:nth-child(2n):focus::after {
+    transform: scale(1.2, 1.5) skew(-20deg, 0);
+  }
+
+  .page-content a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    visibility: hidden;
+    background-image: url(/images/rainbow-static.gif);
+    background-position: 50%;
+    transform-origin: 50%;
+    opacity: 0.5;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  ul li small {
+    display: block;
+    margin-top: 0.4rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  html {
+    --font-size: 22px;
+    --line-height: 1.4;
+  }
+
+  ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .page-content {
+    animation: none;
+  }
+
+  .page-background::before,
+  .page-background::after {
+    display: none;
+  }
+
+  .page-content {
+    opacity: 1;
+  }
+
+  .page-content a,
+  .page-content a::before,
+  .page-content a::after {
+    transition: none;
+  }
+
+  .page-content a:hover {
+    text-shadow: none;
+  }
+
+  .page-content a::after {
+    background: none;
+  }
+}
+
+@keyframes vline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  60%,
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.88;
+  }
+  66% {
+    opacity: 0.92;
+  }
+}
+
+@keyframes turn-on {
+  0% {
+    transform: scale(1, 0.6) translate3d(0, 0, 0);
+    filter: brightness(30);
+    overflow: hidden;
+  }
+
+  3.5% {
+    transform: scale(2) translate3d(0, 100%, 0);
+  }
+
+  3.6% {
+    transform: scale(2) translate3d(0, -100%, 0);
+  }
+
+  14% {
+    transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+    filter: brightness(30);
+  }
+
+  25% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: contrast(0) brightness(0);
+  }
+
+  98% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: contrast(2) brightness(2) saturate(2);
+  }
+
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
