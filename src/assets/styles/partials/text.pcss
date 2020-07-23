@@ -9,9 +9,35 @@ a {
   background-size: 90% 0;
   background-repeat: no-repeat;
 
-  &:hover,
+  &::after {
+    display: block;
+    content: attr(href);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    visibility: hidden;
+    transition: none;
+  }
+
   &:focus {
+    outline: none;
     background-size: 100% 100%;
+
+    &::after {
+      visibility: visible;
+    }
+  }
+
+  &:hover {
+    background-size: 100% 100%;
+
+    &::after {
+      visibility: visible;
+      transition: visibility 0s 0.8s;
+    }
   }
 }
 
