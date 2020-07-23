@@ -2,13 +2,19 @@
 @import './partials/reset.pcss';
 @import './partials/animations.pcss';
 @import './partials/text.pcss';
-@import './partials/nav.pcss';
+@import './partials/page.pcss';
 
 :root {
-  --text-primary: #aaa;
+  --text-primary: #a0a0a0;
   --text-secondary: #fff;
-  --font-size: 50px;
-  --line-height: 1.3619;
+  --font-size: 26px;
+  --line-height: 1.4;
+}
+
+html {
+  font-family: 'VCR OSD Mono', monospace;
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -16,6 +22,9 @@ body {
   margin: 0;
   overflow: hidden auto;
   animation: turn-on 1.6s linear;
+  color: var(--text-primary);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
   text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
     -3px -3px 0 rgba(183, 2, 2, 0.2);
 
@@ -64,15 +73,4 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0.03;
-}
-
-.container {
-  max-width: 1170px;
-  margin: 0 auto 30px;
-}
-
-.page-content > * {
-  opacity: 0;
-  animation: flicker 0.3s infinite;
-  will-change: opacity;
 }

@@ -1,43 +1,21 @@
-html {
-  font-family: 'VCR OSD Mono', monospace;
-  font-weight: normal;
-  font-style: normal;
-  color: var(--text-primary);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-}
-
 a {
-  display: inline-block;
   position: relative;
   text-decoration: none;
+  color: var(--text-secondary);
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.08, 0);
-    transform-origin: 50% 100%;
-    transition: transform 0.2s ease-in;
-    background-image: url(/assets/images/rainbow-static.gif);
-    background-position: center center;
-    opacity: 0.6;
-  }
+  transition: background-size 0.2s cubic-bezier(0.29, 0.8, 0.21, 0.63);
+  background-image: url(/assets/images/rainbow-static.gif);
+  background-position: center center;
+  background-size: 90% 0;
+  background-repeat: no-repeat;
 
-  &:hover::after {
-    transform: scale(1.08, 1);
+  &:hover,
+  &:focus {
+    background-size: 100% 100%;
   }
 }
 
 .bio {
+  font-size: 50px;
   text-transform: uppercase;
-
-  & a {
-    color: var(--text-secondary);
-  }
 }
