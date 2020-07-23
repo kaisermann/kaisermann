@@ -32,7 +32,7 @@ module.exports = (config) => {
   return {
     dir: {
       input: 'src/',
-      output: 'dist',
+      output: 'public',
       data: `_data/`,
     },
     templateFormats: ['njk', 'pug', 'md', '11ty.js'],

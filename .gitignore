@@ -2,8 +2,7 @@
 /node_modules
 
 # build artefacts
-/dist
-/src/_includes/css
+/public
 
 # secrets and errors
 .env
