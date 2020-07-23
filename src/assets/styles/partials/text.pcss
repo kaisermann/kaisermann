@@ -1,0 +1,33 @@
+a {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.08, 0);
+    transform-origin: 50% 100%;
+    transition: transform 0.2s ease-in;
+    background-image: url(/assets/images/rainbow-static.gif);
+    opacity: 0.6;
+  }
+
+  &:hover::after {
+    transform: scale(1.08, 1);
+  }
+}
+
+.bio {
+  text-transform: uppercase;
+
+  & a {
+    color: var(--text-secondary);
+  }
+}

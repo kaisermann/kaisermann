@@ -1,0 +1,50 @@
+body {
+  /* animation: turn-on 1.6s linear; */
+  overflow: auto;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  &::before {
+    height: 90px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      snow 50%,
+      hsla(0, 0%, 100%, 0.98) 51%,
+      transparent
+    );
+    animation: vline 8s linear infinite;
+    will-change: transform;
+    opacity: 0.1;
+  }
+
+  &::after {
+    height: 100%;
+    background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 0
+    );
+    background-size: 100% 0.7ch;
+  }
+}
+
+.page-background {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.03;
+}

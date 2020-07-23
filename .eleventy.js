@@ -24,9 +24,10 @@ module.exports = (config) => {
     return minified.code;
   });
 
-  config.addPassthroughCopy('./src/images');
+  config.addPassthroughCopy('./src/assets/images');
+  config.addPassthroughCopy('./src/assets/fonts');
 
-  config.addWatchTarget('./src/styles/');
+  config.addWatchTarget('./src/assets/');
 
   return {
     dir: {
