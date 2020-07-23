@@ -1,0 +1,18 @@
+@import './partials/fonts.pcss';
+@import './partials/reset.pcss';
+@import './partials/setup.pcss';
+@import './partials/animations.pcss';
+@import './partials/background.pcss';
+@import './partials/text.pcss';
+@import './partials/nav.pcss';
+
+.container {
+  max-width: 1170px;
+  margin: 100px auto 30px;
+}
+
+.page-content > * {
+  opacity: 0;
+  animation: flicker 0.3s infinite;
+  will-change: opacity;
+}

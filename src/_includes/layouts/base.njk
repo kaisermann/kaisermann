@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/assets/styles/main.css">
 
     <title>{{ title }}</title>
 
@@ -15,30 +15,20 @@
       gtag('js', new Date());
       gtag('config', 'UA-75837777-1');
     </script>
-
-    <style>
-      body {
-        background-color: #000;
-        color: #fff;
-        margin: 0;
-        overflow-x: hidden;
-      }
-
-      a {
-        color: #fff;
-      }
-    </style>
-
   </head>
   <body {% if bodyClass %} class="{{ bodyClass }}" {% endif %}>
 
     <video class="page-background" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop">
-      <source src="images/static.webm" type="video/webm"/>
-      <source src="images/static.mp4" type="video/mp4"/>
+      <source src="/assets/images/static.webm" type="video/webm"/>
+      <source src="/assets/images/static.mp4" type="video/mp4"/>
     </video>
 
-    <div class="page-content">
-      {{ content | safe }}
+    <div class="container">
+      {% include 'header.njk' %}
+
+      <div class="page-content">
+        {{ content | safe }}
+      </div>
     </div>
 
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>

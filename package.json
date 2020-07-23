@@ -7,7 +7,7 @@
     "start": "npm run dev",
     "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve",
     "build": "cross-env ELEVENTY_ENV=prod eleventy",
-    "seed": "cross-env ELEVENTY_ENV=seed eleventy",
+    "build:prod": "npm run build",
     "lint": "eslint --ignore-pattern=\"node_modules\" .",
     "format": "prettier --write \"**/*.{js,json}\""
   },
@@ -17,13 +17,13 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
-    "autoprefixer": "^9.8.5",
     "cross-env": "7.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.5.0",
     "eslint-config-kiwi": "^1.3.4",
     "html-minifier": "^4.0.0",
     "postcss": "^7.0.32",
+    "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
     "terser": "^4.8.0",
