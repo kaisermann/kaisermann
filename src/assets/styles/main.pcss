@@ -1,10 +1,70 @@
 @import './partials/fonts.pcss';
 @import './partials/reset.pcss';
-@import './partials/setup.pcss';
 @import './partials/animations.pcss';
-@import './partials/background.pcss';
 @import './partials/text.pcss';
 @import './partials/nav.pcss';
+
+:root {
+  --text-primary: #aaa;
+  --text-secondary: #fff;
+  --font-size: 50px;
+  --line-height: 1.3619;
+}
+
+body {
+  background-color: #000;
+  margin: 0;
+  overflow: hidden auto;
+  animation: turn-on 1.6s linear;
+  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
+    -3px -3px 0 rgba(183, 2, 2, 0.2);
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  &::before {
+    height: 90px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      snow 50%,
+      hsla(0, 0%, 100%, 0.98) 51%,
+      transparent
+    );
+    animation: vline 8s linear infinite;
+    will-change: transform;
+    opacity: 0.1;
+  }
+
+  &::after {
+    height: 100%;
+    background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 0
+    );
+    background-size: 100% 0.7ch;
+  }
+}
+
+.page-background {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.03;
+}
 
 .container {
   max-width: 1170px;
