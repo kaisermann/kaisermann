@@ -11,7 +11,7 @@ a {
   background-size: 90% 0;
   background-repeat: no-repeat;
 
-  &[href^='http']::after {
+  &:matches([href^='http'], [href^='mailto'])::after {
     display: block;
     content: attr(href);
     min-width: max-content;
