@@ -3,7 +3,6 @@
   height: 50vh;
   margin-bottom: 54px;
   font-size: 26px;
-  line-height: 1.34;
   text-transform: uppercase;
 }
 
@@ -23,9 +22,43 @@
   margin: 0 auto;
 }
 
+.nav__breadcrumb {
+  display: flex;
+
+  & li:not(:last-child)::after {
+    content: ' /';
+    margin-right: 1ch;
+  }
+
+  &::after {
+    margin-left: 1ch;
+    content: url(/assets/images/arrow-right.svg);
+  }
+}
+
+.nav__menu {
+  margin-top: 1rem;
+}
+
 /*
 .page-content > * {
   opacity: 0;
   animation: flicker 0.3s infinite;
   will-change: opacity;
 } */
+
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.4rem;
+
+  & a {
+    font-size: 50px;
+    line-height: 1;
+  }
+
+  & small {
+    display: block;
+    color: var(--text-primary);
+  }
+}

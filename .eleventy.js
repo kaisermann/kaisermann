@@ -1,3 +1,4 @@
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const Terser = require('terser');
 
 const htmlmin = require('./src/utils/minify-html.js');
@@ -28,6 +29,8 @@ module.exports = (config) => {
   config.addPassthroughCopy('./src/assets/fonts');
 
   config.addWatchTarget('./src/assets/');
+
+  config.addPlugin(eleventyNavigationPlugin);
 
   return {
     dir: {

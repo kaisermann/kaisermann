@@ -1,32 +1,30 @@
 <header class="header">
   <div class="header__container">
     <nav class="nav">
-      <div class="">
-        <div>
-          {% if page.url == "/"%}
-            <div class="nav__home">CK
-              {% include '../assets/images/arrow-right.svg' %}
-            </div>
-            <div>
-              <ul class="nav__list">
-                <li>
-                  <a class="nav__item" href="/open-source">open-source</a>
-                </li>
-                <li>
-                  <a class="nav__item" href="/websites">websites</a>
-                </li>
-              </ul>
-            </div>
-          {% else %}
-            <a href="/" class="nav__home -link">CK</a>
-            <span>
-              /
-            </span>
-            {{title}}
-            {% include '../assets/images/arrow-right.svg' %}
-          {% endif %}
-        </div>
-      </div>
+      {% if page.url == "/"%}
+        <ul class="nav__breadcrumb">
+          <li>CK</li>
+        </ul>
+        {% set navPages = collections.all | eleventyNavigation("bio") %}
+
+        <ul class="nav__menu">
+          {%- for entry in navPages %}
+            <li>
+              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
+      {% else %}
+        {% set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
+        <ul class="nav__breadcrumb">
+          {%- for entry in navPages %}
+            <li>
+              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+            </li>
+          {%- endfor %}
+          <li>{{eleventyNavigation.key}}</li>
+        </ul>
+      {% endif %}
     </nav>
     <div class="header__date js-header-date">XYZ, XX XXXX</div>
   </div>

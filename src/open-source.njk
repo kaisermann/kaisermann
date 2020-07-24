@@ -1,10 +1,12 @@
 ---
 layout: layouts/base.njk
-title: open-source
+eleventyNavigation:
+  key: open-source
+  parent: bio
 ---
 
 <article>
-  <ul>
+  <ul class="project-list">
     {% for project in projects.opensource -%}
       <li>
         <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
