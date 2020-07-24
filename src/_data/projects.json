@@ -99,32 +99,32 @@
 		},
 		{
 			"url": "http://playground.kaisermann.me",
-			"name": "playground.kaisermann.me",
+			"name": "my workstation",
 			"desc": "design/front-end/back-end"
 		},
 		{
 			"url": "http://10de10.com.br",
-			"name": "10de10.com.br",
+			"name": "10de10",
 			"desc": "design/front-end/back-end"
 		},
 		{
 			"url": "https://solardancer.kaisermann.me",
-			"name": "s.olar.dance",
+			"name": "solar.dance",
 			"desc": "front-end"
 		},
 		{
 			"url": "http://grupoaguasdobrasil.com.br",
-			"name": "grupoaguasdobrasil.com.br",
+			"name": "grupo águas do brasil",
 			"desc": "front-end/back-end"
 		},
 		{
 			"url": "http://tuut.com.br",
-			"name": "tuut.com.br",
+			"name": "tuut",
 			"desc": "front-end/back-end"
 		},
 		{
 			"url": "http://marcelod2.com.br",
-			"name": "marcelod2.com.br",
+			"name": "marcelod2",
 			"desc": "front-end/back-end"
 		}
 	]
