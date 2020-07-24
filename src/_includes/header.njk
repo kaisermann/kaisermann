@@ -1,12 +1,11 @@
 <header class="header">
   <div class="header__container">
-    <nav class="nav">
+    <nav>
       {% if page.url == "/"%}
         <ul class="nav__breadcrumb">
           <li>CK</li>
         </ul>
         {% set navPages = collections.all | eleventyNavigation("bio") %}
-
         <ul class="nav__menu">
           {%- for entry in navPages %}
             <li>
@@ -26,6 +25,6 @@
         </ul>
       {% endif %}
     </nav>
-    <div class="header__date js-header-date">XYZ, XX XXXX</div>
+    <div class="js-header-date">XXX XX, XXXX</div>
   </div>
 </header>

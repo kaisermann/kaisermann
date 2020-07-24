@@ -7,7 +7,8 @@
 :root {
   --text-primary: #a0a0a0;
   --text-secondary: #fff;
-  --font-size: 26px;
+  --font-size-primary: clamp(13px, 2.4vw, 26px);
+  --font-size-secondary: clamp(18px, 3.84vw, 50px);
   --line-height: 1.4;
 }
 
@@ -19,14 +20,17 @@ html {
 
 body {
   background-color: #000;
-  margin: 0;
   overflow: hidden auto;
   animation: turn-on 1.6s linear;
   color: var(--text-primary);
-  font-size: var(--font-size);
+  font-size: var(--font-size-primary);
   line-height: var(--line-height);
   text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
     -3px -3px 0 rgba(183, 2, 2, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
 
   &::before,
   &::after {
@@ -73,4 +77,11 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0.03;
+}
+
+.container {
+  max-width: 1170px;
+  opacity: 0;
+  animation: flicker 0.3s infinite;
+  will-change: opacity;
 }
