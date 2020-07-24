@@ -1,15 +1,17 @@
 a {
-  position: relative;
   text-decoration: none;
   color: var(--text-secondary);
+}
 
+article a {
+  position: relative;
   transition: background-size 0.2s cubic-bezier(0.29, 0.8, 0.21, 0.63);
   background-image: url(/assets/images/rainbow-static.gif);
   background-position: center center;
   background-size: 90% 0;
   background-repeat: no-repeat;
 
-  &::after {
+  &[href^='http']::after {
     display: block;
     content: attr(href);
     position: absolute;

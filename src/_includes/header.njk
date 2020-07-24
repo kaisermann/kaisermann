@@ -1,11 +1,33 @@
 <header class="header">
-  <nav class="nav">
-    <div class="">
-      <div>
-        CK
-        {% include '../assets/images/arrow-right.svg' %}
+  <div class="header__container">
+    <nav class="nav">
+      <div class="">
+        <div>
+          {% if page.url == "/"%}
+            <div class="nav__home">CK
+              {% include '../assets/images/arrow-right.svg' %}
+            </div>
+            <div>
+              <ul class="nav__list">
+                <li>
+                  <a class="nav__item" href="/open-source">open-source</a>
+                </li>
+                <li>
+                  <a class="nav__item" href="/websites">websites</a>
+                </li>
+              </ul>
+            </div>
+          {% else %}
+            <a href="/" class="nav__home -link">CK</a>
+            <span>
+              /
+            </span>
+            {{title}}
+            {% include '../assets/images/arrow-right.svg' %}
+          {% endif %}
+        </div>
       </div>
-    </div>
-    <div class="nav__date js-nav-date">XYZ, XX XXXX</div>
-  </nav>
+    </nav>
+    <div class="header__date js-header-date">XYZ, XX XXXX</div>
+  </div>
 </header>

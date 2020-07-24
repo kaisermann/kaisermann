@@ -1,16 +1,17 @@
 ---
 layout: layouts/base.njk
+title: websites
 ---
 
-<h2>websites</h2>
-
-<ul>
-  {% for project in projects.sites -%}
-    <li>
-      <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
-        {{project.name}}
-      </a>
-      <small>{{project.desc}}}</small>
-    </li>
-  {% endfor %}
-</ul>
+<article>
+  <ul>
+    {% for project in projects.sites -%}
+      <li>
+        <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
+          {{project.name}}
+        </a>
+        <small>{{project.desc}}}</small>
+      </li>
+    {% endfor %}
+  </ul>
+</article>
