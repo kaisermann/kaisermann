@@ -1,10 +1,12 @@
 ---
 layout: layouts/base.njk
-title: websites
+eleventyNavigation:
+  key: websites
+  parent: bio
 ---
 
 <article>
-  <ul>
+  <ul class="project-list">
     {% for project in projects.sites -%}
       <li>
         <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
