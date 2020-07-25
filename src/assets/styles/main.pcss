@@ -10,6 +10,11 @@
   --font-size-primary: clamp(13px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
+  --layer-me-hover: 5;
+  --layer-content-hover: 4;
+  --layer-content: 3;
+  --layer-lines: 2;
+  --layer-static: 1;
 }
 
 html {
@@ -32,6 +37,7 @@ body {
     content: '';
     display: block;
     position: fixed;
+    z-index: var(--layer-lines);
     top: 0;
     left: 0;
     width: 100%;
@@ -72,6 +78,7 @@ body {
 .page__background {
   pointer-events: none;
   position: fixed;
+  z-index: var(--layer-lines);
   top: 0;
   left: 0;
   width: 100%;
@@ -81,6 +88,8 @@ body {
 }
 
 .page__container {
+  position: relative;
+  z-index: var(--layer-content);
   max-width: 100%;
   width: 80%;
   opacity: 0;
