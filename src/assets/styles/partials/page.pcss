@@ -4,10 +4,7 @@
   height: 50vh;
   margin-bottom: 2.07rem;
   text-transform: uppercase;
-}
-
-.header__info {
-  text-align: right;
+  user-select: none;
 }
 
 .header__container {
@@ -15,10 +12,18 @@
   top: 100px;
 }
 
+.header__channel {
+  cursor: var(--cursor-pointer);
+}
+
 @media (min-width: 481px) {
   .header__container {
     display: flex;
     justify-content: space-between;
+  }
+
+  .header__info {
+    text-align: right;
   }
 }
 
@@ -40,10 +45,6 @@
     content: '►';
     font-size: 1.2em;
   }
-}
-
-.nav__menu {
-  margin-top: 1rem;
 }
 
 @media (max-width: 480px) {

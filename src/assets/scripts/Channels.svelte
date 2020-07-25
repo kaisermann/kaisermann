@@ -1,5 +1,5 @@
 <script context="module">
-  export const AVAILABLE_CHANNELS = new Set([1, 2]);
+  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5]);
 </script>
 
 <script lang="ts">
@@ -9,10 +9,30 @@
 
   let currentChannel;
   let pageWrapper = document.querySelector('.js-page-wrapper');
-  let channelNumberEl = document.querySelector('.js-channel');
+  let channelBtn = document.querySelector('.js-channel-btn');
+  let channelNumber = channelBtn.querySelector('.js-channel');
+
+  function cycleChannel() {
+    if (currentChannel) {
+      if (currentChannel + 1 > 9) {
+        currentChannel = 0;
+      } else {
+        currentChannel++;
+      }
+    } else {
+      currentChannel = 1;
+    }
+  }
+
+  onMount(() => {
+    channelBtn.addEventListener('click', cycleChannel);
+    return () => {
+      channelBtn.removeEventListener('click', cycleChannel);
+    };
+  });
 
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
-  $: channelNumberEl.textContent = currentChannel
+  $: channelNumber.textContent = currentChannel
     ? currentChannel.toString().padStart(2, '0')
     : '00';
 
@@ -37,7 +57,7 @@
     if (channel === currentChannel) {
       currentChannel = 0;
     } else {
-      currentChannel = channel === currentChannel ? 0 : channel;
+      currentChannel = channel;
     }
   }
 </script>
