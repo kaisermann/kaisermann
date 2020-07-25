@@ -6,6 +6,10 @@
   text-transform: uppercase;
 }
 
+.header__info {
+  text-align: right;
+}
+
 .header__container {
   position: sticky;
   top: 100px;
@@ -32,7 +36,7 @@
   }
 
   &::after {
-    margin-left: .5ch;
+    margin-left: 0.5ch;
     content: '►';
     font-size: 1.2em;
   }
@@ -42,13 +46,12 @@
   margin-top: 1rem;
 }
 
-
 @media (max-width: 480px) {
   .nav {
     margin-bottom: 1rem;
   }
 
   .nav__menu li {
-    margin-bottom: .6rem;
+    margin-bottom: 0.6rem;
   }
 }

@@ -1,0 +1,63 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="{{app.description}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--Twitter Card-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@{{app.twitter}}">
+  <meta name="twitter:creator" content="@{{app.twitter}}">
+  <meta name="twitter:url" content="{{app.baseUrl}}{{page.url}}">
+  <meta name="twitter:title" content="{{app.title}}">
+  <meta name="twitter:description" content="{{content | striptags | truncate(196) }}">
+  <meta name="twitter:image" content="{{app.baseUrl}}{{app.thumb}}">
+
+  <!--Schema-->
+  <link rel="author" href="{{app.baseUrl}}">
+  <link rel="publisher" href="{{app.baseUrl}}">
+  <meta itemprop="name" content="{{app.title}}">
+  <meta itemprop="description" content="{{content | striptags | truncate(196) }}">
+  <meta itemprop="image" content="{{app.baseUrl}}{{app.thumb}}">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:url" content="{{app.baseUrl}}{{page.url}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{app.title}}">
+  <meta property="og:image" content="{{app.baseUrl}}{{app.thumb}}">
+  <meta property="og:description" content="{{content | striptags | truncate(196) }}">
+  <meta property="og:site_name" content="{{app.title}}">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:author" content="{{app.baseUrl}}">
+
+  <link rel="stylesheet" href="/assets/styles/main.css">
+  <link rel="icon" href="/assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://www.youtube.com"/>
+  <link rel="preconnect" href="https://i.ytimg.com"/>
+  <link rel="preconnect" href="https://yt3.ggpht.com"/>
+
+  {% set titleComplement %}
+  {%if page.url != '/' %}
+      | {{ eleventyNavigation.key }}
+  {% else %}
+      | Web Development
+    {% endif %}
+  {% endset %}
+
+  <title>Kaisermann {{titleComplement}}</title>
+
+  {% if build.isProd %}
+    <script>
+      {% set gtagJS %}
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-75837777-1');
+      {% endset %}
+
+      {{ gtagJS | jsmin | safe  }}
+    </script>
+  {% endif %}
+</head>

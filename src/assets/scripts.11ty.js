@@ -5,8 +5,19 @@ const rollup = require('rollup');
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
+const svelte = require('rollup-plugin-svelte');
+const preprocess = require('svelte-preprocess');
 
 const PROD = process.env.ELEVENTY_ENV === 'production';
+
+const plugins = [
+  nodeResolve(),
+  commonjs(),
+  svelte({
+    preprocess: preprocess(),
+  }),
+  PROD && terser(),
+];
 
 module.exports = class {
   async data() {
@@ -21,7 +32,7 @@ module.exports = class {
   async render({ rawFilepath }) {
     const inputOptions = {
       input: rawFilepath,
-      plugins: [nodeResolve(), commonjs(), PROD && terser()],
+      plugins,
     };
 
     const outputOptions = {

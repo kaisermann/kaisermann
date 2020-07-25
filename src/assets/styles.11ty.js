@@ -30,7 +30,7 @@ const postcssEngine = postcss(
           },
         ],
       }),
-  ].filter(Boolean)
+  ].filter(Boolean),
 );
 
 module.exports = class {

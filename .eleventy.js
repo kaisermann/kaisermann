@@ -25,6 +25,7 @@ module.exports = (config) => {
     return minified.code;
   });
 
+  config.addPassthroughCopy('./src/assets/videos');
   config.addPassthroughCopy('./src/assets/images');
   config.addPassthroughCopy('./src/assets/fonts');
 

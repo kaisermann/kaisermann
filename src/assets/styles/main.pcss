@@ -33,8 +33,6 @@ body {
   overflow: hidden;
   height: 100%;
   cursor: url(/assets/images/cursor-default.png) 0 0, auto;
-  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.3),
-    -3px -3px 0 rgba(183, 2, 2, 0.3);
 
   &::before,
   &::after {
@@ -74,9 +72,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: turn-on 1.6s linear;
-  overflow: hidden auto;
   height: 100%;
+  overflow: hidden auto;
+  text-shadow: 3px 0 0 rgba(2, 183, 182, 0.35), -3px 0 0 rgba(183, 2, 2, 0.35);
+}
+
+[animation='turn-on'] {
+  animation: turn-on-scale 1.4s, turn-on-filter 1.4s,
+    turn-on-text-shadow 1.12s ease-out;
+}
+
+[animation='switch-channel'] {
+  animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
 }
 
 .page__background {
@@ -90,12 +97,7 @@ body {
   overflow: hidden;
 }
 
-.page__background__static {
-  opacity: 0.6;
-}
-
-.page__background__static,
-.page__background__easter {
+.channel__video {
   position: absolute;
   top: 0;
   left: 0;
@@ -104,42 +106,13 @@ body {
   object-fit: cover;
 }
 
-.page__background__easter.--video {
-  z-index: -1;
-  transform: scale(1.33);
-  transform-origin: center 22%;
+.channel__video.--static {
+  opacity: 0.6;
 }
 
-body.--easter-tv-on {
-  animation: easter-tv 1.6s cubic-bezier(0.33, 1.05, 0.46, 0.91) forwards;
-}
-
-@keyframes easter-tv {
-  0% {
-    /* transform: scale(0.8, 0); */
-    filter: contrast(1.2) brightness(20) invert(1) saturate(2);
-    text-shadow: 30px 30px 0 rgba(2, 183, 182, 0.3),
-      -30px -30px 0 rgba(183, 2, 2, 0.3);
-  }
-
-  10% {
-    filter: contrast(1.2) brightness(20) invert(0) saturate(2);
-    text-shadow: -30px -30px 0 rgba(2, 183, 182, 0.3),
-      30px 30px 0 rgba(183, 2, 2, 0.3);
-  }
-
-  10% {
-    filter: contrast(1.2) brightness(20) invert(0) saturate(2);
-    text-shadow: -3px -3px 0 rgba(2, 183, 182, 0.3),
-      3px -3px 0 rgba(183, 2, 2, 0.3);
-  }
-
-  100% {
-    /* transform: scale(0.8); */
-    filter: contrast(1) brightness(1) invert(0) saturate(1);
-    text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.3),
-      -3px -3px 0 rgba(183, 2, 2, 0.3);
-  }
+.channel__video:not(.--static) {
+  filter: contrast(1.9) sepia(0.1);
+  opacity: 0.2;
 }
 
 .page__container {
