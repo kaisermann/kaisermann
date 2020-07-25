@@ -7,7 +7,7 @@
 
   $: paddedNumber = number && number.toString().padStart(2, '0');
 
-  $: video && (video.volume = 0.32);
+  $: video && (video.volume = 0.25);
   $: {
     if (video && number != null) {
       video.load();
