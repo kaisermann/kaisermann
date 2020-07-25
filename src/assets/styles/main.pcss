@@ -33,6 +33,8 @@ body {
   overflow: hidden;
   height: 100%;
   cursor: url(/assets/images/cursor-default.png) 0 0, auto;
+  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.3),
+    -3px -3px 0 rgba(183, 2, 2, 0.3);
 
   &::before,
   &::after {
@@ -80,13 +82,64 @@ body {
 .page__background {
   pointer-events: none;
   position: fixed;
-  z-index: var(--layer-lines);
+  z-index: var(--layer-static);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page__background__static {
+  opacity: 0.6;
+}
+
+.page__background__static,
+.page__background__easter {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
+}
+
+.page__background__easter.--video {
+  z-index: -1;
+  transform: scale(1.33);
+  transform-origin: center 22%;
+}
+
+body.--easter-tv-on {
+  animation: easter-tv 1.6s cubic-bezier(0.33, 1.05, 0.46, 0.91) forwards;
+}
+
+@keyframes easter-tv {
+  0% {
+    /* transform: scale(0.8, 0); */
+    filter: contrast(1.2) brightness(20) invert(1) saturate(2);
+    text-shadow: 30px 30px 0 rgba(2, 183, 182, 0.3),
+      -30px -30px 0 rgba(183, 2, 2, 0.3);
+  }
+
+  10% {
+    filter: contrast(1.2) brightness(20) invert(0) saturate(2);
+    text-shadow: -30px -30px 0 rgba(2, 183, 182, 0.3),
+      30px 30px 0 rgba(183, 2, 2, 0.3);
+  }
+
+  10% {
+    filter: contrast(1.2) brightness(20) invert(0) saturate(2);
+    text-shadow: -3px -3px 0 rgba(2, 183, 182, 0.3),
+      3px -3px 0 rgba(183, 2, 2, 0.3);
+  }
+
+  100% {
+    /* transform: scale(0.8); */
+    filter: contrast(1) brightness(1) invert(0) saturate(1);
+    text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.3),
+      -3px -3px 0 rgba(183, 2, 2, 0.3);
+  }
 }
 
 .page__container {
@@ -95,6 +148,4 @@ body {
   max-width: 100%;
   width: 80%;
   animation: flicker 0.3s infinite;
-  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.3),
-    -3px -3px 0 rgba(183, 2, 2, 0.3);
 }

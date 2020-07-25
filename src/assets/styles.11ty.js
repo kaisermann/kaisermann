@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const postcss = require('postcss');
+const purgecss = require('@fullhuman/postcss-purgecss');
 const postcssEngine = postcss(
   [
     require('postcss-import'),
@@ -12,12 +13,29 @@ const postcssEngine = postcss(
       },
     }),
     process.env.ELEVENTY_ENV === 'production' && require('cssnano'),
+    false &&
+      process.env.ELEVENTY_ENV === 'production' &&
+      purgecss({
+        content: ['./dist/**/*.html'],
+        extractors: [
+          {
+            extractor: class TailwindExtractor {
+              static extract(content) {
+                console.log(content);
+
+                return content.match(/[A-Za-z0-9-_:/]+/g) || [];
+              }
+            },
+            extensions: ['css', 'html', 'vue'],
+          },
+        ],
+      }),
   ].filter(Boolean)
 );
 
 module.exports = class {
   async data() {
-    const rawFilepath = path.join(__dirname, 'main.pcss');
+    const rawFilepath = path.join(__dirname, 'styles', 'main.pcss');
 
     return {
       rawFilepath,

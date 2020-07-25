@@ -34,6 +34,14 @@
     <link rel="stylesheet" href="/assets/styles/main.css">
     <link rel="icon" href="/assets/images/favicon.png">
 
+    <!-- fasttrack DNS resolution for the intro video -->
+    <link rel="dns-prefetch" href="https://www.youtube.com"/>
+    <link rel="preconnect" href="https://www.youtube.com"/>
+    <link rel="dns-prefetch" href="https://i.ytimg.com"/>
+    <link rel="preconnect" href="https://i.ytimg.com"/>
+    <link rel="dns-prefetch" href="https://yt3.ggpht.com"/>
+    <link rel="preconnect" href="https://yt3.ggpht.com"/>
+
     {% set titleComplement %}
     {%if page.url != '/' %}
       | {{ eleventyNavigation.key }}
@@ -61,10 +69,12 @@
   </head>
   <body {% if bodyClass %} class="{{ bodyClass }}" {% endif %}>
     <div class="page__wrapper">
-      <video class="page__background" muted autoplay playsinline loop>
-        <source src="/assets/images/glitch.webm" type="video/webm"/>
-        <source src="/assets/images/glitch.mp4" type="video/mp4"/>
-      </video>
+      <div class="page__background js-page-bg">
+        <video class="page__background__static" muted autoplay playsinline loop>
+          <source src="/assets/images/glitch.webm" type="video/webm"/>
+          <source src="/assets/images/glitch.mp4" type="video/mp4"/>
+        </video>
+      </div>
 
       <div class="page__container">
         {% include 'header.njk' %}
@@ -95,5 +105,6 @@
 
         {{ dateJS | jsmin | safe  }}
     </script>
+    <script async src="/assets/scripts/main.js" type="module"></script>
   </body>
 </html>

@@ -18,6 +18,9 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-navigation": "^0.1.6",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "cross-env": "7.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.5.0",
@@ -27,6 +30,11 @@
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
+    "rollup": "^2.23.0",
+    "rollup-plugin-terser": "^6.1.0",
     "terser": "^4.8.0"
+  },
+  "dependencies": {
+    "cheet.js": "^0.3.3"
   }
 }
