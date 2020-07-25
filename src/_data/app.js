@@ -7,8 +7,8 @@ const env = (dev, prod = dev) => {
 };
 
 module.exports = {
-  title: 'Kaisermann | Web Development',
-  description: 'Come say hi 🌳',
+  title: 'Kaisermann | web development',
+  description: 'Coding for humans. Come say hi 🌳',
   twitter: 'kiwistian',
   baseUrl: env('https://kaisermann.me'),
   thumb: '/assets/images/big-rainbow-static.gif',

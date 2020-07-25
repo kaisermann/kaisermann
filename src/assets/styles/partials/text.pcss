@@ -16,11 +16,12 @@ a {
     content: attr(href);
     min-width: max-content;
     position: absolute;
+    z-index: var(--layer-content-hover);
     background-color: rgba(0, 0, 0, 0.8);
     bottom: 100%;
     left: 0;
     margin-bottom: 0.5rem;
-    font-size: .6rem;
+    font-size: 0.6rem;
     visibility: hidden;
     transition: none;
   }
@@ -47,4 +48,28 @@ a {
 .bio {
   font-size: var(--font-size-secondary);
   text-transform: uppercase;
+}
+
+.bio__photo {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: var(--layer-me-hover);
+    top: calc(100% + 1rem);
+    left: 1rem;
+    width: 40%;
+    padding-bottom: 40%;
+    visibility: hidden;
+    background-image: url(/assets/images/me.jpg);
+    background-size: cover;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transition: visibility 0s 0.2s;
+    visibility: visible;
+  }
 }
