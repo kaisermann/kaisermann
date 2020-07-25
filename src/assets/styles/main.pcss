@@ -15,8 +15,7 @@
   --layer-content: 3;
   --layer-lines: 2;
   --layer-static: 1;
-  --cursor-default: url(../images/cursor-default.png) 0 0, auto;
-  --cursor-pointer: url(../images/cursor-pointer.png) 0 0, auto;
+  --scrollbar-width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -25,7 +24,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: var(--scrollbar-width);
   background-color: #000;
 }
 
@@ -41,7 +40,7 @@ html {
   font-size: var(--font-size-primary);
   line-height: var(--line-height);
   height: 100%;
-  cursor: var(--cursor-default);
+  cursor: url(../images/cursor-default.png) 0 0, auto;
 }
 
 body {
@@ -90,7 +89,7 @@ body {
 
 [animation='turn-on'] {
   animation: turn-on-scale 1.2s, turn-on-filter 1s,
-    turn-on-text-shadow .92s ease-out;
+    turn-on-text-shadow 0.92s ease-out;
 }
 
 [animation='switch-channel'] {
@@ -106,13 +105,25 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: radial-gradient(circle, transparent 60%, black 100%),
+      transparent;
+    top: 0;
+    left: 0;
+    width: calc(100% - var(--scrollbar-width));
+    height: 100%;
+  }
 }
 
 .channel__video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - var(--scrollbar-width));
   height: 100%;
   object-fit: cover;
 }
@@ -123,7 +134,7 @@ body {
 
 .channel__video:not(.--static) {
   filter: contrast(1.9) sepia(0.1);
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .page__scroll {
