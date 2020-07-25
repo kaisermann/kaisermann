@@ -11,7 +11,7 @@ const postcssEngine = postcss(
         'nesting-rules': true,
       },
     }),
-    process.env.ELEVENTY_ENV === 'prod' && require('cssnano'),
+    process.env.ELEVENTY_ENV === 'production' && require('cssnano'),
   ].filter(Boolean)
 );
 

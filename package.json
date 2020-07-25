@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve",
-    "build": "cross-env ELEVENTY_ENV=prod eleventy",
+    "dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
+    "build": "cross-env ELEVENTY_ENV=production eleventy",
     "build:prod": "npm run build",
     "lint": "eslint --ignore-pattern=\"node_modules\" .",
     "format": "prettier --write \"**/*.{js,json}\""
