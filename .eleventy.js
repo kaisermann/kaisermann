@@ -7,10 +7,10 @@ module.exports = (config) => {
   // Layout aliases can make templates more portable
   config.addLayoutAlias('default', 'layouts/base.njk');
 
-  // add support for syntax highlighting
-
   // minify the html output
-  config.addTransform('htmlmin', htmlmin);
+  if (process.env.ELEVENTY_ENV === 'production') {
+    config.addTransform('htmlmin', htmlmin);
+  }
 
   // compress and combine js files
   config.addFilter('jsmin', (code) => {

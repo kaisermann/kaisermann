@@ -3,8 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {# TODO: META TAGS OPEN GRAPH E TWITTER #}
-    {# <meta property="twitter:card" content="summary_large_image"> #}
+    <!--Twitter Card-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{app.twitter}}">
+    <meta name="twitter:creator" content="@{{app.twitter}}">
+    <meta name="twitter:url" content="{{app.baseUrl}}{{page.url}}">
+    <meta name="twitter:title" content="{{app.title}}">
+    <meta name="twitter:description" content="{{content | striptags | truncate(196) }}">
+    <meta name="twitter:image" content="{{app.thumb}}">
+
+    <!--Schema-->
+    <link rel="author" href="{{app.baseUrl}}">
+    <link rel="publisher" href="{{app.baseUrl}}">
+    <meta itemprop="name" content="{{app.title}}">
+    <meta itemprop="description" content="{{content | striptags | truncate(196) }}">
+    <meta itemprop="image" content="{{app.thumb}}">
+
+    <!-- Facebook OpenGraph -->
+    <meta property="og:url" content="{{app.baseUrl}}{{page.url}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{app.title}}">
+    <meta property="og:image" content="{{app.thumb}}">
+    <meta property="og:description" content="{{content | striptags | truncate(196) }}">
+    <meta property="og:site_name" content="{{app.title}}">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:author" content="{{app.baseUrl}}">
+
     <link rel="stylesheet" href="/assets/styles/main.css">
 
     {% set titleComplement %}
