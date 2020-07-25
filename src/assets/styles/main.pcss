@@ -7,8 +7,8 @@
 :root {
   --text-primary: #a0a0a0;
   --text-secondary: #fff;
-  --font-size-primary: clamp(13px, 2.4vw, 26px);
-  --font-size-secondary: clamp(18px, 3.84vw, 50px);
+  --font-size-primary: clamp(13px, 1.8vw, 34px);
+  --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
 }
 
@@ -43,7 +43,7 @@ body {
     background: linear-gradient(
       180deg,
       transparent 0,
-      #fffafa1a 50%,
+      #fffafa26 50%,
       transparent
     );
     animation: vline 8s linear infinite;
@@ -82,8 +82,7 @@ body {
 
 .page__container {
   max-width: 100%;
-  width: 1170px;
-  padding: 0 2rem;
+  width: 80%;
   opacity: 0;
   animation: flicker 0.3s infinite;
   text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
