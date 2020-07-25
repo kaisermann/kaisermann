@@ -7,7 +7,7 @@
 
   import Channel from './Channel.svelte';
 
-  let currentChannel;
+  let currentChannel = 0;
   let pageWrapper = document.querySelector('.js-page-wrapper');
   let channelBtn = document.querySelector('.js-channel-btn');
   let channelNumber = channelBtn.querySelector('.js-channel');
