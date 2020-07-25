@@ -93,6 +93,11 @@
 	],
 	"sites": [
 		{
+			"url": "https://kaisermann.me",
+			"name": "kaisermann.me",
+			"desc": "front-end"
+		},
+		{
 			"url": "https://copymoji.kaisermann.me",
 			"name": "copymoji",
 			"desc": "front-end"
