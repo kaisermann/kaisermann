@@ -19,18 +19,13 @@ html {
   color: var(--text-primary);
   font-size: var(--font-size-primary);
   line-height: var(--line-height);
+  height: 100%;
 }
 
 body {
   background-color: #000;
-  overflow: hidden auto;
-  animation: turn-on 1.6s linear;
-  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
-    -3px -3px 0 rgba(183, 2, 2, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 2rem;
+  overflow: hidden;
+  height: 100%;
 
   &::before,
   &::after {
@@ -48,13 +43,10 @@ body {
     background: linear-gradient(
       180deg,
       transparent 0,
-      snow 50%,
-      hsla(0, 0%, 100%, 0.98) 51%,
+      #fffafa1a 50%,
       transparent
     );
     animation: vline 8s linear infinite;
-    will-change: transform;
-    opacity: 0.1;
   }
 
   &::after {
@@ -68,7 +60,16 @@ body {
   }
 }
 
-.page-background {
+.page__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: turn-on 1.6s linear;
+  overflow: hidden auto;
+  height: 100%;
+}
+
+.page__background {
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -76,12 +77,15 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.03;
+  opacity: 0.6;
 }
 
-.container {
-  max-width: 1170px;
+.page__container {
+  max-width: 100%;
+  width: 1170px;
+  padding: 0 2rem;
   opacity: 0;
   animation: flicker 0.3s infinite;
-  will-change: opacity;
+  text-shadow: 3px 3px 0 rgba(2, 183, 182, 0.2),
+    -3px -3px 0 rgba(183, 2, 2, 0.2);
 }

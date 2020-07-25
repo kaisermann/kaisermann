@@ -30,6 +30,7 @@
 
 .nav__breadcrumb {
   display: flex;
+  align-items: center;
 
   & li:not(:last-child)::after {
     content: ' /';
@@ -38,7 +39,8 @@
 
   &::after {
     margin-left: 1ch;
-    content: url(/assets/images/arrow-right.svg);
+    content: '►';
+    font-size: 1.2em
   }
 }
 
@@ -51,11 +53,14 @@
   grid-template-columns: 1fr;
   gap: 3.4rem;
 
+  /* title */
   & a {
     font-size: var(--font-size-secondary);
     line-height: 1;
+    text-transform: uppercase;
   }
 
+  /* description */
   & small {
     display: block;
     color: var(--text-primary);

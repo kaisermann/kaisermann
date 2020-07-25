@@ -7,38 +7,55 @@
     {# <meta property="twitter:card" content="summary_large_image"> #}
     <link rel="stylesheet" href="/assets/styles/main.css">
 
-    <title>
-      Kaisermann
-      {{ title }}</title>
+    {% set titleComplement %}
+    {%if page.url != '/' %}
+      | {{ eleventyNavigation.key }}
+    {% else %}
+      | Web Development
+    {% endif %}
+    {% endset %}
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'UA-75837777-1');
-    </script>
+    <title>Kaisermann {{titleComplement}}</title>
+
+    {% if build.isProd %}
+      <script>
+        {% set gtagJS %}
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-75837777-1');
+        {% endset %}
+
+        {{ gtagJS | jsmin | safe  }}
+      </script>
+    {% endif %}
   </head>
   <body {% if bodyClass %} class="{{ bodyClass }}" {% endif %}>
+    <div class="page__wrapper">
+      <video class="page__background" muted autoplay playsinline loop>
+        <source src="/assets/images/glitch.webm" type="video/webm"/>
+        <source src="/assets/images/glitch.mp4" type="video/mp4"/>
+      </video>
 
-    <video class="page-background" muted="muted" autoplay="autoplay" playsinline="playsinline" loop="loop">
-      <source src="/assets/images/static.webm" type="video/webm"/>
-      <source src="/assets/images/static.mp4" type="video/mp4"/>
-    </video>
+      <div class="page__container">
+        {% include 'header.njk' %}
 
-    <div class="container">
-      {% include 'header.njk' %}
+        <div class="page__content">
+          {{ content | safe }}
+        </div>
 
-      <div class="page-content">
-        {{ content | safe }}
+        {% include 'footer.njk' %}
       </div>
-
-      {% include 'footer.njk' %}
     </div>
 
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
+    {% if build.isProd %}
+      <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
+    {% endif %}
+
     <script>
+      {% set dateJS %}
       document
         .querySelector('.js-header-date')
         .innerHTML = new Intl
@@ -47,7 +64,9 @@
           day: 'numeric',
           year: 'numeric'
         })
-        .format(new Date())
+        .format(new Date()){% endset %}
+
+        {{ dateJS | jsmin | safe  }}
     </script>
   </body>
 </html>

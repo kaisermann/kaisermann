@@ -3,7 +3,7 @@
     transform: translateY(-100%);
   }
 
-  60%,
+  80%,
   100% {
     transform: translateY(100vh);
   }
@@ -47,13 +47,12 @@
     filter: contrast(0) brightness(0);
   }
 
-  98% {
-    transform: scale(1) translate3d(0, 0, 0);
+  100% {
     filter: contrast(2) brightness(2) saturate(2);
   }
 
   100% {
-    transform: none;
-    filter: none;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: contrast(1) brightness(1) saturate(1);
   }
 }
