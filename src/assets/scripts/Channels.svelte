@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
 
   import Channel from './Channel.svelte';
 
@@ -11,6 +11,14 @@
   let pageWrapper = document.querySelector('.js-page-wrapper');
   let channelBtn = document.querySelector('.js-channel-btn');
   let channelNumber = channelBtn.querySelector('.js-channel');
+
+  function removeWrapperAnimationOnEnd() {
+    pageWrapper.addEventListener(
+      'animationend',
+      (e) => pageWrapper.removeAttribute('animation'),
+      { once: true },
+    );
+  }
 
   function cycleChannel() {
     if (currentChannel) {
@@ -25,7 +33,9 @@
   }
 
   onMount(() => {
+    removeWrapperAnimationOnEnd();
     channelBtn.addEventListener('click', cycleChannel);
+
     return () => {
       channelBtn.removeEventListener('click', cycleChannel);
     };
@@ -37,13 +47,9 @@
     : '00';
 
   $: {
-    if (currentChannel != null) {
+    if (currentChannel != null && !pageWrapper.hasAttribute('animation')) {
       pageWrapper.setAttribute('animation', 'switch-channel');
-      pageWrapper.addEventListener(
-        'animationend',
-        (e) => pageWrapper.removeAttribute('animation'),
-        { once: true },
-      );
+      removeWrapperAnimationOnEnd();
     }
   }
 
