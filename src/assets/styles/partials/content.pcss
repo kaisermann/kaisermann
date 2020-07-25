@@ -60,8 +60,8 @@ a {
     z-index: var(--layer-me-hover);
     top: calc(100% + 1rem);
     left: 1rem;
-    width: 16rem;
-    padding-bottom: 16rem;
+    width: 14rem;
+    padding-bottom: 14rem;
     visibility: hidden;
     background-image: url(/assets/images/me.jpg);
     background-size: cover;
@@ -71,5 +71,30 @@ a {
   &:focus::after {
     transition: visibility 0s 0.2s;
     visibility: visible;
+  }
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.4rem;
+
+  /* title */
+  & a {
+    font-size: var(--font-size-secondary);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* description */
+  & small {
+    display: block;
+    color: var(--text-primary);
+  }
+}
+
+@media (min-width: 481px) {
+  .project-list {
+    grid-template-columns: 1fr 1fr;
   }
 }

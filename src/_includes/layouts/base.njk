@@ -10,20 +10,20 @@
     <meta name="twitter:url" content="{{app.baseUrl}}{{page.url}}">
     <meta name="twitter:title" content="{{app.title}}">
     <meta name="twitter:description" content="{{content | striptags | truncate(196) }}">
-    <meta name="twitter:image" content="{{app.thumb}}">
+    <meta name="twitter:image" content="{{app.baseUrl}}{{app.thumb}}">
 
     <!--Schema-->
     <link rel="author" href="{{app.baseUrl}}">
     <link rel="publisher" href="{{app.baseUrl}}">
     <meta itemprop="name" content="{{app.title}}">
     <meta itemprop="description" content="{{content | striptags | truncate(196) }}">
-    <meta itemprop="image" content="{{app.thumb}}">
+    <meta itemprop="image" content="{{app.baseUrl}}{{app.thumb}}">
 
     <!-- Facebook OpenGraph -->
     <meta property="og:url" content="{{app.baseUrl}}{{page.url}}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{app.title}}">
-    <meta property="og:image" content="{{app.thumb}}">
+    <meta property="og:image" content="{{app.baseUrl}}{{app.thumb}}">
     <meta property="og:description" content="{{content | striptags | truncate(196) }}">
     <meta property="og:site_name" content="{{app.title}}">
     <meta property="og:locale" content="en_US">
