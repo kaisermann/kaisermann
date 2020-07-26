@@ -50,3 +50,17 @@
     object-position: center top;
   }
 }
+
+.rec__counter {
+  position: absolute;
+  bottom: 2rem;
+  right: 10%;
+  text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+}
+
+body:not([using-camera]) {
+  & .header__rec,
+  & .rec__counter {
+    display: none;
+  }
+}
