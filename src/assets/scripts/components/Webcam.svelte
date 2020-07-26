@@ -18,7 +18,9 @@
       });
 
     return () => {
-      stream.getTracks().forEach((track) => track.stop());
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
     };
   });
 </script>
