@@ -1,5 +1,21 @@
 <script context="module">
   export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6]);
+
+  const audioCtx = new window.AudioContext();
+  const bufferSize = audioCtx.sampleRate / 3;
+  const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const gainNode = audioCtx.createGain();
+
+  for (
+    let i = 0, noiseBufferOutput = noiseBuffer.getChannelData(0);
+    i < bufferSize;
+    i++
+  ) {
+    noiseBufferOutput[i] = Math.random() * 2 - 1;
+  }
+
+  gainNode.gain.setValueAtTime(0.018, audioCtx.currentTime);
+  gainNode.connect(audioCtx.destination);
 </script>
 
 <script lang="ts">
@@ -8,9 +24,21 @@
   import Channel from './Channel.svelte';
 
   let currentChannel = 0;
+
   let pageWrapper = document.querySelector('.js-page-wrapper');
-  let channelBtn = document.querySelector('.js-channel-btn');
+  let channelBtn = pageWrapper.querySelector('.js-channel-btn');
   let channelNumber = channelBtn.querySelector('.js-channel');
+
+  function noise() {
+    const whiteNoise = audioCtx.createBufferSource();
+
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.connect(gainNode);
+    whiteNoise.start(0);
+    whiteNoise.onended = (e) => {
+      whiteNoise.disconnect(gainNode);
+    };
+  }
 
   function removeWrapperAnimationOnEnd() {
     pageWrapper.addEventListener(
@@ -42,10 +70,12 @@
   });
 
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
+  $: formattedChannel = currentChannel.toString().padStart(2, '0');
 
   $: {
     if (currentChannel != null) {
-      channelNumber.textContent = currentChannel.toString().padStart(2, '0');
+      channelNumber.textContent = formattedChannel;
+      noise();
 
       if (!pageWrapper.hasAttribute('animation')) {
         pageWrapper.setAttribute('animation', 'switch-channel');
