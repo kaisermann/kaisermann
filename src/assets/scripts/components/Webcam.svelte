@@ -8,8 +8,8 @@
     window.navigator.mediaDevices
       .getUserMedia({
         video: {
-          width: { exact: 320 },
-          height: { exact: 240 },
+          width: { exact: 256 },
+          height: { exact: 144 },
         },
       })
       .then((stream) => {

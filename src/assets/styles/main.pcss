@@ -128,13 +128,20 @@ body {
   object-fit: cover;
 }
 
+.channel__video {
+  filter: contrast(1.9) sepia(0.1);
+  opacity: 0.4;
+}
+
 .channel__video.--static {
+  filter: none;
   opacity: 0.6;
 }
 
-.channel__video:not(.--static) {
-  filter: contrast(1.9) sepia(0.1);
+.channel__video.--camera {
+  filter: none;
   opacity: 0.4;
+  animation: webcam-hue-rotate .15s infinite;
 }
 
 .page__scroll {

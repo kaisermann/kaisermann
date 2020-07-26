@@ -88,8 +88,7 @@
 
 @keyframes turn-on-text-shadow {
   0% {
-    text-shadow: 8px 0 0 rgba(2, 183, 182, 0.35),
-      -8px 0 0 rgba(183, 2, 2, 0.35);
+    text-shadow: 8px 0 0 rgba(2, 183, 182, 0.35), -8px 0 0 rgba(183, 2, 2, 0.35);
   }
 
   100% {
@@ -109,5 +108,15 @@
 
   70% {
     filter: brightness(1) invert(0) saturate(0);
+  }
+}
+
+@keyframes webcam-hue-rotate {
+  from {
+    filter: contrast(1.5) blur(2px) saturate(0.7) hue-rotate(0deg);
+  }
+
+  to {
+    filter: contrast(1.5) blur(2px) saturate(0.8) hue-rotate(15deg);
   }
 }
