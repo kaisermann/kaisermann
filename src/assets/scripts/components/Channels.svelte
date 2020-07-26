@@ -1,10 +1,11 @@
 <script context="module">
-  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6]);
+  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6, 9]);
 </script>
 
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
 
+  import Webcam from './Webcam.svelte';
   import Channel from './Channel.svelte';
   import { noise } from '../modules/noise.js';
 
@@ -76,6 +77,10 @@
   }
 </script>
 
-<Channel number={doesChannelExist ? currentChannel : undefined} />
+{#if currentChannel === 9}
+  <Webcam />
+{:else}
+  <Channel number={doesChannelExist ? currentChannel : undefined} />
+{/if}
 
 <svelte:window on:keyup={handleKeyup} />
