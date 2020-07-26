@@ -4,7 +4,11 @@ export function noise() {
   const audioCtx = new window.AudioContext();
   const bufferSize = audioCtx.sampleRate / 3;
   const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+
   const gainNode = audioCtx.createGain();
+
+  gainNode.gain.setValueAtTime(0.012, audioCtx.currentTime);
+  gainNode.connect(audioCtx.destination);
 
   for (
     let i = 0, noiseBufferOutput = noiseBuffer.getChannelData(0);
@@ -14,8 +18,6 @@ export function noise() {
     noiseBufferOutput[i] = Math.random() * 2 - 1;
   }
 
-  gainNode.gain.setValueAtTime(0.018, audioCtx.currentTime);
-  gainNode.connect(audioCtx.destination);
   const whiteNoise = audioCtx.createBufferSource();
 
   whiteNoise.buffer = noiseBuffer;

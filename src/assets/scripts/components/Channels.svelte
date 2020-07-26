@@ -23,14 +23,10 @@
   }
 
   function cycleChannel() {
-    if (currentChannel) {
-      if (currentChannel + 1 > 9) {
-        currentChannel = 0;
-      } else {
-        currentChannel++;
-      }
+    if (currentChannel + 1 > 9) {
+      currentChannel = 0;
     } else {
-      currentChannel = 1;
+      currentChannel++;
     }
   }
 
@@ -49,9 +45,14 @@
   $: {
     if (currentChannel != null) {
       channelNumber.textContent = formattedChannel;
-      window.requestAnimationFrame(noise);
 
-      if (!pageWrapper.hasAttribute('animation')) {
+      const animation = pageWrapper.getAttribute('animation');
+      // todo: should we listen to chrome complaining about noise without user interaction?
+      // if (animation !== 'turn-on') {
+        window.requestAnimationFrame(noise);
+      // }
+
+      if (!animation) {
         pageWrapper.setAttribute('animation', 'switch-channel');
         removeWrapperAnimationOnEnd();
       }
