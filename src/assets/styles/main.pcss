@@ -3,6 +3,7 @@
 @import './partials/animations.pcss';
 @import './partials/page.pcss';
 @import './partials/content.pcss';
+@import './partials/tv.pcss';
 
 :root {
   --text-primary: #a0a0a0;
@@ -16,6 +17,9 @@
   --layer-lines: 2;
   --layer-static: 1;
   --scrollbar-width: 10px;
+
+  --glitchy-blue: rgba(2, 183, 182, 0.35);
+  --glitchy-red: rgba(183, 2, 2, 0.35);
 }
 
 ::-webkit-scrollbar-track {
@@ -39,15 +43,18 @@ html {
   color: var(--text-primary);
   font-size: var(--font-size-primary);
   line-height: var(--line-height);
-  height: 100%;
   cursor: url(../images/cursor-default.png) 0 0, auto;
 }
 
 body {
   background-color: #000;
   overflow: hidden;
-  height: 100%;
 
+  /**
+   * we keep these two pseudo-elements outside
+   * of the animated element (.page__wrapper).
+   * we don't want to explode the brightness of these elements.
+   */
   &::before,
   &::after {
     content: '';
@@ -82,71 +89,9 @@ body {
   }
 }
 
-.page__wrapper {
-  height: 100%;
-  text-shadow: 3px 0 0 rgba(2, 183, 182, 0.35), -3px 0 0 rgba(183, 2, 2, 0.35);
-}
-
-[animation='turn-on'] {
-  animation: turn-on-scale 1.2s, turn-on-filter 1s,
-    turn-on-text-shadow 0.92s ease-out;
-}
-
-[animation='switch-channel'] {
-  animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
-}
-
-.channels {
-  pointer-events: none;
-  position: absolute;
-  z-index: var(--layer-static);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    background: radial-gradient(circle, transparent 60%, black 100%),
-      transparent;
-    top: 0;
-    left: 0;
-    width: calc(100% - var(--scrollbar-width));
-    height: 100%;
-  }
-}
-
-.channel__video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% - var(--scrollbar-width));
-  height: 100%;
-  object-fit: cover;
-}
-
-.channel__video {
-  filter: contrast(1.9) sepia(0.1);
-  opacity: 0.4;
-}
-
-.channel__video.--static {
-  filter: none;
-  opacity: 0.6;
-}
-
-.channel__video.--camera {
-  filter: none;
-  opacity: 0.4;
-  animation: webcam-hue-rotate .3s infinite;
-}
-
 .page__scroll {
   display: flex;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   overflow: hidden auto;
@@ -157,5 +102,6 @@ body {
   z-index: var(--layer-content);
   max-width: 100%;
   width: 80%;
+  text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
   animation: flicker 0.3s infinite;
 }

@@ -1,5 +1,5 @@
-import Channels from './components/Channels.svelte';
+import TV from './components/TV.svelte';
 
-const pageBg = document.querySelector('.js-page-bg');
-
-new Channels({ target: pageBg });
+new TV({
+  target: document.querySelector('.js-tv'),
+});

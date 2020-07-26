@@ -1,3 +1,12 @@
+[animation='turn-on'] {
+  animation: turn-on-scale 1.2s, turn-on-filter 1s,
+    turn-on-text-shadow 0.92s ease-out;
+}
+
+[animation='switch-channel'] {
+  animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
+}
+
 @keyframes vline {
   0% {
     transform: translateY(-100%);
@@ -88,11 +97,11 @@
 
 @keyframes turn-on-text-shadow {
   0% {
-    text-shadow: 8px 0 0 rgba(2, 183, 182, 0.35), -8px 0 0 rgba(183, 2, 2, 0.35);
+    text-shadow: 8px 0 0 var(--glitchy-blue), -8px 0 0 var(--glitchy-red);
   }
 
   100% {
-    text-shadow: 3px 0 0 rgba(2, 183, 182, 0.35), -3px 0 0 rgba(183, 2, 2, 0.35);
+    text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
   }
 }
 
@@ -118,5 +127,11 @@
 
   to {
     filter: contrast(1.4) blur(2px) saturate(0.8) hue-rotate(30deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }

@@ -4,20 +4,36 @@
   let stream;
   let video;
 
-  onMount(() => {
-    window.navigator.mediaDevices
+  async function initStream() {
+    stream = await window.navigator.mediaDevices
       .getUserMedia({
         video: {
           width: { exact: 256 },
           height: { exact: 144 },
         },
       })
-      .then((newStream) => {
-        stream = newStream;
-        video.srcObject = stream;
-      });
+      .catch(() => null);
+
+    if (stream == null) {
+      return;
+    }
+
+    video.srcObject = stream;
+
+    video.addEventListener(
+      'playing',
+      () => {
+        document.body.setAttribute('using-camera', '');
+      },
+      { once: true },
+    );
+  }
+
+  onMount(() => {
+    initStream();
 
     return () => {
+      document.body.removeAttribute('using-camera');
       if (stream) {
         stream.getTracks().forEach((track) => track.stop());
       }
@@ -25,4 +41,4 @@
   });
 </script>
 
-<video bind:this={video} class="channel__video --camera" autoplay />
+<video bind:this={video} class="tv__video" channel="camera" autoplay />

@@ -16,6 +16,26 @@
   cursor: url(../images/cursor-pointer.png) 0 0, auto;
 }
 
+.header__rec {
+  display: inline-flex;
+  align-items: center;
+
+  & span {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0.5rem;
+    background-color: #f00;
+    box-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+    animation: blink 2s step-start infinite;
+  }
+}
+
+body:not([using-camera]) .header__rec {
+  display: none;
+}
+
 @media (min-width: 481px) {
   .header__container {
     display: flex;
@@ -25,10 +45,6 @@
   .header__info {
     text-align: right;
   }
-}
-
-.footer {
-  margin: 160px 0 180px;
 }
 
 .nav__breadcrumb {
@@ -53,6 +69,10 @@
   }
 
   .nav__menu li {
-    margin-bottom: 0.6rem;
+    margin-top: 0.6rem;
   }
+}
+
+.footer {
+  margin: 160px 0 180px;
 }

@@ -5,9 +5,10 @@
 
   let video;
 
-  $: paddedNumber = number && number.toString().padStart(2, '0');
+  $: paddedNumber = number != null && number.toString().padStart(2, '0');
 
   $: video && (video.volume = 0.25);
+
   $: {
     if (video && number != null) {
       video.load();
@@ -17,7 +18,7 @@
 </script>
 
 {#if number != null}
-  <video bind:this={video} class="channel__video" playsinline loop>
+  <video bind:this={video} class="tv__video" channel={number} playsinline loop>
     <source
       src="/assets/videos/channel-{paddedNumber}.webm"
       type="video/webm" />

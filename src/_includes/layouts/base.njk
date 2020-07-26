@@ -2,9 +2,9 @@
 <html lang="en">
   {% include "head.njk" %}
   <body>
-    <div class="page__wrapper js-page-wrapper" animation="turn-on">
-      <div class="channels js-page-bg">
-        <video class="channel__video --static" muted autoplay playsinline loop>
+    <div class="js-tv-animation" animation="turn-on">
+      <div class="tv js-tv">
+        <video class="tv__video" channel="static" muted autoplay playsinline loop>
           <source src="/assets/images/glitch.webm" type="video/webm"/>
           <source src="/assets/images/glitch.mp4" type="video/mp4"/>
         </video>
