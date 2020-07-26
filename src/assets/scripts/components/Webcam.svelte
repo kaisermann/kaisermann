@@ -12,12 +12,13 @@
           height: { exact: 144 },
         },
       })
-      .then((stream) => {
+      .then((response) => {
+        stream = response.stream;
         video.srcObject = stream;
       });
 
     return () => {
-      video.srcObject.getTracks().forEach((track) => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
     };
   });
 </script>
