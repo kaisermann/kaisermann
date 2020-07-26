@@ -1,5 +1,5 @@
 <script context="module">
-  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5]);
+  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6]);
 </script>
 
 <script lang="ts">
@@ -42,14 +42,17 @@
   });
 
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
-  $: channelNumber.textContent = currentChannel
-    ? currentChannel.toString().padStart(2, '0')
-    : '00';
 
   $: {
-    if (currentChannel != null && !pageWrapper.hasAttribute('animation')) {
-      pageWrapper.setAttribute('animation', 'switch-channel');
-      removeWrapperAnimationOnEnd();
+    if (currentChannel != null) {
+      channelNumber.textContent = currentChannel.toString().padStart(2, '0');
+
+      if (!pageWrapper.hasAttribute('animation')) {
+        pageWrapper.setAttribute('animation', 'switch-channel');
+        removeWrapperAnimationOnEnd();
+      }
+    } else {
+      channelNumber.textContent = '00';
     }
   }
 
