@@ -47,9 +47,9 @@
       channelNumber.textContent = formattedChannel;
 
       const animation = pageWrapper.getAttribute('animation');
-      // todo: should we listen to chrome complaining about noise without user interaction?
+      // todo: should we listen to chrome complaining about playing noise without user interaction?
       // if (animation !== 'turn-on') {
-        window.requestAnimationFrame(noise);
+      window.requestAnimationFrame(noise);
       // }
 
       if (!animation) {
