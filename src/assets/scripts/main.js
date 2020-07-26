@@ -1,4 +1,4 @@
-import Channels from './Channels.svelte';
+import Channels from './components/Channels.svelte';
 
 const pageBg = document.querySelector('.js-page-bg');
 
