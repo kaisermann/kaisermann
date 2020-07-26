@@ -12,8 +12,8 @@
           height: { exact: 144 },
         },
       })
-      .then((response) => {
-        stream = response.stream;
+      .then((newStream) => {
+        stream = newStream;
         video.srcObject = stream;
       });
 
