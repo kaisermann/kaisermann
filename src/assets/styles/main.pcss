@@ -17,10 +17,10 @@
   --layer-content: 3;
   --layer-lines: 2;
   --layer-static: 1;
-  --scrollbar-width: .7rem;
+  --scrollbar-width: 0.7rem;
 
-  --glitchy-blue: rgba(2, 183, 182, 0.35);
-  --glitchy-red: rgba(183, 2, 2, 0.35);
+  --glitchy-blue: rgba(2, 183, 182, 0.4);
+  --glitchy-red: rgba(183, 2, 2, 0.4);
 }
 
 ::-webkit-scrollbar-track {
@@ -88,6 +88,10 @@ body {
   }
 }
 
+.page__wrapper {
+  text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+}
+
 .page__scroll {
   position: relative;
   z-index: var(--layer-content);
@@ -100,5 +104,4 @@ body {
   max-width: 100%;
   width: 80%;
   margin: 0 auto;
-  text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
 }
