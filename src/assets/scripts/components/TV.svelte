@@ -59,9 +59,8 @@
     // todo: test this
     if (window.gtag) {
       window.gtag('event', 'channel_switch', {
-        event_label: 'Switched to channel',
+        event_label: `Switched to channel ${formattedChannel}`,
         event_category: 'easter_egg',
-        value: formattedChannel,
       });
     }
   }
