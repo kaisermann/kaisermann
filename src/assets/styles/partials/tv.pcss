@@ -31,18 +31,10 @@
 }
 
 .tv__video {
-  filter: contrast(1.9) sepia(0.1);
   opacity: 0.4;
 
   &[channel='static'] {
-    filter: none;
     opacity: 0.6;
-  }
-
-  &[channel='camera'] {
-    filter: none;
-    opacity: 0.4;
-    animation: webcam-hue-rotate 0.3s infinite;
   }
 
   &[channel='2'],

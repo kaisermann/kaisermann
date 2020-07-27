@@ -1,5 +1,6 @@
 <script context="module">
   export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  export const N_CHANNELS = 10;
 </script>
 
 <script lang="ts">
@@ -28,39 +29,52 @@
     );
   }
 
-  function cycleChannel() {
-    if (currentChannel + 1 > 9) {
-      currentChannel = 0;
-    } else {
-      currentChannel++;
-    }
-  }
-
   onMount(() => {
-    // remvoes the initial animation attribute once it's done
+    // removes the initial animation attribute once it's done
     animateContainer();
 
-    channelBtn.addEventListener('click', cycleChannel);
+    channelBtn.addEventListener('click', () => {
+      // only few channels when changing via click
+      if (currentChannel + 1 > 9) {
+        currentChannel = 0;
+      } else {
+        currentChannel++;
+      }
+    });
   });
 
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
 
   $: {
-    if (currentChannel != null) {
-      channelNumber.textContent = currentChannel.toString().padStart(2, '0');
-      window.requestAnimationFrame(noise);
+    channelNumber.textContent = currentChannel.toString().padStart(2, '0');
+    window.requestAnimationFrame(noise);
 
-      const animation = animationContainer.getAttribute('animation');
+    const animation = animationContainer.getAttribute('animation');
 
-      if (!animation) {
-        animateContainer('switch-channel');
-      }
-    } else {
-      channelNumber.textContent = '00';
+    if (!animation) {
+      animateContainer('switch-channel');
     }
   }
 
   function handleKeyup(e) {
+    if (e.key === '=') {
+      if (currentChannel + 1 <= N_CHANNELS) {
+        currentChannel++;
+      } else {
+        currentChannel = 0;
+      }
+      return;
+    }
+
+    if (e.key === '-') {
+      if (currentChannel - 1 >= 0) {
+        currentChannel--;
+      } else {
+        currentChannel = N_CHANNELS;
+      }
+      return;
+    }
+
     let channel = parseInt(e.key, 10);
 
     // ignore non-number keys
