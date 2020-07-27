@@ -46,13 +46,23 @@
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
 
   $: {
-    channelNumber.textContent = currentChannel.toString().padStart(2, '0');
+    const formattedChannel = currentChannel.toString().padStart(2, '0');
+    channelNumber.textContent = formattedChannel;
     window.requestAnimationFrame(noise);
 
     const animation = animationContainer.getAttribute('animation');
 
     if (!animation) {
       animateContainer('switch-channel');
+    }
+
+    // todo: test this
+    if (window.gtag) {
+      window.gtag('event', 'channel_switch', {
+        event_label: 'Switched to channel',
+        event_category: 'easter_egg',
+        value: formattedChannel,
+      });
     }
   }
 
