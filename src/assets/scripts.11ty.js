@@ -7,10 +7,14 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const svelte = require('rollup-plugin-svelte');
 const preprocess = require('svelte-preprocess');
+const replace = require('@rollup/plugin-replace');
 
 const PROD = process.env.ELEVENTY_ENV === 'production';
 
 const plugins = [
+  replace({
+    'process.env.ELEVENTY_ENV': JSON.stringify(process.env.ELEVENTY_ENV),
+  }),
   nodeResolve(),
   commonjs(),
   svelte({

@@ -10,6 +10,6 @@ module.exports = {
   title: 'kaisermann | web dev',
   description: 'Coding for humans. Come say hi 🌳',
   twitter: 'kiwistian',
-  baseUrl: env('https://kaisermann.me'),
+  baseUrl: env('localhost:8080', 'https://kaisermann.me'),
   thumb: '/assets/images/big-rainbow-static.jpg',
 };

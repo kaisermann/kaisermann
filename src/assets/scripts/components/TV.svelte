@@ -1,6 +1,6 @@
 <script context="module">
-  export const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-  export const N_CHANNELS = 10;
+  const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const N_CHANNELS = 10;
 </script>
 
 <script lang="ts">

@@ -22,6 +22,7 @@
     "@kiwi/prettier-config": "^1.1.0",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-replace": "^2.3.3",
     "cross-env": "7.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.5.0",

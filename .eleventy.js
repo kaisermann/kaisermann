@@ -4,15 +4,12 @@ const Terser = require('terser');
 const htmlmin = require('./src/utils/minify-html.js');
 
 module.exports = (config) => {
-  // Layout aliases can make templates more portable
   config.addLayoutAlias('default', 'layouts/base.njk');
 
-  // minify the html output
   if (process.env.ELEVENTY_ENV === 'production') {
     config.addTransform('htmlmin', htmlmin);
   }
 
-  // compress and combine js files
   config.addFilter('jsmin', (code) => {
     const minified = Terser.minify(code);
 
@@ -36,10 +33,10 @@ module.exports = (config) => {
   return {
     dir: {
       input: 'src/',
-      output: 'public',
+      output: 'public/',
       data: `_data/`,
     },
-    templateFormats: ['njk', 'pug', 'md', '11ty.js'],
+    templateFormats: ['njk', '11ty.js'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',
     passthroughFileCopy: true,
