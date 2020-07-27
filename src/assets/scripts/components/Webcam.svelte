@@ -40,12 +40,12 @@
 
   $: {
     const diff = currentTime - startTime;
-    const milliseconds = padNumber(parseInt((diff % 1000) / 100));
+    const milliseconds = parseInt((diff % 1000) / 100);
     const seconds = padNumber(Math.floor((diff / 1000) % 60));
     const minutes = padNumber(Math.floor((diff / (1000 * 60)) % 60));
     const hours = padNumber(Math.floor((diff / (1000 * 60 * 60)) % 24));
 
-    formattedTime = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+    formattedTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
 
   onMount(() => {
