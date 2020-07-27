@@ -11,25 +11,24 @@
   --font-size-primary: clamp(13px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
+  --layer-top: 6;
   --layer-me-hover: 5;
   --layer-content-hover: 4;
   --layer-content: 3;
   --layer-lines: 2;
   --layer-static: 1;
-  --scrollbar-width: 10px;
+  --scrollbar-width: .7rem;
 
   --glitchy-blue: rgba(2, 183, 182, 0.35);
   --glitchy-red: rgba(183, 2, 2, 0.35);
 }
 
 ::-webkit-scrollbar-track {
-  border: 1px solid black;
-  background-color: #000;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar {
   width: var(--scrollbar-width);
-  background-color: #000;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -90,17 +89,16 @@ body {
 }
 
 .page__scroll {
-  display: flex;
+  position: relative;
+  z-index: var(--layer-content);
   height: 100vh;
-  flex-direction: column;
-  align-items: center;
   overflow: hidden auto;
 }
 
 .page__container {
   position: relative;
-  z-index: var(--layer-content);
   max-width: 100%;
   width: 80%;
+  margin: 0 auto;
   text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
 }
