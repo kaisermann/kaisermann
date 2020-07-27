@@ -17,7 +17,7 @@
       })
       .catch(() => null);
 
-    if (stream == null) {
+    if (stream == null || video == null) {
       return;
     }
 
