@@ -96,14 +96,15 @@ body {
   text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
 }
 
-.page__scroll {
+.page__foreground {
   position: relative;
   z-index: var(--layer-content);
   height: 100vh;
   overflow: hidden auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-[animation='turn-on'] .page__scroll {
+[animation='turn-on'] .page__foreground {
   overflow: hidden;
 }
 
