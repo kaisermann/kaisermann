@@ -7,6 +7,12 @@
   animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 @keyframes vline {
   0% {
     transform: translateY(-100%);
@@ -18,33 +24,12 @@
   }
 }
 
-@keyframes flicker {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 0.9;
-  }
-  66% {
-    opacity: 0.94;
-  }
-}
-
 @keyframes turn-on-scale {
   0% {
     transform: scale(1, 0.6) translate3d(0, 0, 0);
-    filter: brightness(20) invert(1) saturate(2);
-    overflow: hidden;
-  }
-
-  2% {
-    filter: brightness(20) invert(0) saturate(2);
   }
 
   5% {
-    filter: brightness(20) invert(0) saturate(2);
-
     transform: scale(2) translate3d(0, 100%, 0);
   }
 
@@ -54,21 +39,14 @@
 
   20% {
     transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
-    filter: brightness(30) invert(0) saturate(2);
   }
 
   35% {
     transform: scale(1) translate3d(0, 0, 0);
-    filter: brightness(30) invert(0) saturate(2);
-  }
-
-  50% {
-    filter: brightness(30) invert(0) saturate(2);
   }
 
   100% {
     transform: scale(1) translate3d(0, 0, 0);
-    filter: contrast(1) brightness(1) invert(0) saturate(1);
   }
 }
 
@@ -107,31 +85,15 @@
 
 @keyframes switch-channel-filter {
   0% {
-    filter: brightness(10) invert(1) saturate(0);
+    filter: brightness(10) invert(1) saturate(0.4);
   }
 
   30%,
   50% {
-    filter: brightness(20) invert(0) saturate(0);
+    filter: brightness(20) invert(0) saturate(0.4);
   }
 
   70% {
-    filter: brightness(1) invert(0) saturate(0);
-  }
-}
-
-@keyframes webcam-hue-rotate {
-  from {
-    filter: contrast(1.4) blur(2px) saturate(0.7) hue-rotate(-30deg);
-  }
-
-  to {
-    filter: contrast(1.4) blur(2px) saturate(0.8) hue-rotate(30deg);
-  }
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
+    filter: brightness(1) invert(0) saturate(0.4);
   }
 }
