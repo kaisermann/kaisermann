@@ -19,10 +19,6 @@
       </div>
     </div>
 
-    {% if build.isProd %}
-      <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
-    {% endif %}
-
     <script>
       {% set dateJS %}
       document
@@ -38,5 +34,8 @@
         {{ dateJS | jsmin | safe  }}
     </script>
     <script async src="/assets/scripts/main.js" type="module"></script>
+    {% if build.isProd %}
+      <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
+    {% endif %}
   </body>
 </html>
