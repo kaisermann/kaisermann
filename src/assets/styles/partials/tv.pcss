@@ -1,7 +1,6 @@
 .tv-effect--colors,
 .tv-effect--static,
 .tv-effect--vignette {
-  content: '';
   position: absolute;
   z-index: var(--layer-tv-effects);
   top: 0;
@@ -29,7 +28,7 @@
   background: radial-gradient(circle, transparent 60%, black 100%), transparent;
 }
 
-[tv-animation='turn-on'] .tv::after {
+[tv-animation='turn-on'] .tv-effect--vignette {
   background: radial-gradient(circle, black 30%, transparent 90%), transparent;
 }
 
