@@ -20,7 +20,7 @@
 </script>
 
 {#if number != null}
-  <video bind:this={video} class="tv__video" channel={number} playsinline loop>
+  <video bind:this={video} class="tv-video" channel={number} playsinline loop>
     <source
       src="/assets/videos/channel-{paddedNumber}.webm"
       type="video/webm" />

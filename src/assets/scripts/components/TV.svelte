@@ -18,13 +18,13 @@
 
   function animateContainer(animation = null) {
     if (animation) {
-      animationContainer.setAttribute('animation', 'switch-channel');
+      animationContainer.setAttribute('tv-animation', 'switch-channel');
     }
 
     // remove the attribute after the animation ends
     animationContainer.addEventListener(
       'animationend',
-      (e) => animationContainer.removeAttribute('animation'),
+      (e) => animationContainer.removeAttribute('tv-animation'),
       { once: true },
     );
   }
@@ -50,7 +50,7 @@
     channelNumber.textContent = formattedChannel;
     window.requestAnimationFrame(noise);
 
-    const animation = animationContainer.getAttribute('animation');
+    const animation = animationContainer.getAttribute('tv-animation');
 
     if (!animation) {
       animateContainer('switch-channel');

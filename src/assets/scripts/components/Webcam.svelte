@@ -67,5 +67,5 @@
   });
 </script>
 
-<video bind:this={video} class="tv__video" channel="camera" autoplay />
-<div class="rec__counter">{formattedTime}</div>
+<video bind:this={video} class="tv-video" channel="camera" autoplay />
+<div class="rec--counter">{formattedTime}</div>
