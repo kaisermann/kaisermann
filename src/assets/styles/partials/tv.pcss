@@ -1,14 +1,3 @@
-.tv-videos {
-  pointer-events: none;
-  position: absolute;
-  z-index: var(--layer-channels);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
 .tv-effect--colors,
 .tv-effect--static,
 .tv-effect--vignette {
@@ -42,6 +31,12 @@
 
 [tv-animation='turn-on'] .tv::after {
   background: radial-gradient(circle, black 30%, transparent 90%), transparent;
+}
+
+.tv-videos {
+  pointer-events: none;
+  z-index: var(--layer-channels);
+  overflow: hidden;
 }
 
 .tv-video {
