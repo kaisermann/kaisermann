@@ -1,3 +1,4 @@
+.tv-effect--decontrast,
 .tv-effect--colors,
 .tv-effect--static,
 .tv-effect--vignette {
@@ -32,6 +33,15 @@
   background: radial-gradient(circle, black 30%, transparent 90%), transparent;
 }
 
+body[using-camera] .tv-effect--decontrast {
+  background-color: #fff;
+  opacity: 0.2;
+}
+
+body:not([using-camera]) .tv-effect--decontrast {
+  display: none;
+}
+
 .tv-videos {
   pointer-events: none;
   z-index: var(--layer-channels);
@@ -52,15 +62,32 @@
   }
 }
 
+.header-rec {
+  display: inline-flex;
+  align-items: center;
+
+  & span {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0.5rem;
+    background-color: #f00;
+    box-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+    animation: blink 1.4s step-end infinite;
+  }
+}
+
 .rec-counter {
   position: absolute;
+  z-index: calc(var(--layer-tv-effects) + 1);
   bottom: 2rem;
   right: 10%;
   text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
 }
 
 body:not([using-camera]) {
-  & .header__rec,
+  & .header-rec,
   & .rec-counter {
     display: none;
   }
