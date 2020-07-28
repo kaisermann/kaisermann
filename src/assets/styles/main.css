@@ -1,9 +1,9 @@
-@import './partials/reset.pcss';
-@import './partials/fonts.pcss';
-@import './partials/animations.pcss';
-@import './partials/page.pcss';
-@import './partials/content.pcss';
-@import './partials/tv.pcss';
+@import './partials/reset.css';
+@import './partials/fonts.css';
+@import './partials/animations.css';
+@import './partials/page.css';
+@import './partials/content.css';
+@import './partials/tv.css';
 
 :root {
   --text-primary: #a0a0a0;
@@ -114,9 +114,16 @@ body {
   overflow: hidden;
 }
 
+.page__content {
+  display: none;
+}
+
 .page__container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   position: relative;
   max-width: 100%;
+  min-height: 100vh;
   width: 80%;
   margin: 0 auto;
 }
