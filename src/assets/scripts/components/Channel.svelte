@@ -22,8 +22,8 @@
 
     if (number in timestamps) {
       const { duration, ts } = timestamps[number];
-      const now = Date.now();
-      let currentTime = now / 1000 - ts;
+      const now = Date.now() / 1000;
+      let currentTime = now - ts;
 
       if (currentTime < duration) {
         video.currentTime = currentTime;
