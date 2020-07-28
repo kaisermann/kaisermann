@@ -45,8 +45,11 @@
 
   $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
 
+  $: document.body.setAttribute('channel', `${currentChannel}`);
+
+  $: formattedChannel = currentChannel.toString().padStart(2, '0');
+
   $: {
-    const formattedChannel = currentChannel.toString().padStart(2, '0');
     channelNumber.textContent = formattedChannel;
     window.requestAnimationFrame(noise);
 

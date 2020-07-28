@@ -12,9 +12,7 @@
   $: {
     if (video && number != null) {
       video.load();
-      video.play().catch(() => {
-        /*irrelevant*/
-      });
+      video.play().catch(() => {});
     }
   }
 </script>
