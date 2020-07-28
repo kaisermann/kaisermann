@@ -1,23 +1,34 @@
 .tv {
   pointer-events: none;
   position: absolute;
-  z-index: var(--layer-static);
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   overflow: hidden;
 
+  &::before,
   &::after {
     content: '';
-    display: block;
     position: absolute;
-    background: radial-gradient(circle, transparent 60%, black 100%),
-      transparent;
+    z-index: var(--layer-tv-effects);
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  /* static/noise effect */
+  &::before {
+    background-image: url(/assets/images/glitch.gif);
+    background-size: cover;
+    opacity: 0.4;
+  }
+
+  /* vignette */
+  &::after {
+    background: radial-gradient(circle, transparent 60%, black 100%),
+      transparent;
   }
 }
 
@@ -27,6 +38,7 @@
 
 .tv__video {
   position: absolute;
+  z-index: var(--layer-channels);
   top: 0;
   left: 0;
   width: 100%;
