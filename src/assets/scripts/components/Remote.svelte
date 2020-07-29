@@ -1,24 +1,21 @@
 <script>
-  import { volume } from '../tv';
-
-  function changeVol(n) {
-    const newVol = $volume + n / 10;
-
-    if (newVol > 1 || newVol < 0) return;
-
-    $volume = newVol;
-  }
+  import {
+    volume,
+    decreaseVolume,
+    increaseVolume,
+    increaseChannel,
+    decreaseChannel,
+    toggleMute,
+    gotoChannel,
+    toggleOnOff,
+  } from '../tv';
 </script>
 
-<style>
-
-</style>
-
 <div class="remote" js-remote>
-  <button>ON/OFF</button>
-  <button on:click={() => changeVol(+0.5)}>VOL+</button>
-  <button on:click={() => changeVol(-0.5)}>VOL-</button>
-  <button>MUTE-</button>
-  <button>CH +</button>
-  <button>CH -</button>
+  <button on:click={() => toggleOnOff()}>ON/OFF</button>
+  <button on:click={() => increaseVolume(0.5)}>VOL+</button>
+  <button on:click={() => decreaseVolume(0.5)}>VOL-</button>
+  <button on:click={toggleMute}>MUTE-</button>
+  <button on:click={increaseChannel}>CH +</button>
+  <button on:click={decreaseChannel}>CH -</button>
 </div>
