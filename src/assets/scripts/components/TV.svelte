@@ -17,7 +17,7 @@
   const channelBtn = animationContainer.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
-  let isContentInvisible = false;
+  let isContentInvisible = true;
 
   function animateContainer(animation = null) {
     if (animation) {
@@ -40,6 +40,7 @@
   });
 
   $: document.body.setAttribute('channel', `${$currentChannel}`);
+
   $: isContentInvisible
     ? document.body.setAttribute('content-invisible', '')
     : document.body.removeAttribute('content-invisible');

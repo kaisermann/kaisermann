@@ -25,7 +25,7 @@
 
   --container-width: 80%;
   --gui-side: calc((100% - var(--container-width)) / 2);
-  --gui-bottom: 100px;
+  --gui-bottom: 2.94117647059rem;
 }
 
 ::-webkit-scrollbar-track {

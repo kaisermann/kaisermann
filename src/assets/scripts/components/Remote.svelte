@@ -13,7 +13,9 @@
 
 <style>
   .remote {
-    /* display: none; */
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(3, 1fr);
+    gap: .25rem;
   }
 </style>
 
