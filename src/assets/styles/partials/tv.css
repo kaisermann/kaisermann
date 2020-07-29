@@ -92,13 +92,3 @@ body:not([using-camera]) {
     display: none;
   }
 }
-
-.remote {
-  position: absolute;
-  bottom: 0;
-  right: var(--gui-side);
-  width: 300px;
-  height: 506px;
-  background: #000;
-  border: 6px solid #fff;
-}

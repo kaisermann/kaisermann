@@ -5,5 +5,6 @@ module.exports = {
     defaults: {
       css: 'postcss',
     },
+    postcss: true,
   }),
 };
