@@ -3,8 +3,6 @@
 
   let video;
 
-  $: video && (video.volume = $volume);
-
   $: changeChannel($currentChannelInfo, video);
 
   async function changeChannel() {
@@ -46,6 +44,7 @@
 
 <video
   bind:this={video}
+  bind:volume={$volume}
   class="tv-video"
   channel={$currentChannelInfo.number}
   playsinline
