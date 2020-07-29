@@ -5,13 +5,14 @@
 </script>
 
 <script>
+  import { volume } from '../tv';
   export let number = undefined;
 
   let video;
 
   $: paddedNumber = number != null && number.toString().padStart(2, '0');
 
-  $: video && (video.volume = 0.25);
+  $: video && (video.volume = $volume);
 
   $: changeChannel(number, video);
 
