@@ -23,11 +23,14 @@
     if (number in timestamps) {
       const { duration, ts } = timestamps[number];
       const now = Date.now() / 1000;
-      const currentTime = now - ts;
-      const mod = currentTime % duration;
+      let currentTime = now - ts;
 
-      video.currentTime = mod;
-      timestamps[number].ts = now;
+      if (currentTime < duration) {
+        video.currentTime = currentTime;
+      } else {
+        video.currentTime = 0;
+        timestamps[number].ts = now;
+      }
     }
 
     const playPromise = video.play().catch(() => {});
