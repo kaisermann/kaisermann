@@ -26,6 +26,7 @@
     left: var(--gui-side);
     bottom: var(--gui-bottom);
     font-size: var(--font-size-secondary);
+    filter: blur(1px)
   }
 
   .hidden {
