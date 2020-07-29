@@ -81,8 +81,8 @@ body:not([using-camera]) .tv-effect--decontrast {
 .rec-counter {
   position: absolute;
   z-index: calc(var(--layer-tv-effects) + 1);
-  bottom: 2rem;
-  right: 10%;
+  bottom: var(--gui-bottom);
+  right: var(--gui-side);
   text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
 }
 
@@ -96,7 +96,7 @@ body:not([using-camera]) {
 .remote {
   position: absolute;
   bottom: 0;
-  right: 10%;
+  right: var(--gui-side);
   width: 300px;
   height: 506px;
   background: #000;

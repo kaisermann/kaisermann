@@ -22,8 +22,9 @@ const plugins = [
       defaults: {
         css: 'postcss',
       },
+      postcss: true,
     }),
-    emitCss: true,
+    emitCss: false,
     // See note below
     css(css) {
       css.write('public/assets/styles/extra.css', false);

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
 
+  import Volume from './Volume.svelte';
   import Webcam from './Webcam.svelte';
   import Video from './Video.svelte';
   import { noise } from '../modules/noise.js';
@@ -15,6 +16,8 @@
   const animationContainer = document.querySelector('.js-tv-animation');
   const channelBtn = animationContainer.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
+
+  let isContentInvisible = false;
 
   function animateContainer(animation = null) {
     if (animation) {
@@ -37,6 +40,9 @@
   });
 
   $: document.body.setAttribute('channel', `${$currentChannel}`);
+  $: isContentInvisible
+    ? document.body.setAttribute('content-invisible', '')
+    : document.body.removeAttribute('content-invisible');
 
   $: {
     channelNumber.textContent = $currentChannelInfo.displayName;
@@ -66,6 +72,10 @@
       return decreaseChannel();
     }
 
+    if (e.key === 'h') {
+      return (isContentInvisible = !isContentInvisible);
+    }
+
     let channelNumber = parseInt(e.key, 10);
 
     // ignore non-number keys
@@ -81,6 +91,8 @@
     }
   }
 </script>
+
+<Volume />
 
 {#if $currentChannelInfo.type === 'webcam'}
   <Webcam />

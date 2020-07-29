@@ -8,9 +8,11 @@
 :root {
   --text-primary: #a0a0a0;
   --text-secondary: #fff;
+
   --font-size-primary: clamp(13px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
+
   --layer-top: 13;
   --layer-me-hover: 8;
   --layer-content-hover: 5;
@@ -20,6 +22,10 @@
 
   --glitchy-blue: rgba(2, 183, 182, 0.4);
   --glitchy-red: rgba(183, 2, 2, 0.4);
+
+  --container-width: 80%;
+  --gui-side: calc((100% - var(--container-width)) / 2);
+  --gui-bottom: 100px;
 }
 
 ::-webkit-scrollbar-track {
@@ -114,7 +120,7 @@ body {
   overflow: hidden;
 }
 
-.page__content {
+body[content-invisible] .page__content {
   display: none;
 }
 
@@ -124,6 +130,6 @@ body {
   position: relative;
   max-width: 100%;
   min-height: 100vh;
-  width: 80%;
+  width: var(--container-width);
   margin: 0 auto;
 }

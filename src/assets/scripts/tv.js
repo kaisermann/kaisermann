@@ -11,7 +11,7 @@ export const volume = writable(0.25);
 export const currentChannel = writable(0);
 
 export const channelMap = {
-  0: { type: 'static', duration: null, watchTimestamp: null },
+  0: { type: 'static' },
   1: { type: 'video', duration: null, watchTimestamp: null },
   2: { type: 'video', duration: null, watchTimestamp: null },
   3: { type: 'video', duration: null, watchTimestamp: null },
@@ -20,7 +20,7 @@ export const channelMap = {
   6: { type: 'video', duration: null, watchTimestamp: null },
   7: { type: 'video', duration: null, watchTimestamp: null },
   8: { type: 'video', duration: null, watchTimestamp: null },
-  9: { type: 'webcam', duration: null, watchTimestamp: null },
+  9: { type: 'webcam' },
 };
 
 export const currentChannelInfo = derived(
@@ -70,16 +70,19 @@ export const decreaseChannel = () => {
   });
 };
 
-export function decreaseVolume(n) {
-  const newVol = get(volume) - n / 10;
+const MAX_VOLUME = 15;
+const VOLUME_STEP = 1 / MAX_VOLUME;
+
+export function decreaseVolume() {
+  const newVol = get(volume) - VOLUME_STEP;
 
   if (newVol < 0) return;
 
   volume.set(newVol);
 }
 
-export function increaseVolume(n) {
-  const newVol = get(volume) + n / 10;
+export function increaseVolume() {
+  const newVol = get(volume) + VOLUME_STEP;
 
   if (newVol > 1) return;
 
