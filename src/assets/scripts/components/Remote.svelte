@@ -21,6 +21,12 @@
     right: var(--gui-side);
   }
 
+  @media (max-width: 940px) {
+    .perspective {
+      display: none;
+    }
+  }
+
   :global([tv-animation='turn-on']) .wrapper {
     display: none;
   }
@@ -149,7 +155,14 @@
     font-weight: bold;
     grid-area: 6/2/6 / span 2;
     text-align: center;
-    font-size: 1.2em;
+  }
+
+  img {
+    display: inline-block;
+  }
+
+  .logo-text {
+    margin-top: 8px;
   }
 </style>
 
@@ -190,7 +203,19 @@
         <span>CH -</span>
       </div>
 
-      <div class="brand">T V</div>
+      <div class="brand">
+        <img
+          src="/assets/images/kiwi.svg"
+          alt="kiwi bird"
+          width="30"
+          height="30" />
+        <br />
+        <img
+          src="/assets/images/kiwivision.svg"
+          alt="kiwivision"
+          width="103"
+          height="10" />
+      </div>
     </div>
   </div>
 </div>
