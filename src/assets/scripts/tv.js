@@ -6,8 +6,8 @@ export const MAX_CHANNEL = 9;
 let prevVolume = null;
 let prevChannel = null;
 
+export const contentVisible = writable(true);
 export const volume = writable(0.25);
-
 export const currentChannel = writable(0);
 
 export const channelMap = {
@@ -109,4 +109,8 @@ export const toggleOnOff = () => {
     prevChannel = $currentChannel;
     gotoChannel(0);
   }
+};
+
+export const toggleContent = () => {
+  contentVisible.update((v) => !v);
 };

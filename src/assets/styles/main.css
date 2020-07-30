@@ -9,16 +9,17 @@
   --text-primary: #a0a0a0;
   --text-secondary: #fff;
 
+  --font-primary: 'VCR OSD Mono', monospace;
   --font-size-primary: clamp(13px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
 
-  --layer-top: 13;
-  --layer-me-hover: 8;
-  --layer-content-hover: 5;
-  --layer-content: 3;
-  --layer-tv-effects: 2;
-  --layer-channels: 1;
+  --layer-top: 55;
+  --layer-me-hover: 34;
+  --layer-content-hover: 21;
+  --layer-content: 13;
+  --layer-tv-effects: 8;
+  --layer-channels: 5;
 
   --glitchy-blue: rgba(2, 183, 182, 0.4);
   --glitchy-red: rgba(183, 2, 2, 0.4);
@@ -46,7 +47,7 @@
 }
 
 html {
-  font-family: 'VCR OSD Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: normal;
   font-style: normal;
   color: var(--text-primary);

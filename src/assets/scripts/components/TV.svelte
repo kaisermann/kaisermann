@@ -11,13 +11,13 @@
     decreaseChannel,
     increaseChannel,
     gotoChannel,
+    contentVisible,
+    toggleContent,
   } from '../tv';
 
   const animationContainer = document.querySelector('.js-tv-animation');
   const channelBtn = animationContainer.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
-
-  let isContentInvisible = true;
 
   function animateContainer(animation = null) {
     if (animation) {
@@ -41,9 +41,9 @@
 
   $: document.body.setAttribute('channel', `${$currentChannel}`);
 
-  $: isContentInvisible
-    ? document.body.setAttribute('content-invisible', '')
-    : document.body.removeAttribute('content-invisible');
+  $: $contentVisible
+    ? document.body.removeAttribute('content-invisible')
+    : document.body.setAttribute('content-invisible', '');
 
   $: {
     channelNumber.textContent = $currentChannelInfo.displayName;
@@ -74,7 +74,7 @@
     }
 
     if (e.key === 'h') {
-      return (isContentInvisible = !isContentInvisible);
+      return toggleContent();
     }
 
     let channelNumber = parseInt(e.key, 10);
