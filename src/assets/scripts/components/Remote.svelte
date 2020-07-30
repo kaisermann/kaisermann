@@ -49,7 +49,7 @@
     display: grid;
     grid-template: repeat(6, 1fr) / repeat(4, 1fr);
     gap: 45px 16px;
-    padding: 54px 34px;
+    padding: 84px 34px 54px;
     background-color: #000000;
     background-image: linear-gradient(0deg, #000000 0%, #141313 74%);
     font-family: Arial, sans-serif;
@@ -86,7 +86,7 @@
 
   button {
     width: 50px;
-    height: 30px;
+    height: 50px;
     border-radius: 5px;
     color: transparent;
     border: none;
@@ -97,23 +97,26 @@
     color: transparent;
     user-select: none;
     overflow: hidden;
+    /* transform-origin: center bottom; */
+    box-shadow: -3px 3px #000, 3px 3px #000;
 
     &:focus {
       outline: none;
     }
 
     &:active {
+      /* transform: rotateX(25deg); */
       border-width: 3px;
     }
   }
 
   span {
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
-    padding-top: 1em;
+    padding-bottom: 1em;
   }
 
   .onoff {
@@ -121,7 +124,7 @@
 
     & button {
       background-color: #a90000;
-      background-image: linear-gradient(315deg, #190303 0%, #a90000 90%);
+      background-image: linear-gradient(315deg, #190303 0%, #842c2c 90%);
     }
   }
 
@@ -130,36 +133,48 @@
 
     & button {
       background-color: #068a89;
-      background-image: linear-gradient(315deg, #011010 0%, #068a89 90%);
+      background-image: linear-gradient(315deg, #001919 0%, #288282 90%);
     }
   }
 
   :matches(.onoff, .showhide) button {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-
-    &:active {
-      transform: scale(1);
-    }
   }
 
-  .volup {
+  .vol.up {
     grid-area: 3/1;
   }
-  .voldown {
+  .vol.down {
     grid-area: 4/1;
   }
 
   .mute {
     grid-area: 4/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & button {
+      width: 30px;
+      height: 30px;
+    }
   }
 
-  .chup {
+  .ch.up {
     grid-area: 3/4;
   }
-  .chdown {
+
+  .ch.down {
     grid-area: 4/4;
+  }
+
+  :matches(.vol.up, .ch.up) button {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+  :matches(.vol.down, .ch.down) button {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
 
   .brand {
@@ -185,14 +200,13 @@
         <span>SHOW / HIDE</span>
       </div>
 
-      <div class="control volup">
+      <div class="control vol up">
         <button on:click={increaseVolume}>VOL+</button>
-        <span>VOL+</span>
       </div>
 
-      <div class="control voldown">
+      <div class="control vol down">
         <button on:click={decreaseVolume}>VOL-</button>
-        <span>VOL-</span>
+        <span>VOL</span>
       </div>
 
       <div class="control mute">
@@ -200,14 +214,13 @@
         <span>MUTE</span>
       </div>
 
-      <div class="control chup">
+      <div class="control ch up">
         <button on:click={increaseChannel}>CH +</button>
-        <span>CH +</span>
       </div>
 
-      <div class="control chdown">
+      <div class="control ch down">
         <button on:click={decreaseChannel}>CH -</button>
-        <span>CH -</span>
+        <span>CH</span>
       </div>
 
       <div class="brand">
