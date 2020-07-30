@@ -22,11 +22,11 @@
     user-select: none;
   }
 
-  /* @media (max-width: 940px) {
+  @media (max-width: 940px) {
     .perspective {
       display: none;
     }
-  } */
+  }
 
   :global([tv-animation='turn-on']) .wrapper {
     display: none;
