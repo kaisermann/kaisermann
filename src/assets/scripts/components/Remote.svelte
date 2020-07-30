@@ -28,12 +28,8 @@
     }
   }
 
-  :global([tv-animation='turn-on']) .wrapper {
-    display: none;
-  }
-
   .wrapper {
-    transform: rotateX(0) translateY(-10px);
+    transform: rotateX(0) translateY(-8px);
     padding: 50px 0 100px;
     transition: 0.25s 0.3s ease-out;
 
@@ -42,6 +38,10 @@
       transform-origin: 50% bottom;
       transition: 0.25s ease-out;
     }
+  }
+  :global([tv-animation='turn-on']) .wrapper,
+  :global([tv-animation='switch-channel']) .wrapper:not(:hover) {
+    display: none;
   }
 
   .remote {
