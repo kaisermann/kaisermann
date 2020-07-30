@@ -60,5 +60,5 @@
 }
 
 body[content-invisible] .footer {
-  display: none;
+  visibility: hidden;
 }

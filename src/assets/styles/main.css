@@ -122,7 +122,7 @@ body {
 }
 
 body[content-invisible] .page__content {
-  display: none;
+  visibility: hidden;
 }
 
 .page__container {
