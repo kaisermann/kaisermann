@@ -22,7 +22,7 @@
     user-select: none;
   }
 
-  @media (max-width: 940px) {
+  @media (hover: none) {
     .perspective {
       display: none;
     }
