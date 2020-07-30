@@ -17,7 +17,7 @@ const postcssEngine = postcss(
 
 module.exports = class {
   async data() {
-    const rawFilepath = path.join(__dirname, 'styles', 'main.pcss');
+    const rawFilepath = path.join(__dirname, 'styles', 'main.css');
 
     return {
       rawFilepath,

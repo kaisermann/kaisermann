@@ -1,25 +1,32 @@
-@import './partials/reset.pcss';
-@import './partials/fonts.pcss';
-@import './partials/animations.pcss';
-@import './partials/page.pcss';
-@import './partials/content.pcss';
-@import './partials/tv.pcss';
+@import './partials/reset.css';
+@import './partials/fonts.css';
+@import './partials/animations.css';
+@import './partials/page.css';
+@import './partials/content.css';
+@import './partials/tv.css';
 
 :root {
   --text-primary: #a0a0a0;
   --text-secondary: #fff;
+
+  --font-primary: 'VCR OSD Mono', monospace;
   --font-size-primary: clamp(13px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
-  --layer-top: 13;
-  --layer-me-hover: 8;
-  --layer-content-hover: 5;
-  --layer-content: 3;
-  --layer-tv-effects: 2;
-  --layer-channels: 1;
+
+  --layer-top: 55;
+  --layer-me-hover: 34;
+  --layer-content-hover: 21;
+  --layer-content: 13;
+  --layer-tv-effects: 8;
+  --layer-channels: 5;
 
   --glitchy-blue: rgba(2, 183, 182, 0.4);
   --glitchy-red: rgba(183, 2, 2, 0.4);
+
+  --container-width: 80%;
+  --gui-side: calc((100% - var(--container-width)) / 2);
+  --gui-bottom: 2.94117647059rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -40,7 +47,7 @@
 }
 
 html {
-  font-family: 'VCR OSD Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: normal;
   font-style: normal;
   color: var(--text-primary);
@@ -114,9 +121,16 @@ body {
   overflow: hidden;
 }
 
+body[content-invisible] .page__content {
+  display: none;
+}
+
 .page__container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   position: relative;
   max-width: 100%;
-  width: 80%;
+  min-height: 100vh;
+  width: var(--container-width);
   margin: 0 auto;
 }

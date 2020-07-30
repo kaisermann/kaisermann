@@ -78,17 +78,8 @@ body:not([using-camera]) .tv-effect--decontrast {
   }
 }
 
-.rec-counter {
-  position: absolute;
-  z-index: calc(var(--layer-tv-effects) + 1);
-  bottom: 2rem;
-  right: 10%;
-  text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
-}
-
 body:not([using-camera]) {
-  & .header-rec,
-  & .rec-counter {
+  & .header-rec {
     display: none;
   }
 }

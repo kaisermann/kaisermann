@@ -1,16 +1,19 @@
-<script context="module">
-  const AVAILABLE_CHANNELS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-  const N_CHANNELS = 10;
-</script>
-
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
 
+  import Volume from './Volume.svelte';
   import Webcam from './Webcam.svelte';
-  import Channel from './Channel.svelte';
+  import Video from './Video.svelte';
   import { noise } from '../modules/noise.js';
-
-  let currentChannel = 0;
+  import {
+    currentChannel,
+    currentChannelInfo,
+    decreaseChannel,
+    increaseChannel,
+    gotoChannel,
+    contentVisible,
+    toggleContent,
+  } from '../tv';
 
   const animationContainer = document.querySelector('.js-tv-animation');
   const channelBtn = animationContainer.querySelector('.js-channel-btn');
@@ -33,24 +36,17 @@
     // removes the initial animation attribute once it's done
     animateContainer();
 
-    channelBtn.addEventListener('click', () => {
-      // only few channels when changing via click
-      if (currentChannel + 1 > 9) {
-        currentChannel = 0;
-      } else {
-        currentChannel++;
-      }
-    });
+    channelBtn.addEventListener('click', increaseChannel);
   });
 
-  $: doesChannelExist = AVAILABLE_CHANNELS.has(currentChannel);
+  $: document.body.setAttribute('channel', `${$currentChannel}`);
 
-  $: document.body.setAttribute('channel', `${currentChannel}`);
-
-  $: formattedChannel = currentChannel.toString().padStart(2, '0');
+  $: $contentVisible
+    ? document.body.removeAttribute('content-invisible')
+    : document.body.setAttribute('content-invisible', '');
 
   $: {
-    channelNumber.textContent = formattedChannel;
+    channelNumber.textContent = $currentChannelInfo.displayName;
     window.requestAnimationFrame(noise);
 
     const animation = animationContainer.getAttribute('tv-animation');
@@ -62,7 +58,7 @@
     // todo: test this
     if (window.gtag) {
       window.gtag('event', 'channel_switch', {
-        event_label: `Switched to channel ${formattedChannel}`,
+        event_label: `Switched to channel ${$currentChannelInfo.displayName}`,
         event_category: 'easter_egg',
       });
     }
@@ -70,43 +66,39 @@
 
   function handleKeyup(e) {
     if (e.key === '=') {
-      if (currentChannel + 1 <= N_CHANNELS) {
-        currentChannel++;
-      } else {
-        currentChannel = 0;
-      }
-      return;
+      return increaseChannel();
     }
 
     if (e.key === '-') {
-      if (currentChannel - 1 >= 0) {
-        currentChannel--;
-      } else {
-        currentChannel = N_CHANNELS;
-      }
-      return;
+      return decreaseChannel();
     }
 
-    let channel = parseInt(e.key, 10);
+    if (e.key === 'h') {
+      return toggleContent();
+    }
+
+    let channelNumber = parseInt(e.key, 10);
 
     // ignore non-number keys
-    if (Number.isNaN(channel)) {
+    if (Number.isNaN(channelNumber)) {
       return;
     }
 
     // toggle between a X channel and channel 0
-    if (channel === currentChannel) {
-      currentChannel = 0;
+    if (channelNumber === $currentChannel) {
+      gotoChannel(0);
     } else {
-      currentChannel = channel;
+      gotoChannel(channelNumber);
     }
   }
 </script>
 
-{#if currentChannel === 9}
+<Volume />
+
+{#if $currentChannelInfo.type === 'webcam'}
   <Webcam />
-{:else}
-  <Channel number={doesChannelExist ? currentChannel : undefined} />
+{:else if $currentChannelInfo.type === 'video'}
+  <Video />
 {/if}
 
 <svelte:window on:keyup={handleKeyup} />

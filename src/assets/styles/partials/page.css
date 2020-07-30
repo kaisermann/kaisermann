@@ -54,5 +54,11 @@
 }
 
 .footer {
-  margin: 160px 0 180px;
+  align-self: flex-end;
+  margin-top: 160px;
+  padding-bottom: var(--gui-bottom);
+}
+
+body[content-invisible] .footer {
+  display: none;
 }

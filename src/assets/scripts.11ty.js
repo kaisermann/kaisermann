@@ -18,7 +18,17 @@ const plugins = [
   nodeResolve(),
   commonjs(),
   svelte({
-    preprocess: preprocess(),
+    preprocess: preprocess({
+      defaults: {
+        css: 'postcss',
+      },
+      postcss: true,
+    }),
+    emitCss: false,
+    // See note below
+    css(css) {
+      css.write('public/assets/styles/extra.css', false);
+    },
   }),
   PROD && terser(),
 ];
