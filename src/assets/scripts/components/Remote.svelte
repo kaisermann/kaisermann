@@ -19,6 +19,7 @@
     z-index: var(--layer-top);
     top: calc(100% - 50px);
     right: var(--gui-side);
+    user-select: none;
   }
 
   @media (max-width: 940px) {
