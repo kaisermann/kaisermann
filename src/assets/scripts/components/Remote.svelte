@@ -33,6 +33,7 @@
     padding: 50px 0 100px;
     transition: 0.25s 0.3s ease-out;
 
+    &,
     &:hover {
       transform: rotateX(20deg) translateY(-100%);
       transform-origin: 50% bottom;
@@ -46,22 +47,18 @@
 
   .remote {
     position: relative;
-    display: grid;
-    grid-template: repeat(6, 1fr) / repeat(4, 1fr);
-    gap: 45px 16px;
-    padding: 84px 34px 54px;
-    background-color: #000000;
-    background-image: linear-gradient(0deg, #000000 0%, #141313 74%);
     font-family: Arial, sans-serif;
     font-size: 13px;
     text-shadow: none;
-    border: 1px solid #212121;
+    padding: 50px 8px 80px;
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #d3d3d3 70%);
 
     &,
     &::before {
       width: 320px;
-      height: 600px;
-      border-radius: 238px 238px 98px 98px / 58px 58px 188px 188px;
+      height: 800px;
+      /* border-radius: 238px 238px 98px 98px / 58px 58px 188px 188px; */
     }
 
     &::before {
@@ -75,112 +72,69 @@
     }
   }
 
+  .inner {
+    margin: 30px 8px 50px;
+    background-color: #ddd;
+    border-radius: 10px;
+    border: 20px solid #000;
+    padding: 2.5em 15px 1em;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px 16px;
+  }
+
   .control {
     position: relative;
-  }
+    text-align: center;
 
-  .control,
-  button {
-    cursor: url(../images/cursor-pointer.png) 0 0, auto;
-  }
-
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    color: transparent;
-    border: none;
-    background-color: #2d3436;
-    background-image: linear-gradient(315deg, #2b2a29 0%, #1c1e1f 74%);
-    border: 1px solid #000;
-    text-indenxt: -9999px;
-    color: transparent;
-    user-select: none;
-    overflow: hidden;
-    /* transform-origin: center bottom; */
-    box-shadow: -3px 3px #000, 3px 3px #000;
-
-    &:focus {
-      outline: none;
+    & span {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      width: max-content;
+      transform: translateX(-50%);
+      color: #000;
     }
-
-    &:active {
-      /* transform: rotateX(25deg); */
-      border-width: 3px;
-    }
-  }
-
-  span {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    padding-bottom: 1em;
-  }
-
-  .onoff {
-    grid-area: 1/1;
 
     & button {
-      background-color: #a90000;
-      background-image: linear-gradient(315deg, #190303 0%, #842c2c 90%);
+      cursor: url(../images/cursor-pointer.png) 0 0, auto;
+      width: 35px;
+      height: 25px;
+      background-color: #807a72;
+      border: none;
+    }
+
+    &:not(.number) button {
+      font-size: 0;
+      text-indent: -999px;
+      color: transparent;
     }
   }
 
-  .showhide {
-    grid-area: 1/-2;
-
-    & button {
-      background-color: #068a89;
-      background-image: linear-gradient(315deg, #001919 0%, #288282 90%);
-    }
+  .numbers {
+    margin: -23px 0 23px;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template: inherit;
+    gap: inherit;
+    border: 3px solid #000;
+    border-radius: 10px;
+    padding: 22px 0;
   }
 
-  :matches(.onoff, .showhide) button {
-    border-radius: 50%;
-  }
-
-  .vol.up {
-    grid-area: 3/1;
-  }
-  .vol.down {
-    grid-area: 4/1;
-  }
-
-  .mute {
-    grid-area: 4/2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    & button {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  .ch.up {
-    grid-area: 3/4;
-  }
-
-  .ch.down {
-    grid-area: 4/4;
-  }
-
-  :matches(.vol.up, .ch.up) button {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-  }
-  :matches(.vol.down, .ch.down) button {
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+  .number button {
+    background-color: #000;
+    color: #fff;
   }
 
   .brand {
     font-weight: bold;
-    grid-area: 6/2/6 / span 2;
+    grid-area: -1/1/-1 / -1;
     text-align: center;
+    color: #000;
   }
 
   img {
@@ -191,50 +145,70 @@
 <div class="perspective">
   <div class="wrapper">
     <div class="remote">
-      <div class="control onoff">
-        <button on:click={toggleOnOff}>ON / OFF</button>
-        <span>ON / OFF</span>
-      </div>
-      <div class="control showhide">
-        <button class="showhide" on:click={toggleContent}>SHOW / HIDE</button>
-        <span>SHOW / HIDE</span>
-      </div>
+      <div class="inner">
+        <div class="buttons">
+          <div class="control onoff">
+            <button on:click={toggleOnOff}>ON / OFF</button>
+            <span>ON / OFF</span>
+          </div>
+          <div class="control showhide">
+            <button class="showhide" on:click={toggleContent}>
+              SHOW / HIDE
+            </button>
+            <span>SHOW / HIDE</span>
+          </div>
 
-      <div class="control vol up">
-        <button on:click={increaseVolume}>VOL+</button>
-      </div>
+          <div class="control vol up">
+            <button on:click={increaseVolume}>VOL+</button>
+            <span>VOL+</span>
+          </div>
 
-      <div class="control vol down">
-        <button on:click={decreaseVolume}>VOL-</button>
-        <span>VOL</span>
-      </div>
+          <div class="control vol down">
+            <button on:click={decreaseVolume}>VOL-</button>
+            <span>VOL</span>
+          </div>
 
-      <div class="control mute">
-        <button on:click={toggleMute}>MUTE</button>
-        <span>MUTE</span>
-      </div>
+          <div class="control mute">
+            <button on:click={toggleMute}>MUTE</button>
+            <span>MUTE</span>
+          </div>
 
-      <div class="control ch up">
-        <button on:click={increaseChannel}>CH +</button>
-      </div>
+          <div class="control ch up">
+            <button on:click={increaseChannel}>CH +</button>
+            <span>CH-</span>
+          </div>
 
-      <div class="control ch down">
-        <button on:click={decreaseChannel}>CH -</button>
-        <span>CH</span>
-      </div>
+          <div class="control ch down">
+            <button on:click={decreaseChannel}>CH -</button>
+            <span>CH</span>
+          </div>
 
-      <div class="brand">
-        <img
-          src="/assets/images/kiwi.svg"
-          alt="kiwi bird"
-          width="30"
-          height="30" />
-        <br />
-        <img
-          src="/assets/images/kiwivision.svg"
-          alt="kiwivision"
-          width="103"
-          height="10" />
+          <div class="numbers">
+            {#each { length: 9 } as _, i}
+              <div class="control number">
+                <button on:click={decreaseChannel}>{i + 1}</button>
+              </div>
+            {/each}
+            <div class="control number">
+              <button on:click={decreaseChannel}>0</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="brand">
+          <img
+            src="/assets/images/kiwi.svg"
+            alt="kiwi bird"
+            width="30"
+            height="30" />
+          <img
+            src="/assets/images/kiwivision.svg"
+            alt="kiwivision"
+            width="103"
+            height="10" />
+          <br />
+          <span>COMPUTER SPACE COMMANDER</span>
+        </div>
       </div>
     </div>
   </div>
