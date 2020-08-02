@@ -38,7 +38,7 @@ a {
   }
 
   &:hover {
-    cursor: url(../images/cursor-pointer.png) 0 0, auto;
+    cursor: url(../images/cursor-pointer.png) 14 8, auto;
     background-size: 100% 100%;
 
     &::after {

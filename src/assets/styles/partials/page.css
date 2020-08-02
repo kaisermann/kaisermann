@@ -24,7 +24,7 @@
 }
 
 .header__channel {
-  cursor: url(../images/cursor-pointer.png) 0 0, auto;
+  cursor: url(../images/cursor-pointer.png) 14 8, auto;
 }
 
 @media (min-width: 481px) {
