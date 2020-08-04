@@ -22,12 +22,6 @@
     user-select: none;
   }
 
-  @media (hover: none) {
-    .perspective {
-      display: none;
-    }
-  }
-
   .wrapper {
     transform: rotateX(0) translateY(-8px);
     padding: 50px 0 100px;
@@ -46,22 +40,20 @@
   }
 
   .remote {
+    --remote-font: Andale Mono, Trebuchet MS, sans-serif;
     position: relative;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    text-shadow: none;
-    padding: 60px 8px 110px;
+    width: 310px;
+    height: 760px;
+    padding: 80px 12px 110px;
+    border-radius: 16px 16px 12px 12px / 8px 8px 24px 24px;
+    background-color: #f1f2f6;
+    background-image: url(../images/plastic-texture-noise.png),
+      linear-gradient(to bottom, #d8d8d8 0%, #a5a5a5 74%);
     box-shadow: inset 0 14px 6px 0px #e0e0e0, inset 0 8px 10px 0px #252424,
       inset 0px -11px 10px 0px #444;
-    background-color: #f1f2f6;
-    background: linear-gradient(to bottom right, #d8d2c9 0%, #d0cdc5 74%);
-
-    & {
-      width: 320px;
-      height: 760px;
-      border-radius: 8px;
-      border-radius: 8px 8px 12px 12px / 8px 8px 24px 24px;
-    }
+    font-family: var(--remote-font);
+    font-size: 13px;
+    text-shadow: none;
   }
 
   .inner {
@@ -104,16 +96,16 @@
 
   .buttons {
     display: grid;
-    grid-template-columns: repeat(3, 35px);
+    grid-template-columns: repeat(3, 32px);
     justify-content: space-around;
     row-gap: 36px;
   }
 
   .numbers {
-    margin: -23px -25px 23px;
+    margin: -23px -25px 16px;
     padding: 22px;
-    grid-column: 1 / -1;
     display: grid;
+    grid-column: 1 / -1;
     grid-template: inherit;
     gap: inherit;
     justify-content: space-between;
@@ -146,20 +138,23 @@
     cursor: url(../images/cursor-pointer.png) 14 8, auto;
     width: 100%;
     height: 25px;
-    border: 0px solid #333;
+    border: 0px solid #222;
     border-radius: 3px;
     box-shadow: 1px 3px 0 0 #222, -1px 3px 0 0 #222;
     font-size: 1.4em;
+    font-family: var(--remote-font);
     color: #fff;
     background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    background-image: url(../images/plastic-texture-noise.png),
+      linear-gradient(315deg, #000000 0%, #414141 74%);
+    background-size: contain, auto;
 
     &:focus {
       outline: none;
     }
 
     &:active {
-      border-width: 2px;
+      border-width: 1px;
       transform: translateY(2px);
       box-shadow: 1px 1px 0 0 #222, -1px 1px 0 0 #222;
     }
@@ -169,7 +164,8 @@
     grid-area: 1/2;
 
     & button {
-      background-image: linear-gradient(315deg, #631111 0%, #dc2525 74%);
+      background-image: url(../images/plastic-texture-noise.png),
+        linear-gradient(315deg, #631111 0%, #dc2525 74%);
     }
   }
 
@@ -195,7 +191,8 @@
       font-size: 1em;
       font-weight: bold;
       width: 100%;
-      background-image: linear-gradient(315deg, #a71111 0%, #c32b2b 34%);
+      background-image: url(../images/plastic-texture-noise.png),
+        linear-gradient(315deg, #a71111 0%, #c32b2b 34%);
       color: #fbcfcf;
     }
   }
