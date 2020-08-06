@@ -27,7 +27,6 @@
     padding: 50px 0 100px;
     transition: 0.25s 0.3s ease-out;
 
-    &,
     &:hover {
       transform: rotateX(20deg) translateY(-100%);
       transform-origin: 50% bottom;

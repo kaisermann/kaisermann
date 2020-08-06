@@ -4,15 +4,16 @@
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
-    <div class="page__wrapper js-tv-animation" tv-animation="turn-on">
+    <div class="tv js-tv" tv-animation="turn-on">
       <div class="tv-videos js-tv"></div>
       <div class="tv-effects">
         <div class="tv-effect--decontrast"></div>
         <div class="tv-effect--colors"></div>
         <div class="tv-effect--static"></div>
         <div class="tv-effect--vignette"></div>
+        <div class="tv-effect--crt"></div>
       </div>
-      <div class="page__foreground">
+      <div class="tv__content">
         <div class="page__container">
           {% include 'header.njk' %}
 
@@ -21,10 +22,11 @@
           </div>
 
           {% include 'footer.njk' %}
-          <div class="js-remote"></div>
         </div>
       </div>
     </div>
+
+    <div class="js-remote"></div>
     <script>
       {% set dateJS %}
       document

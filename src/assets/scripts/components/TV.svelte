@@ -15,7 +15,7 @@
     toggleContent,
   } from '../tv';
 
-  const animationContainer = document.querySelector('.js-tv-animation');
+  const animationContainer = document.querySelector('.js-tv');
   const channelBtn = animationContainer.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 

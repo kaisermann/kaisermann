@@ -60,67 +60,6 @@ html {
 }
 
 body {
-  background-color: #000;
-  overflow: hidden;
-
-  /**
-   * we keep these two pseudo-elements outside
-   * of the animated element (.page__wrapper).
-   * we don't want to explode the brightness of these elements.
-   */
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    position: fixed;
-    z-index: var(--layer-tv-effects);
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-  }
-
-  &::before {
-    height: 90px;
-    background: linear-gradient(
-      180deg,
-      transparent 0,
-      #fffafa26 50%,
-      transparent
-    );
-    animation: vline 8s linear infinite;
-  }
-
-  &::after {
-    height: 100%;
-    background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.03) 50%,
-      transparent 0
-    );
-    background-size: 100% 0.7ch;
-  }
-}
-
-.page__wrapper {
-  text-shadow: 2px 2px 0 var(--glitchy-blue), -2px -2px 0 var(--glitchy-red);
-}
-
-@media (min-width: 481px) {
-  .page__wrapper {
-    text-shadow: 3px 2px 0 var(--glitchy-blue), -3px -2px 0 var(--glitchy-red);
-  }
-}
-
-.page__foreground {
-  position: relative;
-  z-index: var(--layer-content);
-  height: 100vh;
-  overflow: hidden auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-[tv-animation='turn-on'] .page__foreground {
   overflow: hidden;
 }
 

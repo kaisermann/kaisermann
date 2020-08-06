@@ -1,3 +1,14 @@
+.tv {
+  background-color: #000;
+  text-shadow: 2px 0 0 var(--glitchy-blue), -2px 0 0 var(--glitchy-red);
+}
+
+@media (min-width: 481px) {
+  .tv {
+    text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+  }
+}
+
 .tv-effect--decontrast,
 .tv-effect--colors,
 .tv-effect--static,
@@ -27,19 +38,56 @@
 /* vignette */
 .tv-effect--vignette {
   background: radial-gradient(circle, transparent 60%, black 100%), transparent;
+
+  @nest [tv-animation='turn-on'] & {
+    background: radial-gradient(circle, black 30%, transparent 90%), transparent;
+  }
 }
 
-[tv-animation='turn-on'] .tv-effect--vignette {
-  background: radial-gradient(circle, black 30%, transparent 90%), transparent;
+.tv-effect--decontrast {
+  @nest body[using-camera] & {
+    background-color: #fff;
+    opacity: 0.2;
+  }
+
+  @nest body:not([using-camera]) & {
+    display: none;
+  }
 }
 
-body[using-camera] .tv-effect--decontrast {
-  background-color: #fff;
-  opacity: 0.2;
-}
+.tv-effect--crt {
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: var(--layer-tv-effects);
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
 
-body:not([using-camera]) .tv-effect--decontrast {
-  display: none;
+  &::before {
+    height: 90px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      #fffafa26 50%,
+      transparent
+    );
+    animation: vline 8s linear infinite;
+  }
+
+  &::after {
+    height: 100%;
+    background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 0
+    );
+    background-size: 100% 0.7ch;
+  }
 }
 
 .tv-videos {
@@ -59,6 +107,18 @@ body:not([using-camera]) .tv-effect--decontrast {
   &[channel='2'],
   &[channel='8'] {
     object-position: center top;
+  }
+}
+
+.tv__content {
+  position: relative;
+  z-index: var(--layer-content);
+  height: 100vh;
+  overflow: hidden auto;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  @nest [tv-animation='turn-on'] & {
+    overflow: hidden;
   }
 }
 
