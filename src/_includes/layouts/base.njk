@@ -5,7 +5,6 @@
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div class="tv js-tv" tv-animation="turn-on">
-      <div class="tv-videos js-tv"></div>
       <div class="tv-effects">
         <div class="tv-effect--decontrast"></div>
         <div class="tv-effect--colors"></div>
@@ -27,6 +26,7 @@
     </div>
 
     <div class="js-remote"></div>
+
     <script>
       {% set dateJS %}
       document
@@ -41,6 +41,7 @@
 
         {{ dateJS | jsmin | safe  }}
     </script>
+
     <script async src="/assets/scripts/main.js" type="module"></script>
     {% if build.isProd %}
       <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>

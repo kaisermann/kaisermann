@@ -15,19 +15,19 @@
     toggleContent,
   } from '../tv';
 
-  const animationContainer = document.querySelector('.js-tv');
-  const channelBtn = animationContainer.querySelector('.js-channel-btn');
+  const tvEl = document.querySelector('.js-tv');
+  const channelBtn = tvEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
   function animateContainer(animation = null) {
     if (animation) {
-      animationContainer.setAttribute('tv-animation', 'switch-channel');
+      tvEl.setAttribute('tv-animation', 'switch-channel');
     }
 
     // remove the attribute after the animation ends
-    animationContainer.addEventListener(
+    tvEl.addEventListener(
       'animationend',
-      (e) => animationContainer.removeAttribute('tv-animation'),
+      (e) => tvEl.removeAttribute('tv-animation'),
       { once: true },
     );
   }
@@ -49,7 +49,7 @@
     channelNumber.textContent = $currentChannelInfo.displayName;
     window.requestAnimationFrame(noise);
 
-    const animation = animationContainer.getAttribute('tv-animation');
+    const animation = tvEl.getAttribute('tv-animation');
 
     if (!animation) {
       animateContainer('switch-channel');
@@ -65,17 +65,9 @@
   }
 
   function handleKeyup(e) {
-    if (e.key === '=') {
-      return increaseChannel();
-    }
-
-    if (e.key === '-') {
-      return decreaseChannel();
-    }
-
-    if (e.key === 'h') {
-      return toggleContent();
-    }
+    if (e.key === '=') return increaseChannel();
+    if (e.key === '-') return decreaseChannel();
+    if (e.key === 'h') return toggleContent();
 
     let channelNumber = parseInt(e.key, 10);
 
@@ -93,12 +85,36 @@
   }
 </script>
 
-<Volume />
+<style lang="postcss">
+  .tv-videos {
+    z-index: var(--layer-channels);
+    overflow: hidden;
+    pointer-events: none;
 
-{#if $currentChannelInfo.type === 'webcam'}
-  <Webcam />
-{:else if $currentChannelInfo.type === 'video'}
-  <Video />
-{/if}
+    & :global(.tv-video) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &[channel='2'],
+      &[channel='8'] {
+        object-position: center top;
+      }
+    }
+  }
+</style>
+
+<div class="tv-videos">
+  {#if $currentChannelInfo.type === 'webcam'}
+    <Webcam />
+  {:else if $currentChannelInfo.type === 'video'}
+    <Video />
+  {/if}
+</div>
+
+<Volume />
 
 <svelte:window on:keyup={handleKeyup} />
