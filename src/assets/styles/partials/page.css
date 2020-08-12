@@ -65,11 +65,22 @@
 }
 
 .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   align-self: flex-end;
   margin-top: 160px;
   padding-bottom: var(--gui-bottom);
+
+  @nest body[content-invisible] & {
+    visibility: hidden;
+  }
 }
 
-body[content-invisible] .footer {
-  visibility: hidden;
+.remote-trigger {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: url(../images/cursor-pointer.png) 14 8, auto;
 }

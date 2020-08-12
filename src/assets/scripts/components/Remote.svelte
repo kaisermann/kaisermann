@@ -17,25 +17,19 @@
     perspective: 2300px;
     position: fixed;
     z-index: var(--layer-top);
-    top: calc(100% - 50px);
+    top: 101%;
     right: var(--gui-side);
     user-select: none;
   }
 
   .wrapper {
-    transform: rotateX(0) translateY(-8px);
-    padding: 50px 0 100px;
-    transition: 0.25s 0.3s ease-out;
+    transform: rotateX(0) translateY(0);
+    transition: 0.25s ease-out;
 
-    &:hover {
-      transform: rotateX(20deg) translateY(-100%);
+    @nest :global(body.remote) & {
+      transform: rotateX(20deg) translateY(-120%);
       transform-origin: 50% bottom;
-      transition: 0.25s ease-out;
     }
-  }
-  :global([tv-animation='turn-on']) .wrapper,
-  :global([tv-animation='switch-channel']) .wrapper:not(:hover) {
-    display: none;
   }
 
   .remote {
@@ -252,7 +246,7 @@
             </div>
             <div class="control showhide">
               <button class="showhide" on:click={toggleContent}>
-                SHOW / HIDE
+                SHOW/HIDE
               </button>
             </div>
           </div>

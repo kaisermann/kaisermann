@@ -15,19 +15,19 @@
     toggleContent,
   } from '../tv';
 
-  const tvEl = document.querySelector('.js-tv');
-  const channelBtn = tvEl.querySelector('.js-channel-btn');
+  const screenEl = document.querySelector('.js-screen');
+  const channelBtn = screenEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
   function animateContainer(animation = null) {
     if (animation) {
-      tvEl.setAttribute('tv-animation', 'switch-channel');
+      screenEl.setAttribute('tv-animation', 'switch-channel');
     }
 
     // remove the attribute after the animation ends
-    tvEl.addEventListener(
+    screenEl.addEventListener(
       'animationend',
-      (e) => tvEl.removeAttribute('tv-animation'),
+      (e) => screenEl.removeAttribute('tv-animation'),
       { once: true },
     );
   }
@@ -49,7 +49,7 @@
     channelNumber.textContent = $currentChannelInfo.displayName;
     window.requestAnimationFrame(noise);
 
-    const animation = tvEl.getAttribute('tv-animation');
+    const animation = screenEl.getAttribute('tv-animation');
 
     if (!animation) {
       animateContainer('switch-channel');
