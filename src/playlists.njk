@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+eleventyNavigation:
+  key: playlists
+  parent: bio
+---
+<article>
+  <ul class="playlist-list">
+    {% for playlist in playlists -%}
+      <li>
+        <a href="{{playlist.url}}" target="_blank" rel="noopener noreferrer">
+          {{playlist.name}}
+        </a>
+        <small>{{playlist.description}}</small>
+      </li>
+    {% endfor %}
+  </ul>
+</article>
