@@ -5,7 +5,7 @@
         <ul class="nav__breadcrumb">
           <li>CK</li>
         </ul>
-        {% set navPages = collections.all | eleventyNavigation("bio") %}
+        {% set navPages = collections.headerNav | eleventyNavigation("bio") %}
         <ul class="nav__menu">
           {%- for entry in navPages %}
             <li>

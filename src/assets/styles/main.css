@@ -3,6 +3,9 @@
 @import './partials/animations.css';
 @import './partials/page.css';
 @import './partials/content.css';
+@import './pages/index.css';
+@import './pages/playlists.css';
+@import './pages/projects.css';
 @import './partials/tv.css';
 
 :root {

@@ -1,5 +1,6 @@
 ---
 layout: layouts/base.njk
+tags: headerNav
 eleventyNavigation:
   key: open-source
   parent: bio
@@ -11,7 +12,7 @@ eleventyNavigation:
         <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
           {{project.name}}
         </a>
-        <small>{{project.desc}}</small>
+        <small>{{project.description}}</small>
       </li>
     {% endfor %}
   </ul>
