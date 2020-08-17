@@ -72,7 +72,7 @@
   margin-top: 160px;
   padding-bottom: var(--gui-bottom);
 
-  @nest body[content-invisible] & {
+  @nest body.hide-content & {
     visibility: hidden;
   }
 }

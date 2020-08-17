@@ -64,8 +64,10 @@ body {
   overflow: hidden;
 }
 
-body[content-invisible] .page__content {
-  visibility: hidden;
+.page__content {
+  @nest body.hide-content & {
+    visibility: hidden;
+  }
 }
 
 .page__container {

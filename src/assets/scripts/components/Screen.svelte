@@ -41,9 +41,7 @@
 
   $: document.body.setAttribute('channel', `${$currentChannel}`);
 
-  $: $contentVisible
-    ? document.body.removeAttribute('content-invisible')
-    : document.body.setAttribute('content-invisible', '');
+  $: document.body.classList.toggle('hide-content', !$contentVisible);
 
   $: {
     channelNumber.textContent = $currentChannelInfo.displayName;

@@ -1,12 +1,31 @@
 .tv {
   background-color: #000;
   text-shadow: 2px 0 0 var(--glitchy-blue), -2px 0 0 var(--glitchy-red);
+
+  background-image: url(/assets/images/tv.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10% 12% 22% 9%;
+  height: 100vh;
+  display: grid;
+
+  &::before {
+    content: '';
+    display: block;
+  }
 }
 
 @media (min-width: 481px) {
   .tv {
     text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
   }
+}
+
+.tv-screen {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 140px / 10%;
 }
 
 .tv-effect--decontrast,
@@ -107,7 +126,7 @@
   }
 }
 
-.header-rec {
+.tv-rec {
   display: inline-flex;
   align-items: center;
 
