@@ -26,7 +26,6 @@
 
   --glitchy-blue: rgba(2, 183, 182, 0.4);
   --glitchy-red: rgba(183, 2, 2, 0.4);
-
   --container-width: 80%;
   --gui-side: calc((100% - var(--container-width)) / 2);
   --gui-bottom: 2.94117647059rem;
@@ -78,4 +77,17 @@ body {
   min-height: 100vh;
   width: var(--container-width);
   margin: 0 auto;
+}
+
+.glitchy-text {
+  --glitchy-shadow: 3px 2px 0 var(--glitchy-blue),
+    -3px -2px 0 var(--glitchy-red);
+  text-shadow: var(--glitchy-shadow);
+}
+
+@media (min-width: 481px) {
+  .glitchy-text {
+    --glitchy-shadow: 2px 2px 0 var(--glitchy-blue),
+      -3px -2px 0 var(--glitchy-red);
+  }
 }

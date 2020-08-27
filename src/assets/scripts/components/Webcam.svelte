@@ -73,7 +73,6 @@
     z-index: calc(var(--layer-tv-effects) + 1);
     bottom: var(--gui-bottom);
     right: var(--gui-side);
-    text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
     filter: blur(1px);
   }
 

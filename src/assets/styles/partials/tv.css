@@ -1,6 +1,5 @@
 .tv {
   background-color: #000;
-  text-shadow: 2px 0 0 var(--glitchy-blue), -2px 0 0 var(--glitchy-red);
 
   /* background-image: url(/assets/images/tv.png);
   background-repeat: no-repeat;
@@ -12,12 +11,6 @@
   &::before {
     content: '';
     display: block;
-  }
-}
-
-@media (min-width: 481px) {
-  .tv {
-    text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
   }
 }
 
