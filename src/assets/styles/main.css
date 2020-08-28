@@ -80,14 +80,24 @@ body {
 }
 
 .glitchy-text {
-  --glitchy-shadow: 3px 2px 0 var(--glitchy-blue),
-    -3px -2px 0 var(--glitchy-red);
-  text-shadow: var(--glitchy-shadow);
+  --shadow-x-distance: 2px;
+  --shadow-y-distance: 1px;
+  text-shadow: var(--shadow-x-distance) calc(var(--shadow-y-distance)) 0
+      var(--glitchy-blue),
+    calc(var(--shadow-x-distance) * -1) calc(var(--shadow-y-distance) * -1) 0
+      var(--glitchy-red);
 }
 
 @media (min-width: 481px) {
   .glitchy-text {
-    --glitchy-shadow: 2px 2px 0 var(--glitchy-blue),
-      -3px -2px 0 var(--glitchy-red);
+    --shadow-x-distance: 3px;
+    --shadow-y-distance: 2px;
+  }
+}
+
+@media (min-width: 960px) {
+  .glitchy-text {
+    --shadow-x-distance: 4px;
+    --shadow-y-distance: 3px;
   }
 }
