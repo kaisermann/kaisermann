@@ -9,7 +9,7 @@ eleventyNavigation:
 
 I'm a Web Engineer with a decade of industry experience and open-source passion. I currently work at VTEX, helping its OSS efforts regarding storefront componentization, developer tooling, and Front-End Infrastructure. Apart from my daily activities, I'm a core contributor to the _Svelte_ framework and author of a few OSS libraries. _Javascript_ and _CSS_ are my jams.
 
-[GitHub](htttps://github.com/kaisermann) | [Website](https://kaisermann.me) (give it a look!) | [Twitter](https://twitter.com/kiwistian) | [Email](mailto:christian@kaisermann.me) | Tel: [+55 21 99695-4714](tel:+5521996954714)
+[GitHub](https://github.com/kaisermann) | [Website](https://kaisermann.me) (give it a look!) | [Twitter](https://twitter.com/kiwistian) | [Email](mailto:christian@kaisermann.me) | Tel: [+55 21 99695-4714](tel:+5521996954714)
 
 ### Skills
 
