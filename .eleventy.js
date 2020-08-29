@@ -36,7 +36,7 @@ module.exports = (config) => {
       output: 'public/',
       data: `_data/`,
     },
-    templateFormats: ['njk', '11ty.js'],
+    templateFormats: ['njk', '11ty.js', 'md'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',
     passthroughFileCopy: true,

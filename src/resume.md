@@ -1,0 +1,61 @@
+---
+layout: layouts/markdown.njk
+eleventyNavigation:
+  key: resume
+  parent: bio
+---
+
+# Christian Kaisermann
+
+I'm a Web Engineer with a decade of industry experience and open-source passion. I currently work at VTEX, helping its OSS efforts regarding storefront componentization, developer tooling, and Front-End Infrastructure. Apart from my daily activities, I'm a core contributor to the _Svelte_ framework and author of a few OSS libraries. _Javascript_ and _CSS_ are my jams.
+
+[GitHub](htttps://github.com/kaisermann) | [Website](https://kaisermann.me) (give it a look!) | [Twitter](https://twitter.com/kiwistian) | [Email](mailto:christian@kaisermann.me) | Tel: [+55 21 99695-4714](tel:+5521996954714)
+
+### Skills
+
+I'm familiar with most current industry tooling and framework choices such as _TypeScript_, _React_, _Svelte_, module bundlers (_Webpack_, _Rollup_, _Parcel_), _GraphQL_, and the great majority of _HTML_ and _CSS_ pre/post-processors. I'm also an advocate for readable, clean code and show it through my constant efforts of standardizing coding styles and knowledge sharing.
+
+My peers usually think I'm easy-going, communicative, a fast learner, and a reference for CSS and JavaScript knowledge. I'm also familiar with agile methodologies, interviewing, and managing open-source projects and small communities.
+
+### Latest Projects (open-source)
+
+- **[`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess)**: quick and painless preprocess support for svelte
+- **[`pos-mamba-sdk`](https://github.com/stone-payments/pos-mamba-sdk)**: SDK for developing apps for the Stone's POS system
+- **[`svelte-i18n`](https://github.com/kaisermann/svelte-i18n)**: internationalization library for Svelte.
+- **[`vtex/typescript`](https://github.com/vtex/typescript)**: VTEX's typescript/javascript styleguide, tooling and recipes
+
+### Working Experience
+
+**[VTEX](https://vtex.com/)**: Software Engineer; (2019/05 - now)
+
+- Improve the workflow of front-end related tasks via private and open-source contributions; automating code review assignments between teams; and sharing knowledge in weekly meetings.
+- Responsible for creating and maintaining flexible, accessible, and performant React components for the storefront of more than 2000+ clients.
+- Member of the hiring committee, interviewer, and maintainer of front-end challenges repositories.
+- Mentoring of junior developers and newcomers.
+- Community moderator of a B2B community of agencies building stores with the company solutions.
+
+**[10de10](https://10de10.com.br)**: Writer and Podcaster; (2015/07 - now)
+
+- Co-host of the weekly pop culture podcast _Semana dos 10_.
+
+**[Stone](https://www.stone.com.br/)**: Front-end Analyst (2018/03 - 2019/04)
+
+- Research of optimal solutions to deal with web apps for embedded devices.
+- Engage with various open-source projects to move our solution forward.
+- Rewrite the open-source SDK for the company's main POS system, Mamba.
+- Create tools and templates to remove friction for third-party app developers.
+- Create a web simulator of the whole system for quicker app development and iteration.
+- Formalize coding styles and patterns to improve code quality, review, and performance.
+
+**[TUUT](https://tuut.com.br/)**: Full-Stack Developer; (2016/09 - 2018/02)
+
+- Develop WordPress websites from scratch using Blade/CSS/JavaScript.
+- Maintain the agency's production, staging, and database VPSs.
+
+**[Zona Internet](https://360dbi.com/)**: Front-end Developer; (2013/11 – 2015/02)
+
+- Develop WordPress websites from scratch using PHP/CSS/JavaScript.
+
+### Education
+
+- Bachelor’s Degree in Information Systems, **PUC-Rio University** _(2011 – 2016)_

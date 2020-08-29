@@ -43,18 +43,5 @@
 
   <title>kaisermann {{titleComplement}}</title>
 
-  {% if build.isProd %}
-    <script>
-      {% set gtagJS %}
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'UA-75837777-1');
-      {% endset %}
-
-      {{ gtagJS | jsmin | safe  }}
-    </script>
-  {% endif %}
+  {% include "head-scripts.njk" %}
 </head>
