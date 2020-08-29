@@ -26,7 +26,7 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 
 ### Working Experience
 
-**[VTEX](https://vtex.com/)**: Software Engineer; (2019/05 - now)
+**[VTEX](https://vtex.com/)**: Software Engineer (2019/05 - now)
 
 - Improve the workflow of front-end related tasks via private and open-source contributions; automating code review assignments between teams; and sharing knowledge in weekly meetings.
 - Responsible for creating and maintaining flexible, accessible, and performant React components for the storefront of more than 2000+ clients.
@@ -34,7 +34,7 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 - Mentoring of junior developers and newcomers.
 - Community moderator of a B2B community of agencies building stores with the company solutions.
 
-**[10de10](https://10de10.com.br)**: Writer and Podcaster; (2015/07 - now)
+**[10de10](https://10de10.com.br)**: Writer and Podcaster (2015/07 - now)
 
 - Co-host of the weekly pop culture podcast _Semana dos 10_.
 
@@ -47,12 +47,12 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 - Create a web simulator of the whole system for quicker app development and iteration.
 - Formalize coding styles and patterns to improve code quality, review, and performance.
 
-**[TUUT](https://tuut.com.br/)**: Full-Stack Developer; (2016/09 - 2018/02)
+**[TUUT](https://tuut.com.br/)**: Full-Stack Developer (2016/09 - 2018/02)
 
 - Develop WordPress websites from scratch using Blade/CSS/JavaScript.
 - Maintain the agency's production, staging, and database VPSs.
 
-**[Zona Internet](https://360dbi.com/)**: Front-end Developer; (2013/11 – 2015/02)
+**[Zona Internet](https://360dbi.com/)**: Front-end Developer (2013/11 – 2015/02)
 
 - Develop WordPress websites from scratch using PHP/CSS/JavaScript.
 
