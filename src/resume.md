@@ -1,8 +1,5 @@
 ---
 layout: layouts/markdown.njk
-eleventyNavigation:
-  key: resume
-  parent: bio
 ---
 
 # Christian Kaisermann
