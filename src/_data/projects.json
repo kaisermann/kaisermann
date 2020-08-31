@@ -93,9 +93,9 @@
   ],
   "sites": [
     {
-      "url": "https://kaisermann.me",
+      "url": "https://github.com/kaisermann",
       "name": "kaisermann.me",
-      "description": "front-end"
+      "description": "this website"
     },
     {
       "url": "https://copymoji.kaisermann.me",
