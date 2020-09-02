@@ -72,7 +72,6 @@ body {
 .page__container {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  position: relative;
   max-width: 100%;
   min-height: 100vh;
   width: var(--container-width);

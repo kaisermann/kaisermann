@@ -48,27 +48,37 @@ a {
   }
 }
 
-.playlist-link {
+.playlist-img {
+  background-image: var(--image);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  visibility: hidden;
+
+  &,
   &::before {
-    content: '';
-    background-image: var(--image), url(/assets/images/effect-colored-noise.gif);
-    background-size: cover, cover;
-    background-position: center, center;
+    background-size: cover;
+    background-position: center;
     position: fixed;
     z-index: -1;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s, filter 0.4s;
-    filter: saturate(100);
+    bottom: 0;
+    right: 0;
   }
 
-  &:hover::before,
-  &:focus::before {
-    opacity: 0.15;
-    filter: saturate(1);
+  &::before {
+    content: '';
+    background-image: url(/assets/images/effect-colored-noise.gif);
+    transition: opacity 0.8s;
+  }
+
+  @nest .playlist-link:matches(:hover, :focus) + & {
+    opacity: 0.3;
+    visibility: visible;
+
+    &::before {
+      opacity: 0;
+    }
   }
 }
