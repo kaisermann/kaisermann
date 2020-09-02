@@ -51,8 +51,7 @@ a {
 .playlist-img {
   background-image: var(--image);
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
+  opacity: 0.3;
   visibility: hidden;
 
   &,
@@ -74,11 +73,10 @@ a {
   }
 
   @nest .playlist-link:matches(:hover, :focus) + & {
-    opacity: 0.3;
     visibility: visible;
 
     &::before {
-      opacity: 0;
+      opacity: 0.2;
     }
   }
 }
