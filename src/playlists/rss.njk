@@ -1,0 +1,22 @@
+---
+permalink: playlists.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>kaisermann's playlists</title>
+  <link href="https://kaisermann.me/playlists.xml" rel="self"/>
+  <link href="https://kaisermann.me"/>
+  <id>https://kaisermann.me</id>
+  <author>
+    <name>Christian kaisermann</name>
+    <email>christian@kaisermann.me</email>
+  </author>
+  {%- for playlist in playlists %}
+  <entry>
+    <title>{{ playlist.name }}</title>
+    <link href="{{ playlist.url }}"/>
+    <id>{{ playlist.url }}</id>
+  </entry>
+  {%- endfor %}
+</feed>

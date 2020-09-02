@@ -1,5 +1,6 @@
 require('dotenv/config');
-const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
+const navigationPlugin = require('@11ty/eleventy-navigation');
+const pluginRss = require('@11ty/eleventy-plugin-rss');
 const Terser = require('terser');
 
 const htmlmin = require('./src/utils/minify-html.js');
@@ -29,7 +30,8 @@ module.exports = (config) => {
 
   config.addWatchTarget('./src/assets/');
 
-  config.addPlugin(eleventyNavigationPlugin);
+  config.addPlugin(navigationPlugin);
+  config.addPlugin(pluginRss);
 
   return {
     dir: {
