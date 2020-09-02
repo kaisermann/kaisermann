@@ -69,7 +69,7 @@ a {
   &::before {
     content: '';
     background-image: url(/assets/images/effect-colored-noise.gif);
-    transition: opacity 0.8s;
+    transition: opacity 0.4s;
   }
 
   @nest .playlist-link:matches(:hover, :focus) + & {
