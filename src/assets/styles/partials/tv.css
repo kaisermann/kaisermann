@@ -7,11 +7,6 @@
   padding: 10% 12% 22% 9%; */
   height: 100vh;
   display: grid;
-
-  &::before {
-    content: '';
-    display: block;
-  }
 }
 
 .tv-screen {

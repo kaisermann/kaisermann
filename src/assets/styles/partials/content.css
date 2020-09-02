@@ -50,7 +50,6 @@ a {
 
 .playlist-img {
   background-image: var(--image);
-  pointer-events: none;
   opacity: 0.3;
   visibility: hidden;
 
