@@ -44,7 +44,7 @@ module.exports = async function fetchPlaylists() {
 
     const playlists = await getPlaylists(token);
 
-    return playlists
+    const relevantPlaylists = playlists
       .filter(
         (p) => p.description.startsWith('@') && p.description.endsWith('@'),
       )
@@ -55,6 +55,8 @@ module.exports = async function fetchPlaylists() {
           description: p.description.slice(1, p.description.length - 1).trim(),
         };
       });
+
+    return relevantPlaylists;
   } catch (err) {
     console.log('Something went wrong when retrieving an access token', err);
 

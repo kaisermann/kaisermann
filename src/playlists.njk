@@ -12,7 +12,7 @@ eleventyNavigation:
           {{playlist.name}}
         </a>
         <br>
-        <small>{{playlist.description}}</small>
+        <small>{{playlist.description | safe}}</small>
       </li>
     {% endfor %}
   </ul>
