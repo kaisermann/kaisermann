@@ -93,12 +93,12 @@
 
   &::after {
     height: 100%;
-    background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.03) 50%,
-      transparent 0
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 6px,
+      rgba(255, 255, 255, 0.03) 6px,
+      rgba(255, 255, 255, 0.03) 12px
     );
-    background-size: 100% 0.7ch;
   }
 }
 
