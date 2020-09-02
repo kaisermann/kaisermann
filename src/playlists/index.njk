@@ -8,7 +8,7 @@ eleventyNavigation:
   <ul class="playlist-list">
     {% for playlist in playlists -%}
       <li>
-        <a class="big-text" href="{{playlist.url}}" target="_blank" rel="noopener noreferrer">
+        <a class="big-text playlist-link" href="{{playlist.url}}" style="--image:url({{playlist.image}})" target="_blank" rel="noopener noreferrer">
           {{playlist.name}}
         </a>
         <br>

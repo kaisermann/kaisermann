@@ -53,6 +53,7 @@ module.exports = async function fetchPlaylists() {
           name: p.name,
           url: p.external_urls.spotify,
           description: p.description.slice(1, p.description.length - 1).trim(),
+          image: p.images[0].url,
         };
       });
 
@@ -60,6 +61,10 @@ module.exports = async function fetchPlaylists() {
   } catch (err) {
     console.log('Something went wrong when retrieving an access token', err);
 
-    throw err;
+    if (process.env.ELEVENTY_ENV === 'production') {
+      throw err;
+    }
+
+    return [];
   }
 };
