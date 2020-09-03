@@ -49,7 +49,6 @@ a {
 }
 
 .playlist-img {
-  background-image: var(--image);
   opacity: 0.3;
   visibility: hidden;
 
