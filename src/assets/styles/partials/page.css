@@ -48,18 +48,15 @@
     margin-right: 1ch;
   }
 
-  &:not(:focus-within)::after {
+  &::after {
     margin-left: 0.5ch;
     content: '►';
     font-size: 1.2em;
   }
 
-  /* tried to use :not(:focus-within) in the selector above
-   * but postcss transformed it to a [focus-within] attr selector :(
-    */
-  /* &:focus-within::after {
-    content: none;
-  } */
+  &:focus-within::after {
+    visibility: hidden;
+  }
 }
 
 @media (max-width: 480px) {
