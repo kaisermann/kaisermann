@@ -27,7 +27,7 @@
     // remove the attribute after the animation ends
     screenEl.addEventListener(
       'animationend',
-      (e) => screenEl.removeAttribute('tv-animation'),
+      () => screenEl.removeAttribute('tv-animation'),
       { once: true },
     );
   }
@@ -63,6 +63,11 @@
   }
 
   function handleKeyup(e) {
+    if (
+      document.activeElement !== document.body &&
+      document.activeElement != null
+    )
+      return;
     if (e.key === '=') return increaseChannel();
     if (e.key === '-') return decreaseChannel();
     if (e.key === 'h') return toggleContent();

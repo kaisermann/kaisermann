@@ -64,9 +64,22 @@
   }
 }
 
-.text-nav:focus {
-  outline: none;
-  caret-color: white;
+.text-nav {
+  position: relative;
+  caret-color: transparent;
+  user-select: text;
+
+  &:focus {
+    outline: none;
+
+    &::after {
+      content: '_';
+      position: absolute;
+      top: 0.2em;
+      left: calc(var(--caret-position, -9999) * 1ch);
+      animation: blink 0.8s step-end infinite;
+    }
+  }
 }
 
 .footer {

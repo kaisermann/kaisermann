@@ -21,7 +21,7 @@
               <a href="{{ entry.url | url }}">{{ entry.title }}</a>
             </li>
           {%- endfor %}
-          <li class="js-text-nav text-nav" contenteditable>{{eleventyNavigation.key}}</li>
+          <li class="js-text-nav text-nav" contenteditable role="textbox" aria-label="navigation by text">{{eleventyNavigation.key}}</li>
         </ul>
       {% endif %}
     </nav>
