@@ -29,15 +29,18 @@
   <meta property="og:locale" content="en_US">
   <meta property="article:author" content="{{app.baseUrl}}">
 
+  <link rel="preload" href="/assets/fonts/VCROSDMono.woff2" as="font" type="font/woff2" crossorigin>
+
   <link rel="stylesheet" href="/assets/styles/main.css">
   <link rel="stylesheet" href="/assets/styles/extra.css" media="print" onload="this.media='all'">
+
   <link rel="icon" href="/assets/images/favicon.png">
 
   {% set titleComplement %}
-  {%if page.url != '/' %}
-      | {{ eleventyNavigation.key }}
-  {% else %}
-      | web dev
+    {%if page.url != '/' %}
+        | {{ eleventyNavigation.key }}
+    {% else %}
+        | web dev
     {% endif %}
   {% endset %}
 
