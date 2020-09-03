@@ -41,17 +41,25 @@
 .nav__breadcrumb {
   display: flex;
   align-items: center;
+  min-height: 28px;
 
   & li:not(:last-child)::after {
     content: ' /';
     margin-right: 1ch;
   }
 
-  &::after {
+  &:not(:focus-within)::after {
     margin-left: 0.5ch;
     content: '►';
     font-size: 1.2em;
   }
+
+  /* tried to use :not(:focus-within) in the selector above
+   * but postcss transformed it to a [focus-within] attr selector :(
+    */
+  /* &:focus-within::after {
+    content: none;
+  } */
 }
 
 @media (max-width: 480px) {

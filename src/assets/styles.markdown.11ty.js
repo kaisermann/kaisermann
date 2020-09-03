@@ -3,17 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const postcss = require('postcss');
-const postcssEngine = postcss(
-  [
-    require('postcss-import'),
-    require('postcss-preset-env')({
-      features: {
-        'nesting-rules': true,
-      },
-    }),
-    process.env.ELEVENTY_ENV === 'production' && require('cssnano'),
-  ].filter(Boolean),
-);
+const postcssrc = require('postcss-load-config');
+
+const { plugins } = postcssrc.sync();
 
 module.exports = class {
   async data() {
@@ -27,7 +19,7 @@ module.exports = class {
   }
 
   render({ rawCss, rawFilepath }) {
-    return postcssEngine
+    return postcss(plugins)
       .process(rawCss, { from: rawFilepath })
       .then((result) => result.css);
   }
