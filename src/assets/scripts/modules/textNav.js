@@ -1,9 +1,8 @@
 import levenshtein from 'js-levenshtein';
 
-const PAGES = ['home', 'playlists', 'websites', 'open-source'];
+const PAGES = ['home', 'resume', 'playlists', 'websites', 'open-source'];
 
 const textNav = document.querySelector('.js-text-nav');
-let timer;
 
 function getClosestPageMatch(text) {
   const { page } = PAGES.reduce(
