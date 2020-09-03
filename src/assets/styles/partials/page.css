@@ -64,6 +64,11 @@
   }
 }
 
+.text-nav:focus {
+  outline: none;
+  caret-color: white;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;

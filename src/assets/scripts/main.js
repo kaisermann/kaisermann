@@ -1,3 +1,4 @@
+import './modules/textNav.js';
 import TVScreen from './components/Screen.svelte';
 // import Remote from './components/Remote.svelte';
 // import RemoteTrigger from './components/RemoteTrigger.svelte';
