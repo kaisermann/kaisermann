@@ -12,3 +12,10 @@
     {{ gtagJS | jsmin | safe  }}
   </script>
 {% endif %}
+
+<script async src="https://unpkg.com/turbolinks@5.2.0/dist/turbolinks.js"></script>
+<script async src="/assets/scripts/main.js" type="module"></script>
+
+{% if build.isProd %}
+  <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
+{% endif %}

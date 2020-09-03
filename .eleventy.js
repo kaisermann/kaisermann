@@ -33,6 +33,18 @@ module.exports = (config) => {
   config.addPlugin(navigationPlugin);
   config.addPlugin(pluginRss);
 
+  config.setBrowserSyncConfig({
+    // scripts in body conflict with Turbolinks
+    snippetOptions: {
+      rule: {
+        match: /<\/head>/i,
+        fn(snippet, match) {
+          return snippet + match;
+        },
+      },
+    },
+  });
+
   return {
     dir: {
       input: 'src/',
