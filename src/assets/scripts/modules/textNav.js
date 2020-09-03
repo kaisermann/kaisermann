@@ -1,9 +1,9 @@
 import levenshtein from 'js-levenshtein';
 
+const PAGES = ['home', 'playlists', 'websites', 'open-source'];
+
 const textNav = document.querySelector('.js-text-nav');
 let timer;
-
-const PAGES = ['home', 'playlists', 'websites', 'open-source'];
 
 function getClosestPageMatch(text) {
   const { page } = PAGES.reduce(
@@ -30,19 +30,23 @@ function getClosestPageMatch(text) {
   return page;
 }
 
+function changePage() {
+  const page = getClosestPageMatch(textNav.textContent);
+
+  window.location.href = `/${encodeURIComponent(page)}`;
+}
+
 if (textNav) {
   textNav.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
+      clearTimeout(timer);
+      changePage();
     }
   });
 
-  textNav.addEventListener('input', (e) => {
+  textNav.addEventListener('input', () => {
     clearTimeout(timer);
-    timer = setTimeout(() => {
-      const page = getClosestPageMatch(e.target.textContent);
-
-      window.location.href = `/${encodeURIComponent(page)}`;
-    }, 1000);
+    timer = setTimeout(changePage, 1000);
   });
 }
