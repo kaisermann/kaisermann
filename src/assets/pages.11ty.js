@@ -44,11 +44,16 @@ module.exports = class {
           aliases.push(dataAliases);
         }
 
-        return {
+        const page = {
           aliases: Array.from(new Set(aliases)),
           url: i.data.page.url,
-          external: external ? 1 : 0,
         };
+
+        if (external) {
+          page.external = 1;
+        }
+
+        return page;
       });
 
     return JSON.stringify(localPages.concat(REDIRECTS));
