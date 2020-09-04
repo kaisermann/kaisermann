@@ -52,10 +52,6 @@ function updateCaret() {
   textNav.style.setProperty('--caret-position', pos);
 }
 
-function resetCaret() {
-  textNav.style.removeProperty('--caret-position');
-}
-
 function changePage() {
   const page = getClosestPageMatch(textNav.textContent.trim());
 
@@ -95,7 +91,11 @@ export function init() {
   }
 
   textNav.addEventListener('click', debouncedUpdateCaret);
-  textNav.addEventListener('blur', resetCaret);
+  textNav.addEventListener('blur', () => {
+    if (textNav.textContent === '') {
+      textNav.textContent = textNav.getAttribute('data-original-text');
+    }
+  });
   textNav.addEventListener('focus', () => {
     debouncedUpdateCaret();
     if (pages == null) {
