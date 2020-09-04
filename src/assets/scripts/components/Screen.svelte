@@ -19,8 +19,6 @@
   const channelBtn = screenEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
-  let mounted = false;
-
   function animateContainer(animation = null) {
     if (animation) {
       screenEl.setAttribute('tv-animation', 'switch-channel');
@@ -35,8 +33,6 @@
   }
 
   onMount(() => {
-    mounted = true;
-
     // removes the initial animation attribute once it's done
     animateContainer();
 
@@ -92,7 +88,7 @@
   $: document.body.classList.toggle('hide-content', !$contentVisible);
 
   // update channel only when mounted (prevent first event)
-  $: mounted && updateChannel($currentChannelInfo);
+  $: updateChannel($currentChannelInfo);
 </script>
 
 <style lang="postcss">

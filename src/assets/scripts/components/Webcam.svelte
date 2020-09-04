@@ -51,9 +51,9 @@
   onMount(() => {
     initStream();
 
-    let animationRequest = window.requestAnimationFrame(function loop() {
+    let animationRequest = requestAnimationFrame(function loop() {
       currentTime = Date.now();
-      animationRequest = window.requestAnimationFrame(loop);
+      animationRequest = requestAnimationFrame(loop);
     });
 
     return () => {
