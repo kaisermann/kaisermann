@@ -27,8 +27,11 @@ module.exports = class {
     const localPages = collections.all
       .filter((i) => i.data.page.outputPath.endsWith('html'))
       .map((i) => {
+        const {
+          textNav: { external = false, aliases: dataAliases = [] } = {},
+        } = i.data;
+
         const { fileSlug } = i.data.page;
-        const dataAliases = i.data.aliases;
         const aliases = [];
 
         if (fileSlug.length > 0) {
@@ -45,7 +48,7 @@ module.exports = class {
           aliases: Array.from(new Set(aliases)),
           fileSlug: i.data.page.fileSlug,
           url: i.data.page.url,
-          external: false,
+          external,
         };
       });
 

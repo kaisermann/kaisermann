@@ -1,5 +1,7 @@
 ---
 layout: layouts/markdown.njk
+textNav:
+  external: true
 ---
 
 # Christian Kaisermann
