@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { onMount, onDestroy } from 'svelte';
 
   import Volume from './Volume.svelte';
@@ -19,6 +19,8 @@
   const channelBtn = screenEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
+  let mounted = false;
+
   function animateContainer(animation = null) {
     if (animation) {
       screenEl.setAttribute('tv-animation', 'switch-channel');
@@ -33,41 +35,21 @@
   }
 
   onMount(() => {
+    mounted = true;
+
     // removes the initial animation attribute once it's done
     animateContainer();
 
     channelBtn.addEventListener('click', increaseChannel);
   });
 
-  $: document.body.setAttribute('channel', `${$currentChannel}`);
-
-  $: document.body.classList.toggle('hide-content', !$contentVisible);
-
-  $: {
-    channelNumber.textContent = $currentChannelInfo.displayName;
-    window.requestAnimationFrame(noise);
-
-    const animation = screenEl.getAttribute('tv-animation');
-
-    if (!animation) {
-      animateContainer('switch-channel');
-    }
-
-    // todo: test this
-    if (window.gtag) {
-      window.gtag('event', 'channel_switch', {
-        event_label: `Switched to channel ${$currentChannelInfo.displayName}`,
-        event_category: 'easter_egg',
-      });
-    }
-  }
-
   function handleKeyup(e) {
     if (
       document.activeElement !== document.body &&
       document.activeElement != null
-    )
+    ) {
       return;
+    }
     if (e.key === '=') return increaseChannel();
     if (e.key === '-') return decreaseChannel();
     if (e.key === 'h') return toggleContent();
@@ -86,6 +68,31 @@
       gotoChannel(channelNumber);
     }
   }
+
+  function updateChannel(currentChannelInfo) {
+    channelNumber.textContent = currentChannelInfo.displayName;
+    window.requestAnimationFrame(noise);
+
+    const animation = screenEl.getAttribute('tv-animation');
+
+    if (!animation) {
+      animateContainer('switch-channel');
+    }
+
+    if (window.gtag) {
+      window.gtag('event', 'channel_switch', {
+        event_label: `Switched to channel ${currentChannelInfo.displayName}`,
+        event_category: 'easter_egg',
+      });
+    }
+  }
+
+  $: document.body.setAttribute('channel', `${$currentChannel}`);
+
+  $: document.body.classList.toggle('hide-content', !$contentVisible);
+
+  // update channel only when mounted (prevent first event)
+  $: mounted && updateChannel($currentChannelInfo);
 </script>
 
 <style lang="postcss">

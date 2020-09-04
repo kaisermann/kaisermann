@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="cursor-default">
   {% include "head.njk" %}
   <body>
@@ -43,11 +43,5 @@
 
         {{ dateJS | jsmin | safe  }}
     </script>
-
-    <script async src="/assets/scripts/main.js" type="module"></script>
-
-    {% if build.isProd %}
-      <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-75837777-1"></script>
-    {% endif %}
   </body>
 </html>

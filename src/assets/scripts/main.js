@@ -14,3 +14,16 @@ new TVScreen({
 // new RemoteTrigger({
 //   target: document.querySelector('.js-remote-trigger'),
 // });
+
+function addGTag() {
+  const script = document.createElement('script');
+
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-75837777-1';
+  script.async = true;
+
+  document.head.append(script);
+}
+
+if (process.env.ELEVENTY_ENV === 'production') {
+  requestAnimationFrame(addGTag);
+}
