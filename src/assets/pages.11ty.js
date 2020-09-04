@@ -46,14 +46,11 @@ module.exports = class {
 
         return {
           aliases: Array.from(new Set(aliases)),
-          fileSlug: i.data.page.fileSlug,
           url: i.data.page.url,
           external,
         };
       });
 
-    const pages = [...localPages, ...REDIRECTS];
-
-    return JSON.stringify(pages);
+    return JSON.stringify(localPages.concat(REDIRECTS));
   }
 };
