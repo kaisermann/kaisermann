@@ -1,5 +1,5 @@
 <button
-  class="remote-trigger"
+  class="remote-trigger cursor-pointer"
   on:click={() => document.body.classList.toggle('remote')}>
   <img
     src="/assets/images/remote-control.svg"

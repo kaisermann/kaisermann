@@ -3449,6 +3449,15 @@ postcss-env-function@^2.0.2:
     postcss "^7.0.2"
     postcss-values-parser "^2.0.0"
 
+postcss-extend-rule@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-extend-rule/-/postcss-extend-rule-3.0.0.tgz#d6ee2fb24ab2b3d9b50acce1d055c1c137ab5f44"
+  integrity sha512-gMlRmW52Y86Lct+KTr+gMjxk0aUSuTyjtvelIH3a7UdaXONaKH6qSmj8KAXCW4+nhTlAsOw5JdkRjCdZ/Kjb3Q==
+  dependencies:
+    postcss "^7.0.17"
+    postcss-nesting "^7.0.1"
+    postcss-tape "^5.0.2"
+
 postcss-focus-visible@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/postcss-focus-visible/-/postcss-focus-visible-4.0.0.tgz#477d107113ade6024b14128317ade2bd1e17046e"
@@ -3596,7 +3605,7 @@ postcss-minify-selectors@^4.0.2:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-postcss-nesting@^7.0.0:
+postcss-nesting@^7.0.0, postcss-nesting@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/postcss-nesting/-/postcss-nesting-7.0.1.tgz#b50ad7b7f0173e5b5e3880c3501344703e04c052"
   integrity sha512-FrorPb0H3nuVq0Sff7W2rnc3SmIcruVC6YwpcS+k687VxyxO33iE1amna7wHuRVzM8vfiYofXSBHNAZ3QhLvYg==
@@ -3845,6 +3854,11 @@ postcss-svgo@^4.0.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
     svgo "^1.0.0"
+
+postcss-tape@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-tape/-/postcss-tape-5.0.2.tgz#7ae011050954fdc10b17d1f1551c9d9bf14e4bdf"
+  integrity sha512-e4770WnsUzczQp/pAIsz0s0MDLAQ7luyh1/hs8QBcdfXOMrz0siEqYNHAKJIoCvGtLoi2QUjWASvTbPfyTfIWg==
 
 postcss-unique-selectors@^4.0.1:
   version "4.0.1"

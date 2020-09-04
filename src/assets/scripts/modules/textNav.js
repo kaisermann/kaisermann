@@ -58,7 +58,7 @@ function resetCaret() {
 }
 
 function changePage() {
-  const page = getClosestPageMatch(textNav.textContent);
+  const page = getClosestPageMatch(textNav.textContent.trim());
 
   if (page.external) {
     window.open(page.url, '_blank');

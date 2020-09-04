@@ -21,12 +21,12 @@
               <a href="{{ entry.url | url }}">{{ entry.title }}</a>
             </li>
           {%- endfor %}
-          <li class="js-text-nav text-nav" contenteditable role="textbox" aria-label="navigation by text">{{eleventyNavigation.key}}</li>
+          <li class="js-text-nav text-nav cursor-pointer" contenteditable role="textbox" aria-label="navigation by text">{{eleventyNavigation.key}}</li>
         </ul>
       {% endif %}
     </nav>
     <div class="header__info">
-      <div role="button" class="header__channel js-channel-btn">CHANNEL <span class="js-channel-number">00</span></div>
+      <div role="button" class="header__channel cursor-pointer js-channel-btn">CHANNEL <span class="js-channel-number">00</span></div>
       <div class="js-header-date">JUL 2, 1993</div>
       <div class="tv-rec">REC <span></span></div>
     </div>

@@ -23,10 +23,6 @@
   top: 100px;
 }
 
-.header__channel {
-  cursor: url(../images/cursor-pointer.png) 14 8, auto;
-}
-
 @media (min-width: 481px) {
   .header__container {
     display: flex;
@@ -112,5 +108,4 @@
   border: none;
   background: transparent;
   padding: 0;
-  cursor: url(../images/cursor-pointer.png) 14 8, auto;
 }

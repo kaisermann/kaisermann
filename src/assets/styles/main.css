@@ -55,7 +55,6 @@ html {
   color: var(--text-primary);
   font-size: var(--font-size-primary);
   line-height: var(--line-height);
-  cursor: url(../images/cursor-default.png) 0 0, auto;
 }
 
 body {
@@ -99,4 +98,12 @@ body {
     --shadow-x-distance: 4px;
     --shadow-y-distance: 3px;
   }
+}
+
+.cursor-default {
+  cursor: url(../images/cursor-default.png) 0 0, auto;
+}
+
+.cursor-pointer {
+  cursor: url(../images/cursor-pointer.png) 14 8, auto;
 }
