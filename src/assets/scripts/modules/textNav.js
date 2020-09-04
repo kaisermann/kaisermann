@@ -105,6 +105,10 @@ function init() {
       changePage();
     }
 
+    if (e.key === ' ') {
+      e.preventDefault();
+    }
+
     debouncedUpdateCaret();
   });
 }
