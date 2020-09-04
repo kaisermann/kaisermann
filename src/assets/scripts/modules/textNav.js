@@ -88,22 +88,20 @@ fetchPages.retries = 0;
 
 const debouncedUpdateCaret = requestAnimationFrame.bind(null, updateCaret);
 
-async function init() {
+function init() {
   if (!textNav) return;
 
   textNav.addEventListener('click', debouncedUpdateCaret);
+  textNav.addEventListener('blur', resetCaret);
   textNav.addEventListener('focus', () => {
     debouncedUpdateCaret();
     if (pages == null) {
       fetchPages();
     }
   });
-  textNav.addEventListener('blur', resetCaret);
-
   textNav.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      // clearTimeout(timer);
       changePage();
     }
 
