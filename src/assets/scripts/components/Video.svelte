@@ -3,8 +3,6 @@
 
   let video;
 
-  $: changeChannel($currentChannelInfo, video);
-
   async function changeChannel() {
     const { duration, watchTimestamp } = $currentChannelInfo;
 
@@ -40,6 +38,8 @@
       });
     }
   }
+
+  $: changeChannel($currentChannelInfo, video);
 </script>
 
 <video

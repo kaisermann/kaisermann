@@ -15,6 +15,8 @@
     toggleContent,
   } from '../tv';
 
+  let mounted = false;
+
   const screenEl = document.querySelector('.js-screen');
   const channelBtn = screenEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
@@ -29,7 +31,6 @@
     // remove the attribute after the animation ends
     screenEl.addEventListener('animationend', cancel, { once: true });
 
-    // safety timeout
     timer = setTimeout(cancel, 1500);
   }
 
@@ -37,13 +38,6 @@
     screenEl.setAttribute('tv-animation', animation);
     removeAnimationOnceDone();
   }
-
-  onMount(() => {
-    // removes the initial animation attribute once it's done
-    removeAnimationOnceDone();
-
-    channelBtn.addEventListener('click', increaseChannel);
-  });
 
   function handleKeyup(e) {
     if (
@@ -71,8 +65,13 @@
     }
   }
 
-  function updateChannel(currentChannelInfo) {
-    channelNumber.textContent = currentChannelInfo.displayName;
+  function updateChannel(channelInfo) {
+    // prevent firing before mounting
+    if (!mounted) {
+      return;
+    }
+
+    channelNumber.textContent = channelInfo.displayName;
     requestAnimationFrame(noise);
 
     const animation = screenEl.getAttribute('tv-animation');
@@ -83,7 +82,7 @@
 
     if (window.gtag) {
       window.gtag('event', 'channel_switch', {
-        event_label: `Switched to channel ${currentChannelInfo.displayName}`,
+        event_label: `Switched to channel ${channelInfo.displayName}`,
         event_category: 'easter_egg',
       });
     }
@@ -95,6 +94,15 @@
 
   // update channel only when mounted (prevent first event)
   $: updateChannel($currentChannelInfo);
+
+  onMount(() => {
+    mounted = true;
+
+    // removes the initial animation attribute once it's done
+    removeAnimationOnceDone();
+
+    channelBtn.addEventListener('click', increaseChannel);
+  });
 </script>
 
 <style lang="postcss">
