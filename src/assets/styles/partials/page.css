@@ -43,19 +43,26 @@
   align-items: center;
   min-height: 28px;
 
-  & li:not(:last-child)::after {
-    content: ' /';
-    margin-right: 1ch;
-  }
+  & li {
+    &:not(:last-child)::after {
+      content: ' /';
+      margin-right: 1ch;
+    }
 
-  &::after {
-    margin-left: 0.5ch;
-    content: '►';
-    font-size: 1.2em;
-  }
+    &:last-child {
+      display: flex;
+      align-items: center;
 
-  &:focus-within::after {
-    visibility: hidden;
+      &::after {
+        margin-left: 0.5ch;
+        content: '►';
+        font-size: 1.2em;
+      }
+
+      &:focus-within::after {
+        visibility: hidden;
+      }
+    }
   }
 }
 
@@ -77,7 +84,7 @@
   &:focus {
     outline: none;
 
-    &::after {
+    &::before {
       content: '_';
       position: absolute;
       top: 0.2em;
