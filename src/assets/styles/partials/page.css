@@ -87,7 +87,7 @@
     &::before {
       content: '_';
       position: absolute;
-      top: 0.2em;
+      bottom: 0;
       left: calc(var(--caret-position, -9999) * 1ch);
       animation: blink 0.8s step-end infinite;
     }
