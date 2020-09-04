@@ -47,7 +47,7 @@ module.exports = class {
         return {
           aliases: Array.from(new Set(aliases)),
           url: i.data.page.url,
-          external,
+          external: external ? 1 : 0,
         };
       });
 
