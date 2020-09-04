@@ -71,11 +71,14 @@
 
 @keyframes turn-on-text-shadow {
   0% {
-    text-shadow: 6px 2px 0 var(--glitchy-blue), -6px -2px 0 var(--glitchy-red);
+    text-shadow: 6px 3px 0 var(--glitchy-blue), -6px -3px 0 var(--glitchy-red);
   }
 
   100% {
-    text-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+    text-shadow: var(--shadow-x-distance) calc(var(--shadow-y-distance)) 0
+        var(--glitchy-blue),
+      calc(var(--shadow-x-distance)) calc(var(--shadow-y-distance) * -1) 0
+        var(--glitchy-red);
   }
 }
 
