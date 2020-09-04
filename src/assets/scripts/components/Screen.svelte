@@ -19,22 +19,28 @@
   const channelBtn = screenEl.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
-  function animateContainer(animation = null) {
-    if (animation) {
-      screenEl.setAttribute('tv-animation', 'switch-channel');
-    }
+  function removeAnimationOnceDone() {
+    let timer;
+    const cancel = () => {
+      clearTimeout(timer);
+      screenEl.removeAttribute('tv-animation');
+    };
 
     // remove the attribute after the animation ends
-    screenEl.addEventListener(
-      'animationend',
-      () => screenEl.removeAttribute('tv-animation'),
-      { once: true },
-    );
+    screenEl.addEventListener('animationend', cancel, { once: true });
+
+    // safety timeout
+    timer = setTimeout(cancel, 1500);
+  }
+
+  function animateContainer(animation) {
+    screenEl.setAttribute('tv-animation', animation);
+    removeAnimationOnceDone();
   }
 
   onMount(() => {
     // removes the initial animation attribute once it's done
-    animateContainer();
+    removeAnimationOnceDone();
 
     channelBtn.addEventListener('click', increaseChannel);
   });

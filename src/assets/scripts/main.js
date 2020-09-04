@@ -3,20 +3,26 @@ import TVScreen from './components/Screen.svelte';
 // import Remote from './components/Remote.svelte';
 // import RemoteTrigger from './components/RemoteTrigger.svelte';
 
-function bootstrap() {
-  document.body.removeAttribute('no-js', '');
+const bootstrap = () => {
+  requestAnimationFrame(() => {
+    document.body.removeAttribute('no-js', '');
 
-  initTextNav();
+    initTextNav();
 
-  new TVScreen({ target: document.querySelector('.js-screen') });
+    new TVScreen({ target: document.querySelector('.js-screen') });
 
-  // new Remote({
-  //   target: document.querySelector('.js-remote'),
-  // });
+    // new Remote({
+    //   target: document.querySelector('.js-remote'),
+    // });
 
-  // new RemoteTrigger({
-  //   target: document.querySelector('.js-remote-trigger'),
-  // });
+    // new RemoteTrigger({
+    //   target: document.querySelector('.js-remote-trigger'),
+    // });
+  });
+};
+
+if (document.readyState !== 'interactive') {
+  window.addEventListener('DOMContentLoaded', bootstrap);
+} else {
+  bootstrap();
 }
-
-requestAnimationFrame(bootstrap);
