@@ -88,7 +88,7 @@ fetchPages.retries = 0;
 
 const debouncedUpdateCaret = requestAnimationFrame.bind(null, updateCaret);
 
-function init() {
+export function init() {
   if (!textNav) return;
 
   textNav.addEventListener('click', debouncedUpdateCaret);
@@ -112,5 +112,3 @@ function init() {
     debouncedUpdateCaret();
   });
 }
-
-init();
