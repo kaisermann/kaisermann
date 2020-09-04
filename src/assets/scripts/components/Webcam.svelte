@@ -58,7 +58,7 @@
 
     return () => {
       document.body.removeAttribute('using-camera');
-      window.cancelAnimationFrame(animationRequest);
+      cancelAnimationFrame(animationRequest);
 
       if (stream) {
         stream.getTracks().forEach((track) => track.stop());

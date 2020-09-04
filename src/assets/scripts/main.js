@@ -15,15 +15,10 @@ function bootstrap() {
   // new RemoteTrigger({
   //   target: document.querySelector('.js-remote-trigger'),
   // });
-
-  if (process.env.ELEVENTY_ENV === 'production') {
-    const script = document.createElement('script');
-
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-75837777-1';
-    script.async = true;
-
-    document.head.append(script);
-  }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.removeAttribute('no-js', '');
+});
 
 requestAnimationFrame(bootstrap);

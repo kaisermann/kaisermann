@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" class="cursor-default">
+<html lang="en">
   {% include "head.njk" %}
-  <body>
+  <body class="cursor-default" no-js>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div class="tv glitchy-text">
@@ -30,18 +30,19 @@
     <div class="js-remote"></div>
 
     <script>
-      {% set dateJS %}
-      document
-        .querySelector('.js-header-date')
-        .innerHTML = new Intl
-        .DateTimeFormat('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric'
-        })
-        .format(new Date()){% endset %}
+      {% set footerJs %}
+        document
+          .querySelector('.js-header-date')
+          .innerHTML = new Intl
+          .DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          })
+          .format(new Date())
+      {% endset %}
 
-        {{ dateJS | jsmin | safe  }}
+        {{ footerJs | jsmin | safe  }}
     </script>
   </body>
 </html>

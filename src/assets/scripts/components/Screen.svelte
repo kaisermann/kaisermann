@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
 
   import Volume from './Volume.svelte';
   import Webcam from './Webcam.svelte';
@@ -67,7 +67,7 @@
 
   function updateChannel(currentChannelInfo) {
     channelNumber.textContent = currentChannelInfo.displayName;
-    window.requestAnimationFrame(noise);
+    requestAnimationFrame(noise);
 
     const animation = screenEl.getAttribute('tv-animation');
 
