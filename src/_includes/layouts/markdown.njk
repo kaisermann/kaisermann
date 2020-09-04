@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="/assets/styles/markdown.css">
 
     <title>kaisermann's resume</title>
-    {% include "head-scripts.njk" %}
   </head>
   <body>
     <article class="markdown-body">
       {{ content | safe }}
     </article>
+
+    {% include "scripts/gtag.njk" %}
   </body>
 </html>

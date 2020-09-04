@@ -4,6 +4,8 @@ import TVScreen from './components/Screen.svelte';
 // import RemoteTrigger from './components/RemoteTrigger.svelte';
 
 function bootstrap() {
+  document.body.removeAttribute('no-js', '');
+
   initTextNav();
 
   new TVScreen({ target: document.querySelector('.js-screen') });
@@ -16,9 +18,5 @@ function bootstrap() {
   //   target: document.querySelector('.js-remote-trigger'),
   // });
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  document.body.removeAttribute('no-js', '');
-});
 
 requestAnimationFrame(bootstrap);
