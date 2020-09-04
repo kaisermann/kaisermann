@@ -3,7 +3,7 @@ import TVScreen from './components/Screen.svelte';
 // import Remote from './components/Remote.svelte';
 // import RemoteTrigger from './components/RemoteTrigger.svelte';
 
-requestAnimationFrame(() => {
+function bootstrap() {
   initTextNav();
 
   new TVScreen({ target: document.querySelector('.js-screen') });
@@ -16,7 +16,7 @@ requestAnimationFrame(() => {
   //   target: document.querySelector('.js-remote-trigger'),
   // });
 
-  function addGTag() {
+  if (process.env.ELEVENTY_ENV === 'production') {
     const script = document.createElement('script');
 
     script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-75837777-1';
@@ -24,8 +24,6 @@ requestAnimationFrame(() => {
 
     document.head.append(script);
   }
+}
 
-  if (process.env.ELEVENTY_ENV === 'production') {
-    requestAnimationFrame(addGTag);
-  }
-});
+requestAnimationFrame(bootstrap);

@@ -1,8 +1,7 @@
 import levenshtein from 'js-levenshtein';
 
 let pages;
-
-const textNav = document.querySelector('.js-text-nav');
+let textNav;
 
 function getClosestPageMatch(text) {
   const { page } = pages.reduce(
@@ -89,7 +88,11 @@ fetchPages.retries = 0;
 const debouncedUpdateCaret = requestAnimationFrame.bind(null, updateCaret);
 
 export function init() {
-  if (!textNav) return;
+  textNav = document.querySelector('.js-text-nav');
+
+  if (!textNav) {
+    return;
+  }
 
   textNav.addEventListener('click', debouncedUpdateCaret);
   textNav.addEventListener('blur', resetCaret);
