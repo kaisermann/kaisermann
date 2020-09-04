@@ -1,30 +1,32 @@
 import levenshtein from 'js-levenshtein';
 
-const PAGES = ['home', 'resume', 'playlists', 'websites', 'open-source'];
+let pages;
 
 const textNav = document.querySelector('.js-text-nav');
 
 function getClosestPageMatch(text) {
-  const { page } = PAGES.reduce(
+  const { page } = pages.reduce(
     (acc, p) => {
-      const weight = p.startsWith(text) || text.startsWith(p) ? -4 : 1;
-      const diff = Math.max(0, levenshtein(p, text) + weight);
+      const { aliases } = p;
 
-      if (diff < acc.diff) {
-        acc = { diff, page: p };
-      }
+      aliases.forEach((alias) => {
+        const weight =
+          alias.startsWith(text) || text.startsWith(alias) ? -4 : 1;
+
+        const diff = Math.max(0, levenshtein(alias, text) + weight);
+
+        if (diff < acc.diff) {
+          acc = { diff, page: p };
+        }
+      });
 
       return acc;
     },
     {
-      page: PAGES[0],
+      page: pages[0],
       diff: 100,
     },
   );
-
-  if (page === 'home') {
-    return '';
-  }
 
   return page;
 }
@@ -58,14 +60,44 @@ function resetCaret() {
 function changePage() {
   const page = getClosestPageMatch(textNav.textContent);
 
-  window.location.href = `/${encodeURIComponent(page)}`;
+  if (page.external) {
+    window.open(page.url, '_blank');
+
+    return;
+  }
+
+  window.location.href = page.url;
 }
+
+function fetchPages() {
+  fetch('/assets/pages.json')
+    .then((r) => r.json())
+    .then((data) => {
+      pages = data;
+    })
+    .catch(() => {
+      if (fetchPages.retries++ < 3) {
+        fetchPages();
+      } else {
+        console.warn('Something went wrong :(');
+      }
+    });
+}
+
+fetchPages.retries = 0;
 
 const debouncedUpdateCaret = requestAnimationFrame.bind(null, updateCaret);
 
-if (textNav) {
+async function init() {
+  if (!textNav) return;
+
   textNav.addEventListener('click', debouncedUpdateCaret);
-  textNav.addEventListener('focus', debouncedUpdateCaret);
+  textNav.addEventListener('focus', () => {
+    debouncedUpdateCaret();
+    if (pages == null) {
+      fetchPages();
+    }
+  });
   textNav.addEventListener('blur', resetCaret);
 
   textNav.addEventListener('keydown', (e) => {
@@ -77,9 +109,6 @@ if (textNav) {
 
     debouncedUpdateCaret();
   });
-
-  // textNav.addEventListener('input', () => {
-  //   clearTimeout(timer);
-  //   timer = setTimeout(changePage, 1000);
-  // });
 }
+
+init();
