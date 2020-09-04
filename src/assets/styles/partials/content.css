@@ -70,17 +70,9 @@ a {
     transition: opacity 0.4s;
   }
 
-  @nest .playlist-link:not(:hover, :focus) + & {
-    /*
-     * we use background-image instead of a custom property for the urls
-     * because, for some reason, it makes a request for every hover action.
-     * this guarantees the images will load only on hover.
-     */
-    background: none !important;
-  }
-
   @nest .playlist-link:matches(:hover, :focus) + & {
     visibility: visible;
+    background-image: var(--image);
 
     &::before {
       opacity: 0.2;
