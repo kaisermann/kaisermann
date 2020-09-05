@@ -19,6 +19,11 @@
     top: 101%;
     right: var(--gui-side);
     user-select: none;
+
+    @media (max-height: 800px) {
+      transform: scale(0.7);
+      transform-origin: 50% 0;
+    }
   }
 
   .wrapper {

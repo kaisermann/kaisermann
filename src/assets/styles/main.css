@@ -88,17 +88,13 @@ body {
       var(--glitchy-blue),
     calc(var(--shadow-x-distance) * -1) calc(var(--shadow-y-distance) * -1) 0
       var(--glitchy-red);
-}
 
-@media (min-width: 481px) {
-  .glitchy-text {
+  @media (min-width: 481px) {
     --shadow-x-distance: 3px;
     --shadow-y-distance: 2px;
   }
-}
 
-@media (min-width: 960px) {
-  .glitchy-text {
+  @media (min-width: 960px) {
     --shadow-x-distance: 4px;
     --shadow-y-distance: 3px;
   }
