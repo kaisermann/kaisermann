@@ -2,8 +2,11 @@
   height: 100vh;
   background-color: #000;
   background-position: center;
-  background-image: url(/assets/images/stars.jpg);
-  animation: moving-stars 60s linear infinite;
+
+  @nest body:not([screen-animation^='turn-on']) & {
+    background-image: url(/assets/images/stars.jpg);
+    animation: moving-stars 60s linear infinite;
+  }
 }
 
 .spaceship {
@@ -72,7 +75,7 @@
 .tv-effect--vignette {
   background: radial-gradient(circle, transparent 60%, black 100%), transparent;
 
-  @nest body:not([no-js]) [tv-animation='turn-on'] & {
+  @nest body:not([no-js]) [screen-animation='turn-on'] & {
     background: radial-gradient(circle, black 30%, transparent 90%), transparent;
   }
 }
@@ -82,7 +85,7 @@
   background-color: #fff;
   opacity: 0.2;
 
-  @nest body:not([using-camera]) & {
+  @nest body:not(.using-camera) & {
     display: none;
   }
 }
@@ -131,7 +134,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 
   /* todo: needed? no js causes this to never be removed */
-  @nest body:not([no-js]) [tv-animation='turn-on'] & {
+  @nest body:not([no-js]) [screen-animation='turn-on'] & {
     overflow: hidden;
   }
 }
@@ -151,7 +154,7 @@
     animation: blink 1.4s step-end infinite;
   }
 
-  @nest body:not([using-camera]) & {
+  @nest body:not(.using-camera) & {
     display: none;
   }
 }

@@ -1,9 +1,9 @@
-[tv-animation='turn-on'] {
+[screen-animation='turn-on'] .tv-screen {
   animation: turn-on-transform 0.4s, turn-on-filter 1s,
     turn-on-text-shadow 0.92s ease-out;
 }
 
-[tv-animation='switch-channel'] {
+[screen-animation='switch-channel'] .tv-screen {
   animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
 }
 

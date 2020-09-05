@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include "head.njk" %}
-  <body class="cursor-default" no-js>
+  <body class="cursor-default" no-js screen-animation="turn-on">
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div class="space">
       <div class="spaceship">
         <div class="tv">
-          <div class="tv-screen js-screen" tv-animation="turn-on">
+          <div class="tv-screen js-screen">
             <div class="tv-effects">
               <div class="tv-effect--decontrast"></div>
               <div class="tv-effect--colors"></div>
@@ -33,7 +33,6 @@
 
     <div class="js-remote"></div>
 
-    {% include "scripts/general.njk" %}
-    {% include "scripts/gtag.njk" %}
+    {% include "scripts/general.njk" %} {% include "scripts/gtag.njk" %}
   </body>
 </html>

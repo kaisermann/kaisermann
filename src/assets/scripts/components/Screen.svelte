@@ -26,7 +26,7 @@
     let timer;
     const cancel = () => {
       clearTimeout(timer);
-      screenEl.removeAttribute('tv-animation');
+      document.body.removeAttribute('screen-animation');
     };
 
     // remove the attribute after the animation ends
@@ -36,7 +36,7 @@
   }
 
   function animateContainer(animation) {
-    screenEl.setAttribute('tv-animation', animation);
+    document.body.setAttribute('screen-animation', animation);
     removeAnimationOnceDone();
   }
 
@@ -77,7 +77,7 @@
     channelNumber.textContent = channelInfo.displayName;
     requestAnimationFrame(noise);
 
-    const animation = screenEl.getAttribute('tv-animation');
+    const animation = document.body.getAttribute('screen-animation');
 
     if (!animation) {
       animateContainer('switch-channel');

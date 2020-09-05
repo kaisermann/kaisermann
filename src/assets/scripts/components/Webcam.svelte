@@ -26,7 +26,7 @@
     video.addEventListener(
       'playing',
       () => {
-        document.body.setAttribute('using-camera', '');
+        document.body.classList.add('using-camera');
       },
       { once: true },
     );
@@ -57,7 +57,7 @@
     });
 
     return () => {
-      document.body.removeAttribute('using-camera');
+      document.body.classList.remove('using-camera');
       cancelAnimationFrame(animationRequest);
 
       if (stream) {
@@ -76,7 +76,7 @@
     filter: blur(1px);
   }
 
-  :global(body:not([using-camera])) .rec-counter {
+  :global(body:not(.using-camera)) .rec-counter {
     display: none;
   }
 </style>
