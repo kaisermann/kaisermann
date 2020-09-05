@@ -82,4 +82,4 @@
 </style>
 
 <video bind:this={video} class="tv-video" channel="camera" autoplay />
-<div class="rec-counter big-text">{formattedTime}</div>
+<div class="rec-counter big-text glitchy-text">{formattedTime}</div>

@@ -97,10 +97,6 @@
   align-self: flex-end;
   margin-top: 160px;
   padding-bottom: var(--gui-bottom);
-
-  @nest body.hide-content & {
-    visibility: hidden;
-  }
 }
 
 .remote-trigger {

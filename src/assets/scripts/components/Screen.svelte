@@ -13,6 +13,7 @@
     gotoChannel,
     contentVisible,
     toggleContent,
+    toggleRemote,
   } from '../tv';
 
   let mounted = false;
@@ -46,6 +47,8 @@
     ) {
       return;
     }
+
+    if (e.key === 'r') return toggleRemote();
     if (e.key === '=') return increaseChannel();
     if (e.key === '-') return decreaseChannel();
     if (e.key === 'h') return toggleContent();

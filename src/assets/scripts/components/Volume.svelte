@@ -38,7 +38,7 @@
   }
 </style>
 
-<div class="volume" class:hidden>
+<div class="volume glitchy-text" class:hidden>
   VOLUME
   <div class="track">
     {#each { length: 15 } as _, i}

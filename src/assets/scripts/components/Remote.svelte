@@ -1,14 +1,13 @@
 <script>
   import {
-    volume,
     decreaseVolume,
     increaseVolume,
     increaseChannel,
     decreaseChannel,
     toggleMute,
     gotoChannel,
-    toggleOnOff,
     toggleContent,
+    toggleRemote,
   } from '../tv';
 </script>
 
@@ -24,11 +23,12 @@
 
   .wrapper {
     transform: rotateX(0) translateY(0);
-    transition: 0.25s ease-out;
+    transform-origin: 50% bottom;
+    transition: transform 0.3s ease-out;
 
     @nest :global(body.remote) & {
+      transition-delay: 0.4s;
       transform: rotateX(20deg) translateY(-120%);
-      transform-origin: 50% bottom;
     }
   }
 
@@ -36,8 +36,8 @@
     --remote-font: Andale Mono, Trebuchet MS, sans-serif;
     position: relative;
     width: 310px;
-    height: 760px;
-    padding: 80px 12px 110px;
+    height: 730px;
+    padding: 50px 12px 110px;
     border-radius: 16px 16px 12px 12px / 8px 8px 24px 24px;
     background-color: #f1f2f6;
     background-image: url(../images/plastic-texture-noise.png),
@@ -208,8 +208,10 @@
       <div class="inner">
         <div class="buttons">
           <div class="control onoff">
-            <button class="hide-text" on:click={toggleOnOff}>ON/OFF</button>
-            <span>OFF/ON</span>
+            <button
+              class="hide-text"
+              on:click={() => toggleRemote(false)}>REMOTE OFF</button>
+            <span>REMOTE OFF</span>
           </div>
 
           <div class="control vol up">

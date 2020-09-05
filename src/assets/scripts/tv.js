@@ -4,7 +4,6 @@ export const MAX_CHANNEL = 9;
 
 // used for toggling
 let prevVolume = null;
-let prevChannel = null;
 
 export const contentVisible = writable(true);
 export const volume = writable(0.25);
@@ -100,17 +99,10 @@ export function toggleMute() {
   }
 }
 
-export const toggleOnOff = () => {
-  const $currentChannel = get(currentChannel);
-
-  if ($currentChannel === 0 && prevChannel) {
-    gotoChannel(prevChannel);
-  } else {
-    prevChannel = $currentChannel;
-    gotoChannel(0);
-  }
-};
-
 export const toggleContent = () => {
   contentVisible.update((v) => !v);
+};
+
+export const toggleRemote = (val) => {
+  document.body.classList.toggle('remote', val);
 };

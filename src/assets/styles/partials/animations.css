@@ -7,6 +7,18 @@
   animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
 }
 
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
@@ -94,5 +106,15 @@
 
   70% {
     filter: brightness(1) invert(0) saturate(0.4);
+  }
+}
+
+@keyframes moving-stars {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 1920px 1320px;
   }
 }
