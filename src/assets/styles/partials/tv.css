@@ -22,21 +22,25 @@
   box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   margin: 0 auto;
-  transform-origin: center 20%;
-  transition: width 0.4s ease, height 0.4s ease, transform 0.4s ease;
-  transition-delay: 0.1s, 0.1s, 0.1s;
-  will-change: width, height, transform;
+  transform-origin: center 0;
+  transition: transform 0.4s 0.1s ease;
+
+  @media (max-width: 900px) {
+    transition: height 0.4s ease, transform 0.4s ease;
+    transition-delay: 0.1s, 0.1s, 0.1s;
+    will-change: height, transform;
+  }
 
   @nest body.remote & {
     --scale: 0.6;
-    transition-delay: 0, 0, 0;
+    transition-delay: 0s;
     transform: scale(var(--scale)) translateY(80px);
     border-radius: 8px;
 
     @media (max-width: 900px) {
       --scale: 0.9;
-      width: 85vw;
-      height: calc(85vw / 16 * 10);
+      transition-delay: 0s, 0s;
+      height: calc(90vw / 16 * 10);
     }
   }
 }

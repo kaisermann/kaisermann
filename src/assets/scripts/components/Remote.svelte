@@ -21,7 +21,7 @@
     user-select: none;
 
     @media (max-height: 800px) {
-      transform: scale(0.7);
+      transform: scale(0.65);
       transform-origin: 50% 0;
     }
   }
