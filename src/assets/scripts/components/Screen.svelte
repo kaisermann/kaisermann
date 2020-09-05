@@ -5,6 +5,7 @@
   import Webcam from './Webcam.svelte';
   import Video from './Video.svelte';
   import { noise } from '../modules/noise.js';
+  import { isValidHotkey } from '../modules/keyboard.js';
   import {
     currentChannel,
     currentChannelInfo,
@@ -41,13 +42,7 @@
   }
 
   function handleKeyup(e) {
-    if (
-      document.activeElement !== document.body &&
-      document.activeElement != null
-    ) {
-      return;
-    }
-
+    if (!isValidHotkey(e)) return;
     if (e.key === 'r') return toggleRemote();
     if (e.key === '=') return increaseChannel();
     if (e.key === '-') return decreaseChannel();
