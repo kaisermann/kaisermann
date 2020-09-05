@@ -31,16 +31,22 @@
   --gui-bottom: 2.94117647059rem;
 }
 
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
+/* scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #28272a transparent;
 
-::-webkit-scrollbar {
-  width: 3px;
-}
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: #28272a;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #28272a;
+  }
 }
 
 ::selection {
@@ -62,12 +68,6 @@ body {
   overflow: hidden;
 }
 
-.page__content {
-  @nest body.hide-content & {
-    visibility: hidden;
-  }
-}
-
 .page__container {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -75,6 +75,10 @@ body {
   min-height: 100vh;
   width: var(--container-width);
   margin: 0 auto;
+
+  @nest body.hide-content & {
+    visibility: hidden;
+  }
 }
 
 .glitchy-text {
