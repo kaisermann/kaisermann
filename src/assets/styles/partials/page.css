@@ -98,10 +98,3 @@
   margin-top: 160px;
   padding-bottom: var(--gui-bottom);
 }
-
-.remote-trigger {
-  appearance: none;
-  border: none;
-  background: transparent;
-  padding: 0;
-}
