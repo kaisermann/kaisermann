@@ -4,7 +4,7 @@
   background-position: center;
 
   @nest body:not([screen-animation^='turn-on']) & {
-    background-image: url(/assets/images/stars.jpg);
+    background-image: url(/assets/images/stars.webp);
     animation: moving-stars 60s linear infinite;
   }
 }
