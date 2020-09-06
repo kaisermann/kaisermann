@@ -1,5 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 
+import { sendEvent } from './modules/analytics.js';
+
 export const MAX_CHANNEL = 9;
 
 // used for toggling
@@ -103,6 +105,10 @@ export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
 
-export const toggleRemote = (val) => {
-  document.body.classList.toggle('remote', val);
+export const toggleRemote = (value) => {
+  document.body.classList.toggle('remote', value);
+
+  if (value) {
+    sendEvent({ type: 'Went to space', category: 'easter_egg' });
+  }
 };

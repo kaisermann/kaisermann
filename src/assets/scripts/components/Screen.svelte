@@ -4,6 +4,7 @@
   import Volume from './Volume.svelte';
   import Webcam from './Webcam.svelte';
   import Video from './Video.svelte';
+  import { sendEvent } from '../modules/analytics.js';
   import { noise } from '../modules/noise.js';
   import { isValidHotkey } from '../modules/keyboard.js';
   import {
@@ -78,20 +79,18 @@
       animateContainer('switch-channel');
     }
 
-    if (window.gtag) {
-      window.gtag('event', 'channel_switch', {
-        event_label: `Switched to channel ${channelInfo.displayName}`,
-        event_category: 'easter_egg',
-      });
-    }
+    sendEvent({
+      type: 'channel_switch',
+      label: `Switched to channel ${channelInfo.displayName}`,
+      category: 'easter_egg',
+    });
   }
+
+  $: updateChannel($currentChannelInfo);
 
   $: document.body.setAttribute('channel', `${$currentChannel}`);
 
   $: document.body.classList.toggle('hide-content', !$contentVisible);
-
-  // update channel only when mounted (prevent first event)
-  $: updateChannel($currentChannelInfo);
 
   onMount(() => {
     mounted = true;
