@@ -260,12 +260,8 @@
         </div>
 
         <div class="brand">
-          <!-- <img
-            src="/assets/images/kiwi.svg"
-            alt="kiwi bird"
-            width="30"
-            height="30" /> -->
           <img
+            loading="lazy"
             src="/assets/images/kiwivision.svg"
             alt="kiwivision"
             width="103"

@@ -4,6 +4,7 @@
 
 <button class="remote-trigger cursor-pointer" on:click={() => toggleRemote()}>
   <img
+    loading="lazy"
     src="/assets/images/remote-control.svg"
     alt="remote"
     width="32"
