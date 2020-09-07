@@ -53,6 +53,7 @@
   }
 
   function beginLoadingAnimation() {
+    endScreenAnimation();
     noiseInstance = noise();
     body.setAttribute('animation-screen', 'loading-channel');
     channelLoadTimestamp = Date.now();
