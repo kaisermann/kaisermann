@@ -24,6 +24,14 @@
       transform: scale(0.65);
       transform-origin: 50% 0;
     }
+
+    @nest :global(body:not([animation-space])) & {
+      display: none;
+    }
+
+    @nest :global(body[animation-space]) & {
+      --plastic-texture-img: url(../images/plastic-texture-noise.png);
+    }
   }
 
   .wrapper {
@@ -44,7 +52,7 @@
     padding: 50px 12px 110px;
     border-radius: 16px 16px 12px 12px / 8px 8px 24px 24px;
     background-color: #f1f2f6;
-    background-image: url(../images/plastic-texture-noise.png),
+    background-image: var(--plastic-texture-img, none),
       linear-gradient(to bottom, #d8d8d8 0%, #a5a5a5 74%);
     box-shadow: inset 0 14px 6px 0px #e0e0e0, inset 0 8px 10px 0px #252424,
       inset 0px -11px 10px 0px #444;
@@ -142,7 +150,7 @@
     font-family: var(--remote-font);
     color: #fff;
     background-color: #000000;
-    background-image: url(../images/plastic-texture-noise.png),
+    background-image: var(--plastic-texture-img, none),
       linear-gradient(315deg, #000000 0%, #414141 74%);
     background-size: contain, auto;
 
@@ -161,7 +169,7 @@
     grid-area: 1/2;
 
     & button {
-      background-image: url(../images/plastic-texture-noise.png),
+      background-image: var(--plastic-texture-img),
         linear-gradient(315deg, #631111 0%, #dc2525 74%);
     }
   }
@@ -188,7 +196,7 @@
       font-size: 1em;
       font-weight: bold;
       width: 100%;
-      background-image: url(../images/plastic-texture-noise.png),
+      background-image: var(--plastic-texture-img),
         linear-gradient(315deg, #a71111 0%, #c32b2b 34%);
       color: #fbcfcf;
     }
