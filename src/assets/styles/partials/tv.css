@@ -1,13 +1,23 @@
 .space {
   height: 100vh;
   background-color: #000;
-  background-position: center;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(1920px * 2);
+  height: calc(1320px * 2);
+  transform-origin: 0 0;
+  animation: moving-stars 60s linear infinite;
 
   @nest body:not([screen-animation^='turn-on']) & {
     background-image: url(/assets/images/stars.webp);
-    animation: moving-stars 60s linear infinite;
   }
 }
+
 
 .spaceship {
   @nest body.remote & {
