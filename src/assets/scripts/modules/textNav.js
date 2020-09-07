@@ -1,5 +1,7 @@
 import levenshtein from 'js-levenshtein';
 
+import { raf } from './aliases.js';
+
 let pages;
 let textNav;
 
@@ -81,7 +83,7 @@ function fetchPages() {
 
 fetchPages.retries = 0;
 
-const debouncedUpdateCaret = requestAnimationFrame.bind(null, updateCaret);
+const debouncedUpdateCaret = raf.bind(null, updateCaret);
 
 export function init() {
   textNav = document.querySelector('.js-text-nav');

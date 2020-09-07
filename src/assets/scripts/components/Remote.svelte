@@ -1,9 +1,9 @@
 <script>
   import {
-    decreaseVolume,
-    increaseVolume,
-    increaseChannel,
-    decreaseChannel,
+    decrementVolume,
+    incrementVolume,
+    incrementChannel,
+    decrementChannel,
     toggleMute,
     gotoChannel,
     toggleContent,
@@ -218,11 +218,11 @@
           </div>
 
           <div class="control vol up">
-            <button on:click={increaseVolume}>▲</button>
+            <button on:click={incrementVolume}>▲</button>
           </div>
 
           <div class="control vol down">
-            <button on:click={decreaseVolume}>▼</button>
+            <button on:click={decrementVolume}>▼</button>
             <span>VOLUME</span>
           </div>
 
@@ -232,11 +232,11 @@
           </div>
 
           <div class="control ch up">
-            <button on:click={increaseChannel}>▲</button>
+            <button on:click={incrementChannel}>▲</button>
           </div>
 
           <div class="control ch down">
-            <button on:click={decreaseChannel}>▼</button>
+            <button on:click={decrementChannel}>▼</button>
             <span>CHANNEL</span>
           </div>
 

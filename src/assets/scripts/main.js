@@ -1,10 +1,11 @@
 import { init as initTextNav } from './modules/textNav.js';
+import { raf, body } from './modules/aliases.js';
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 
 const bootstrap = () => {
-  requestAnimationFrame(() => {
-    document.body.removeAttribute('no-js', '');
+  raf(() => {
+    body.removeAttribute('no-js', '');
 
     initTextNav();
 

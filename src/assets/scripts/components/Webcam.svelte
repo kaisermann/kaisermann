@@ -1,5 +1,10 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
   import { onMount } from 'svelte';
+  import { raf, body } from '../modules/aliases.js';
+
+  const dispatch = createEventDispatcher();
 
   let stream;
   let video;
@@ -26,7 +31,8 @@
     video.addEventListener(
       'playing',
       () => {
-        document.body.classList.add('using-camera');
+        dispatch('ready', true);
+        body.classList.add('using-camera');
       },
       { once: true },
     );
@@ -51,13 +57,13 @@
   onMount(() => {
     initStream();
 
-    let animationRequest = requestAnimationFrame(function loop() {
+    let animationRequest = raf(function loop() {
       currentTime = Date.now();
-      animationRequest = requestAnimationFrame(loop);
+      animationRequest = raf(loop);
     });
 
     return () => {
-      document.body.classList.remove('using-camera');
+      body.classList.remove('using-camera');
       cancelAnimationFrame(animationRequest);
 
       if (stream) {
