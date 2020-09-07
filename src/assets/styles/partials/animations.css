@@ -1,6 +1,5 @@
 [screen-animation='turn-on'] .tv-screen {
-  animation: turn-on-transform 0.4s, turn-on-filter 1s,
-    turn-on-text-shadow 0.92s ease-out;
+  animation: turn-on-transform 0.4s;
 }
 
 [screen-animation='switch-channel'] .tv-screen {
