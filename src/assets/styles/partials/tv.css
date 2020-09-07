@@ -11,13 +11,12 @@
   width: calc(1920px * 2);
   height: calc(1320px * 2);
   transform-origin: 0 0;
-  animation: moving-stars 60s linear infinite;
 
   @nest body:not([screen-animation^='turn-on']) & {
+    animation: moving-stars 80s linear infinite;
     background-image: url(/assets/images/stars.webp);
   }
 }
-
 
 .spaceship {
   @nest body.remote & {
@@ -32,7 +31,7 @@
   box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   margin: 0 auto;
-  transform-origin: center 0;
+  transform-origin: center 10%;
   transition: transform 0.4s 0.1s ease;
 
   @media (max-width: 900px) {
