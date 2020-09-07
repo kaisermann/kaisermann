@@ -116,11 +116,11 @@ export function toggleSpace() {
     (e) => {
       raf(() => {
         if (e.animationName === 'go-to-space') {
-          return body.setAttribute('animation-space', 'floating');
+          return body.setAttribute('space', 'floating');
         }
 
         if (e.animationName === 'exit-space') {
-          return body.removeAttribute('animation-space');
+          return body.removeAttribute('space');
         }
       });
     },
@@ -128,9 +128,9 @@ export function toggleSpace() {
   );
 
   raf(() => {
-    const isInSpace = body.getAttribute('animation-space') === 'floating';
+    const isInSpace = body.getAttribute('space') === 'floating';
 
-    body.setAttribute('animation-space', isInSpace ? 'exiting' : 'entering');
+    body.setAttribute('space', isInSpace ? 'exiting' : 'entering');
 
     if (isInSpace) {
       sendEvent({ type: 'Went to space', category: 'easter_egg' });

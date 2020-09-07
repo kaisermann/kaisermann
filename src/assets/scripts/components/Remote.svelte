@@ -25,11 +25,12 @@
       transform-origin: 50% 0;
     }
 
-    @nest :global(body:not([animation-space])) & {
+    @nest :global(body:not([space])) & {
       display: none;
     }
 
-    @nest :global(body[animation-space]) & {
+    @nest :global(body[space]) & {
+      /* set the image only in space mode */
       --plastic-texture-img: url(../images/plastic-texture-noise.png);
     }
   }
@@ -39,7 +40,7 @@
     transform-origin: 50% bottom;
     transition: transform 0.3s ease-out;
 
-    @nest :global(body[animation-space='floating']) & {
+    @nest :global(body[space='floating']) & {
       transform: rotateX(20deg) translateY(-120%);
     }
   }

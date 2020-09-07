@@ -13,14 +13,14 @@
   width: 3840px; /* calc(1920px * 2); */
   height: 2640px; /* calc(1320px * 2); */
 
-  @nest body[animation-space] & {
+  @nest body[space] & {
     animation: moving-stars 117s linear infinite;
     background-image: url(/assets/images/stars.webp);
   }
 }
 
 .spaceship {
-  @nest body[animation-space='floating'] & {
+  @nest body[space='floating'] & {
     animation: float 6s ease-in-out infinite;
   }
 }
@@ -39,7 +39,7 @@
     will-change: height, transform;
   }
 
-  @nest body[animation-space] & {
+  @nest body[space] & {
     --startTransform: scale(1) translateY(0);
     --endTransform: scale(var(--scale)) translateY(80px);
     --scale: 0.6;
@@ -52,7 +52,7 @@
     }
   }
 
-  @nest :matches(body[animation-space='entering'], body[animation-space='floating'])
+  @nest :matches(body[space='entering'], body[space='floating'])
       & {
     animation-name: go-to-space;
 
@@ -61,7 +61,7 @@
     }
   }
 
-  @nest :matches(body[animation-space='exiting']) & {
+  @nest :matches(body[space='exiting']) & {
     transform: var(--endTransform);
     animation-name: exit-space;
     animation-delay: 0.1s;
