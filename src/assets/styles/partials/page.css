@@ -1,13 +1,4 @@
-.skip-link {
-  position: absolute;
-  z-index: var(--layer-top);
-  top: 0;
-  left: 0;
 
-  &:not(:focus) {
-    transform: translateX(-100%);
-  }
-}
 
 .header {
   position: relative;
