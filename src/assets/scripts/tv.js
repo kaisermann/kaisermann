@@ -105,10 +105,62 @@ export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
 
-export const toggleRemote = (value) => {
-  document.body.classList.toggle('remote', value);
+export const tvEl = document.querySelector('.js-tv');
+export const screenEl = document.querySelector('.js-screen');
 
-  if (value) {
-    sendEvent({ type: 'Went to space', category: 'easter_egg' });
-  }
+const raf = requestAnimationFrame;
+
+export const toggleSpace = () => {
+  tvEl.addEventListener(
+    'animationend',
+    (e) => {
+      raf(() => {
+        if (e.animationName === 'go-to-space') {
+          return document.body.setAttribute('space', 'floating');
+        }
+
+        if (e.animationName === 'exit-space') {
+          return document.body.removeAttribute('space');
+        }
+      });
+    },
+    { once: true },
+  );
+
+  raf(() => {
+    const isInSpace = document.body.getAttribute('space') === 'floating';
+
+    if (isInSpace) {
+      document.body.setAttribute('space', 'exiting');
+    } else {
+      document.body.setAttribute('space', 'going');
+    }
+
+    if (isInSpace) {
+      sendEvent({ type: 'Went to space', category: 'easter_egg' });
+    }
+  });
 };
+
+export function animateScreen(animation) {
+  raf(() => {
+    const currentAnimation = document.body.getAttribute('screen-animation');
+
+    if (currentAnimation !== animation) {
+      document.body.setAttribute('screen-animation', animation);
+    }
+
+    let timer;
+    const cancel = () => {
+      clearTimeout(timer);
+      raf(() => {
+        document.body.removeAttribute('screen-animation');
+      });
+    };
+
+    // remove the attribute after the animation ends
+    screenEl.addEventListener('animationend', cancel, { once: true });
+
+    timer = setTimeout(cancel, 1500);
+  });
+}

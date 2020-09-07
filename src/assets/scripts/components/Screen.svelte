@@ -15,36 +15,18 @@
     gotoChannel,
     contentVisible,
     toggleContent,
-    toggleRemote,
+    toggleSpace,
+    animateScreen,
   } from '../tv';
 
   let mounted = false;
 
-  const screenEl = document.querySelector('.js-screen');
-  const channelBtn = screenEl.querySelector('.js-channel-btn');
+  const channelBtn = document.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
-
-  function removeAnimationOnceDone() {
-    let timer;
-    const cancel = () => {
-      clearTimeout(timer);
-      document.body.removeAttribute('screen-animation');
-    };
-
-    // remove the attribute after the animation ends
-    screenEl.addEventListener('animationend', cancel, { once: true });
-
-    timer = setTimeout(cancel, 1500);
-  }
-
-  function animateContainer(animation) {
-    document.body.setAttribute('screen-animation', animation);
-    removeAnimationOnceDone();
-  }
 
   function handleKeyup(e) {
     if (!isValidHotkey(e)) return;
-    if (e.key === 'r') return toggleRemote();
+    if (e.key === 'r') return toggleSpace();
     if (e.key === '=') return increaseChannel();
     if (e.key === '-') return decreaseChannel();
     if (e.key === 'h') return toggleContent();
@@ -76,7 +58,7 @@
     const animation = document.body.getAttribute('screen-animation');
 
     if (!animation) {
-      animateContainer('switch-channel');
+      animateScreen('switch-channel');
     }
 
     sendEvent({
@@ -95,8 +77,7 @@
   onMount(() => {
     mounted = true;
 
-    // removes the initial animation attribute once it's done
-    removeAnimationOnceDone();
+    animateScreen('turn-on');
 
     channelBtn.addEventListener('click', increaseChannel);
   });

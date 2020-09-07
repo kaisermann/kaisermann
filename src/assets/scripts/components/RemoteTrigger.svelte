@@ -1,8 +1,8 @@
 <script>
-  import { toggleRemote } from '../tv.js';
+  import { toggleSpace } from '../tv.js';
 </script>
 
-<button class="remote-trigger cursor-pointer" on:click={() => toggleRemote()}>
+<button class="remote-trigger cursor-pointer" on:click={() => toggleSpace()}>
   <img
     loading="lazy"
     src="/assets/images/remote-control.svg"

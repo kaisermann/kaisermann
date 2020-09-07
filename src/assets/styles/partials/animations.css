@@ -3,7 +3,7 @@
 }
 
 [screen-animation='switch-channel'] .tv-screen {
-  animation: switch-channel-filter 0.4s, turn-on-text-shadow 0.5s ease-out;
+  animation: switch-channel-filter 0.4s, switch-channel-text-shadow 0.5s ease-out;
 }
 
 @keyframes float {
@@ -80,7 +80,7 @@
   }
 }
 
-@keyframes turn-on-text-shadow {
+@keyframes switch-channel-text-shadow {
   0% {
     text-shadow: 6px 3px 0 var(--glitchy-blue), -6px -3px 0 var(--glitchy-red);
   }

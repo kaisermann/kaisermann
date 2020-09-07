@@ -7,7 +7,7 @@
     toggleMute,
     gotoChannel,
     toggleContent,
-    toggleRemote,
+    toggleSpace,
   } from '../tv';
 </script>
 
@@ -31,8 +31,7 @@
     transform-origin: 50% bottom;
     transition: transform 0.3s ease-out;
 
-    @nest :global(body.remote) & {
-      transition-delay: 0.4s;
+    @nest :global(body[space='floating']) & {
       transform: rotateX(20deg) translateY(-120%);
     }
   }
@@ -213,9 +212,8 @@
       <div class="inner">
         <div class="buttons">
           <div class="control onoff">
-            <button
-              class="hide-text"
-              on:click={() => toggleRemote(false)}>REMOTE OFF</button>
+            <button class="hide-text" on:click={() => toggleSpace(false)}>REMOTE
+              OFF</button>
             <span>REMOTE OFF</span>
           </div>
 

@@ -10,17 +10,17 @@
   top: 0;
   left: 0;
   transform-origin: 0 0;
+  width: 3840px; /* calc(1920px * 2); */
+  height: 2640px; /* calc(1320px * 2); */
 
-  @nest body:not([screen-animation^='turn-on']) & {
-    width: 3840px; /* calc(1920px * 2); */
-    height: 2640px; /* calc(1320px * 2); */
+  @nest body[space] & {
     animation: moving-stars 117s linear infinite;
     background-image: url(/assets/images/stars.webp);
   }
 }
 
 .spaceship {
-  @nest body.remote & {
+  @nest body[space='floating'] & {
     animation: float 6s ease-in-out infinite;
   }
 }
@@ -33,25 +33,57 @@
   overflow: hidden;
   margin: 0 auto;
   transform-origin: center 10%;
-  transition: transform 0.4s 0.1s ease;
 
   @media (max-width: 900px) {
-    transition: height 0.4s ease, transform 0.4s ease;
-    transition-delay: 0.1s, 0.1s, 0.1s;
+    transition: height 0.4s ease;
     will-change: height, transform;
   }
 
-  @nest body.remote & {
+  @nest :matches(body[space]) & {
+    --startTransform: scale(1) translateY(0);
+    --endTransform: scale(var(--scale)) translateY(80px);
     --scale: 0.6;
-    transition-delay: 0s;
-    transform: scale(var(--scale)) translateY(80px);
-    border-radius: 8px;
+    animation-duration: 0.4s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
 
     @media (max-width: 900px) {
       --scale: 0.9;
-      transition-delay: 0s, 0s;
+    }
+  }
+
+  @nest :matches(body[space='going'], body[space='floating']) & {
+    animation-name: go-to-space;
+
+    @media (max-width: 900px) {
       height: calc(90vw / 16 * 10);
     }
+  }
+
+  @nest :matches(body[space='exiting']) & {
+    transform: var(--endTransform);
+    animation-name: exit-space;
+    animation-delay: 0.1s;
+  }
+}
+
+@keyframes go-to-space {
+  from {
+    transform: var(--initTransform);
+  }
+
+  to {
+    transform: var(--endTransform);
+  }
+}
+
+@keyframes exit-space {
+  from {
+    transform: var(--endTransform);
+  }
+
+  to {
+    transform: var(--initTransform);
   }
 }
 
