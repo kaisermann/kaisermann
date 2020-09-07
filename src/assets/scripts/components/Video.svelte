@@ -1,5 +1,8 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
   import { volume, currentChannelInfo, updateChannelInfo } from '../tv';
+  const dispatch = createEventDispatcher();
 
   let video;
 
@@ -39,6 +42,12 @@
     }
   }
 
+  function handleLoadedData() {
+    if (video.readyState >= 2) {
+      dispatch('ready', true);
+    }
+  }
+
   $: changeChannel($currentChannelInfo, video);
 </script>
 
@@ -48,7 +57,8 @@
   class="tv-video"
   channel={$currentChannelInfo.number}
   playsinline
-  loop>
+  loop
+  on:loadeddata={handleLoadedData}>
   <source
     src="/assets/videos/channel-{$currentChannelInfo.displayName}.webm"
     type="video/webm" />

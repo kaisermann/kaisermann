@@ -27,12 +27,15 @@ export function noise() {
 
     whiteNoise.buffer = noiseBuffer;
     whiteNoise.connect(gainNode);
+    whiteNoise.loop = true;
     whiteNoise.start(0);
     whiteNoise.onended = () => {
       whiteNoise.disconnect();
       gainNode.disconnect();
       audioCtx.close();
     };
+
+    return whiteNoise;
   } catch (e) {
     if (process.env.ELEVENTY_ENV !== 'production') {
       console.error(e);

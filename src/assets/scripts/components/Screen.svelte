@@ -7,11 +7,12 @@
   import { sendEvent } from '../modules/analytics.js';
   import { noise } from '../modules/noise.js';
   import { isValidHotkey } from '../modules/keyboard.js';
+  import { raf, timeout, body } from '../modules/aliases.js';
   import {
     currentChannel,
     currentChannelInfo,
-    decreaseChannel,
-    increaseChannel,
+    decrementChannel,
+    incrementChannel,
     gotoChannel,
     contentVisible,
     toggleContent,
@@ -19,19 +20,24 @@
     animateScreen,
   } from '../tv';
 
+  const MIN_CHANNEL_LOADING_TIME = 400;
+
   let mounted = false;
+  let noiseInstance = null;
 
   const channelBtn = document.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
 
+  let channelLoadTimestamp;
+
   function handleKeyup(e) {
     if (!isValidHotkey(e)) return;
     if (e.key === 'r') return toggleSpace();
-    if (e.key === '=') return increaseChannel();
-    if (e.key === '-') return decreaseChannel();
+    if (e.key === '=') return incrementChannel();
+    if (e.key === '-') return decrementChannel();
     if (e.key === 'h') return toggleContent();
 
-    let channelNumber = parseInt(e.key, 10);
+    let channelNumber = Number(e.key);
 
     // ignore non-number keys
     if (Number.isNaN(channelNumber)) {
@@ -46,20 +52,35 @@
     }
   }
 
-  function updateChannel(channelInfo) {
+  function beginLoadingAnimation() {
+    noiseInstance = noise();
+    body.setAttribute('animation-screen', 'loading-channel');
+    channelLoadTimestamp = Date.now();
+  }
+
+  function endScreenAnimation() {
+    if (noiseInstance) {
+      noiseInstance.stop();
+      noiseInstance = null;
+    }
+    body.removeAttribute('animation-screen');
+  }
+
+  function onChannelChange(channelInfo) {
     // prevent firing before mounting
     if (!mounted) {
       return;
     }
 
     channelNumber.textContent = channelInfo.displayName;
-    requestAnimationFrame(noise);
 
-    const animation = document.body.getAttribute('screen-animation');
-
-    if (!animation) {
-      animateScreen('switch-channel');
-    }
+    raf(() => {
+      beginLoadingAnimation();
+      // can't wait for something that's not a video/webcam
+      if (channelInfo.type == 'unknown') {
+        handleChannelReady();
+      }
+    });
 
     sendEvent({
       type: 'channel_switch',
@@ -68,18 +89,30 @@
     });
   }
 
-  $: updateChannel($currentChannelInfo);
+  function handleChannelReady() {
+    raf(() => {
+      const diff = Date.now() - channelLoadTimestamp;
 
-  $: document.body.setAttribute('channel', `${$currentChannel}`);
+      if (diff <= MIN_CHANNEL_LOADING_TIME) {
+        timeout(endScreenAnimation, MIN_CHANNEL_LOADING_TIME - diff);
+      } else {
+        endScreenAnimation();
+      }
+    });
+  }
 
-  $: document.body.classList.toggle('hide-content', !$contentVisible);
+  $: onChannelChange($currentChannelInfo);
+
+  $: body.setAttribute('channel', `${$currentChannel}`);
+
+  $: body.classList.toggle('hide-content', !$contentVisible);
 
   onMount(() => {
     mounted = true;
 
     animateScreen('turn-on');
 
-    channelBtn.addEventListener('click', increaseChannel);
+    channelBtn.addEventListener('click', incrementChannel);
   });
 </script>
 
@@ -107,9 +140,9 @@
 
 <div class="tv-videos">
   {#if $currentChannelInfo.type === 'webcam'}
-    <Webcam />
+    <Webcam on:ready={handleChannelReady} />
   {:else if $currentChannelInfo.type === 'video'}
-    <Video />
+    <Video on:ready={handleChannelReady} />
   {/if}
 </div>
 

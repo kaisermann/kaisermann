@@ -1,8 +1,12 @@
-export function sendEvent({ type, label, category }) {
-  if (!window.gtag) return;
+import { idle, raf } from './aliases.js';
 
-  window.gtag('event', type, {
-    event_label: label,
-    event_category: category,
+export function sendEvent({ type, label, category }) {
+  (idle || raf)(() => {
+    if (!window.gtag) return;
+
+    window.gtag('event', type, {
+      event_label: label,
+      event_category: category,
+    });
   });
 }

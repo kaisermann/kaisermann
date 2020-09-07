@@ -1,5 +1,6 @@
 <script>
   import { volume } from '../tv.js';
+  import { timeout } from '../modules/aliases.js';
 
   let hidden = true;
   let timer = null;
@@ -15,7 +16,7 @@
 
     hidden = false;
     clearTimeout(timer);
-    timer = setTimeout(() => (hidden = true), 2000);
+    timer = timeout(() => (hidden = true), 2000);
   }
 </script>
 
@@ -26,7 +27,7 @@
     left: var(--gui-side);
     bottom: var(--gui-bottom);
     font-size: var(--font-size-secondary);
-    filter: blur(1px)
+    filter: blur(1px);
   }
 
   .hidden {

@@ -1,11 +1,3 @@
-[screen-animation='turn-on'] .tv-screen {
-  animation: turn-on-transform 0.4s, turn-on-filter 1s;
-}
-
-[screen-animation='switch-channel'] .tv-screen {
-  animation: switch-channel-filter 0.4s, switch-channel-text-shadow 0.5s ease-out;
-}
-
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -80,34 +72,6 @@
   }
 }
 
-@keyframes switch-channel-text-shadow {
-  0% {
-    text-shadow: 6px 3px 0 var(--glitchy-blue), -6px -3px 0 var(--glitchy-red);
-  }
-
-  100% {
-    text-shadow: var(--shadow-x-distance) calc(var(--shadow-y-distance)) 0
-        var(--glitchy-blue),
-      calc(var(--shadow-x-distance)) calc(var(--shadow-y-distance) * -1) 0
-        var(--glitchy-red);
-  }
-}
-
-@keyframes switch-channel-filter {
-  0% {
-    filter: brightness(10) invert(1) saturate(0.4);
-  }
-
-  30%,
-  50% {
-    filter: brightness(20) invert(0) saturate(0.4);
-  }
-
-  70% {
-    filter: brightness(1) invert(0) saturate(0.4);
-  }
-}
-
 @keyframes moving-stars {
   0% {
     transform: translate(0, 0);
@@ -115,5 +79,25 @@
 
   100% {
     transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes go-to-space {
+  from {
+    transform: var(--initTransform);
+  }
+
+  to {
+    transform: var(--endTransform);
+  }
+}
+
+@keyframes exit-space {
+  from {
+    transform: var(--endTransform);
+  }
+
+  to {
+    transform: var(--initTransform);
   }
 }

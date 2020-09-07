@@ -1,8 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 
 import { sendEvent } from './modules/analytics.js';
-
-export const MAX_CHANNEL = 9;
+import { raf, timeout } from './modules/aliases.js';
 
 // used for toggling
 let prevVolume = null;
@@ -12,7 +11,7 @@ export const volume = writable(0.25);
 export const currentChannel = writable(0);
 
 export const channelMap = {
-  0: { type: 'static' },
+  0: {},
   1: { type: 'video', duration: null, watchTimestamp: null },
   2: { type: 'video', duration: null, watchTimestamp: null },
   3: { type: 'video', duration: null, watchTimestamp: null },
@@ -21,8 +20,10 @@ export const channelMap = {
   6: { type: 'video', duration: null, watchTimestamp: null },
   7: { type: 'video', duration: null, watchTimestamp: null },
   8: { type: 'video', duration: null, watchTimestamp: null },
-  9: { type: 'webcam' },
+  9: { type: 'webcam', displayName: 'AV1' },
 };
+
+const channelIds = Object.keys(channelMap);
 
 export const currentChannelInfo = derived(
   [currentChannel],
@@ -43,11 +44,11 @@ export const updateChannelInfo = (number, info) => {
   };
 };
 
-export const increaseChannel = () => {
+export const incrementChannel = () => {
   currentChannel.update((n) => {
     const newValue = n + 1;
 
-    if (newValue > MAX_CHANNEL) {
+    if (newValue >= channelIds.length) {
       return 0;
     }
 
@@ -59,12 +60,12 @@ export const gotoChannel = (n) => {
   currentChannel.set(n);
 };
 
-export const decreaseChannel = () => {
+export const decrementChannel = () => {
   currentChannel.update((n) => {
     const newValue = n - 1;
 
     if (newValue < 0) {
-      return MAX_CHANNEL;
+      return channelIds.length - 1;
     }
 
     return newValue;
@@ -74,7 +75,7 @@ export const decreaseChannel = () => {
 const MAX_VOLUME = 15;
 const VOLUME_STEP = 1 / MAX_VOLUME;
 
-export function decreaseVolume() {
+export function decrementVolume() {
   const newVol = get(volume) - VOLUME_STEP;
 
   if (newVol < 0) return;
@@ -82,7 +83,7 @@ export function decreaseVolume() {
   volume.set(newVol);
 }
 
-export function increaseVolume() {
+export function incrementVolume() {
   const newVol = get(volume) + VOLUME_STEP;
 
   if (newVol > 1) return;
@@ -108,11 +109,10 @@ export const toggleContent = () => {
 const tvEl = document.querySelector('.js-tv');
 const screenEl = document.querySelector('.js-screen');
 
-const raf = requestAnimationFrame;
 const { body } = document;
 
 // todo: better way to do this animation orchestration
-export const toggleSpace = () => {
+export function toggleSpace() {
   tvEl.addEventListener(
     'animationend',
     (e) => {
@@ -138,27 +138,27 @@ export const toggleSpace = () => {
       sendEvent({ type: 'Went to space', category: 'easter_egg' });
     }
   });
-};
+}
 
 export function animateScreen(animation) {
   raf(() => {
-    const currentAnimation = body.getAttribute('screen-animation');
+    const currentAnimation = body.getAttribute('animation-screen');
 
     if (currentAnimation !== animation) {
-      body.setAttribute('screen-animation', animation);
+      body.setAttribute('animation-screen', animation);
     }
 
     let timer;
     const cancel = () => {
       clearTimeout(timer);
       raf(() => {
-        body.removeAttribute('screen-animation');
+        body.removeAttribute('animation-screen');
       });
     };
 
     // remove the attribute after the animation ends
     screenEl.addEventListener('animationend', cancel, { once: true });
 
-    timer = setTimeout(cancel, 1500);
+    timer = timeout(cancel, 1500);
   });
 }

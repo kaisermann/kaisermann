@@ -68,7 +68,7 @@ body {
   overflow: hidden;
 }
 
-.page__container {
+.page-container {
   display: grid;
   grid-template-rows: auto 1fr auto;
   max-width: 100%;

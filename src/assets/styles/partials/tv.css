@@ -13,14 +13,14 @@
   width: 3840px; /* calc(1920px * 2); */
   height: 2640px; /* calc(1320px * 2); */
 
-  @nest body[space] & {
+  @nest body[animation-space] & {
     animation: moving-stars 117s linear infinite;
     background-image: url(/assets/images/stars.webp);
   }
 }
 
 .spaceship {
-  @nest body[animation:space='floating'] & {
+  @nest body[animation-space='floating'] & {
     animation: float 6s ease-in-out infinite;
   }
 }
@@ -68,26 +68,6 @@
   }
 }
 
-@keyframes go-to-space {
-  from {
-    transform: var(--initTransform);
-  }
-
-  to {
-    transform: var(--endTransform);
-  }
-}
-
-@keyframes exit-space {
-  from {
-    transform: var(--endTransform);
-  }
-
-  to {
-    transform: var(--initTransform);
-  }
-}
-
 .tv-screen {
   height: 100%;
 }
@@ -122,7 +102,7 @@
 .tv-effect--vignette {
   background: radial-gradient(circle, transparent 60%, black 100%), transparent;
 
-  @nest body:not([no-js]) [screen-animation='turn-on'] & {
+  @nest body:not([no-js])[animation-screen='turn-on'] & {
     background: radial-gradient(circle, black 30%, transparent 90%), transparent;
   }
 }
@@ -173,15 +153,14 @@
   }
 }
 
-.tv__content {
+.tv-content {
   position: relative;
   z-index: var(--layer-content);
   height: 100%;
   overflow: hidden auto;
   background-color: rgba(0, 0, 0, 0.4);
 
-  /* todo: needed? no js causes this to never be removed */
-  @nest body:not([no-js]) [screen-animation='turn-on'] & {
+  @nest body:not([no-js])[animation-screen='turn-on'] & {
     overflow: hidden;
   }
 }
@@ -203,5 +182,23 @@
 
   @nest body:not(.using-camera) & {
     display: none;
+  }
+}
+
+body[animation-screen='turn-on'] .tv-screen {
+  animation: turn-on-transform 0.4s, turn-on-filter 1s;
+}
+
+body[animation-screen='loading-channel'] {
+  & .tv-screen {
+    filter: brightness(10) saturate(0.2);
+  }
+
+  & .tv-effect--colors {
+    opacity: 0.4;
+  }
+
+  & .tv-effect--static {
+    opacity: 0.8;
   }
 }
