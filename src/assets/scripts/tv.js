@@ -105,22 +105,24 @@ export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
 
-export const tvEl = document.querySelector('.js-tv');
-export const screenEl = document.querySelector('.js-screen');
+const tvEl = document.querySelector('.js-tv');
+const screenEl = document.querySelector('.js-screen');
 
 const raf = requestAnimationFrame;
+const { body } = document;
 
+// todo: better way to do this animation orchestration
 export const toggleSpace = () => {
   tvEl.addEventListener(
     'animationend',
     (e) => {
       raf(() => {
         if (e.animationName === 'go-to-space') {
-          return document.body.setAttribute('space', 'floating');
+          return body.setAttribute('animation-space', 'floating');
         }
 
         if (e.animationName === 'exit-space') {
-          return document.body.removeAttribute('space');
+          return body.removeAttribute('animation-space');
         }
       });
     },
@@ -128,13 +130,9 @@ export const toggleSpace = () => {
   );
 
   raf(() => {
-    const isInSpace = document.body.getAttribute('space') === 'floating';
+    const isInSpace = body.getAttribute('animation-space') === 'floating';
 
-    if (isInSpace) {
-      document.body.setAttribute('space', 'exiting');
-    } else {
-      document.body.setAttribute('space', 'going');
-    }
+    body.setAttribute('animation-space', isInSpace ? 'exiting' : 'entering');
 
     if (isInSpace) {
       sendEvent({ type: 'Went to space', category: 'easter_egg' });
@@ -144,17 +142,17 @@ export const toggleSpace = () => {
 
 export function animateScreen(animation) {
   raf(() => {
-    const currentAnimation = document.body.getAttribute('screen-animation');
+    const currentAnimation = body.getAttribute('screen-animation');
 
     if (currentAnimation !== animation) {
-      document.body.setAttribute('screen-animation', animation);
+      body.setAttribute('screen-animation', animation);
     }
 
     let timer;
     const cancel = () => {
       clearTimeout(timer);
       raf(() => {
-        document.body.removeAttribute('screen-animation');
+        body.removeAttribute('screen-animation');
       });
     };
 

@@ -31,7 +31,7 @@
     transform-origin: 50% bottom;
     transition: transform 0.3s ease-out;
 
-    @nest :global(body[space='floating']) & {
+    @nest :global(body[animation-space='floating']) & {
       transform: rotateX(20deg) translateY(-120%);
     }
   }
