@@ -3,7 +3,7 @@ import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 
 const bootstrap = () => {
-  requestAnimationFrame(() => {
+  (window.requestIdleCallback || window.requestAnimationFrame)(() => {
     document.body.removeAttribute('no-js', '');
 
     initTextNav();
