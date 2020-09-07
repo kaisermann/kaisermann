@@ -8,11 +8,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 3840px; /* calc(1920px * 2); */
-  height: 2640px; /* calc(1320px * 2); */
   transform-origin: 0 0;
 
   @nest body:not([screen-animation^='turn-on']) & {
+    width: 3840px; /* calc(1920px * 2); */
+    height: 2640px; /* calc(1320px * 2); */
     animation: moving-stars 117s linear infinite;
     background-image: url(/assets/images/stars.webp);
   }
