@@ -12,7 +12,7 @@ export function noise() {
 
     const gainNode = audioCtx.createGain();
 
-    gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0.008, audioCtx.currentTime);
     gainNode.connect(audioCtx.destination);
 
     for (
