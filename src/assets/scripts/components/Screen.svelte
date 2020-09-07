@@ -7,8 +7,9 @@
   import { sendEvent } from '../modules/analytics.js';
   import { noise } from '../modules/noise.js';
   import { isValidHotkey } from '../modules/keyboard.js';
-  import { raf, timeout, body } from '../modules/aliases.js';
+  import { raf, timeout, body } from '../modules/utils.js';
   import {
+    screenEl,
     currentChannel,
     currentChannelInfo,
     decrementChannel,
@@ -17,13 +18,13 @@
     contentVisible,
     toggleContent,
     toggleSpace,
-    animateScreen,
   } from '../tv';
 
   const MIN_CHANNEL_LOADING_TIME = 400;
 
   let mounted = false;
   let noiseInstance = null;
+  let isAnimatingLoading = false;
 
   const channelBtn = document.querySelector('.js-channel-btn');
   const channelNumber = channelBtn.querySelector('.js-channel-number');
@@ -53,21 +54,49 @@
   }
 
   function beginLoadingAnimation() {
-    endScreenAnimation();
+    endLoadingAnimation();
     noiseInstance = noise();
     body.setAttribute('animation-screen', 'loading-channel');
     channelLoadTimestamp = Date.now();
+    isAnimatingLoading = true;
   }
 
-  function endScreenAnimation() {
+  function removeScreenAnimationOnceDone(duration = 1500) {
+    let timer;
+
+    function removeAnimation() {
+      clearTimeout(timer);
+      timer = null;
+      body.removeAttribute('animation-screen');
+      screenEl.removeEventListener('animationend', removeAnimation);
+    }
+
+    screenEl.addEventListener('animationend', removeAnimation, { once: true });
+    timer = timeout(removeAnimation, duration);
+  }
+
+  function endLoadingAnimation() {
     if (noiseInstance) {
       noiseInstance.stop();
       noiseInstance = null;
     }
     body.removeAttribute('animation-screen');
+    isAnimatingLoading = false;
   }
 
-  function onChannelChange(channelInfo) {
+  function handleChannelReady() {
+    raf(() => {
+      const diff = Date.now() - channelLoadTimestamp;
+
+      if (diff <= MIN_CHANNEL_LOADING_TIME) {
+        timeout(endLoadingAnimation, MIN_CHANNEL_LOADING_TIME - diff);
+      } else {
+        endLoadingAnimation();
+      }
+    });
+  }
+
+  function handleChannelChange(channelInfo) {
     // prevent firing before mounting
     if (!mounted) {
       return;
@@ -90,19 +119,7 @@
     });
   }
 
-  function handleChannelReady() {
-    raf(() => {
-      const diff = Date.now() - channelLoadTimestamp;
-
-      if (diff <= MIN_CHANNEL_LOADING_TIME) {
-        timeout(endScreenAnimation, MIN_CHANNEL_LOADING_TIME - diff);
-      } else {
-        endScreenAnimation();
-      }
-    });
-  }
-
-  $: onChannelChange($currentChannelInfo);
+  $: handleChannelChange($currentChannelInfo);
 
   $: body.setAttribute('channel', `${$currentChannel}`);
 
@@ -111,7 +128,8 @@
   onMount(() => {
     mounted = true;
 
-    animateScreen('turn-on');
+    // remove hard-coded animation-screen (base.njk)
+    removeScreenAnimationOnceDone();
 
     channelBtn.addEventListener('click', incrementChannel);
   });
@@ -143,7 +161,7 @@
   {#if $currentChannelInfo.type === 'webcam'}
     <Webcam on:ready={handleChannelReady} />
   {:else if $currentChannelInfo.type === 'video'}
-    <Video on:ready={handleChannelReady} />
+    <Video on:ready={handleChannelReady} hidden={isAnimatingLoading} />
   {/if}
 </div>
 

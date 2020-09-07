@@ -41,7 +41,7 @@
   }
 
   50% {
-    transform: scale(1, 0.8) translate(0, 90%) skew(-2deg);
+    transform: scale(1, 0.8) translate(0, 40%) skew(-2deg);
   }
 
   100% {

@@ -1,4 +1,4 @@
-import { idle, raf } from './aliases.js';
+import { idle, raf } from './utils.js';
 
 export function sendEvent({ type, label, category }) {
   (idle || raf)(() => {

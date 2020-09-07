@@ -1,5 +1,6 @@
 import { init as initTextNav } from './modules/textNav.js';
-import { raf, body } from './modules/aliases.js';
+import { raf, body } from './modules/utils.js';
+import { screenEl } from './tv.js';
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 
@@ -9,7 +10,7 @@ const bootstrap = () => {
 
     initTextNav();
 
-    new TVScreen({ target: document.querySelector('.js-screen') });
+    new TVScreen({ target: screenEl });
 
     new Remote({ target: document.querySelector('.js-remote') });
   });

@@ -1,6 +1,6 @@
 import levenshtein from 'js-levenshtein';
 
-import { raf } from './aliases.js';
+import { raf } from './utils.js';
 
 let pages;
 let textNav;

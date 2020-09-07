@@ -159,10 +159,6 @@
   height: 100%;
   overflow: hidden auto;
   background-color: rgba(0, 0, 0, 0.4);
-
-  @nest body:not([no-js])[animation-screen='turn-on'] & {
-    overflow: hidden;
-  }
 }
 
 .tv-rec {

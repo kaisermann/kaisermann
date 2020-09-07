@@ -1,7 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 
 import { sendEvent } from './modules/analytics.js';
-import { raf, timeout } from './modules/aliases.js';
+import { raf, body } from './modules/utils.js';
 
 // used for toggling
 let prevVolume = null;
@@ -106,10 +106,8 @@ export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
 
-const tvEl = document.querySelector('.js-tv');
-const screenEl = document.querySelector('.js-screen');
-
-const { body } = document;
+export const tvEl = document.querySelector('.js-tv');
+export const screenEl = document.querySelector('.js-screen');
 
 // todo: better way to do this animation orchestration
 export function toggleSpace() {
@@ -137,28 +135,5 @@ export function toggleSpace() {
     if (isInSpace) {
       sendEvent({ type: 'Went to space', category: 'easter_egg' });
     }
-  });
-}
-
-export function animateScreen(animation) {
-  raf(() => {
-    const currentAnimation = body.getAttribute('animation-screen');
-
-    if (currentAnimation !== animation) {
-      body.setAttribute('animation-screen', animation);
-    }
-
-    let timer;
-    const cancel = () => {
-      clearTimeout(timer);
-      raf(() => {
-        body.removeAttribute('animation-screen');
-      });
-    };
-
-    // remove the attribute after the animation ends
-    screenEl.addEventListener('animationend', cancel, { once: true });
-
-    timer = timeout(cancel, 1500);
   });
 }

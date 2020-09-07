@@ -1,64 +1,84 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
 
   import { volume, currentChannelInfo, updateChannelInfo } from '../tv';
   const dispatch = createEventDispatcher();
 
   let video;
+  let isReady = false;
 
-  async function changeChannel() {
-    const { duration, watchTimestamp } = $currentChannelInfo;
+  export let hidden = true;
+
+  async function changeChannel(channelInfo) {
+    const { number, duration, watchTimestamp } = channelInfo;
 
     if (!video) return;
 
+    isReady = false;
     video.load();
 
     if (watchTimestamp != null) {
       const now = Date.now() / 1000;
-      let currentTime = now - watchTimestamp;
+      let updatedTime = now - watchTimestamp;
 
-      if (currentTime < duration) {
-        video.currentTime = currentTime;
+      if (updatedTime < duration) {
+        video.currentTime = updatedTime;
       } else {
         video.currentTime = 0;
-        updateChannelInfo($currentChannelInfo.number, {
-          watchTimestamp: now,
-        });
+        updateChannelInfo(number, { watchTimestamp: now });
       }
     }
 
-    const playPromise = video.play().catch(() => {});
-
     if (watchTimestamp == null) {
-      await playPromise;
-
-      // check for video element again because it could have died
-      if (!video) return;
-
-      updateChannelInfo($currentChannelInfo.number, {
-        duration: video.duration,
-        watchTimestamp: Date.now() / 1000,
-      });
+      updateChannelInfo(number, { watchTimestamp: Date.now() / 1000 });
     }
+  }
+
+  function handleMetadata() {
+    updateChannelInfo($currentChannelInfo.number, { duration: video.duration });
   }
 
   function handleLoadedData() {
     if (video.readyState >= 2) {
       dispatch('ready', true);
+      isReady = true;
+    } else {
+      isReady = false;
     }
   }
 
+  function updatePlayState() {
+    if (!video) return;
+
+    if (isReady && !hidden) {
+      video.play();
+      return;
+    }
+
+    video.pause();
+  }
+
   $: changeChannel($currentChannelInfo, video);
+
+  $: updatePlayState(isReady, hidden);
 </script>
+
+<style>
+  .unavailable {
+    visibility: hidden;
+  }
+</style>
 
 <video
   bind:this={video}
   bind:volume={$volume}
   class="tv-video"
+  class:unavailable={!isReady || hidden}
   channel={$currentChannelInfo.number}
   playsinline
   loop
-  on:loadeddata={handleLoadedData}>
+  on:loadeddata={handleLoadedData}
+  on:loadedmetadata={handleMetadata}>
   <source
     src="/assets/videos/channel-{$currentChannelInfo.displayName}.webm"
     type="video/webm" />

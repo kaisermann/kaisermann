@@ -2,7 +2,7 @@
   import { createEventDispatcher } from 'svelte';
 
   import { onMount } from 'svelte';
-  import { raf, body } from '../modules/aliases.js';
+  import { raf, body } from '../modules/utils.js';
 
   const dispatch = createEventDispatcher();
 
