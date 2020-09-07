@@ -14,8 +14,4 @@ const bootstrap = () => {
   });
 };
 
-if (document.readyState !== 'interactive') {
-  window.addEventListener('DOMContentLoaded', bootstrap);
-} else {
-  bootstrap();
-}
+window.addEventListener('load', bootstrap);
