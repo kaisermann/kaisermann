@@ -12,16 +12,16 @@ module.exports = (config) => {
     config.addTransform('htmlmin', htmlmin);
   }
 
-  config.addFilter('jsmin', (code) => {
-    const minified = Terser.minify(code);
+  config.addNunjucksAsyncFilter('jsmin', async (code, callback) => {
+    const minified = await Terser.minify(code);
 
     if (minified.error) {
       console.log('Terser error: ', minified.error);
 
-      return code;
+      return callback(minified.error, code);
     }
 
-    return minified.code;
+    callback(null, minified.code);
   });
 
   config.addPassthroughCopy('./src/assets/videos');
