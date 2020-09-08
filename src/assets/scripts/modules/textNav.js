@@ -99,10 +99,7 @@ export function init() {
     }
   });
   textNav.addEventListener('focus', () => {
-    raf(() => {
-      textNav.textContent = textNav.textContent.trim();
-      updateCaret();
-    });
+    debouncedUpdateCaret();
 
     if (pages == null) {
       fetchPages();
