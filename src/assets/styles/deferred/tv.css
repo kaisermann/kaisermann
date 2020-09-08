@@ -12,13 +12,17 @@ body[animation-screen='loading-channel'] {
   }
 }
 
-body[space] .stars {
-  animation: moving-stars 117s linear infinite;
-  background-image: url(/assets/images/stars.webp);
+.stars {
+  @nest body[space] & {
+    animation: moving-stars 117s linear infinite;
+    background-image: url(/assets/images/stars.webp);
+  }
 }
 
-body[space='floating'] .spaceship {
-  animation: float 6s ease-in-out infinite;
+.spaceship {
+  @nest body[space='floating'] & {
+    animation: float 6s ease-in-out infinite;
+  }
 }
 
 .tv {
@@ -65,6 +69,8 @@ body[space='floating'] .spaceship {
   }
 }
 
-body[animation-screen='turn-on'] .tv-effect--vignette {
-  background: radial-gradient(circle, black 30%, transparent 90%), transparent;
+.tv-effect--vignette {
+  @nest body[animation-screen='turn-on'] & {
+    background: radial-gradient(circle, black 30%, transparent 90%), transparent;
+  }
 }
