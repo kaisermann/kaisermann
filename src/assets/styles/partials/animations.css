@@ -72,16 +72,6 @@
   }
 }
 
-@keyframes moving-stars {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(-50%, -50%);
-  }
-}
-
 @keyframes go-to-space {
   from {
     transform: var(--initTransform);
@@ -99,5 +89,15 @@
 
   to {
     transform: var(--initTransform);
+  }
+}
+
+@keyframes moving-stars {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
   }
 }

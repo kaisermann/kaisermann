@@ -26,34 +26,36 @@
 }
 
 .tv {
+  --spaceIntro: 0.8s;
+  --spaceOutroDelay: 0.2s;
   position: relative;
   height: 100vh;
   background-color: #000;
-  box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   margin: 0 auto;
   transform-origin: center 10%;
-
-  @media (max-width: 900px) {
-    transition: height 0.4s ease;
-    will-change: height, transform;
-  }
+  transition: box-shadow 0.6s ease-out;
 
   @nest body[space] & {
+    --scale: 0.6;
     --startTransform: scale(1) translateY(0);
     --endTransform: scale(var(--scale)) translateY(80px);
-    --scale: 0.6;
-    animation-duration: 0.4s;
-    animation-timing-function: ease;
+    animation-duration: var(--spaceIntro);
+    animation-timing-function: cubic-bezier(0.72, 0.27, 0, 1);
     animation-fill-mode: both;
 
     @media (max-width: 900px) {
       --scale: 0.9;
+      transition: height var(--spaceIntro) ease;
+      will-change: height, transform;
     }
   }
 
-  @nest :matches(body[space='entering'], body[space='floating'])
-      & {
+  @nest body:matches([space='floating'], [space='exiting']) & {
+    box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
+  }
+
+  @nest body:matches([space='entering'], [space='floating']) & {
     animation-name: go-to-space;
 
     @media (max-width: 900px) {
@@ -61,10 +63,14 @@
     }
   }
 
-  @nest :matches(body[space='exiting']) & {
+  @nest body[space='exiting'] & {
     transform: var(--endTransform);
     animation-name: exit-space;
-    animation-delay: 0.1s;
+    animation-delay: var(--spaceOutroDelay);
+
+    @media (max-width: 900px) {
+      transition-delay: var(--spaceOutroDelay);
+    }
   }
 }
 
@@ -112,7 +118,7 @@
   background-color: #fff;
   opacity: 0.2;
 
-  @nest body:not(.using-camera) & {
+  @nest body:not([camera]) & {
     display: none;
   }
 }
@@ -161,33 +167,13 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.tv-rec {
-  display: inline-flex;
-  align-items: center;
-
-  & span {
-    content: '';
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-left: 0.5rem;
-    background-color: #f00;
-    box-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
-    animation: blink 1.4s step-end infinite;
-  }
-
-  @nest body:not(.using-camera) & {
-    display: none;
-  }
-}
-
 body[animation-screen='turn-on'] .tv-screen {
   animation: turn-on-transform 0.4s, turn-on-filter 1s;
 }
 
 body[animation-screen='loading-channel'] {
   & .tv-screen {
-    filter: brightness(10) saturate(0.2);
+    filter: brightness(5) saturate(0.2) contrast(1.1);
   }
 
   & .tv-effect--colors {

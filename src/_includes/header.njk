@@ -2,33 +2,44 @@
   <div class="header__container">
     <nav class="nav">
       {% if page.url == "/"%}
-        <ul class="nav__breadcrumb">
-          <li>CK</li>
-        </ul>
-        {% set navPages = collections.headerNav | eleventyNavigation("bio") %}
-        <ul class="nav__menu">
-          {%- for entry in navPages %}
-            <li>
-              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            </li>
-          {%- endfor %}
-        </ul>
-      {% else %}
-        {% set navPages = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
-        <ul class="nav__breadcrumb">
-          {%- for entry in navPages %}
-            <li>
-              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            </li>
-          {%- endfor %}
-          <li class="js-text-nav text-nav cursor-pointer" contenteditable role="textbox" aria-label="navigation by text" data-original-text="{{eleventyNavigation.key}}">{{eleventyNavigation.key}}</li>
-        </ul>
+      <ul class="nav__breadcrumb">
+        <li>CK</li>
+      </ul>
+      {% set navPages = collections.headerNav | eleventyNavigation("bio") %}
+      <ul class="nav__menu">
+        {%- for entry in navPages %}
+        <li>
+          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+      {% else %} {% set navPages = collections.all |
+      eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
+      <ul class="nav__breadcrumb">
+        {%- for entry in navPages %}
+        <li>
+          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+        </li>
+        {%- endfor %}
+        <li
+          class="js-text-nav text-nav cursor-pointer"
+          contenteditable
+          role="textbox"
+          aria-label="navigation by text"
+          data-original-text="{{ eleventyNavigation.key }}"
+        >
+          {{ eleventyNavigation.key }}
+        </li>
+      </ul>
       {% endif %}
     </nav>
+
     <div class="header__info">
-      <div role="button" class="header__channel cursor-pointer js-channel-btn">CHANNEL <span class="js-channel-number">00</span></div>
       <div class="js-header-date">JUL 2, 1993</div>
-      <div class="tv-rec">REC <span></span></div>
+      <div class="js-header-controls"></div>
+      <noscript>
+        <div role="button" class="cursor-pointer">CHANNEL 00</div>
+      </noscript>
     </div>
   </div>
 </header>

@@ -32,7 +32,7 @@
       'playing',
       () => {
         dispatch('ready', true);
-        body.classList.add('using-camera');
+        body.setAttribute('camera', '');
       },
       { once: true },
     );
@@ -63,7 +63,7 @@
     });
 
     return () => {
-      body.classList.remove('using-camera');
+      body.removeAttribute('camera');
       cancelAnimationFrame(animationRequest);
 
       if (stream) {
@@ -73,19 +73,41 @@
   });
 </script>
 
-<style>
-  .rec-counter {
+<style lang="postcss">
+  .rec-wrapper {
     position: absolute;
     z-index: calc(var(--layer-tv-effects) + 1);
     bottom: var(--gui-bottom);
     right: var(--gui-side);
     filter: blur(1px);
+
+    @nest :global(body:not([camera])) & {
+      display: none;
+    }
   }
 
-  :global(body:not(.using-camera)) .rec-counter {
-    display: none;
+  .rec {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & span {
+      content: '';
+      display: inline-block;
+      width: 0.6em;
+      height: 0.6em;
+      margin-left: 0.5em;
+      border-radius: 50%;
+      background-color: #f00;
+      box-shadow: 3px 0 0 var(--glitchy-blue), -3px 0 0 var(--glitchy-red);
+      animation: blink 1.4s step-end infinite;
+    }
   }
 </style>
 
 <video bind:this={video} class="tv-video" channel="camera" autoplay />
-<div class="rec-counter big-text glitchy-text">{formattedTime}</div>
+
+<div class="rec-wrapper big-text glitchy-text">
+  <div class="rec">REC <span /></div>
+  <div class="counter">{formattedTime}</div>
+</div>

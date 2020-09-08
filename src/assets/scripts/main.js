@@ -3,6 +3,7 @@ import { raf, body } from './modules/utils.js';
 import { screenEl } from './tv.js';
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
+import HeaderControls from './components/HeaderControls.svelte';
 
 const bootstrap = () => {
   raf(() => {
@@ -13,6 +14,10 @@ const bootstrap = () => {
     new TVScreen({ target: screenEl });
 
     new Remote({ target: document.querySelector('.js-remote') });
+
+    new HeaderControls({
+      target: document.querySelector('.js-header-controls'),
+    });
   });
 };
 

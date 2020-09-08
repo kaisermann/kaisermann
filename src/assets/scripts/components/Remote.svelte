@@ -153,7 +153,7 @@
     background-color: #000000;
     background-image: var(--plastic-texture-img, none),
       linear-gradient(315deg, #000000 0%, #414141 74%);
-    background-size: contain, auto;
+    background-size: 200%, auto;
 
     &:focus {
       outline: none;

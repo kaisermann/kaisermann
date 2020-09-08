@@ -26,9 +26,6 @@
   let noiseInstance = null;
   let isAnimatingLoading = false;
 
-  const channelBtn = document.querySelector('.js-channel-btn');
-  const channelNumber = channelBtn.querySelector('.js-channel-number');
-
   let channelLoadTimestamp;
 
   function handleKeyup(e) {
@@ -102,8 +99,6 @@
       return;
     }
 
-    channelNumber.textContent = channelInfo.displayName;
-
     raf(() => {
       beginLoadingAnimation();
       // can't wait for something that's not a video/webcam
@@ -130,8 +125,6 @@
 
     // remove hard-coded animation-screen (base.njk)
     removeScreenAnimationOnceDone();
-
-    channelBtn.addEventListener('click', incrementChannel);
   });
 </script>
 

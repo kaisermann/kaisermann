@@ -13,7 +13,7 @@
   --text-secondary: #fff;
 
   --font-primary: 'VCR OSD Mono', monospace;
-  --font-size-primary: clamp(13px, 1.8vw, 34px);
+  --font-size-primary: clamp(16px, 1.8vw, 34px);
   --font-size-secondary: 1.941176470588235rem;
   --line-height: 1.4;
 
