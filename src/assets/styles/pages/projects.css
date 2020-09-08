@@ -17,7 +17,7 @@
     font-size: var(--font-size-primary);
   }
 }
-@media (min-width: 481px) {
+@media (min-width: 580px) {
   .project-list {
     grid-template-columns: 1fr 1fr;
   }
