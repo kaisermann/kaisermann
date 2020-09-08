@@ -23,7 +23,7 @@
     color: inherit;
     text-shadow: inherit;
     font-family: inherit;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
 
     &::before {
       content: '';
