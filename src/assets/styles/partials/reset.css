@@ -58,25 +58,6 @@ video {
   max-width: 100%;
 }
 
-iframe {
-  border: 0;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-td,
-th {
-  padding: 0;
-}
-
-td:not([align]),
-th:not([align]) {
-  text-align: left;
-}
-
 body {
   min-height: 100vh;
   scroll-behavior: smooth;

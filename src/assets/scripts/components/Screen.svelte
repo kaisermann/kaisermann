@@ -134,7 +134,7 @@
     overflow: hidden;
     pointer-events: none;
 
-    & :global .tv-video {
+    & :global(.tv-video) {
       position: absolute;
       top: 0;
       left: 0;
@@ -146,125 +146,6 @@
       &[channel='8'] {
         object-position: center top;
       }
-    }
-  }
-
-  :global body[animation-screen='loading-channel'] {
-    & .tv-screen {
-      filter: brightness(5) saturate(0.2) contrast(1.1);
-    }
-
-    & .tv-effect--colors {
-      opacity: 0.4;
-    }
-
-    & .tv-effect--static {
-      opacity: 0.7;
-    }
-  }
-
-  :global body[space] .stars {
-    animation: moving-stars 117s linear infinite;
-    background-image: url(/assets/images/stars.webp);
-  }
-
-  :global body[space='floating'] .spaceship {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  :global .tv {
-    --spaceIntro: 0.8s;
-    --spaceOutroDelay: 0.2s;
-    transform-origin: center 10%;
-    transition: box-shadow 0.6s ease-out;
-
-    @nest :global body[space] & {
-      --scale: 0.6;
-      --startTransform: scale(1) translateY(0);
-      --endTransform: scale(var(--scale)) translateY(80px);
-      animation-duration: var(--spaceIntro);
-      animation-timing-function: cubic-bezier(0.72, 0.27, 0, 1);
-      animation-fill-mode: both;
-
-      @media (max-width: 900px) {
-        --scale: 0.9;
-        transition: height var(--spaceIntro) ease;
-        will-change: height, transform;
-      }
-    }
-
-    @nest :global body:matches([space='floating'], [space='exiting']) & {
-      box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
-    }
-
-    @nest :global body:matches([space='entering'], [space='floating']) & {
-      animation-name: go-to-space;
-
-      @media (max-width: 900px) {
-        height: calc(90vw / 16 * 10);
-      }
-    }
-
-    @nest :global body[space='exiting'] & {
-      transform: var(--endTransform);
-      animation-name: exit-space;
-      animation-delay: var(--spaceOutroDelay);
-
-      @media (max-width: 900px) {
-        transition-delay: var(--spaceOutroDelay);
-      }
-    }
-  }
-
-  :global body[animation-screen='turn-on'] .tv-effect--vignette {
-    background: radial-gradient(circle, black 30%, transparent 90%), transparent;
-  }
-
-  @keyframes -global-float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes -global-go-to-space {
-    from {
-      transform: var(--initTransform);
-    }
-
-    to {
-      transform: var(--endTransform);
-    }
-  }
-
-  @keyframes -global-exit-space {
-    from {
-      transform: var(--endTransform);
-    }
-
-    to {
-      transform: var(--initTransform);
-    }
-  }
-
-  @keyframes -global-moving-stars {
-    0% {
-      transform: translate(0, 0);
-    }
-
-    100% {
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  @keyframes -global-blink {
-    50% {
-      opacity: 0;
     }
   }
 </style>

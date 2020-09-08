@@ -41,12 +41,12 @@
   <button
     class="previous cursor-pointer"
     aria-label="previous channel"
-    on:click={decrementChannel}>◀</button>
+    on:click={decrementChannel}>◄</button>
   <div class="channel">
     CHANNEL <span>{$currentChannelInfo.displayName}</span>
   </div>
   <button
     class="next cursor-pointer"
     aria-label="next channel"
-    on:click={incrementChannel}>▶</button>
+    on:click={incrementChannel}>►</button>
 </div>

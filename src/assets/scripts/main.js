@@ -1,3 +1,5 @@
+import '../styles/deferred.css';
+
 import { init as initTextNav } from './modules/textNav.js';
 import { raf, body } from './modules/utils.js';
 import { screenEl } from './tv.js';
