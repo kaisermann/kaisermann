@@ -78,7 +78,7 @@ module.exports = class {
           mkdirSync(dirname(dest), { recursive: true });
           writeFileSync(dest, css, { encoding: 'UTF-8' });
 
-          return;
+          continue;
         }
 
         console.warn('// TODO: asset imports: ', asset.fileName);
