@@ -23,7 +23,7 @@
   top: 100px;
 }
 
-@media (min-width: 481px) {
+@media (min-width: 360px) {
   .header__container {
     display: flex;
     justify-content: space-between;

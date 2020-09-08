@@ -14,7 +14,7 @@
 
   --font-primary: 'VCR OSD Mono', monospace;
   --font-size-primary: clamp(16px, 1.8vw, 34px);
-  --font-size-secondary: 1.941176470588235rem;
+  --font-size-secondary: clamp(24px, 5.28vw, 63px);
   --line-height: 1.4;
 
   --layer-top: 55;

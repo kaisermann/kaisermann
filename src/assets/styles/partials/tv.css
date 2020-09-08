@@ -181,6 +181,6 @@ body[animation-screen='loading-channel'] {
   }
 
   & .tv-effect--static {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
