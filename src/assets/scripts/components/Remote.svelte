@@ -199,6 +199,7 @@
       width: 100%;
       background-image: var(--plastic-texture-img),
         linear-gradient(315deg, #a71111 0%, #c32b2b 34%);
+      background-size: 100%, auto;
       color: #fbcfcf;
     }
   }
