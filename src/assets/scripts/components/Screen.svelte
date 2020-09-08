@@ -152,7 +152,7 @@
 
 <div class="tv-videos">
   {#if $currentChannelInfo.type === 'webcam'}
-    <Webcam on:ready={handleChannelReady} />
+    <Webcam on:ready={handleChannelReady} hidden={isAnimatingLoading} />
   {:else if $currentChannelInfo.type === 'video'}
     <Video on:ready={handleChannelReady} hidden={isAnimatingLoading} />
   {/if}

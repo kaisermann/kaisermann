@@ -6,11 +6,15 @@
 
   const dispatch = createEventDispatcher();
 
+  export let hidden = true;
+
+  let isReady = false;
   let stream;
   let video;
 
   let startTime = Date.now();
   let currentTime = startTime;
+  let formattedTime;
 
   async function initStream() {
     stream = await window.navigator.mediaDevices
@@ -32,6 +36,7 @@
       'playing',
       () => {
         dispatch('ready', true);
+        isReady = true;
         body.setAttribute('camera', '');
       },
       { once: true },
@@ -41,8 +46,6 @@
   function padNumber(n) {
     return n < 10 ? `0${n}` : n;
   }
-
-  let formattedTime;
 
   $: {
     const diff = currentTime - startTime;
@@ -105,7 +108,13 @@
   }
 </style>
 
-<video bind:this={video} class="tv-video" channel="camera" autoplay />
+<!-- svelte-ignore a11y-media-has-caption -->
+<video
+  bind:this={video}
+  class:visually-hidden={!isReady || hidden}
+  class="tv-video"
+  channel="camera"
+  autoplay />
 
 <div class="rec-wrapper big-text glitchy-text">
   <div class="rec">REC <span /></div>

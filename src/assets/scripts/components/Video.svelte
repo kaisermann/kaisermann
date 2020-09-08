@@ -1,13 +1,14 @@
 <script>
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
 
   import { volume, currentChannelInfo, updateChannelInfo } from '../tv';
+
+  export let hidden = true;
+
   const dispatch = createEventDispatcher();
 
   let video;
   let isReady = false;
-
-  export let hidden = true;
 
   async function changeChannel(channelInfo) {
     const { number, duration, watchTimestamp } = channelInfo;
@@ -63,17 +64,12 @@
   $: updatePlayState(isReady, hidden);
 </script>
 
-<style>
-  .unavailable {
-    visibility: hidden;
-  }
-</style>
-
+<!-- svelte-ignore a11y-media-has-caption -->
 <video
   bind:this={video}
   bind:volume={$volume}
   class="tv-video"
-  class:unavailable={!isReady || hidden}
+  class:visually-hidden={!isReady || hidden}
   channel={$currentChannelInfo.number}
   playsinline
   loop
