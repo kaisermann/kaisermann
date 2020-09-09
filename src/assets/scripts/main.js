@@ -6,6 +6,7 @@ import { screenEl } from './tv.js';
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 import HeaderControls from './components/HeaderControls.svelte';
+import SpaceTrigger from './components/SpaceTrigger.svelte';
 
 const bootstrap = () => {
   raf(() => {
@@ -19,6 +20,10 @@ const bootstrap = () => {
 
     new HeaderControls({
       target: document.querySelector('.js-header-controls'),
+    });
+
+    new SpaceTrigger({
+      target: document.querySelector('.js-space-trigger'),
     });
   });
 };
