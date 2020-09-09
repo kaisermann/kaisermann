@@ -12,8 +12,8 @@
   let stream;
   let video;
 
-  let startTime = Date.now();
-  let currentTime = startTime;
+  let startTime;
+  let currentTime;
   let formattedTime;
 
   async function initStream() {
@@ -36,7 +36,10 @@
       'playing',
       () => {
         dispatch('ready', true);
+
         isReady = true;
+        startTime = Date.now();
+
         body.setAttribute('camera', '');
       },
       { once: true },
@@ -47,8 +50,10 @@
     return n < 10 ? `0${n}` : n;
   }
 
-  $: {
-    const diff = currentTime - startTime;
+  function updateCounter(current, start) {
+    if (current == null || start == null) return;
+
+    const diff = current - start;
     const milliseconds = parseInt((diff % 1000) / 100);
     const seconds = padNumber(Math.floor((diff / 1000) % 60));
     const minutes = padNumber(Math.floor((diff / (1000 * 60)) % 60));
@@ -56,6 +61,8 @@
 
     formattedTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
+
+  $: updateCounter(currentTime, startTime);
 
   onMount(() => {
     initStream();
