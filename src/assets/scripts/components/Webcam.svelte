@@ -109,14 +109,11 @@
 </style>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<video
-  bind:this={video}
-  class:visually-hidden={!isReady || hidden}
-  class="tv-video"
-  channel="camera"
-  autoplay />
+<div class:visually-hidden={!isReady || hidden}>
+  <video bind:this={video} class="tv-video" channel="camera" autoplay />
 
-<div class="rec-wrapper big-text glitchy-text">
-  <div class="rec">REC <span /></div>
-  <div class="counter">{formattedTime}</div>
+  <div class="rec-wrapper big-text glitchy-text">
+    <div class="rec">REC <span /></div>
+    <div class="counter">{formattedTime}</div>
+  </div>
 </div>
