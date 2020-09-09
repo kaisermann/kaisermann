@@ -1,4 +1,4 @@
-export function noise() {
+export function noise({ loop = true } = {}) {
   if (!window.AudioContext) return;
 
   try {
@@ -27,7 +27,7 @@ export function noise() {
 
     whiteNoise.buffer = noiseBuffer;
     whiteNoise.connect(gainNode);
-    whiteNoise.loop = true;
+    whiteNoise.loop = loop !== false;
     whiteNoise.start(0);
     whiteNoise.onended = () => {
       whiteNoise.disconnect();

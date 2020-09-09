@@ -125,6 +125,7 @@
 
     // remove hard-coded animation-screen (base.njk)
     removeScreenAnimationOnceDone();
+    noise({ loop: false });
   });
 </script>
 
