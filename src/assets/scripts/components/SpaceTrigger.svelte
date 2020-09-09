@@ -17,6 +17,10 @@
     &:hover {
       opacity: 0.8;
     }
+
+    @nest :global(body.hide-content) & {
+      visibility: visible;
+    }
   }
 </style>
 

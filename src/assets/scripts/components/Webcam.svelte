@@ -13,8 +13,9 @@
   let video;
 
   let startTime;
-  let currentTime;
+  let elapsedTime;
   let formattedTime;
+  let counterRequest;
 
   async function initStream() {
     stream = await window.navigator.mediaDevices
@@ -38,7 +39,8 @@
         dispatch('ready', true);
 
         isReady = true;
-        startTime = Date.now();
+
+        initCounter();
 
         body.setAttribute('camera', '');
       },
@@ -50,31 +52,33 @@
     return n < 10 ? `0${n}` : n;
   }
 
-  function updateCounter(current, start) {
-    if (current == null || start == null) return;
+  function initCounter() {
+    counterRequest = raf(function loop(ts) {
+      if (startTime == null) {
+        startTime = ts;
+      }
 
-    const diff = current - start;
-    const milliseconds = parseInt((diff % 1000) / 100);
-    const seconds = padNumber(Math.floor((diff / 1000) % 60));
-    const minutes = padNumber(Math.floor((diff / (1000 * 60)) % 60));
-    const hours = padNumber(Math.floor((diff / (1000 * 60 * 60)) % 24));
+      elapsedTime = Math.floor((elapsedTime = ts - startTime));
+
+      counterRequest = raf(loop);
+    });
+  }
+
+  $: {
+    const milliseconds = parseInt((elapsedTime % 1000) / 100);
+    const seconds = padNumber(Math.floor((elapsedTime / 1000) % 60));
+    const minutes = padNumber(Math.floor((elapsedTime / (1000 * 60)) % 60));
+    const hours = padNumber(Math.floor((elapsedTime / (1000 * 60 * 60)) % 24));
 
     formattedTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
   }
 
-  $: updateCounter(currentTime, startTime);
-
   onMount(() => {
     initStream();
 
-    let animationRequest = raf(function loop() {
-      currentTime = Date.now();
-      animationRequest = raf(loop);
-    });
-
     return () => {
       body.removeAttribute('camera');
-      cancelAnimationFrame(animationRequest);
+      cancelAnimationFrame(counterRequest);
 
       if (stream) {
         stream.getTracks().forEach((track) => track.stop());
