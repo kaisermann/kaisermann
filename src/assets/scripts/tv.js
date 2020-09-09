@@ -6,6 +6,9 @@ import { raf, body } from './modules/utils.js';
 // used for toggling
 let prevVolume = null;
 
+export const tvEl = document.querySelector('.js-tv');
+export const screenEl = document.querySelector('.js-screen');
+
 export const contentVisible = writable(true);
 export const volume = writable(0.25);
 export const currentChannel = writable(0);
@@ -105,9 +108,6 @@ export function toggleMute() {
 export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
-
-export const tvEl = document.querySelector('.js-tv');
-export const screenEl = document.querySelector('.js-screen');
 
 // todo: better way to do this animation orchestration
 export function toggleSpace() {

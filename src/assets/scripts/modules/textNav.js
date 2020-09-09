@@ -85,7 +85,7 @@ fetchPages.retries = 0;
 
 const debouncedUpdateCaret = raf.bind(null, updateCaret);
 
-export function init() {
+export function initTextNav() {
   textNav = document.querySelector('.js-text-nav');
 
   if (!textNav) {

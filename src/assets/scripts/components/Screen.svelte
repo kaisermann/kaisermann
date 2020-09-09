@@ -6,7 +6,6 @@
   import Video from './Video.svelte';
   import { sendEvent } from '../modules/analytics.js';
   import { noise } from '../modules/noise.js';
-  import { isValidHotkey } from '../modules/keyboard.js';
   import { raf, timeout, body } from '../modules/utils.js';
   import {
     screenEl,
@@ -27,28 +26,6 @@
   let isAnimatingLoading = false;
 
   let channelLoadTimestamp;
-
-  function handleKeyup(e) {
-    if (!isValidHotkey(e)) return;
-    if (e.key === 'r') return toggleSpace();
-    if (e.key === '=') return incrementChannel();
-    if (e.key === '-') return decrementChannel();
-    if (e.key === 'h') return toggleContent();
-
-    let channelNumber = Number(e.key);
-
-    // ignore non-number keys
-    if (Number.isNaN(channelNumber)) {
-      return;
-    }
-
-    // toggle between a X channel and channel 0
-    if (channelNumber === $currentChannel) {
-      gotoChannel(0);
-    } else {
-      gotoChannel(channelNumber);
-    }
-  }
 
   function beginLoadingAnimation() {
     endLoadingAnimation();
@@ -160,5 +137,3 @@
 </div>
 
 <Volume />
-
-<svelte:window on:keyup={handleKeyup} />

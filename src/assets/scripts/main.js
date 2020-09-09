@@ -1,18 +1,18 @@
 import '../styles/deferred.css';
 
-import { init as initTextNav } from './modules/textNav.js';
-import { raf, body } from './modules/utils.js';
-import { screenEl } from './tv.js';
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 import HeaderControls from './components/HeaderControls.svelte';
 import SpaceTrigger from './components/SpaceTrigger.svelte';
+import { raf } from './modules/utils.js';
+import { screenEl } from './tv.js';
+import { initTextNav } from './modules/textNav.js';
+import { initHotkeys } from './modules/keyboard';
 
 const bootstrap = () => {
   raf(() => {
-    body.removeAttribute('no-js', '');
-
     initTextNav();
+    initHotkeys();
 
     new TVScreen({ target: screenEl });
 
