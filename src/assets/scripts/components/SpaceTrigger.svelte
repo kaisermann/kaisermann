@@ -15,7 +15,7 @@
     font-size: 1rem;
 
     &:hover {
-      opacity: 0.8;
+      opacity: 1;
     }
 
     @nest :global(body.hide-content) & {
