@@ -22,7 +22,7 @@ function isValidHotkey(e) {
 function handleHotkey(e) {
   if (!isValidHotkey(e)) return;
   if (e.key === 'r') return toggleSpace();
-  if (e.key === '=') return incrementChannel();
+  if (e.key === '+' || e.key === '=') return incrementChannel();
   if (e.key === '-') return decrementChannel();
   if (e.key === 'h') return toggleContent();
 
@@ -43,4 +43,8 @@ function handleHotkey(e) {
 
 export function initHotkeys() {
   window.addEventListener('keyup', handleHotkey);
+  if (navigator.mediaSession) {
+    navigator.mediaSession.setActionHandler('nexttrack', incrementChannel);
+    navigator.mediaSession.setActionHandler('previoustrack', decrementChannel);
+  }
 }
