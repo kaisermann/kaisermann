@@ -39,13 +39,13 @@
     updateChannelInfo($currentChannelInfo.number, { duration: video.duration });
   }
 
-  function handleLoadedData() {
-    if (video.readyState >= 2) {
-      dispatch('ready', true);
-      isReady = true;
-    } else {
-      isReady = false;
+  function handleCanPlay() {
+    if (video.readyState < 2) {
+      return;
     }
+
+    dispatch('ready', true);
+    isReady = true;
   }
 
   function updatePlayState() {
@@ -73,7 +73,7 @@
   channel={$currentChannelInfo.number}
   playsinline
   loop
-  on:loadeddata={handleLoadedData}
+  on:canplay={handleCanPlay}
   on:loadedmetadata={handleMetadata}>
   <source
     src="/assets/videos/channel-{$currentChannelInfo.displayName}.webm"

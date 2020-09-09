@@ -29,15 +29,15 @@
       --plastic-texture-img: url(../images/plastic-texture-noise.png);
     }
 
-@media (max-height: 800px) {
-  transform: scale(0.65);
-  transform-origin: 50% 0;
-}
+    @media (max-height: 800px) {
+      transform: scale(0.65);
+      transform-origin: 50% 0;
+    }
 
-@media (max-width: 400px) {
-  right: 50%;
-  transform: translateX(50%);
-}
+    @media (max-width: 400px) {
+      right: 50%;
+      transform: translateX(50%);
+    }
   }
 
   .wrapper {
