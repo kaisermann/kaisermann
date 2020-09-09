@@ -58,7 +58,7 @@
         startTime = ts;
       }
 
-      elapsedTime = Math.floor((elapsedTime = ts - startTime));
+      elapsedTime = elapsedTime = ts - startTime;
 
       counterRequest = raf(loop);
     });
