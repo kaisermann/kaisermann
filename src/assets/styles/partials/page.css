@@ -11,7 +11,7 @@
 
 .header {
   position: relative;
-  min-height: 200px;
+  min-height: 300px;
   height: 50vh;
   margin-bottom: 2.07rem;
   text-transform: uppercase;
@@ -23,7 +23,7 @@
   top: 100px;
 }
 
-@media (min-width: 360px) {
+@media (min-width: 500px) {
   .header__container {
     display: flex;
     justify-content: space-between;
@@ -64,7 +64,7 @@
 
 @media (max-width: 480px) {
   .nav {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .nav__menu li {

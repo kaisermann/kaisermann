@@ -68,6 +68,7 @@ body {
   overflow: hidden;
 }
 
+/* need to use 100% and not a single 100vh because of iOS and its bottom bar */
 html,
 body,
 .space,

@@ -26,10 +26,7 @@
   }
 }
 
-.tv-effect--decontrast,
-.tv-effect--static,
-.tv-effect--artifacts,
-.tv-effect--vignette {
+.tv-effect {
   position: absolute;
   z-index: var(--layer-tv-effects);
   top: 0;
@@ -39,26 +36,26 @@
 }
 
 /* colors */
-.tv-effect--static {
+.tv-effect.--static {
   background-image: url(/assets/images/effect-colored-noise.gif);
   background-size: cover;
   opacity: 0.1;
 }
 
 /* static/noise effect */
-.tv-effect--artifacts {
+.tv-effect.--artifacts {
   background-image: url(/assets/images/effect-glitch.gif);
   background-size: cover;
   opacity: 0.4;
 }
 
 /* vignette */
-.tv-effect--vignette {
+.tv-effect.--vignette {
   background: radial-gradient(circle, transparent 60%, black 100%), transparent;
 }
 
 /* remove some contrast from the webcam */
-.tv-effect--decontrast {
+.tv-effect.--decontrast {
   background-color: #fff;
   opacity: 0.2;
 
@@ -68,7 +65,7 @@
 }
 
 /* horizontal lines + scan line*/
-.tv-effect--crt {
+.tv-effect.--crt {
   &::before,
   &::after {
     content: '';
