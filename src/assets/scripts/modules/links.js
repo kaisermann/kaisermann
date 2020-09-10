@@ -2,7 +2,7 @@ import { body, hostname, waitFor, raf, location } from './utils';
 import { sendPageview } from './analytics';
 import { contentEl, loadingPage, LOADING_STATE } from '../tv';
 
-const MIN_LOADING_TIME = 200;
+const MIN_LOADING_TIME = 300;
 
 const contentSlotList = Array.from(contentEl.querySelectorAll('[js-slot]'));
 
