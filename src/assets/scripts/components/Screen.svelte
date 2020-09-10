@@ -76,9 +76,12 @@
   $: body.setAttribute('channel', `${$currentChannel}`);
 
   $: body.classList.toggle('hide-content', !$contentVisible);
+
   $: {
-    const isLoadingPage = $loadingPage === LOADING_STATE.Loading;
-    body.classList.toggle('loading-page', isLoadingPage);
+    body.classList.toggle(
+      'loading-page',
+      $loadingPage === LOADING_STATE.Loading,
+    );
   }
 
   $: {

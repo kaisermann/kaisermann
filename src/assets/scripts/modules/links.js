@@ -1,12 +1,13 @@
 import { body, hostname, waitFor, raf, location } from './utils';
 import { sendPageview } from './analytics';
-import { loadingPage, LOADING_STATE } from '../tv';
+import { contentEl, loadingPage, LOADING_STATE } from '../tv';
 
 const MIN_LOADING_TIME = 200;
 
-const contentEl = document.querySelector('.js-content');
 const contentSlotList = Array.from(contentEl.querySelectorAll('[js-slot]'));
+
 const pageCache = new Map();
+
 const initialState = {
   title: document.title,
   slots: getSlotsContent(),
@@ -62,14 +63,14 @@ function replaceSlotsContent({ slots }) {
   window.dispatchEvent(new CustomEvent('contentChange'));
 }
 
-function fetchPage(url) {
+function fetchPage(url, { importance } = {}) {
   url = url.replace(/\/$/, '');
 
   if (pageCache.has(url)) {
     return Promise.resolve(pageCache.get(url));
   }
 
-  const promise = fetch(url, { importance: 'low' })
+  const promise = fetch(url, { importance })
     .then((response) => response.text())
     .then((html) => {
       if (parser == null) {
@@ -95,6 +96,7 @@ function fetchPage(url) {
 }
 
 export async function gotoPage(url) {
+  if (url.indexOf('#') === 0) return;
   if (url.indexOf('http') !== 0) {
     url = `${window.location.origin}${url}`;
   }
@@ -116,19 +118,22 @@ export async function gotoPage(url) {
     contentEl.scrollTop = 0;
 
     window.history.pushState({ title, slots }, title, url);
+    currentPathname = location.pathname;
 
     // todo: test this
     sendPageview();
   });
 }
 
-function scrollContentToElement(el) {
-  location.hash = el.getAttribute('href');
-
+function updateContentScrollPosition() {
   raf(() => {
     const target = contentEl.querySelector(':target');
 
-    if (target) target.scrollIntoView(true);
+    if (target) {
+      contentEl.scrollTop = Math.max(target.offsetTop - 24, 0);
+    } else {
+      contentEl.scrollTop = 0;
+    }
   });
 }
 
@@ -136,10 +141,11 @@ export function initLinks() {
   window.addEventListener('popstate', async (e) => {
     let { state } = e;
 
+    // same pathname, possibily means hash changed
     // prevent hash links from transitioning
-    console.log(location.pathname, currentPathname);
     if (location.pathname === currentPathname) {
       e.preventDefault();
+      updateContentScrollPosition();
 
       return;
     }
@@ -159,7 +165,7 @@ export function initLinks() {
     raf(() => {
       replaceSlotsContent(state);
       document.title = state.title;
-      contentEl.scrollTop = 0;
+      updateContentScrollPosition();
     });
   });
 
@@ -167,12 +173,15 @@ export function initLinks() {
     if (!isTransitionableAnchor(e.target)) return;
     if (pageCache.has(e.target.href)) return;
 
-    fetchPage(e.target.href);
+    fetchPage(e.target.href, { importante: 'low' });
   });
 
   body.addEventListener('click', (e) => {
     if (isHashAnchor(e.target)) {
-      return scrollContentToElement(e.target);
+      e.preventDefault();
+      location.hash = e.target.getAttribute('href');
+
+      return updateContentScrollPosition();
     }
 
     if (!isTransitionableAnchor(e.target)) return;

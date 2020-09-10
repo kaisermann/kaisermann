@@ -118,20 +118,13 @@ function handleKeydown(e) {
 }
 
 export function seekAndBindElement() {
-  // Garbace collection takes care of this for us
-  // if (textNav) {
-  //   textNav.removeEventListener('click', handleClick);
-  //   textNav.removeEventListener('blur', handleBlur);
-  //   textNav.removeEventListener('focus', handleFocus);
-  //   textNav.removeEventListener('keydown', handleKeydown);
-  // }
-
   textNav = document.querySelector('.js-text-nav');
 
   if (!textNav) {
     return;
   }
 
+  // Garbace collection takes care of removing these listeners when the element is destroyed
   textNav.addEventListener('click', handleClick);
   textNav.addEventListener('blur', handleBlur);
   textNav.addEventListener('focus', handleFocus);

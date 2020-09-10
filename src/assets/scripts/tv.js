@@ -13,7 +13,8 @@ export const LOADING_STATE = {
 let prevVolume = null;
 
 export const tvEl = document.querySelector('.js-tv');
-export const screenEl = document.querySelector('.js-screen');
+export const screenEl = tvEl.querySelector('.js-screen');
+export const contentEl = screenEl.querySelector('.js-content');
 
 export const contentVisible = writable(true);
 export const volume = writable(0.25);

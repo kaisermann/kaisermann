@@ -81,9 +81,3 @@ body.loading-page {
     }
   }
 }
-
-.tv-effect--vignette {
-  @nest body[channel-loading='turn-on'] & {
-    background: radial-gradient(circle, black 30%, transparent 90%), transparent;
-  }
-}
