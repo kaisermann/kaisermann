@@ -1,6 +1,7 @@
 import levenshtein from 'js-levenshtein';
 
 import { raf } from './utils.js';
+import { gotoPage } from './links.js';
 
 let pages;
 let textNav;
@@ -49,6 +50,8 @@ function getCaretPositionWithin(element) {
 }
 
 function updateCaret() {
+  if (textNav == null) return;
+
   const pos = getCaretPositionWithin(textNav);
 
   textNav.style.setProperty('--caret-position', pos);
@@ -63,58 +66,74 @@ function changePage() {
     return;
   }
 
-  window.location.href = page.url;
+  gotoPage(page.url);
 }
 
-function fetchPages() {
+function fetchPagesData() {
   fetch('/assets/pages.json')
     .then((r) => r.json())
     .then((data) => {
       pages = data;
     })
     .catch(() => {
-      if (fetchPages.retries++ < 3) {
-        fetchPages();
+      if (fetchPagesData.retries++ < 3) {
+        fetchPagesData();
       } else {
         console.warn('Something went wrong :(');
       }
     });
 }
 
-fetchPages.retries = 0;
+fetchPagesData.retries = 0;
 
 const debouncedUpdateCaret = raf.bind(null, updateCaret);
 
-export function initTextNav() {
+const handleClick = debouncedUpdateCaret;
+
+function handleBlur() {
+  if (textNav.textContent === '') {
+    textNav.textContent = textNav.getAttribute('data-original-text');
+  }
+}
+
+function handleFocus() {
+  debouncedUpdateCaret();
+
+  if (pages == null) {
+    fetchPagesData();
+  }
+}
+
+function handleKeydown(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    changePage();
+  }
+
+  if (e.key === ' ') {
+    e.preventDefault();
+  }
+
+  debouncedUpdateCaret();
+}
+
+export function seekAndBindElement() {
   textNav = document.querySelector('.js-text-nav');
 
   if (!textNav) {
     return;
   }
 
-  textNav.addEventListener('click', debouncedUpdateCaret);
-  textNav.addEventListener('blur', () => {
-    if (textNav.textContent === '') {
-      textNav.textContent = textNav.getAttribute('data-original-text');
-    }
-  });
-  textNav.addEventListener('focus', () => {
-    debouncedUpdateCaret();
+  // Garbace collection takes care of removing these listeners when the element is destroyed
+  textNav.addEventListener('click', handleClick);
+  textNav.addEventListener('blur', handleBlur);
+  textNav.addEventListener('focus', handleFocus);
+  textNav.addEventListener('keydown', handleKeydown);
 
-    if (pages == null) {
-      fetchPages();
-    }
-  });
-  textNav.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      changePage();
-    }
+  textNav.textContent = textNav.textContent.trim();
+}
 
-    if (e.key === ' ') {
-      e.preventDefault();
-    }
-
-    debouncedUpdateCaret();
-  });
+export function initTextNav() {
+  seekAndBindElement();
+  window.addEventListener('contentChange', seekAndBindElement);
 }

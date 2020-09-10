@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header__container">
-    <nav class="nav">
+    <nav class="nav" js-slot="nav">
       {% if page.url == "/"%}
       <ul class="nav__breadcrumb">
         <li>CK</li>
@@ -27,7 +27,9 @@
           role="textbox"
           aria-label="navigation by text"
           data-original-text="{{ eleventyNavigation.key }}"
-        >{{ eleventyNavigation.key }}</li>
+        >
+          {{ eleventyNavigation.key }}
+        </li>
       </ul>
       {% endif %}
     </nav>

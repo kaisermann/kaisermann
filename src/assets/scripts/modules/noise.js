@@ -1,4 +1,4 @@
-export function noise({ loop = true } = {}) {
+function noise() {
   if (!window.AudioContext) return;
 
   try {
@@ -27,7 +27,7 @@ export function noise({ loop = true } = {}) {
 
     whiteNoise.buffer = noiseBuffer;
     whiteNoise.connect(gainNode);
-    whiteNoise.loop = loop !== false;
+    whiteNoise.loop = true;
     whiteNoise.start(0);
     whiteNoise.onended = () => {
       whiteNoise.disconnect();
@@ -40,5 +40,19 @@ export function noise({ loop = true } = {}) {
     if (process.env.ELEVENTY_ENV !== 'production') {
       console.error(e);
     }
+  }
+}
+
+let noiseInstance = null;
+
+export function startNoise() {
+  if (noiseInstance != null) return;
+  noiseInstance = noise();
+}
+
+export function stopNoise() {
+  if (noiseInstance) {
+    noiseInstance.stop();
+    noiseInstance = null;
   }
 }

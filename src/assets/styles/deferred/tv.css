@@ -1,14 +1,27 @@
-body[animation-screen='loading-channel'] {
+body.loading-channel {
   & .tv-screen {
     filter: brightness(5) saturate(0.2) contrast(1.1);
   }
 
-  & .tv-effect--colors {
+  & .tv-effect--static {
     opacity: 0.4;
   }
 
-  & .tv-effect--static {
+  & .tv-effect--artifacts {
     opacity: 0.7;
+  }
+}
+
+body.loading-page {
+  & .tv-effect--static {
+    opacity: 0.6;
+    filter: saturate(0.6) brightness(2);
+  }
+
+  & [js-slot] {
+    pointer-events: none;
+    opacity: 0.4;
+    filter: blur(2px);
   }
 }
 
@@ -66,11 +79,5 @@ body[animation-screen='loading-channel'] {
     @media (max-width: 900px) {
       transition-delay: var(--spaceOutroDelay);
     }
-  }
-}
-
-.tv-effect--vignette {
-  @nest body[animation-screen='turn-on'] & {
-    background: radial-gradient(circle, black 30%, transparent 90%), transparent;
   }
 }

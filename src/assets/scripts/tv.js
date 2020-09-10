@@ -3,15 +3,24 @@ import { writable, derived, get } from 'svelte/store';
 import { sendEvent } from './modules/analytics.js';
 import { raf, body } from './modules/utils.js';
 
+export const LOADING_STATE = {
+  None: 0,
+  Loading: 1,
+  Done: 2,
+};
+
 // used for toggling
 let prevVolume = null;
 
 export const tvEl = document.querySelector('.js-tv');
-export const screenEl = document.querySelector('.js-screen');
+export const screenEl = tvEl.querySelector('.js-screen');
+export const contentEl = screenEl.querySelector('.js-content');
 
 export const contentVisible = writable(true);
 export const volume = writable(0.25);
 export const currentChannel = writable(0);
+export const loadingChannel = writable(LOADING_STATE.None);
+export const loadingPage = writable(LOADING_STATE.None);
 
 export const channelMap = {
   0: {},
