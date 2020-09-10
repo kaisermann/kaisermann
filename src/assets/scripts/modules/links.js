@@ -3,12 +3,15 @@ import { sendPageview } from './analytics';
 
 let parser;
 const contentEl = document.querySelector('.js-content');
-const initialState = {
-  title: document.title,
-  slots: getSlots(),
-};
+
+const contentSlotList = Array.from(contentEl.querySelectorAll('[js-slot]'));
 
 const pageCache = new Map();
+
+const initialState = {
+  title: document.title,
+  slots: getSlotsContent(),
+};
 
 function isValidAnchor(anchor) {
   if (anchor == null) return false;
@@ -20,8 +23,13 @@ function isValidAnchor(anchor) {
   return true;
 }
 
-function getSlots(container = body) {
-  const slotList = Array.from(container.querySelectorAll('[js-slot]'));
+function getSlotsContent(container = contentEl) {
+  let slotList = contentSlotList;
+
+  if (container !== contentEl) {
+    slotList = Array.from(container.querySelectorAll('[js-slot]'));
+  }
+
   const slots = slotList.reduce((acc, el) => {
     const slotName = el.getAttribute('js-slot');
 
@@ -35,7 +43,9 @@ function getSlots(container = body) {
 
 function replaceSlotsContent({ slots }) {
   Object.keys(slots).forEach((slotName) => {
-    const slotEl = contentEl.querySelector(`[js-slot="${slotName}"]`);
+    const slotEl = contentSlotList.find(
+      (el) => el.getAttribute('js-slot') === slotName,
+    );
 
     if (slotEl == null) return;
     slotEl.innerHTML = slots[slotName];
@@ -63,7 +73,7 @@ function fetchPage(url) {
 
       const cacheObj = {
         title: doc.title,
-        slots: getSlots(newContent),
+        slots: getSlotsContent(newContent),
       };
 
       pageCache.set(url, cacheObj);
