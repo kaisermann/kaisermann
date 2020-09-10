@@ -1,22 +1,23 @@
-import { body, hostname } from './utils';
+import { body, hostname, waitFor, raf } from './utils';
 import { sendPageview } from './analytics';
+import { loadingPage, LOADING_STATE } from '../tv';
 
-let parser;
+const MIN_LOADING_TIME = 200;
+
 const contentEl = document.querySelector('.js-content');
-
 const contentSlotList = Array.from(contentEl.querySelectorAll('[js-slot]'));
-
 const pageCache = new Map();
-
 const initialState = {
   title: document.title,
   slots: getSlotsContent(),
 };
 
+let parser;
+
 function isValidAnchor(anchor) {
   if (anchor == null) return false;
   if (anchor.tagName !== 'A') return false;
-  if (anchor == null) return false;
+  if (anchor.getAttribute('href').indexOf('#') === 0) return false;
   if (anchor.target === '_blank') return false;
   if (anchor.hostname !== hostname) return false;
 
@@ -42,13 +43,14 @@ function getSlotsContent(container = contentEl) {
 }
 
 function replaceSlotsContent({ slots }) {
-  Object.keys(slots).forEach((slotName) => {
+  Object.entries(slots).forEach(([slotName, slotHTML]) => {
     const slotEl = contentSlotList.find(
       (el) => el.getAttribute('js-slot') === slotName,
     );
 
     if (slotEl == null) return;
-    slotEl.innerHTML = slots[slotName];
+
+    slotEl.innerHTML = slotHTML;
   });
 
   window.dispatchEvent(new CustomEvent('contentChange'));
@@ -86,15 +88,27 @@ function fetchPage(url) {
   return promise;
 }
 
-export function gotoPage(url) {
+export async function gotoPage(url) {
   if (url.indexOf('http') !== 0) {
     url = `${window.location.origin}${url}`;
   }
 
-  return fetchPage(url).then(({ title, slots }) => {
+  loadingPage.set(LOADING_STATE.Loading);
+
+  // min loading time of 200ms
+  const [{ title, slots }] = await Promise.all([
+    fetchPage(url),
+    waitFor(MIN_LOADING_TIME),
+  ]);
+
+  loadingPage.set(LOADING_STATE.Done);
+
+  raf(() => {
     replaceSlotsContent({ title, slots });
+
     document.title = title;
     contentEl.scrollTop = 0;
+
     window.history.pushState({ title, slots }, title, url);
 
     // todo: test this
@@ -103,16 +117,24 @@ export function gotoPage(url) {
 }
 
 export function initLinks() {
-  window.addEventListener('popstate', (e) => {
+  window.addEventListener('popstate', async (e) => {
     let { state } = e;
 
     if (state == null) {
       state = initialState;
     }
 
-    replaceSlotsContent(state);
-    document.title = e.title;
-    contentEl.scrollTop = 0;
+    loadingPage.set(LOADING_STATE.Loading);
+
+    await waitFor(MIN_LOADING_TIME);
+
+    loadingPage.set(LOADING_STATE.Done);
+
+    raf(() => {
+      replaceSlotsContent(state);
+      document.title = state.title;
+      contentEl.scrollTop = 0;
+    });
   });
 
   body.addEventListener('mousemove', (e) => {

@@ -5,57 +5,32 @@
   import Webcam from './Webcam.svelte';
   import Video from './Video.svelte';
   import { sendEvent } from '../modules/analytics.js';
-  import { noise } from '../modules/noise.js';
+  import { startNoise, stopNoise } from '../modules/noise.js';
   import { raf, timeout, body } from '../modules/utils.js';
   import {
-    screenEl,
     currentChannel,
     currentChannelInfo,
-    decrementChannel,
-    incrementChannel,
-    gotoChannel,
     contentVisible,
-    toggleContent,
-    toggleSpace,
+    loadingChannel,
+    loadingPage,
+    LOADING_STATE,
   } from '../tv';
 
   const MIN_CHANNEL_LOADING_TIME = 400;
 
   let mounted = false;
-  let noiseInstance = null;
-  let isAnimatingLoading = false;
 
   let channelLoadTimestamp;
 
-  function beginLoadingAnimation() {
-    endLoadingAnimation();
-    noiseInstance = noise();
-    body.setAttribute('animation-screen', 'loading-channel');
+  function startLoadingChannelAnimation() {
+    stopLoadingChannelAnimation();
+
+    body.classList.add('loading-channel');
     channelLoadTimestamp = Date.now();
-    isAnimatingLoading = true;
   }
 
-  function removeScreenAnimationOnceDone(duration = 1500) {
-    let timer;
-
-    function removeAnimation() {
-      clearTimeout(timer);
-      timer = null;
-      body.removeAttribute('animation-screen');
-      screenEl.removeEventListener('animationend', removeAnimation);
-    }
-
-    screenEl.addEventListener('animationend', removeAnimation, { once: true });
-    timer = timeout(removeAnimation, duration);
-  }
-
-  function endLoadingAnimation() {
-    if (noiseInstance) {
-      noiseInstance.stop();
-      noiseInstance = null;
-    }
-    body.removeAttribute('animation-screen');
-    isAnimatingLoading = false;
+  function stopLoadingChannelAnimation() {
+    body.classList.remove('loading-channel');
   }
 
   function handleChannelReady() {
@@ -63,21 +38,22 @@
       const diff = Date.now() - channelLoadTimestamp;
 
       if (diff <= MIN_CHANNEL_LOADING_TIME) {
-        timeout(endLoadingAnimation, MIN_CHANNEL_LOADING_TIME - diff);
+        timeout(() => {
+          $loadingChannel = LOADING_STATE.Done;
+        }, MIN_CHANNEL_LOADING_TIME - diff);
       } else {
-        endLoadingAnimation();
+        $loadingChannel = LOADING_STATE.Done;
       }
     });
   }
 
   function handleChannelChange(channelInfo) {
     // prevent firing before mounting
-    if (!mounted) {
-      return;
-    }
+    if (!mounted) return;
 
     raf(() => {
-      beginLoadingAnimation();
+      $loadingChannel = LOADING_STATE.Loading;
+
       // can't wait for something that's not a video/webcam
       if (channelInfo.type == 'unknown') {
         handleChannelReady();
@@ -91,18 +67,33 @@
     });
   }
 
+  $: $loadingChannel === LOADING_STATE.Loading
+    ? startLoadingChannelAnimation()
+    : stopLoadingChannelAnimation();
+
   $: handleChannelChange($currentChannelInfo);
 
   $: body.setAttribute('channel', `${$currentChannel}`);
 
   $: body.classList.toggle('hide-content', !$contentVisible);
+  $: {
+    const isLoadingPage = $loadingPage === LOADING_STATE.Loading;
+    body.classList.toggle('loading-page', isLoadingPage);
+  }
+
+  $: {
+    if (
+      $loadingPage === LOADING_STATE.Loading ||
+      $loadingChannel === LOADING_STATE.Loading
+    ) {
+      startNoise();
+    } else {
+      stopNoise();
+    }
+  }
 
   onMount(() => {
     mounted = true;
-
-    // remove hard-coded animation-screen (base.njk)
-    removeScreenAnimationOnceDone();
-    noise({ loop: false });
   });
 </script>
 
@@ -130,9 +121,9 @@
 
 <div class="tv-videos">
   {#if $currentChannelInfo.type === 'webcam'}
-    <Webcam on:ready={handleChannelReady} hidden={isAnimatingLoading} />
+    <Webcam on:ready={handleChannelReady} />
   {:else if $currentChannelInfo.type === 'video'}
-    <Video on:ready={handleChannelReady} hidden={isAnimatingLoading} />
+    <Video on:ready={handleChannelReady} />
   {/if}
 </div>
 

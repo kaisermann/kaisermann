@@ -117,13 +117,14 @@ function handleKeydown(e) {
   debouncedUpdateCaret();
 }
 
-export function bindElement() {
-  if (textNav) {
-    textNav.removeEventListener('click', handleClick);
-    textNav.removeEventListener('blur', handleBlur);
-    textNav.removeEventListener('focus', handleFocus);
-    textNav.removeEventListener('keydown', handleKeydown);
-  }
+export function seekAndBindElement() {
+  // Garbace collection takes care of this for us
+  // if (textNav) {
+  //   textNav.removeEventListener('click', handleClick);
+  //   textNav.removeEventListener('blur', handleBlur);
+  //   textNav.removeEventListener('focus', handleFocus);
+  //   textNav.removeEventListener('keydown', handleKeydown);
+  // }
 
   textNav = document.querySelector('.js-text-nav');
 
@@ -140,6 +141,6 @@ export function bindElement() {
 }
 
 export function initTextNav() {
-  bindElement();
-  window.addEventListener('contentChange', bindElement);
+  seekAndBindElement();
+  window.addEventListener('contentChange', seekAndBindElement);
 }

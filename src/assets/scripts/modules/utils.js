@@ -3,3 +3,5 @@ export const idle = window.requestIdleCallback;
 export const timeout = window.setTimeout;
 export const { body } = document;
 export const { hostname } = document.location;
+
+export const waitFor = (ms) => new Promise((res) => timeout(res, ms));

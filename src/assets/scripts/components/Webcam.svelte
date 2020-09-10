@@ -3,10 +3,9 @@
 
   import { onMount } from 'svelte';
   import { raf, body } from '../modules/utils.js';
+  import { loadingChannel, LOADING_STATE } from '../tv.js';
 
   const dispatch = createEventDispatcher();
-
-  export let hidden = true;
 
   let isReady = false;
   let stream;
@@ -120,7 +119,8 @@
 </style>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<div class:visually-hidden={!isReady || hidden}>
+<div
+  class:visually-hidden={!isReady || $loadingChannel === LOADING_STATE.Loading}>
   <video bind:this={video} class="tv-video" channel="camera" autoplay />
 
   <div class="rec-wrapper big-text glitchy-text">

@@ -24,11 +24,15 @@
 
 .tv-screen {
   height: 100%;
+
+  @nest body.turn-on & {
+    animation: turn-on-transform 0.4s, turn-on-filter 1s;
+  }
 }
 
 .tv-effect--decontrast,
-.tv-effect--colors,
 .tv-effect--static,
+.tv-effect--artifacts,
 .tv-effect--vignette {
   position: absolute;
   z-index: var(--layer-tv-effects);
@@ -39,14 +43,14 @@
 }
 
 /* colors */
-.tv-effect--colors {
+.tv-effect--static {
   background-image: url(/assets/images/effect-colored-noise.gif);
   background-size: cover;
   opacity: 0.1;
 }
 
 /* static/noise effect */
-.tv-effect--static {
+.tv-effect--artifacts {
   background-image: url(/assets/images/effect-glitch.gif);
   background-size: cover;
   opacity: 0.4;
@@ -109,8 +113,4 @@
   height: 100%;
   overflow: hidden auto;
   background-color: rgba(0, 0, 0, 0.4);
-}
-
-body[animation-screen='turn-on'] .tv-screen {
-  animation: turn-on-transform 0.4s, turn-on-filter 1s;
 }

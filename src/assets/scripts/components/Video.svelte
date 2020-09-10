@@ -1,9 +1,13 @@
 <script>
   import { createEventDispatcher } from 'svelte';
 
-  import { volume, currentChannelInfo, updateChannelInfo } from '../tv';
-
-  export let hidden = true;
+  import {
+    volume,
+    currentChannelInfo,
+    updateChannelInfo,
+    loadingChannel,
+    LOADING_STATE,
+  } from '../tv';
 
   const dispatch = createEventDispatcher();
 
@@ -51,7 +55,7 @@
   function updatePlayState() {
     if (!video) return;
 
-    if (isReady && !hidden) {
+    if (isReady && $loadingChannel === LOADING_STATE.Done) {
       video.play();
       return;
     }
@@ -61,7 +65,7 @@
 
   $: changeChannel($currentChannelInfo, video);
 
-  $: updatePlayState(isReady, hidden);
+  $: updatePlayState(isReady, $loadingChannel);
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
@@ -69,7 +73,7 @@
   bind:this={video}
   bind:volume={$volume}
   class="tv-video"
-  class:visually-hidden={!isReady || hidden}
+  class:visually-hidden={!isReady || $loadingChannel === LOADING_STATE.Loading}
   channel={$currentChannelInfo.number}
   playsinline
   loop
