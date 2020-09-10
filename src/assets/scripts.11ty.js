@@ -32,7 +32,7 @@ const plugins = [
     emitCss: true,
   }),
   postcss({ extract: 'deferred.css' }),
-  PROD && terser(),
+  // PROD && terser(),
 ];
 
 module.exports = class {
