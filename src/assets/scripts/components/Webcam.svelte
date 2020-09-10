@@ -58,7 +58,7 @@
         startTime = ts;
       }
 
-      elapsedTime = elapsedTime = ts - startTime;
+      elapsedTime = ts - startTime;
 
       counterRequest = raf(loop);
     });

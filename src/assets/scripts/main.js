@@ -7,12 +7,14 @@ import SpaceTrigger from './components/SpaceTrigger.svelte';
 import { raf } from './modules/utils.js';
 import { screenEl } from './tv.js';
 import { initTextNav } from './modules/textNav.js';
-import { initHotkeys } from './modules/keyboard';
+import { initHotkeys } from './modules/keyboard.js';
+import { initLinks } from './modules/links.js';
 
 const bootstrap = () => {
   raf(() => {
     initTextNav();
     initHotkeys();
+    initLinks();
 
     new TVScreen({ target: screenEl });
 
