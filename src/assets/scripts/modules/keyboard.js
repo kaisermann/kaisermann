@@ -8,12 +8,15 @@ import {
   toggleContent,
   gotoChannel,
 } from '../tv.js';
+import { body } from './utils.js';
 
 function isValidHotkey(e) {
+  const activeEl = document.activeElement;
+
   return (
-    document.activeElement === document.body ||
-    document.activeElement == null ||
-    (document.activeElement.tagName === 'BUTTON' &&
+    activeEl === body ||
+    activeEl == null ||
+    ((activeEl.tagName === 'BUTTON' || activeEl.tagName === 'A') &&
       e.key !== 'Enter' &&
       e.key !== ' ')
   );

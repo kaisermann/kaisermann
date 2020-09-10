@@ -1,16 +1,15 @@
 <script>
   {% set footerJs %}
-      document.querySelector('.js-header-date').innerHTML = new Intl
+    document.querySelector('.js-header-date').innerHTML = new Intl
       .DateTimeFormat('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric'
       })
       .format(new Date())
-    }
   {% endset %}
 
-    {{ footerJs | jsmin | safe  }}
+  {{ footerJs | jsmin | safe  }}
 </script>
 
 <script async src="/assets/scripts/main.js" type="module"></script>

@@ -1,4 +1,4 @@
-import { body, hostname, waitFor, raf } from './utils';
+import { body, hostname, waitFor, raf, location } from './utils';
 import { sendPageview } from './analytics';
 import { loadingPage, LOADING_STATE } from '../tv';
 
@@ -13,15 +13,21 @@ const initialState = {
 };
 
 let parser;
+let currentPathname = location.pathname;
 
-function isValidAnchor(anchor) {
-  if (anchor == null) return false;
-  if (anchor.tagName !== 'A') return false;
-  if (anchor.getAttribute('href').indexOf('#') === 0) return false;
-  if (anchor.target === '_blank') return false;
-  if (anchor.hostname !== hostname) return false;
+function isHashAnchor(element) {
+  return (
+    element.tagName === 'A' && element.getAttribute('href').indexOf('#') === 0
+  );
+}
 
-  return true;
+function isTransitionableAnchor(element) {
+  return (
+    element.tagName === 'A' &&
+    !isHashAnchor(element) &&
+    element.target !== '_blank' &&
+    element.hostname === hostname
+  );
 }
 
 function getSlotsContent(container = contentEl) {
@@ -116,9 +122,29 @@ export async function gotoPage(url) {
   });
 }
 
+function scrollContentToElement(el) {
+  location.hash = el.getAttribute('href');
+
+  raf(() => {
+    const target = contentEl.querySelector(':target');
+
+    if (target) target.scrollIntoView(true);
+  });
+}
+
 export function initLinks() {
   window.addEventListener('popstate', async (e) => {
     let { state } = e;
+
+    // prevent hash links from transitioning
+    console.log(location.pathname, currentPathname);
+    if (location.pathname === currentPathname) {
+      e.preventDefault();
+
+      return;
+    }
+
+    currentPathname = location.pathname;
 
     if (state == null) {
       state = initialState;
@@ -138,18 +164,20 @@ export function initLinks() {
   });
 
   body.addEventListener('mousemove', (e) => {
-    if (!isValidAnchor(e.target)) return;
+    if (!isTransitionableAnchor(e.target)) return;
     if (pageCache.has(e.target.href)) return;
 
     fetchPage(e.target.href);
   });
 
   body.addEventListener('click', (e) => {
-    const anchor = e.target.closest('a');
+    if (isHashAnchor(e.target)) {
+      return scrollContentToElement(e.target);
+    }
 
-    if (!isValidAnchor(anchor)) return;
+    if (!isTransitionableAnchor(e.target)) return;
 
     e.preventDefault();
-    gotoPage(anchor.href);
+    gotoPage(e.target.href);
   });
 }

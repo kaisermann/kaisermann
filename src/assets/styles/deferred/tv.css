@@ -15,7 +15,7 @@ body.loading-channel {
 body.loading-page {
   & .tv-effect--static {
     opacity: 0.6;
-    filter: grayscale(1);
+    filter: saturate(0.6) brightness(2);
   }
 
   & [js-slot] {
