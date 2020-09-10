@@ -4,15 +4,6 @@
   overflow: hidden;
 }
 
-.stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: 0 0;
-  width: 3840px; /* calc(1920px * 2); */
-  height: 2640px; /* calc(1320px * 2); */
-}
-
 .tv {
   position: relative;
   background-color: #000;
@@ -21,9 +12,7 @@
 }
 
 .tv-screen {
-  @nest body.turn-on & {
-    animation: turn-on-transform 0.4s, turn-on-filter 1s;
-  }
+  animation: turn-on-transform 0.4s, turn-on-filter 1s;
 }
 
 .tv-effect {
