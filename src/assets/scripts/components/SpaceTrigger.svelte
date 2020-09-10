@@ -16,6 +16,10 @@
 
     &:hover {
       opacity: 1;
+      /* preload the stars background on button hover */
+      background-image: url(/assets/images/stars.webp);
+      background-size: 0 0;
+      background-repeat: no-repeat;
     }
 
     @nest :global(body.hide-content) & {
@@ -24,4 +28,4 @@
   }
 </style>
 
-<button class="cursor-pointer" on:click={toggleSpace}> SPACE MODE </button>
+<button class="cursor-pointer" on:click={toggleSpace}>SPACE MODE</button>
