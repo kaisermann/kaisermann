@@ -79,7 +79,7 @@ body.loading-page {
 
     @media (max-width: 900px) {
       --scale: 0.9;
-      transition: height var(--spaceIntro) ease;
+      transition: box-shadow 0.6s ease-out, height var(--spaceIntro) ease;
       will-change: height, transform;
     }
   }
