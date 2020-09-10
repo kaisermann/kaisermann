@@ -136,11 +136,12 @@ export function toggleSpace() {
   );
 
   raf(() => {
-    const isInSpace = body.getAttribute('space') === 'floating';
+    const nextState =
+      body.getAttribute('space') === 'floating' ? 'exiting' : 'entering';
 
-    body.setAttribute('space', isInSpace ? 'exiting' : 'entering');
+    body.setAttribute('space', nextState);
 
-    if (isInSpace) {
+    if (nextState === 'entering') {
       sendEvent({ type: 'Went to space', category: 'easter_egg' });
     }
   });

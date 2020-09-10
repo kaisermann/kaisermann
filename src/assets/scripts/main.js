@@ -28,6 +28,10 @@ const bootstrap = () => {
       target: document.querySelector('.js-space-trigger'),
     });
   });
+
+  // if (process.env.ELEVENTY_ENV !== 'production') {
+  //   window.gtag = console.log;
+  // }
 };
 
 if (document.readyState !== 'interactive') {
