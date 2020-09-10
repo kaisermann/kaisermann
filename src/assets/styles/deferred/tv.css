@@ -51,6 +51,11 @@ body.loading-page {
   width: 3840px; /* calc(1920px * 2); */
   height: 2640px; /* calc(1320px * 2); */
 
+  @media (min-width: 3840px) {
+    width: calc(1920px * 4);
+    height: calc(1320px * 4);
+  }
+
   @nest body[space] & {
     animation: moving-stars 117s linear infinite;
     background-image: url(/assets/images/stars.webp);
