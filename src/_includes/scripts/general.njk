@@ -1,14 +1,18 @@
 <script>
   {% set footerJs %}
-    document
-      .querySelector('.js-header-date')
-      .innerHTML = new Intl
+    function setDate(){
+      let el = document.querySelector('.js-header-date')
+      if(!el) return;
+      el.innerHTML = new Intl
       .DateTimeFormat('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric'
       })
       .format(new Date())
+    }
+    window.addEventListener('contentChange', setDate)
+    setDate()
   {% endset %}
 
     {{ footerJs | jsmin | safe  }}

@@ -1,7 +1,12 @@
 import { body, hostname } from './utils';
+import { sendPageview } from './analytics';
 
 let parser;
-const currentContent = document.querySelector('.js-content');
+const contentEl = document.querySelector('.js-content');
+const initialState = {
+  title: document.title,
+  slots: getSlots(),
+};
 
 const pageCache = new Map();
 
@@ -15,12 +20,38 @@ function isValidAnchor(anchor) {
   return true;
 }
 
-async function fetchPage(url) {
+function getSlots(container = body) {
+  const slotList = Array.from(container.querySelectorAll('[js-slot]'));
+  const slots = slotList.reduce((acc, el) => {
+    const slotName = el.getAttribute('js-slot');
+
+    acc[slotName] = el.innerHTML;
+
+    return acc;
+  }, {});
+
+  return slots;
+}
+
+function replaceSlotsContent({ slots }) {
+  Object.keys(slots).forEach((slotName) => {
+    const slotEl = contentEl.querySelector(`[js-slot="${slotName}"]`);
+
+    if (slotEl == null) return;
+    slotEl.innerHTML = slots[slotName];
+  });
+
+  window.dispatchEvent(new CustomEvent('contentChange'));
+}
+
+function fetchPage(url) {
+  url = url.replace(/\/$/, '');
+
   if (pageCache.has(url)) {
-    return pageCache.get(url);
+    return Promise.resolve(pageCache.get(url));
   }
 
-  const promise = fetch(url)
+  const promise = fetch(url, { importance: 'low' })
     .then((response) => response.text())
     .then((html) => {
       if (parser == null) {
@@ -30,12 +61,14 @@ async function fetchPage(url) {
       const doc = parser.parseFromString(html, 'text/html');
       const newContent = doc.querySelector('.js-content');
 
-      pageCache.set(url, {
+      const cacheObj = {
         title: doc.title,
-        htmlContent: newContent.innerHTML,
-      });
+        slots: getSlots(newContent),
+      };
 
-      return html;
+      pageCache.set(url, cacheObj);
+
+      return cacheObj;
     });
 
   pageCache.set(url, promise);
@@ -43,9 +76,33 @@ async function fetchPage(url) {
   return promise;
 }
 
+export function gotoPage(url) {
+  if (url.indexOf('http') !== 0) {
+    url = `${window.location.origin}${url}`;
+  }
+
+  return fetchPage(url).then(({ title, slots }) => {
+    replaceSlotsContent({ title, slots });
+    document.title = title;
+    contentEl.scrollTop = 0;
+    window.history.pushState({ title, slots }, title, url);
+
+    // todo: test this
+    sendPageview();
+  });
+}
+
 export function initLinks() {
   window.addEventListener('popstate', (e) => {
-    currentContent.innerHTML = e.state;
+    let { state } = e;
+
+    if (state == null) {
+      state = initialState;
+    }
+
+    replaceSlotsContent(state);
+    document.title = e.title;
+    contentEl.scrollTop = 0;
   });
 
   body.addEventListener('mousemove', (e) => {
@@ -61,15 +118,6 @@ export function initLinks() {
     if (!isValidAnchor(anchor)) return;
 
     e.preventDefault();
-
-    fetchPage(anchor.href).then(({ title, htmlContent }) => {
-      document.title = title;
-
-      currentContent.innerHTML = htmlContent;
-
-      window.history.pushState(htmlContent, title, anchor.href);
-
-      currentContent.scrollTop = 0;
-    });
+    gotoPage(anchor.href);
   });
 }

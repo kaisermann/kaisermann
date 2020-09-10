@@ -20,7 +20,7 @@
               <div class="page-container glitchy-text">
                 {% include 'header.njk' %}
 
-                <div class="page-content" id="content">
+                <div class="page-content" id="content" js-slot="content">
                   {{ content | safe }}
                 </div>
 
