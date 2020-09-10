@@ -1,6 +1,5 @@
 .space {
   position: relative;
-  height: 100vh;
   background-color: #000;
   overflow: hidden;
 }
@@ -16,15 +15,12 @@
 
 .tv {
   position: relative;
-  height: 100vh;
   background-color: #000;
   overflow: hidden;
   margin: 0 auto;
 }
 
 .tv-screen {
-  height: 100%;
-
   @nest body.turn-on & {
     animation: turn-on-transform 0.4s, turn-on-filter 1s;
   }
@@ -110,7 +106,6 @@
 .tv-content {
   position: relative;
   z-index: var(--layer-content);
-  height: 100%;
   overflow: hidden auto;
   background-color: rgba(0, 0, 0, 0.4);
 }

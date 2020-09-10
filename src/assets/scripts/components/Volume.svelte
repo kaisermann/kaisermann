@@ -30,20 +30,18 @@
     filter: blur(1px);
   }
 
-  .hidden {
-    display: none;
-  }
-
   .track {
     display: flex;
   }
 </style>
 
-<div class="volume glitchy-text" class:hidden>
-  VOLUME
-  <div class="track">
-    {#each { length: 15 } as _, i}
-      <div class="step">{i <= transformed ? '|' : '-'}</div>
-    {/each}
+{#if !hidden}
+  <div class="volume glitchy-text">
+    VOLUME
+    <div class="track">
+      {#each { length: 15 } as _, i}
+        <div class="step">{i <= transformed ? '|' : '-'}</div>
+      {/each}
+    </div>
   </div>
-</div>
+{/if}

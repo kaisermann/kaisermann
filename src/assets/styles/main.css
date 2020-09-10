@@ -68,6 +68,16 @@ body {
   overflow: hidden;
 }
 
+html,
+body,
+.space,
+.spaceship,
+.tv,
+.tv-screen,
+.tv-content {
+  height: 100%;
+}
+
 .page-container {
   display: grid;
   grid-template-rows: auto 1fr auto;
