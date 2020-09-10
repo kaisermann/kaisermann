@@ -109,14 +109,6 @@ export const toggleContent = () => {
   contentVisible.update((v) => !v);
 };
 
-if ('mediaSession' in navigator) {
-  currentChannel.subscribe((c) => {
-    navigator.mediaSession.metadata = new window.MediaMetadata({
-      title: `Channel ${c}`,
-    });
-  });
-}
-
 // todo: better way to do this animation orchestration
 export function toggleSpace() {
   tvEl.addEventListener(

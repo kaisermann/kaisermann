@@ -43,8 +43,4 @@ function handleHotkey(e) {
 
 export function initHotkeys() {
   window.addEventListener('keyup', handleHotkey);
-  if (navigator.mediaSession) {
-    navigator.mediaSession.setActionHandler('nexttrack', incrementChannel);
-    navigator.mediaSession.setActionHandler('previoustrack', decrementChannel);
-  }
 }
