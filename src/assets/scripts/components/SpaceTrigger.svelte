@@ -17,9 +17,17 @@
     &:hover {
       opacity: 1;
       /* preload the stars background on button hover */
-      background-image: url(/assets/images/stars.webp);
+      background-image: url(/assets/images/stars.jpg);
       background-size: 0 0;
       background-repeat: no-repeat;
+
+      @nest :global(html.webp) & {
+        background-image: url(/assets/images/stars.webp);
+      }
+
+      @nest :global(html.avif) & {
+        background-image: url(/assets/images/stars.avif);
+      }
     }
 
     @nest :global(body.hide-content) & {

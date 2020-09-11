@@ -20,16 +20,28 @@
 
 /* colors */
 .tv-effect.--static {
-  background-image: url(/assets/images/effect-colored-noise.gif);
   background-size: cover;
   opacity: 0.1;
+  background-image: url(/assets/images/effect-static.gif);
+
+  @nest html.webp & {
+    background-image: url(/assets/images/effect-static.webp);
+  }
+
+  /* todo: animated avif not supported right now */
 }
 
 /* static/noise effect */
 .tv-effect.--artifacts {
-  background-image: url(/assets/images/effect-glitch.gif);
+  background-image: url(/assets/images/effect-artifacts.gif);
   background-size: cover;
   opacity: 0.4;
+
+  @nest html.webp & {
+    background-image: url(/assets/images/effect-artifacts.webp);
+  }
+
+  /* todo: animated avif not supported right now */
 }
 
 /* vignette */

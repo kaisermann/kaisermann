@@ -16,8 +16,12 @@
 
   &::before {
     content: '';
-    background-image: url(/assets/images/effect-colored-noise.gif);
+    background-image: url(/assets/images/effect-static.gif);
     transition: opacity 0.4s;
+
+    @nest html.webp & {
+      background-image: url(/assets/images/effect-static.webp);
+    }
   }
 
   @nest .playlist-link:matches(:hover, :focus) + & {

@@ -8,10 +8,31 @@ a {
   text-decoration: none;
   color: var(--text-secondary);
   transition: background-size 0.2s cubic-bezier(0.29, 0.8, 0.21, 0.63);
-  background-image: url(/assets/images/rainbow-static.gif);
   background-position: center center;
   background-size: 90% 0;
   background-repeat: no-repeat;
+
+  /*
+   * gotta put this not here because otherwise it loads
+   * the image before running the support script
+   */
+  @nest html:not(.webp) & {
+    background-image: url(/assets/images/rainbow-static.gif);
+  }
+
+  @nest html.webp & {
+    background-image: url(/assets/images/rainbow-static.webp);
+  }
+
+  &:hover {
+    @extend .cursor-pointer;
+    background-size: 100% 100%;
+
+    &::after {
+      visibility: visible;
+      transition: visibility 0s 0.7s;
+    }
+  }
 
   &:matches([href^='http'], [href^='mailto'])::after {
     display: block;
@@ -34,16 +55,6 @@ a {
 
     &::after {
       visibility: visible;
-    }
-  }
-
-  &:hover {
-    @extend .cursor-pointer;
-    background-size: 100% 100%;
-
-    &::after {
-      visibility: visible;
-      transition: visibility 0s 0.7s;
     }
   }
 }
