@@ -7,6 +7,7 @@ import {
   decrementChannel,
   toggleContent,
   gotoChannel,
+  toggleFullscreen,
 } from '../tv.js';
 import { body } from './utils.js';
 
@@ -28,6 +29,7 @@ function handleHotkey(e) {
   if (e.key === '+' || e.key === '=') return incrementChannel();
   if (e.key === '-') return decrementChannel();
   if (e.key === 'h') return toggleContent();
+  if (e.key === 'f') return toggleFullscreen();
 
   const channelNumber = Number(e.key);
 

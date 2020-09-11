@@ -115,13 +115,12 @@ body.loading-page {
 
   & .tv-effect.--crt {
     &::before {
-      animation-duration: 0.3s;
+      animation-duration: 0.25s;
     }
   }
 
-  & [js-slot] {
-    pointer-events: none;
-    opacity: 0.2;
+  & .tv-content {
     filter: blur(5px);
+    pointer-events: none;
   }
 }
