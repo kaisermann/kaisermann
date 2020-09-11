@@ -15,27 +15,29 @@
   let isReady = false;
 
   async function changeChannel(channelInfo) {
-    const { number, duration, watchTimestamp } = channelInfo;
+    const { number, duration, startTimestamp } = channelInfo;
 
     if (!video) return;
 
     isReady = false;
     video.load();
 
-    if (watchTimestamp != null) {
-      const now = Date.now() / 1000;
-      let updatedTime = now - watchTimestamp;
+    const now = Date.now() / 1000;
 
-      if (updatedTime < duration) {
-        video.currentTime = updatedTime;
+    if (startTimestamp != null) {
+      let diff = now - startTimestamp;
+      let currentTime;
+
+      if (diff < duration) {
+        currentTime = diff;
       } else {
-        video.currentTime = 0;
-        updateChannelInfo(number, { watchTimestamp: now });
+        currentTime = diff % duration;
+        updateChannelInfo(number, { startTimestamp: now - currentTime });
       }
-    }
 
-    if (watchTimestamp == null) {
-      updateChannelInfo(number, { watchTimestamp: Date.now() / 1000 });
+      video.currentTime = currentTime;
+    } else {
+      updateChannelInfo(number, { startTimestamp: now });
     }
   }
 

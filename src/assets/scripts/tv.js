@@ -24,14 +24,14 @@ export const loadingPage = writable(LOADING_STATE.None);
 
 export const channelMap = {
   0: {},
-  1: { type: 'video', duration: null, watchTimestamp: null },
-  2: { type: 'video', duration: null, watchTimestamp: null },
-  3: { type: 'video', duration: null, watchTimestamp: null },
-  4: { type: 'video', duration: null, watchTimestamp: null },
-  5: { type: 'video', duration: null, watchTimestamp: null },
-  6: { type: 'video', duration: null, watchTimestamp: null },
-  7: { type: 'video', duration: null, watchTimestamp: null },
-  8: { type: 'video', duration: null, watchTimestamp: null },
+  1: { type: 'video', duration: null, startTimestamp: null },
+  2: { type: 'video', duration: null, startTimestamp: null },
+  3: { type: 'video', duration: null, startTimestamp: null },
+  4: { type: 'video', duration: null, startTimestamp: null },
+  5: { type: 'video', duration: null, startTimestamp: null },
+  6: { type: 'video', duration: null, startTimestamp: null },
+  7: { type: 'video', duration: null, startTimestamp: null },
+  8: { type: 'video', duration: null, startTimestamp: null },
   9: { type: 'webcam', displayName: 'AV1' },
 };
 
