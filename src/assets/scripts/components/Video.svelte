@@ -66,7 +66,7 @@
 
   $: updatePlayState(isReady, $loadingChannel);
 
-  $: isReady && duration && updateCurrentTime();
+  $: duration && updateCurrentTime();
 </script>
 
 <!-- svelte-ignore a11y-media-has-caption -->
