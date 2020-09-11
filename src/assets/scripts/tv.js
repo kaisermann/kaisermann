@@ -176,8 +176,6 @@ export function toggleFullscreen() {
   }
 }
 
-window.addEventListener('unload', () => {
-  saveChannelTimestamps();
-});
+window.addEventListener('pagehide', saveChannelTimestamps, false);
 
 loadChannelTimestamps();
