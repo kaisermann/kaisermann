@@ -9,12 +9,12 @@
   top: 0;
   left: 0;
   transform-origin: 0 0;
-  width: 3840px; /* calc(1920px * 2); */
-  height: 2640px; /* calc(1320px * 2); */
+  width: calc(2000px * 2);
+  height: calc(1375px * 2);
 
   @media (min-width: 3840px) {
-    width: calc(1920px * 4);
-    height: calc(1320px * 4);
+    width: calc(2000px * 4);
+    height: calc(1375px * 4);
   }
 
   @nest body[space] & {
