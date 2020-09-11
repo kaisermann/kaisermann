@@ -21,7 +21,7 @@
 /* colors */
 .tv-effect.--static {
   background-size: cover;
-  opacity: 0.1;
+  opacity: 0.2;
   background-image: url(/assets/images/effect-static.gif);
 
   @nest html.webp & {
