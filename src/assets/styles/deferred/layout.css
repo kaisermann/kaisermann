@@ -1,3 +1,7 @@
+body.hide-content .page-container {
+  visibility: hidden;
+}
+
 .text-nav {
   position: relative;
   caret-color: transparent;

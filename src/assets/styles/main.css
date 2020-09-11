@@ -47,11 +47,11 @@
   &::-webkit-scrollbar-thumb {
     background-color: #28272a;
   }
-}
 
-::selection {
-  background-color: #fff;
-  color: #000;
+  &::selection {
+    background-color: #fff;
+    color: #000;
+  }
 }
 
 html {
@@ -86,10 +86,6 @@ body,
   min-height: 100vh;
   width: var(--container-width);
   margin: 0 auto;
-
-  @nest body.hide-content & {
-    visibility: hidden;
-  }
 }
 
 .glitchy-text {
@@ -112,11 +108,11 @@ body,
 }
 
 .cursor-default {
-  cursor: url(../images/cursor-default.png) 0 0, auto;
+  cursor: url(/assets/images/cursor-default.png) 0 0, auto;
 }
 
 .cursor-pointer {
-  cursor: url(../images/cursor-pointer.png) 14 8, auto;
+  cursor: url(/assets/images/cursor-pointer.png) 14 8, auto;
 }
 
 .skip-link {

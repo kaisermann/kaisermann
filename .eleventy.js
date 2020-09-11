@@ -1,7 +1,13 @@
 require('dotenv/config');
+
+const { readFile } = require('fs/promises');
+const { join } = require('path');
+
 const navigationPlugin = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const Terser = require('terser');
+const postcss = require('postcss');
+const postcssrc = require('postcss-load-config');
 
 const htmlmin = require('./src/utils/minify-html.js');
 
@@ -11,6 +17,17 @@ module.exports = (config) => {
   if (process.env.ELEVENTY_ENV === 'production') {
     config.addTransform('htmlmin', htmlmin);
   }
+
+  config.addNunjucksAsyncShortcode('postcss', async (path) => {
+    const { plugins } = postcssrc.sync();
+
+    path = join(process.cwd(), 'src', path);
+    const css = (await readFile(path)).toString();
+
+    return postcss(plugins)
+      .process(css, { from: path })
+      .then((result) => result.css);
+  });
 
   config.addNunjucksAsyncFilter('jsmin', async (code, callback) => {
     const minified = await Terser.minify(code);

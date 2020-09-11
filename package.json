@@ -9,7 +9,8 @@
     "build": "cross-env ELEVENTY_ENV=production eleventy",
     "build:prod": "npm run build",
     "lint": "eslint --ignore-pattern=\"node_modules\" .",
-    "format": "prettier --write \"**/*.{js,json}\""
+    "format": "prettier --write \"**/*.{js,json}\"",
+    "purgecss": "purgecss -c purgecss.config.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "postcss-load-config": "^2.1.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.1",
+    "purgecss": "^2.3.0",
     "rollup": "^2.26.11",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-svelte": "^6.0.1",
