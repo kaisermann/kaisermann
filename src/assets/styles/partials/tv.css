@@ -21,8 +21,12 @@
 /* colors */
 .tv-effect.--static {
   background-size: cover;
-  opacity: 0.2;
+  opacity: 0.1;
   background-image: url(/assets/images/effect-static.gif);
+
+  @nest body:matches([channel='0'], :not([channel])) & {
+    opacity: 0.2;
+  }
 
   @nest html.webp & {
     background-image: url(/assets/images/effect-static.webp);
