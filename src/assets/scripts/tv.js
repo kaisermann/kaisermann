@@ -146,3 +146,30 @@ export function toggleSpace() {
     }
   });
 }
+
+function loadChannelTimestamps() {
+  const tsList = JSON.parse(localStorage.getItem('timestamps'));
+
+  if (tsList == null) return;
+
+  tsList.forEach(([id, ts]) => {
+    channelMap[id].startTimestamp = ts;
+  });
+}
+
+function saveChannelTimestamps() {
+  localStorage.setItem(
+    'timestamps',
+    JSON.stringify(
+      Object.entries(channelMap).map(([id, info]) => {
+        return [id, info.startTimestamp];
+      }),
+    ),
+  );
+}
+
+window.addEventListener('unload', () => {
+  saveChannelTimestamps();
+});
+
+loadChannelTimestamps();
