@@ -16,9 +16,8 @@
     color: var(--text-primary);
     font-size: var(--font-size-primary);
   }
-}
-@media (min-width: 580px) {
-  .project-list {
+
+  @media (min-width: 580px) {
     grid-template-columns: 1fr 1fr;
   }
 }

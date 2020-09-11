@@ -1,14 +1,3 @@
-.skip-link {
-  position: absolute;
-  z-index: var(--layer-top);
-  top: 0;
-  left: 0;
-
-  &:not(:focus) {
-    transform: translateX(-100%);
-  }
-}
-
 .header {
   position: relative;
   min-height: 300px;
@@ -70,31 +59,4 @@
   .nav__menu li {
     margin-top: 0.6rem;
   }
-}
-
-.text-nav {
-  position: relative;
-  caret-color: transparent;
-  user-select: text;
-
-  &:focus {
-    outline: none;
-
-    &::before {
-      content: '_';
-      position: absolute;
-      bottom: 0;
-      left: calc(var(--caret-position, -9999) * 1ch);
-      animation: blink 0.8s step-end infinite;
-    }
-  }
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  align-self: flex-end;
-  margin-top: 160px;
-  padding-bottom: var(--gui-bottom);
 }

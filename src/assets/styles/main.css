@@ -1,7 +1,7 @@
 @import './partials/reset.css';
 @import './partials/fonts.css';
 @import './partials/animations.css';
-@import './partials/page.css';
+@import './partials/layout.css';
 @import './partials/content.css';
 @import './pages/index.css';
 @import './pages/playlists.css';
@@ -117,4 +117,15 @@ body,
 
 .cursor-pointer {
   cursor: url(../images/cursor-pointer.png) 14 8, auto;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: var(--layer-top);
+  top: 0;
+  left: 0;
+
+  &:not(:focus) {
+    transform: translateX(-100%);
+  }
 }
