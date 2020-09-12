@@ -1,7 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 
-import { sendEvent } from './modules/analytics.js';
-import { raf, body } from './modules/utils.js';
+import { sendEvent } from './analytics.js';
+import { raf, body } from './utils.js';
 
 export const LOADING_STATE = {
   None: 0,

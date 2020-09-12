@@ -3,7 +3,7 @@
 
   import { onMount } from 'svelte';
   import { raf, body } from '../modules/utils.js';
-  import { loadingChannel, LOADING_STATE } from '../tv.js';
+  import { loadingChannel, LOADING_STATE } from '../modules/tv.js';
 
   const dispatch = createEventDispatcher();
 

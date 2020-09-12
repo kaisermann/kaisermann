@@ -8,7 +8,7 @@ import {
   toggleContent,
   gotoChannel,
   toggleFullscreen,
-} from '../tv.js';
+} from './tv.js';
 import { body } from './utils.js';
 
 function isValidHotkey(e) {

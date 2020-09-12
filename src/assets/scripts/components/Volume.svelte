@@ -1,5 +1,5 @@
 <script>
-  import { volume } from '../tv.js';
+  import { volume } from '../modules/tv.js';
   import { timeout } from '../modules/utils.js';
 
   let hidden = true;

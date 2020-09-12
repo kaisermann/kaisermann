@@ -14,7 +14,7 @@
     loadingChannel,
     loadingPage,
     LOADING_STATE,
-  } from '../tv';
+  } from '../modules/tv.js';
 
   const MIN_CHANNEL_LOADING_TIME = 400;
 

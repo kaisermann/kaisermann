@@ -3,7 +3,7 @@
     currentChannelInfo,
     decrementChannel,
     incrementChannel,
-  } from '../tv.js';
+  } from '../modules/tv.js';
 </script>
 
 <style lang="postcss">

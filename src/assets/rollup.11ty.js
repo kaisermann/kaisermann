@@ -31,7 +31,7 @@ const plugins = [
     }),
     emitCss: true,
   }),
-  postcss({ extract: 'deferred.css' }),
+  postcss({ extract: 'styles.css' }),
   PROD && terser(),
 ];
 

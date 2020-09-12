@@ -8,7 +8,7 @@
     gotoChannel,
     toggleContent,
     toggleSpace,
-  } from '../tv';
+  } from '../modules/tv.js';
 </script>
 
 <style lang="postcss">

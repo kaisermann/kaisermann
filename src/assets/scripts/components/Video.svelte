@@ -8,7 +8,7 @@
     LOADING_STATE,
     currentChannelInfo,
     currentChannel,
-  } from '../tv';
+  } from '../modules/tv.js';
 
   const dispatch = createEventDispatcher();
 

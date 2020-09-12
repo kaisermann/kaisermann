@@ -1,5 +1,5 @@
 <script>
-  import { toggleSpace } from '../tv.js';
+  import { toggleSpace } from '../modules/tv.js';
 </script>
 
 <button class="remote-trigger cursor-pointer" on:click={() => toggleSpace()}>
