@@ -27,6 +27,7 @@ module.exports = (config) => {
   config.addPassthroughCopy('./src/assets/videos');
   config.addPassthroughCopy('./src/assets/images');
   config.addPassthroughCopy('./src/assets/fonts');
+  config.addPassthroughCopy('./src/_redirects');
 
   config.addWatchTarget('./src/assets/');
 
