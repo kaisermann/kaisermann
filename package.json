@@ -7,10 +7,12 @@
     "start": "npm run dev",
     "dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
     "build": "cross-env ELEVENTY_ENV=production eleventy",
-    "build:prod": "run-s build critical-css",
+    "build:dev": "eleventy",
+    "build:prod": "run-s build purge-css critical-css",
     "lint": "eslint --ignore-pattern=\"node_modules\" .",
     "format": "prettier --write \"**/*.{js,json}\"",
-    "critical-css": "./scripts/critical-css.sh"
+    "critical-css": "./scripts/critical-css.sh",
+    "purge-css": "purgecss -c purgecss.config.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "postcss-load-config": "^2.1.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.1",
+    "purgecss": "^2.3.0",
     "rollup": "^2.26.11",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-svelte": "^6.0.1",
