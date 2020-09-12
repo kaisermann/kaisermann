@@ -176,6 +176,14 @@ export function toggleFullscreen() {
   }
 }
 
-window.addEventListener('pagehide', saveChannelTimestamps, false);
+window.addEventListener(
+  'visibilitychange',
+  () => {
+    if (document.visibilityState === 'hidden') {
+      saveChannelTimestamps();
+    }
+  },
+  false,
+);
 
 loadChannelTimestamps();
