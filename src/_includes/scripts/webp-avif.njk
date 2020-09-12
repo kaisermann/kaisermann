@@ -1,3 +1,61 @@
 <!-- from https://github.com/djpogo/avif-webp-css-support/ -->
 
-<script>!function(A){"use strict";function e(A,e,a){var n=function(A){if(window.sessionStorage){var e=window.sessionStorage.getItem(A+"Support");if("false"===e||"true"===e)return"true"===e}return null}(A);if(null===n){var s=new Image;return s.onload=s.onerror=function(){a(A,2===s.height)},void(s.src=e)}t(A,n)}function t(e,t){if(t){var a=A.documentElement;a.classList?a.classList.add("webp"===e?"webp":"avif"):a.className+=" "+e=="webp"?"webp":"avif",window.sessionStorage.setItem(e+"Support",!0)}else window.sessionStorage.setItem(e+"Support",!1)}e("webp","data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA",t),e("avif","data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUEAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAF0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgS0AAAAAABNjb2xybmNseAACAAIAAIAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAGVtZGF0EgAKBzgAPtAgIAkyUBAAAPWc41TP///4gHBX9H8XVK7gGeDllq8TYARA+8Tfsv7L+zPE24eIoIzE0WhHbrqcrTK9VEgEG/hwgB5rdCbvP8g3KYPdV88CvPJnptgQ",t)}(document)</script>
+<script>
+
+  {% set code %}
+  (function (document) {
+    'use strict';
+
+    const webpImage = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wA' + 'iMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
+    const avifImage = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUEAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAF0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgS0AAAAAABNjb2xybmNseAACAAIAAIAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAGVtZGF0EgAKBzgAPtAgIAkyUBAAAPWc41TP///4gHBX9H8XVK7gGeDllq8TYARA+8Tfsv7L+zPE24eIoIzE0WhHbrqcrTK9VEgEG/hwgB5rdCbvP8g3KYPdV88CvPJnptgQ';
+
+    function alreadyTested(format) {
+      if (!!window.sessionStorage) {
+        const test = window.sessionStorage.getItem(format + 'Support');
+        if (test === 'false' || test === 'true') {
+          return test === 'true';
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Test image format support.
+     * @param {String} format - 'webp' or 'avif'
+     * @param {String} imageSrc - base64 represantation of a 2x2 test image
+     * @param {Function} callback - Callback function.
+     */
+    function testFormat(format, imageSrc, callback) {
+      const tested = alreadyTested(format);
+
+      if (tested === null) {
+        const image = new Image();
+
+        image.onload = image.onerror = function () {
+          callback(format, image.height === 2);
+        };
+        image.src = imageSrc;
+        return;
+      }
+      addClass(format, tested);
+    };
+
+    /**
+     * Add 'webp' class to html element if supported.
+     * @param {Boolean} support - WebP format support.
+     */
+    function addClass(format, support) {
+      if (support) {
+        const el = document.documentElement;
+        el.classList.add(format);
+      }
+      window.sessionStorage.setItem(format + 'Support', support);
+    }
+
+    testFormat('webp', webpImage, addClass);
+    testFormat('avif', avifImage, addClass);
+  })(document);
+  {% endset %}
+
+    {{ code | jsmin | safe }}
+</script>
