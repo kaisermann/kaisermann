@@ -229,7 +229,7 @@
           <div class="control onoff">
             <button class="hide-text" on:click={() => toggleSpace(false)}>REMOTE
               OFF</button>
-            <span>REMOTE OFF</span>
+            <span>SPACE OFF</span>
           </div>
 
           <div class="control vol up">
