@@ -1,7 +1,6 @@
 <!-- from https://github.com/djpogo/avif-webp-css-support/ -->
 
 <script>
-
   {% set code %}
   (function (document) {
     'use strict';
@@ -11,20 +10,11 @@
 
     function alreadyTested(format) {
       if (!!window.sessionStorage) {
-        const test = window.sessionStorage.getItem(format + 'Support');
-        if (test === 'false' || test === 'true') {
-          return test === 'true';
-        }
+        return JSON.parse(window.sessionStorage.getItem(format + 'Support'));
       }
       return null;
     }
 
-    /**
-     * Test image format support.
-     * @param {String} format - 'webp' or 'avif'
-     * @param {String} imageSrc - base64 represantation of a 2x2 test image
-     * @param {Function} callback - Callback function.
-     */
     function testFormat(format, imageSrc, callback) {
       const tested = alreadyTested(format);
 
@@ -34,20 +24,18 @@
         image.onload = image.onerror = function () {
           callback(format, image.height === 2);
         };
+
         image.src = imageSrc;
+
         return;
       }
+
       addClass(format, tested);
     };
 
-    /**
-     * Add 'webp' class to html element if supported.
-     * @param {Boolean} support - WebP format support.
-     */
     function addClass(format, support) {
       if (support) {
-        const el = document.documentElement;
-        el.classList.add(format);
+        document.documentElement.classList.add(format);
       }
       window.sessionStorage.setItem(format + 'Support', support);
     }
@@ -57,5 +45,5 @@
   })(document);
   {% endset %}
 
-    {{ code | jsmin | safe }}
+  {{ code | jsmin | safe }}
 </script>
