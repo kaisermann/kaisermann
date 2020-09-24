@@ -1,9 +1,30 @@
 require('dotenv/config');
 const navigationPlugin = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
+const eleventySvelte = require('eleventy-plugin-svelte');
 const Terser = require('terser');
+const commonjs = require('@rollup/plugin-commonjs');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const { terser } = require('rollup-plugin-terser');
+const replace = require('@rollup/plugin-replace');
+const postcss = require('rollup-plugin-postcss');
 
+const svelteConfig = require('./svelte.config.js');
 const htmlmin = require('./src/utils/minify-html.js');
+
+const PROD = process.env.ELEVENTY_ENV === 'production';
+
+// const ASSETS_DIR = join(process.cwd(), 'public', 'assets');
+
+const plugins = [
+  replace({
+    'process.env.ELEVENTY_ENV': JSON.stringify(process.env.ELEVENTY_ENV),
+  }),
+  nodeResolve(),
+  commonjs(),
+  postcss({ extract: 'styles.css' }),
+  PROD && terser(),
+];
 
 module.exports = (config) => {
   config.addLayoutAlias('default', 'layouts/base.njk');
@@ -34,13 +55,25 @@ module.exports = (config) => {
   config.addPlugin(navigationPlugin);
   config.addPlugin(pluginRss);
 
+  config.addPlugin(eleventySvelte, {
+    rollupPluginSvelteSSROptions: {
+      ...svelteConfig,
+    },
+    rollupPluginSvelteClientOptions: {
+      ...svelteConfig,
+      emitCss: true,
+    },
+    rollupClientPlugins: plugins,
+    clientLegacyOutput: false,
+  });
+
   return {
     dir: {
       input: 'src/',
       output: 'public/',
       data: `_data/`,
     },
-    templateFormats: ['njk', '11ty.js', 'md'],
+    templateFormats: ['11ty.js', 'svelte'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: 'njk',
     passthroughFileCopy: true,
