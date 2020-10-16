@@ -1,5 +1,5 @@
 <script>
-  {% set footerJs %}
+  {% set code %}
     document
       .querySelector('.js-header-date')
       .innerHTML = new Intl
@@ -11,7 +11,7 @@
       .format(new Date())
   {% endset %}
 
-  {{ footerJs | jsmin | safe  }}
+  {{ code | jsmin | safe  }}
 </script>
 
 <script async src="/assets/scripts/main.js" type="module"></script>
