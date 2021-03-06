@@ -29,9 +29,6 @@ const bootstrap = () => {
     });
   });
 
-  // if (process.env.ELEVENTY_ENV !== 'production') {
-  //   window.gtag = console.log;
-  // }
 };
 
 if (document.readyState !== 'interactive') {

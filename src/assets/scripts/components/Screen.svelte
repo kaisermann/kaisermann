@@ -61,9 +61,9 @@
     });
 
     sendEvent({
-      type: 'channel_switch',
-      label: `Switched to channel ${channelInfo.displayName}`,
-      category: 'easter_egg',
+      type: 'easter_egg',
+      label: 'channel_switch',
+      value: channelInfo.displayName,
     });
   }
 
@@ -100,6 +100,16 @@
   });
 </script>
 
+<div class="tv-videos">
+  {#if $currentChannelInfo.type === 'webcam'}
+    <Webcam on:ready={handleChannelReady} />
+  {:else if $currentChannelInfo.type === 'video'}
+    <Video on:ready={handleChannelReady} />
+  {/if}
+</div>
+
+<Volume />
+
 <style lang="postcss">
   .tv-videos {
     z-index: var(--layer-channels);
@@ -121,13 +131,3 @@
     }
   }
 </style>
-
-<div class="tv-videos">
-  {#if $currentChannelInfo.type === 'webcam'}
-    <Webcam on:ready={handleChannelReady} />
-  {:else if $currentChannelInfo.type === 'video'}
-    <Video on:ready={handleChannelReady} />
-  {/if}
-</div>
-
-<Volume />

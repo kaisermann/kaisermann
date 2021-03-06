@@ -1,5 +1,4 @@
 import { body, hostname, waitFor, raf, location } from './utils';
-import { sendPageview } from './analytics';
 import { contentEl, loadingPage, LOADING_STATE } from './tv.js';
 
 const MIN_LOADING_TIME = 300;
@@ -119,9 +118,6 @@ export async function gotoPage(url) {
 
     window.history.pushState({ title, slots }, title, url);
     currentPathname = location.pathname;
-
-    // todo: test this
-    sendPageview();
   });
 }
 

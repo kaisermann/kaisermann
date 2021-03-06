@@ -142,7 +142,10 @@ export function toggleSpace() {
     body.setAttribute('space', nextState);
 
     if (nextState === 'entering') {
-      sendEvent({ type: 'Went to space', category: 'easter_egg' });
+      sendEvent({
+        type: 'easter_egg',
+        label: 'space'
+      });
     }
   });
 }
