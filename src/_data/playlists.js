@@ -6,6 +6,10 @@ const CLIENT_ID = 'caaba35a777245c6851df2ad0f60a39a';
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const USER_ID = '12142121799';
 
+if (CLIENT_SECRET == null) {
+  throw Error('SPOTIFY_CLIENT_SECRET not found');
+}
+
 async function getAccessToken() {
   const b64 = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
 

@@ -28,6 +28,7 @@ module.exports = (config) => {
   config.addPassthroughCopy('./src/assets/images');
   config.addPassthroughCopy('./src/assets/fonts');
   config.addPassthroughCopy('./src/_redirects');
+  config.addPassthroughCopy('./src/lab/**/*.{css,js}');
 
   config.addWatchTarget('./src/assets/');
 

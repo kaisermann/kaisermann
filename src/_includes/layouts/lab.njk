@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="{{ app.description }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/assets/images/favicon.png" />
+    <link rel="stylesheet" href="/lab/reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+
+    {% set titleComplement = eleventyNavigation.key %}
+
+    <title>kaisermann LAB | {{ titleComplement }}</title>
+  </head>
+
+  <body>
+    {{ content | safe }}
+    <script async type="module" src="./main.js"></script>
+  </body>
+</html>
