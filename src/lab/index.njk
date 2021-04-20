@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+textNav:
+  aliases: [lab, experiment]
+eleventyNavigation:
+  key: lab
+  parent: bio
+---
+
+<article>
+  <p>Where the wild experiments are.</p>
+
+  <ul class="spacer-t">
+    {% for experiment in collections.lab -%}
+    <li>
+      <a class="big-text" href="{{ experiment.url }}" redirect>
+        {{ experiment.data.eleventyNavigation.title }}
+      </a>
+      <br />
+      <small>{{ experiment.data.description | safe }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</article>

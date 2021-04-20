@@ -133,3 +133,11 @@ body,
 .visually-hidden {
   visibility: hidden;
 }
+
+.spacer-t {
+  margin-top: 2rem;
+}
+
+.spacer-b {
+  margin-bottom: 2rem;
+}

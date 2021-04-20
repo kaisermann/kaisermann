@@ -26,7 +26,8 @@ function isTransitionableAnchor(element) {
     element.tagName === 'A' &&
     !isHashAnchor(element) &&
     element.target !== '_blank' &&
-    element.hostname === hostname
+    element.hostname === hostname &&
+    !element.hasAttribute('redirect')
   );
 }
 
