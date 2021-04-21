@@ -18,6 +18,8 @@ eleventyNavigation:
       </a>
       <br />
       <small>{{ experiment.data.description | safe }}</small>
+      <br />
+      <small><i>{{ experiment.data.instructions | safe }}</i></small>
     </li>
     {% endfor %}
   </ul>
