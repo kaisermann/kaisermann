@@ -14,7 +14,7 @@ const { getStringHash } = require('../utils/hash');
 
 const PROD = process.env.ELEVENTY_ENV === 'production';
 
-const plugins = [
+const getPlugins = () => [
   replace({
     preventAssignment: true,
     values: {
@@ -36,62 +36,83 @@ const plugins = [
   PROD && terser(),
 ];
 
+function getAsset({ filePath, content, root }) {
+  return {
+    root,
+    content,
+    hash: getStringHash(content),
+    ext: path.extname(filePath),
+    baseName: path.basename(filePath, path.extname(filePath)),
+    fileName: path.join(root, path.basename(filePath)),
+  };
+}
+
 async function bundleFile(input) {
+  const groupPath = path.relative('src/', path.dirname(input));
   const inputOptions = {
     input,
-    plugins,
+    plugins: getPlugins(),
   };
 
   const outputOptions = {
     sourcemap: false,
     format: 'es',
-    name: 'main',
+    dir: `${groupPath}/dist`,
   };
 
   const bundle = await rollup.rollup(inputOptions);
   const { output } = await bundle.generate(outputOptions);
 
-  let content = '';
+  let jsContent = '';
   const assets = [];
 
   for (const chunkOrAsset of output) {
     if (chunkOrAsset.type === 'chunk') {
-      content += `${chunkOrAsset.code}\n`;
+      jsContent += `${chunkOrAsset.code}\n`;
       continue;
     }
 
     const asset = chunkOrAsset;
 
     // if css, write to the public/assets/styles
-    // if (asset.fileName.endsWith('css')) {
-    //   assets.push({
-    //     content: asset.source.toString(),
-    //     filename: asset.fileName,
-    //   });
+    if (asset.fileName.endsWith('css')) {
+      const cssContent = asset.source.toString();
 
-    //   continue;
-    // }
+      assets.push(
+        getAsset({
+          root: groupPath,
+          filePath: asset.fileName,
+          content: cssContent,
+        }),
+      );
+
+      continue;
+    }
 
     console.warn('// TODO: asset imports: ', asset.fileName);
   }
 
-  return {
-    content,
-    basename: path.basename(input, path.extname(input)),
-    filename: path.relative('src/', input),
-    hash: getStringHash(content),
-    assets,
-  };
+  assets.unshift(
+    getAsset({
+      root: groupPath,
+      filePath: input,
+      content: jsContent,
+    }),
+  );
+
+  return assets;
 }
 
 module.exports = async () => {
-  const scripts = [];
+  const assets = [];
 
   for await (const file of await glob('src/**/entry.js')) {
+    console.log(`Found asset entry point: ${file}`);
     const bundle = await bundleFile(file);
 
-    scripts.push(bundle);
+    assets.push(bundle);
   }
 
-  return scripts;
+  // each bundle can have multiple assets, so we need to flatten these arrays
+  return assets.flat();
 };

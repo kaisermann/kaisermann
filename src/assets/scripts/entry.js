@@ -1,3 +1,5 @@
+import '../styles/main.css';
+
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 import HeaderControls from './components/HeaderControls.svelte';
