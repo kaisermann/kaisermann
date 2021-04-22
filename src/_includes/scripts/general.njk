@@ -14,4 +14,8 @@
   {{ code | jsmin | safe  }}
 </script>
 
-<script async src="/assets/scripts/main.js" type="module"></script>
+<script
+  async
+  src="{{ '/scripts/entry.js' | asset | url }}"
+  type="module"
+></script>

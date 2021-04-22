@@ -36,19 +36,31 @@ const getPlugins = () => [
   PROD && terser(),
 ];
 
-function getAsset({ filePath, content, root }) {
+function getAsset({ fileName, content }) {
   return {
-    root,
     content,
     hash: getStringHash(content),
-    ext: path.extname(filePath),
-    baseName: path.basename(filePath, path.extname(filePath)),
-    fileName: path.join(root, path.basename(filePath)),
+    ext: path.extname(fileName).slice(1),
+    name: path.basename(fileName, path.extname(fileName)),
+    fileName: `/${path.relative('src/', fileName)}`,
+    publicDir: `/${path.relative('src/', path.dirname(fileName))}`,
+    get publicUrl() {
+      const name = [
+        this.name,
+        process.env.ELEVENTY_ENV === 'production' && this.hash,
+        this.ext,
+      ]
+        .filter(Boolean)
+        .join('.');
+
+      return path.join(this.publicDir, name);
+    },
   };
 }
 
 async function bundleFile(input) {
-  const groupPath = path.relative('src/', path.dirname(input));
+  const inputDir = path.dirname(input);
+
   const inputOptions = {
     input,
     plugins: getPlugins(),
@@ -57,7 +69,7 @@ async function bundleFile(input) {
   const outputOptions = {
     sourcemap: false,
     format: 'es',
-    dir: `${groupPath}/dist`,
+    dir: `dist/`,
   };
 
   const bundle = await rollup.rollup(inputOptions);
@@ -74,15 +86,11 @@ async function bundleFile(input) {
 
     const asset = chunkOrAsset;
 
-    // if css, write to the public/assets/styles
     if (asset.fileName.endsWith('css')) {
-      const cssContent = asset.source.toString();
-
       assets.push(
         getAsset({
-          root: groupPath,
-          filePath: asset.fileName,
-          content: cssContent,
+          fileName: path.join(inputDir, asset.fileName),
+          content: asset.source.toString(),
         }),
       );
 
@@ -92,13 +100,16 @@ async function bundleFile(input) {
     console.warn('// TODO: asset imports: ', asset.fileName);
   }
 
-  assets.unshift(
-    getAsset({
-      root: groupPath,
-      filePath: input,
-      content: jsContent,
-    }),
-  );
+  // add entry as first file
+  // but ignore empty js files
+  if (!jsContent.includes('export default undefined')) {
+    assets.unshift(
+      getAsset({
+        fileName: input,
+        content: jsContent,
+      }),
+    );
+  }
 
   return assets;
 }
@@ -106,7 +117,7 @@ async function bundleFile(input) {
 module.exports = async () => {
   const assets = [];
 
-  for await (const file of await glob('src/**/entry.js')) {
+  for await (const file of await glob('src/**/{entry,*.entry}.{js,css}')) {
     console.log(`Found asset entry point: ${file}`);
     const bundle = await bundleFile(file);
 

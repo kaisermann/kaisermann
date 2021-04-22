@@ -1,3 +1,7 @@
+/**
+ * imported by scripts/entry.js so we merge svelte css with this
+ */
+
 @import './partials/reset.css';
 @import './partials/fonts.css';
 @import './partials/animations.css';

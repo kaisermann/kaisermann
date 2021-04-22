@@ -24,14 +24,18 @@ module.exports = (config) => {
     callback(null, minified.code);
   });
 
-  config.addFilter('assetUrl', (assetCollection, key) => {
-    for (const asset of assetCollection) {
-      if (asset.data.assetKey === key) {
-        return asset.url;
-      }
+  config.addFilter('asset', function assetFilter(fileName) {
+    const foundAsset = this.ctx.assets.find((asset) => {
+      return asset.fileName === fileName;
+    });
+
+    if (foundAsset == null) {
+      console.warn(`Could not find asset "${fileName}".`);
+
+      return '';
     }
 
-    return '';
+    return foundAsset.publicUrl;
   });
 
   config.addPassthroughCopy('./src/assets/videos');
