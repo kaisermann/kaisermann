@@ -24,11 +24,21 @@ module.exports = (config) => {
     callback(null, minified.code);
   });
 
+  config.addFilter('assetUrl', (assetCollection, key) => {
+    for (const asset of assetCollection) {
+      if (asset.data.assetKey === key) {
+        return asset.url;
+      }
+    }
+
+    return '';
+  });
+
   config.addPassthroughCopy('./src/assets/videos');
   config.addPassthroughCopy('./src/assets/images');
   config.addPassthroughCopy('./src/assets/fonts');
   config.addPassthroughCopy('./src/_redirects');
-  config.addPassthroughCopy('./src/lab/**/*.{css,js}');
+  // config.addPassthroughCopy('./src/lab/**/*.{css,js}');
 
   config.addWatchTarget('./src/assets/');
 

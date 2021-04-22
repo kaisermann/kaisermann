@@ -1,5 +1,3 @@
-import '../styles/main.css';
-
 import TVScreen from './components/Screen.svelte';
 import Remote from './components/Remote.svelte';
 import HeaderControls from './components/HeaderControls.svelte';
@@ -28,7 +26,6 @@ const bootstrap = () => {
       target: document.querySelector('.js-space-trigger'),
     });
   });
-
 };
 
 if (document.readyState !== 'interactive') {
