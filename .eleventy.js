@@ -1,9 +1,11 @@
 require('dotenv/config');
+
 const navigationPlugin = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const Terser = require('terser');
 
 const htmlmin = require('./src/utils/minify-html.js');
+const { plugin: assetManager } = require('./src/utils/assetManager');
 
 module.exports = (config) => {
   config.addLayoutAlias('default', 'layouts/base.njk');
@@ -28,12 +30,12 @@ module.exports = (config) => {
   config.addPassthroughCopy('./src/assets/images');
   config.addPassthroughCopy('./src/assets/fonts');
   config.addPassthroughCopy('./src/_redirects');
-  config.addPassthroughCopy('./src/lab/**/*.{css,js}');
 
   config.addWatchTarget('./src/assets/');
 
   config.addPlugin(navigationPlugin);
   config.addPlugin(pluginRss);
+  config.addPlugin(assetManager);
 
   return {
     dir: {
