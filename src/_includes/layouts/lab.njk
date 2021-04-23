@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="icon" href="/assets/images/favicon.png" />
-    <link rel="stylesheet" href="/lab/reset.css" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="{{ '/styles/reset.entry.css' | asset | url }}"
+    />
+    <link rel="stylesheet" href="{{ './entry.css' | asset | url }}" />
 
     {% set titleComplement = eleventyNavigation.title %}
 
@@ -16,6 +19,6 @@
 
   <body>
     {{ content | safe }}
-    <script async type="module" src="./main.js"></script>
+    <script async type="module" src="{{ './entry.js' | asset | url }}"></script>
   </body>
 </html>

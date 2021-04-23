@@ -1,4 +1,6 @@
 require('dotenv/config');
+const path = require('path');
+
 const navigationPlugin = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const Terser = require('terser');
@@ -25,8 +27,17 @@ module.exports = (config) => {
   });
 
   config.addFilter('asset', function assetFilter(fileName) {
+    // if passed path is not absolute, consider it relative to the page url
+    const absolutePath = !path.isAbsolute(fileName)
+      ? path.join(
+          '/',
+          path.relative('src', path.dirname(this.ctx.page.inputPath)),
+          fileName,
+        )
+      : fileName;
+
     const foundAsset = this.ctx.assets.find((asset) => {
-      return asset.fileName === fileName;
+      return asset.fileName === absolutePath;
     });
 
     if (foundAsset == null) {

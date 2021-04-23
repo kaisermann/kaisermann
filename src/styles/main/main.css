@@ -116,11 +116,11 @@ body,
 }
 
 .cursor-default {
-  cursor: url(../images/cursor-default.png) 0 0, auto;
+  cursor: url(/assets/images/cursor-default.png) 0 0, auto;
 }
 
 .cursor-pointer {
-  cursor: url(../images/cursor-pointer.png) 14 8, auto;
+  cursor: url(/assets/images/cursor-pointer.png) 14 8, auto;
 }
 
 .skip-link {
