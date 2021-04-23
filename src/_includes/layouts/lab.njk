@@ -19,5 +19,7 @@
     {{ content | safe }}
 
     {% assetScript './entry.js' %}
+
+    {% include "scripts/analytics.njk" %}
   </body>
 </html>
