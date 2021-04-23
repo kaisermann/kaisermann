@@ -9,7 +9,6 @@
     "build": "cross-env ELEVENTY_ENV=production eleventy",
     "build:dev": "eleventy",
     "build:prod": "run-s build purge-css critical-css",
-    "build:debug": "eleventy",
     "lint": "eslint --ignore-pattern=\"node_modules\" .",
     "format": "prettier --write \"**/*.{js,json}\"",
     "critical-css": "./scripts/critical-css.sh",

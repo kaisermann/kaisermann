@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Program",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "build:debug"],
+      "runtimeArgs": ["run", "build:dev"],
       "port": 9229
     }
   ]
