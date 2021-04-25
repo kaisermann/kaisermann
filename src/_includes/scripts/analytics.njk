@@ -1,20 +1,22 @@
-<script
-  async
-  src="https://cdn.panelbear.com/analytics.js?site=LVrTyzS8YBv"
-></script>
-<script>
-  {% set analytics %}
-    window.panelbear =
-      window.panelbear ||
-      function () {
-        (window.panelbear.q = window.panelbear.q || []).push(arguments);
-      };
+{% if build.isProd %}
+  <script
+    async
+    src="https://cdn.panelbear.com/analytics.js?site=LVrTyzS8YBv"
+  ></script>
+  <script>
+    {% set analytics %}
+      window.panelbear =
+        window.panelbear ||
+        function () {
+          (window.panelbear.q = window.panelbear.q || []).push(arguments);
+        };
 
-    panelbear('config', {
-      site: 'LVrTyzS8YBv',
-      spaMode: 'history',
-    });
-  {% endset %}
+      panelbear('config', {
+        site: 'LVrTyzS8YBv',
+        spaMode: 'history',
+      });
+    {% endset %}
 
-  {{ analytics | jsmin | safe }}
-</script>
+    {{ analytics | jsmin | safe }}
+  </script>
+{% endif %}

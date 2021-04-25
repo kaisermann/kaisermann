@@ -53,11 +53,11 @@
     crossorigin="anonymous"
   />
 
-  <link rel="stylesheet" href="/assets/styles/styles.css" />
+  {% assetStylesheet '/assets/main.entry.css' %}
 
   <link rel="icon" href="/assets/images/favicon.png" />
 
-  {% set titleComplement %} {%if page.url != '/' %} |
+  {% set titleComplement %} {% if page.url != '/' %} |
   {{
     eleventyNavigation.key
   }}

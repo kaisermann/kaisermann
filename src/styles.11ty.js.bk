@@ -1,0 +1,41 @@
+const path = require('path');
+
+class Styles {
+  data() {
+    return {
+      eleventyComputed: {
+        assetKey: ({ style }) => {
+          return style.filename;
+        },
+      },
+      permalink: ({ style }) => {
+        const filepath = [
+          '/css/',
+          path.dirname(style.filename),
+          '/',
+          style.basename,
+          process.env.NODE_ENV === 'production' && `.${style.hash}`,
+          '.css',
+        ]
+          .filter(Boolean)
+          .join('');
+
+        return filepath;
+      },
+      pagination: {
+        addAllPagesToCollections: true,
+        alias: 'style',
+        data: 'styles',
+        size: 1,
+      },
+      layout: '',
+      tags: ['_styles'],
+    };
+  }
+
+  render(e) {
+    return e.style.content;
+  }
+}
+
+module.exports = Styles;

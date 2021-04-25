@@ -26,7 +26,7 @@
 
     @nest :global(body[space]) & {
       /* set the image only in space mode */
-      --plastic-texture-img: url(../images/plastic-texture-noise.png);
+      --plastic-texture-img: url(/assets/images/plastic-texture-noise.png);
     }
 
     @media (max-height: 800px) {
@@ -146,7 +146,7 @@
   }
 
   button {
-    cursor: url(../images/cursor-pointer.png) 14 8, auto;
+    cursor: url(/assets/images/cursor-pointer.png) 14 8, auto;
     width: 100%;
     height: 25px;
     border: 0px solid #222;
