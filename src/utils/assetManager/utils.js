@@ -15,17 +15,18 @@ exports.getAsset = ({ fileName, content }) => {
   const hash = getStringHash(content);
   const ext = path.extname(fileName).slice(1);
   const name = path.basename(fileName, path.extname(fileName));
-  const localFileName = `/${path.relative('src/', fileName)}`;
   const publicDir = `/${path.relative('src/', path.dirname(fileName))}`;
   const publicFileName = [
     name,
     process.env.ELEVENTY_ENV === 'production' && hash,
     ext,
   ]
-    .filter(Boolean)
-    .join('.');
+  .filter(Boolean)
+  .join('.');
 
-  const publicUrl = path.join(publicDir, publicFileName);
+  // Normalize path structure to POSIX
+  const localFileName = `/${path.relative('src/', fileName)}`.replace(/\\/g,'/');
+  const publicUrl = path.join(publicDir, publicFileName).replace(/\\/g,'/');
 
   return {
     content,
@@ -38,7 +39,8 @@ exports.getAssetPublicUrl = function getAssetPublicUrl({ assetPath, callee }) {
   // if passed path is not absolute, consider it relative to the page url
   const localPath = path.isAbsolute(assetPath)
     ? assetPath
-    : path.join('/', path.relative('src', path.dirname(callee)), assetPath);
+    // Normalize path structure to POSIX
+    : path.join('/', path.relative('src', path.dirname(callee)), assetPath).replace(/\\/g,'/');
 
   const foundAsset = getAssets().find((asset) => {
     return asset.localFileName === localPath;
