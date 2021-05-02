@@ -39,4 +39,5 @@ module.exports = (config) => {
   config.addShortcode('assetStylesheet', assetStylesheet);
   config.addShortcode('assetScript', assetScript);
   config.addFilter('assetUrl', assetFilter);
+  config.addWatchTarget('./src/lab/');
 };
