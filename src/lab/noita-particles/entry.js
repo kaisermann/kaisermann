@@ -1,11 +1,16 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-const mouse = [0, 0];
-
 // Number of grid divisions
-const refNumColumns = 20;
-const refNumRows = 20;
+const refNumColumns = 50;
+const refNumRows = 50;
+
+// Initialize mouse object at origin
+let mouse = {
+  absPos: [0, 0],
+  gridPos: [0, 0],
+  toolSize: Math.min(refNumRows, refNumColumns) / 10,
+}
 
 // Size of grid
 let numColumns;
@@ -30,12 +35,27 @@ const updateCanvasSize = () => {
 };
 
 const updateMousePosition = (e) => {
-  mouse[0] = e.clientX;
-  mouse[1] = e.clientY;
+  mouse.absPos[0] = e.clientX;
+  mouse.absPos[1] = e.clientY;
 };
+
+const updateToolSizeonWheelScroll = (e) =>{
+  // Inverting sign to make scroll up grow and scroll down shrink
+  // Multiplying by 0.01 because deltaY returns huge numbers. Needs calibration for user experience.
+  let delta = e.deltaY * -0.01;
+
+  const newSize = mouse.toolSize + delta;
+  const maxSize = Math.ceil(Math.max(numColumns / 2, numRows / 2));
+
+  // Don't let toolsize exceed grid size (but let it completely span the screen, if centered)
+  // Don't let toolsize be 0 or negative
+  if (newSize <= maxSize && newSize > 0) 
+    mouse.toolSize = newSize;
+}
 
 window.addEventListener("resize", updateCanvasSize());
 window.addEventListener("mousemove", updateMousePosition);
+window.addEventListener("wheel", updateToolSizeonWheelScroll);
 
 function getGridPosition(x, y) {
   const i = Math.trunc(x / cellSize);
@@ -44,7 +64,7 @@ function getGridPosition(x, y) {
   return [i, j];
 }
 
-function drawGridlines(){
+function drawGridlines() {
   ctx.beginPath();
   ctx.strokeStyle = "black";
 
@@ -62,7 +82,7 @@ function drawGridlines(){
   ctx.stroke();
 }
 
-function paintCell(i, j, color){
+function paintCell(i, j, color) {
 
   ctx.fillStyle = color;
 
@@ -74,11 +94,38 @@ function paintCell(i, j, color){
   );
 }
 
-function paintMouseCell(){
-  let mouseGridPos = getGridPosition(...mouse);
+function paintCircle(ci, cj, radius, color){
+// (x-x0)^2 + (y-y0)^2 = r^2
+for (let i = 0; i <= numColumns; i++) {
+  for (let j = 0; j <= numRows; j++) {
+    // "Lesser than radius" + "greater or equal (radius - 1)" in continuous geometry is the same as "equal to (radius - 1)", 
+    // but in discrete geometry "equal to" has discrete bias, failing in diagonals
+    // This combination assures a full "circle" is drawn in grid-like coordinates
+    const check1 = ((i - ci) ** 2 + (j - cj) ** 2 < (radius) ** 2);
+    const check2 = ((i - ci) ** 2 + (j - cj) ** 2 >= (radius - 1) ** 2);
+    if (check1 && check2) paintCell(i, j, color);
+  }
+}
+}
+
+function paintDisk(ci, cj, radius, color) {
+  // (x-x0)^2 + (y-y0)^2 < r^2
+  for (let i = 0; i <= numColumns; i++) {
+    for (let j = 0; j <= numRows; j++) {
+      const check = ((i - ci) ** 2 + (j - cj) ** 2 < (radius) ** 2);
+      if (check) paintCell(i, j, color);
+    }
+  }
+}
+
+function paintMouseCell() {
+  mouse.gridPos = getGridPosition(...mouse.absPos);
 
   // Paint mouse-over cell
-  paintCell(...mouseGridPos, 'gold');
+  let toolSize = 60;
+  paintDisk(...mouse.gridPos, mouse.toolSize, 'orange');
+  paintCircle(...mouse.gridPos, mouse.toolSize, 'gold')
+  paintCell(...mouse.gridPos, 'gold');
 }
 
 function loop() {
