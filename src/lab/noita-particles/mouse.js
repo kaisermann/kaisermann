@@ -4,6 +4,7 @@ import { grid, paintCell, getGridPosition } from './grid.js';
 export const mouse = {
   absPos: [0, 0],
   gridPos: [0, 0],
+  isDown: false,
   toolSize: 0, // Math.min(numRows, numColumns) / 10,
   render() {
     paintCircle(...mouse.gridPos, mouse.toolSize, 'gold');
@@ -45,5 +46,15 @@ const updateToolSizeonWheelScroll = (e) => {
   if (newSize <= maxSize && newSize > 0) mouse.toolSize = newSize;
 };
 
+const mouseUp = () => {
+  mouse.isDown = false;
+};
+
+const mouseDown = () => {
+  mouse.isDown = true;
+};
+
+window.addEventListener('mouseup', mouseUp);
+window.addEventListener('mousedown', mouseDown);
 window.addEventListener('mousemove', updateMousePosition);
 window.addEventListener('wheel', updateToolSizeonWheelScroll);

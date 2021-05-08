@@ -3,8 +3,8 @@ import { mouse } from './mouse.js';
 import { canvas, ctx } from './canvas.js';
 import { grid, paintCell } from './grid.js';
 
-canvas.width = 300;
-canvas.height = 300;
+canvas.width = 900;
+canvas.height = 900;
 
 function paintDisk(ci, cj, radius, color) {
   // (x-x0)^2 + (y-y0)^2 < r^2
@@ -22,4 +22,4 @@ rafps(() => {
   grid.render();
 
   mouse.render();
-}, 24).play();
+}, 60).play();

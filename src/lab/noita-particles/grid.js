@@ -4,8 +4,8 @@ import { mouse } from './mouse.js';
 
 class Grid {
   constructor() {
-    this.numRows = 10;
-    this.numCols = 10;
+    this.numRows = 30;
+    this.numCols = 30;
     this.cellSize = 30;
 
     // List of lists of cell data (put Particles here)
@@ -18,12 +18,21 @@ class Grid {
     });
 
     canvas.addEventListener('click', this.handleClick.bind(this));
+    canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
   }
 
   handleClick() {
     const [i, j] = mouse.gridPos;
 
     this.createParticle(i, j, 'sand');
+  }
+
+  handleMouseMove() {
+    if (mouse.isDown) {
+      const [i, j] = mouse.gridPos;
+
+      this.createParticle(i, j, 'sand');
+    }
   }
 
   createParticle(i, j, type) {
