@@ -1,10 +1,12 @@
 import { grid, paintCell, getGridPosition } from './grid.js';
+import { canvas } from './canvas.js';
 
 // Initialize mouse object at origin
 export const mouse = {
   absPos: [0, 0],
   gridPos: [0, 0],
-  isDown: false,
+  offsetX: parseInt(canvas.getBoundingClientRect().left, 10),
+  offsetY: parseInt(canvas.getBoundingClientRect().top, 10),
   toolSize: 0, // Math.min(numRows, numColumns) / 10,
   render() {
     paintCircle(...mouse.gridPos, mouse.toolSize, 'gold');
@@ -30,7 +32,12 @@ function paintCircle(ci, cj, radius, color) {
 const updateMousePosition = (e) => {
   mouse.absPos[0] = e.x;
   mouse.absPos[1] = e.y;
-  mouse.gridPos = getGridPosition(...mouse.absPos);
+
+  mouse.gridPos = getGridPosition(
+    ...mouse.absPos,
+    mouse.offsetX,
+    mouse.offsetY,
+  );
 };
 
 const updateToolSizeonWheelScroll = (e) => {
@@ -56,5 +63,5 @@ const mouseDown = () => {
 
 window.addEventListener('mouseup', mouseUp);
 window.addEventListener('mousedown', mouseDown);
-window.addEventListener('mousemove', updateMousePosition);
-window.addEventListener('wheel', updateToolSizeonWheelScroll);
+canvas.addEventListener('mousemove', updateMousePosition);
+canvas.addEventListener('wheel', updateToolSizeonWheelScroll);

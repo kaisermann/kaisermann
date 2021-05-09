@@ -1,7 +1,9 @@
 html,
-body,
+body {
+  margin: 5px
+}
 #canvas {
-  margin: 0;
+  margin: 10px;
 }
 
 #canvas {
