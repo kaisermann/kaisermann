@@ -4,15 +4,10 @@ const navigationPlugin = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const Terser = require('terser');
 
-const htmlmin = require('./src/utils/minify-html.js');
 const { plugin: assetManager } = require('./src/utils/assetManager');
 
 module.exports = (config) => {
   config.addLayoutAlias('default', 'layouts/base.njk');
-
-  if (process.env.ELEVENTY_ENV === 'production') {
-    config.addTransform('htmlmin', htmlmin);
-  }
 
   config.addNunjucksAsyncFilter('jsmin', async (code, callback) => {
     const minified = await Terser.minify(code);
