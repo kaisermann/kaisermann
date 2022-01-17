@@ -144,7 +144,7 @@ export function toggleSpace() {
     if (nextState === 'entering') {
       sendEvent({
         type: 'easter_egg',
-        label: 'space'
+        label: 'space',
       });
     }
   });
@@ -179,6 +179,31 @@ export function toggleFullscreen() {
   }
 }
 
+function lookForChannelButtons() {
+  const channelButtons = document.querySelectorAll('.js-channel-trigger');
+
+  channelButtons.forEach((button) => {
+    if (button._channelButton) return;
+
+    button._channelButton = true;
+
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.target.blur();
+
+      const channel = Number(e.target.dataset.channel);
+
+      if (!Number.isNaN(channel)) {
+        currentChannel.update((current) => {
+          if (channel === current) return 0;
+
+          return channel;
+        });
+      }
+    });
+  });
+}
+
 window.addEventListener(
   'visibilitychange',
   () => {
@@ -189,4 +214,7 @@ window.addEventListener(
   false,
 );
 
+window.addEventListener('contentChange', lookForChannelButtons);
+
 loadChannelTimestamps();
+lookForChannelButtons();

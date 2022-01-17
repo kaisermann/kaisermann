@@ -3,7 +3,30 @@
   text-transform: uppercase;
 }
 
-a {
+.button-text {
+  /** for backwards compatibility */
+  font-family: inherit;
+  color: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
+  background: inherit;
+  text-transform: inherit;
+  text-shadow: inherit;
+
+  /* copy style from parent */
+  all: inherit;
+
+  /* overrides */
+  padding: 0;
+  border: none;
+  display: inline;
+  color: var(--text-secondary);
+  line-height: 0.9;
+  appearance: none;
+}
+
+a,
+.button-text {
   position: relative;
   text-decoration: none;
   color: var(--text-secondary);
