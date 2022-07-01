@@ -87,6 +87,10 @@
 </script>
 
 <style lang="postcss">
+  video {
+    transform: scaleX(-1);
+  }
+
   .rec-wrapper {
     position: absolute;
     z-index: calc(var(--layer-tv-effects) + 1);
