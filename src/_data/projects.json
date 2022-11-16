@@ -103,6 +103,11 @@
       "description": "front-end"
     },
     {
+      "url": "https://genr.kaisermann.me/",
+      "name": "genr",
+      "description": "lookup the musical genres of an artist"
+    },
+    {
       "url": "http://v1.kaisermann.me",
       "name": "portfolio v1",
       "description": "design/front-end/back-end"
