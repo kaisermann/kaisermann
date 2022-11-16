@@ -12,7 +12,7 @@ eleventyNavigation:
         <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">
           {{project.name}}
         </a>
-        <small>{{project.description}}</small>
+        <small>{{project.description | safe}}</small>
       </li>
     {% endfor %}
   </ul>
