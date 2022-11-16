@@ -94,13 +94,18 @@
   "sites": [
     {
       "url": "https://github.com/kaisermann/kaisermann",
-      "name": "kaisermann.me",
+      "name": "kaisermann.me v2",
       "description": "this website"
+    },
+    {
+      "url": "http://v1.kaisermann.me",
+      "name": "kaisermann.me v1",
+      "description": "first version of my personal website"
     },
     {
       "url": "https://copymoji.kaisermann.me",
       "name": "copymoji",
-      "description": "front-end"
+      "description": "build your own text emojis ☆└{▰⚆ヮ⚆▰}┐"
     },
     {
       "url": "https://genr.kaisermann.me/",
@@ -108,19 +113,14 @@
       "description": "lookup the musical genres of an artist"
     },
     {
-      "url": "http://v1.kaisermann.me",
-      "name": "portfolio v1",
-      "description": "design/front-end/back-end"
-    },
-    {
       "url": "https://solardancer.kaisermann.me",
       "name": "solar.dance",
-      "description": "front-end"
+      "description": "just two lil' CSS guys dancing"
     },
     {
       "url": "http://tuut.com.br",
       "name": "tuut",
-      "description": "front-end/back-end"
+      "description": "website for the TUUT design agency"
     }
   ]
 }
