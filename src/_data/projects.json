@@ -113,28 +113,13 @@
       "description": "design/front-end/back-end"
     },
     {
-      "url": "http://10de10.com.br",
-      "name": "10de10",
-      "description": "design/front-end/back-end"
-    },
-    {
       "url": "https://solardancer.kaisermann.me",
       "name": "solar.dance",
       "description": "front-end"
     },
     {
-      "url": "http://grupoaguasdobrasil.com.br",
-      "name": "grupo águas do brasil",
-      "description": "front-end/back-end"
-    },
-    {
       "url": "http://tuut.com.br",
       "name": "tuut",
-      "description": "front-end/back-end"
-    },
-    {
-      "url": "http://marcelod2.com.br",
-      "name": "marcelod2",
       "description": "front-end/back-end"
     }
   ]
