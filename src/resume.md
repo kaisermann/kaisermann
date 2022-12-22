@@ -41,7 +41,7 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 - Mentoring of junior developers and newcomers.
 - Community moderator of a B2B community of agencies building stores with the company solutions.
 
-**[10de10](https://10de10.com.br)**: Writer and Podcaster (2015/07 - now)
+**[10de10](https://10de10.com.br)**: Writer and Podcaster (2015/07 - 2021/07)
 
 - Co-host of the weekly pop culture podcast _Semana dos 10_.
 
