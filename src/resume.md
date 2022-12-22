@@ -22,7 +22,7 @@ I'm familiar with most current industry tooling and framework choices such as _T
 
 My peers usually think I'm easy-going, communicative, a fast learner, and a reference for CSS and JavaScript knowledge. I'm also familiar with agile methodologies, interviewing, and managing open-source projects and small communities.
 
-### Latest Projects (open-source)
+### Some Open-source Projects
 
 - **[`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess)**: quick and painless preprocess support for svelte
 - **[`pos-mamba-sdk`](https://github.com/stone-payments/pos-mamba-sdk)**: SDK for developing apps for the Stone's POS system
