@@ -1,22 +1,31 @@
 {% if build.isProd %}
-  <script
-    async
-    src="https://cdn.panelbear.com/analytics.js?site=LVrTyzS8YBv"
-  ></script>
-  <script>
-    {% set analytics %}
-      window.panelbear =
-        window.panelbear ||
-        function () {
-          (window.panelbear.q = window.panelbear.q || []).push(arguments);
-        };
+<script
+  async
+  src="https://cdn.panelbear.com/analytics.js?site=LVrTyzS8YBv"
+></script>
+<script async src="https://rum.cronitor.io/script.js"></script>
 
-      panelbear('config', {
-        site: 'LVrTyzS8YBv',
-        spaMode: 'history',
-      });
-    {% endset %}
+<script>
+  {% set analytics %}
+    window.panelbear =
+      window.panelbear ||
+      function () {
+        (window.panelbear.q = window.panelbear.q || []).push(arguments);
+      };
 
-    {{ analytics | jsmin | safe }}
-  </script>
+    panelbear('config', {
+      site: 'LVrTyzS8YBv',
+      spaMode: 'history',
+    });
+
+    window.cronitor =
+      window.cronitor ||
+      function () {
+        (window.cronitor.q = window.cronitor.q || []).push(arguments);
+      };
+    cronitor('config', { clientKey: '996d0a943006f43ca8e6f82d5fafbb95' });
+  {% endset %}
+
+  {{ analytics | jsmin | safe }}
+</script>
 {% endif %}
