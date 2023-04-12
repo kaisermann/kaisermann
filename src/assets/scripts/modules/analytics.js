@@ -1,5 +1,5 @@
 export function sendEvent({ type, label, value }) {
-  if (!window.panelbear) return;
+  if (!window.cronitor) return;
 
-  window.panelbear('track', [type, label, value].filter(Boolean).join('.'));
+  window.cronitor('track', [type, label, value].filter(Boolean).join('.'));
 }
