@@ -12,8 +12,6 @@ I'm a Web Engineer with a decade of industry experience and open-source passion.
 <br>
 [Website](https://kaisermann.me) (give it a look!)
 <br>
-[Twitter](https://twitter.com/kiwistian)
-<br>
 [Email](mailto:christian@kaisermann.me)
 
 ### Skills
