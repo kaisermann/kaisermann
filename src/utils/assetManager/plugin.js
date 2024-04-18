@@ -9,7 +9,9 @@ module.exports = (config) => {
 
     if (!assetPublicUrl) return '';
 
-    return `<link rel="stylesheet" href="${assetPublicUrl}" />`;
+    return `
+    <link rel="preload" href="${assetPublicUrl}" as="style" />
+    <link rel="stylesheet" href="${assetPublicUrl}" />`;
   }
 
   function assetScript(assetPath, type = 'module', async = true) {
