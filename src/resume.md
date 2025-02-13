@@ -6,7 +6,7 @@ textNav:
 
 # Christian Kaisermann
 
-I'm a Web Engineer with a decade of industry experience and open-source passion. I currently work at VTEX, helping its OSS efforts regarding storefront componentization, developer tooling, and Front-End Infrastructure. Apart from my daily activities, I'm a core contributor to the _Svelte_ framework and author of a few OSS libraries. _Javascript_ and _CSS_ are my jams.
+I'm a Web Engineer with over a decade of experience, passionate about open-source, developer tooling, and crafting scalable front-end architectures. Currently, I work at Circuit Routing, enhancing the last-mile delivery experience by improving our front-end infrastructure and developer experience. I have a strong background in TypeScript, Svelte, React, and CSS, and I'm an advocate for clean, maintainable code. Beyond work, I'm a contributor to the Svelte ecosystem and the author of several open-source libraries. I thrive in collaborative environments and love sharing knowledge through mentorship and open-source contributions.
 
 [GitHub](https://github.com/kaisermann)
 <br>
