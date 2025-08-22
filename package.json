@@ -3,9 +3,6 @@
   "version": "2.0.0",
   "author": "Christian Kaisermann",
   "license": "MIT",
-  "engines": {
-    "node": "22.14.0"
-  },
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
