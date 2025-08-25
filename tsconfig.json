@@ -1,3 +1,11 @@
 {
-  "include": ["src/"]
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "#types/cms": ["./src/types.generated.ts"]
+    }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }

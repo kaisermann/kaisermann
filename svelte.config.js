@@ -1,10 +1,5 @@
-const preprocess = require('svelte-preprocess');
+import { vitePreprocess } from '@astrojs/svelte';
 
-module.exports = {
-  preprocess: preprocess({
-    defaults: {
-      css: 'postcss',
-    },
-    postcss: true,
-  }),
-};
+export default {
+	preprocess: vitePreprocess(),
+}

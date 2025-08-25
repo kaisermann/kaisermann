@@ -1,0 +1,31 @@
+<div class="stars" transition:persist></div>
+
+<style>
+  .stars {
+    position: absolute;
+    animation: moving-stars 117s linear infinite;
+    animation-delay: calc(-1 * var(--stars-offset));
+    left: 0;
+    transform-origin: 0 0;
+    width: calc(2000px * 2);
+    height: calc(1375px * 2);
+    animation: moving-stars 117s linear infinite;
+    animation-play-state: paused;
+
+    @media (min-width: 3840px) {
+      width: calc(2000px * 4);
+      height: calc(1375px * 4);
+    }
+
+    body[data-space] & {
+      animation-play-state: running;
+      background-image: url(/assets/images/stars.jpg);
+      html.webp & {
+        background-image: url(/assets/images/stars.webp);
+      }
+      html.avif & {
+        background-image: url(/assets/images/stars.avif);
+      }
+    }
+  }
+</style>

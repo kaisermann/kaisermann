@@ -1,0 +1,28 @@
+---
+import Head from '../components/Head.astro'
+import TV from '../components/TV/TV.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title, description }: Props = Astro.props
+---
+
+<html lang="en">
+  <Head title={title} description={description} />
+  <body>
+    <TV>
+      <slot />
+    </TV>
+  </body>
+</html>
+
+<script>
+  import { initHotkeys } from '../modules/keyboard'
+  import { setupClientNavigation } from '../modules/navigation'
+
+  initHotkeys()
+  setupClientNavigation()
+</script>

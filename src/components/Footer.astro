@@ -1,0 +1,41 @@
+---
+import SpaceTrigger from './SpaceTrigger.svelte'
+---
+
+<footer class="footer" id="footer">
+  <ul class="link-list">
+    <li>
+      <a href="/resume" rel="noopener noreferrer" target="_blank">RESUME</a>
+    </li>
+    <li>
+      <a
+        href="mailto:christian@kaisermann.me"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        EMAIL
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://linkedin.com/in/kaisermann"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        LINKEDIN
+      </a>
+    </li>
+  </ul>
+  <SpaceTrigger client:only transition:persist />
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: flex-end;
+    margin-top: 160px;
+    padding-bottom: var(--gui-bottom);
+  }
+</style>

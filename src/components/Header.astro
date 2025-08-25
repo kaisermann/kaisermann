@@ -1,0 +1,198 @@
+---
+import HeaderControls from './HeaderControls.svelte'
+
+// List of primary navigation pages for the home screen menu.
+// label: text shown; href MUST end with trailing slash (except '/') for easier matching
+const homeNav = [
+  { label: 'open-source', href: '/open-source/' },
+  { label: 'websites', href: '/websites/' },
+]
+
+// Utility: normalise path to have leading and trailing slash (except for root which is '/')
+function normalize(pathname: string) {
+  if (!pathname.startsWith('/')) pathname = '/' + pathname
+  if (pathname !== '/' && !pathname.endsWith('/')) pathname += '/'
+  return pathname
+}
+
+const currentPath = normalize(Astro.url.pathname)
+const isHome = currentPath === '/'
+
+// Build breadcrumb segments for inner pages.
+// We map each segment to an href accumulating previous parts.
+let breadcrumb: { label: string; href: string }[] = []
+if (!isHome) {
+  const parts = currentPath.split('/').filter(Boolean)
+  const items = []
+  const acc = []
+  for (const part of parts) {
+    acc.push(part)
+    const href = '/' + acc.join('/') + '/'
+    items.push({ label: part, href })
+  }
+  breadcrumb = items
+}
+
+// The editable final breadcrumb label (original Eleventy used eleventyNavigation.key)
+const currentPageLabel = breadcrumb[breadcrumb.length - 1]?.label || 'home'
+
+const buildTimeDate = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+}).format(new Date())
+---
+
+<header class="header">
+  <div class="header__container">
+    <nav class="nav">
+      {
+        isHome ? (
+          <>
+            <ul class="nav__breadcrumb">
+              <li>CK</li>
+            </ul>
+            <ul class="nav__menu">
+              {homeNav.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <ul class="nav__breadcrumb">
+            <li>
+              <a href="/">CK</a>
+            </li>
+            {breadcrumb.slice(0, -1).map((b) => (
+              <li>
+                <a href={b.href}>{b.label}</a>
+              </li>
+            ))}
+            <li
+              class="js-text-nav text-nav"
+              contenteditable
+              role="textbox"
+              aria-label="navigation by text"
+              data-original-text={currentPageLabel}
+            >
+              {currentPageLabel}
+            </li>
+          </ul>
+        )
+      }
+    </nav>
+
+    <div class="header__info" transition:persist>
+      <div class="js-header-date">
+        {buildTimeDate}
+      </div>
+      <HeaderControls client:only transition:persist />
+      <noscript>
+        <div role="button">CHANNEL 00</div>
+      </noscript>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: relative;
+    min-height: 300px;
+    height: 50vh;
+    margin-bottom: 2.07rem;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .header__container {
+    position: sticky;
+    top: 100px;
+  }
+
+  @media (min-width: 500px) {
+    .header__container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .header__info {
+      text-align: right;
+    }
+  }
+
+  .nav__breadcrumb {
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+
+    & li {
+      &:not(:last-child)::after {
+        content: ' /';
+        margin-right: 1ch;
+      }
+
+      &:last-child {
+        display: flex;
+        align-items: center;
+
+        &::after {
+          margin-left: 0.5ch;
+          content: '►';
+          font-size: 1.2em;
+        }
+
+        &:focus-within::after {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav {
+      margin-bottom: 2rem;
+    }
+
+    .nav__menu li {
+      margin-top: 0.6rem;
+    }
+  }
+
+  .text-nav {
+    position: relative;
+    caret-color: transparent;
+    user-select: text;
+    cursor: var(--cursor-pointer);
+
+    &:focus {
+      outline: none;
+
+      &::before {
+        content: '_';
+        position: absolute;
+        bottom: 0;
+        left: calc(var(--caret-position, -9999) * 1ch);
+        animation: blink 0.8s step-end infinite;
+      }
+    }
+  }
+</style>
+
+<script>
+  import { initTextNav } from '../modules/textNav'
+
+  // update to browser's current date
+  const dateEl = document.querySelector('.js-header-date') as HTMLElement | null
+
+  if (dateEl) {
+    dateEl.innerHTML = new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(new Date())
+  }
+
+  initTextNav()
+</script>
