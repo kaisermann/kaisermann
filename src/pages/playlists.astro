@@ -1,0 +1,173 @@
+---
+import TVLayout from '../layouts/TVLayout.astro'
+
+interface Playlist {
+  name: string
+  url: string
+  description: string
+  image: string
+}
+
+const AUTH_URL = 'https://accounts.spotify.com/api/token'
+const API_URL = 'https://api.spotify.com/v1'
+const CLIENT_ID = 'caaba35a777245c6851df2ad0f60a39a'
+const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET
+const USER_ID = '12142121799'
+
+async function getAccessToken() {
+  const b64 = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
+  const res = await fetch(AUTH_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${b64}`,
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+    body: 'grant_type=client_credentials',
+  })
+  if (!res.ok) throw new Error('Failed to auth with Spotify')
+  const data = await res.json()
+  return data.access_token as string
+}
+
+async function getPlaylists(token: string) {
+  const res = await fetch(`${API_URL}/users/${USER_ID}/playlists?limit=50`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json',
+    },
+  })
+  if (!res.ok) throw new Error('Failed fetching playlists')
+  const data = await res.json()
+  return data.items as any[]
+}
+
+let playlists: Playlist[] = []
+
+if (CLIENT_SECRET && (import.meta as any).env.PROD) {
+  try {
+    const token = await getAccessToken()
+    const raw = await getPlaylists(token)
+    playlists = raw
+      .filter(
+        (p) => p.description?.startsWith('@') && p.description?.endsWith('@')
+      )
+      .map((p) => ({
+        name: p.name,
+        url: p.external_urls.spotify,
+        description: p.description.slice(1, p.description.length - 1).trim(),
+        image: p.images?.[0]?.url,
+      }))
+  } catch (e) {
+    console.warn('Spotify fetch failed, falling back to sample data', e)
+  }
+}
+
+if (!playlists.length) {
+  // Dev/sample data
+  playlists = [
+    {
+      name: 'フロー flow',
+      url: 'https://open.spotify.com/playlist/1oKT4BwzBziaqIs80UPbJq',
+      description: "for when you know you're going to code for a while",
+      image: 'https://i.scdn.co/image/ab67706c0000bebba02d8328058f5aa25064d0ce',
+    },
+    {
+      name: 'ローファイ  l o - f i ',
+      url: 'https://open.spotify.com/playlist/6ou1L5R6RrPk9XhWnls1Lt',
+      description: 'for any moment that you need to focus while head bobbing',
+      image: 'https://i.scdn.co/image/ab67706c0000bebb91471f262ee375f823633ee5',
+    },
+    {
+      name: '寛ぐ gaming nostalgia',
+      url: 'https://open.spotify.com/playlist/6aDjVGh6yqfGSevd8NBjMS',
+      description: 'for chilled nostalgic gaming moments',
+      image: 'https://i.scdn.co/image/ab67706c0000bebbc79a05be2cd83766bd94ec67',
+    },
+    {
+      name: 'p o s t - l i f e ',
+      url: 'https://open.spotify.com/playlist/1DQm54uVNgsBrCuDiie6b2',
+      description: 'post rock for contemplating life',
+      image: 'https://i.scdn.co/image/ab67706c0000bebb666bf1679f180a6ed8a26429',
+    },
+  ]
+}
+---
+
+<TVLayout title="Playlists">
+  <article>
+    <ul class="playlist-list">
+      {
+        playlists.map((playlist) => (
+          <li>
+            <a
+              class="big-text playlist-link"
+              href={playlist.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {playlist.name}
+            </a>
+            <div
+              class="playlist-img"
+              style={`--image:url(${playlist.image})`}
+              aria-hidden="true"
+            />
+            <br />
+            <small set:html={playlist.description} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="big-text">
+      These playlists help me go through my day-to-day life and to focus on
+      literally anything. They are constant work-in-progress.
+    </p>
+  </article>
+</TVLayout>
+
+<style>
+  .playlist-list {
+    margin-bottom: 2rem;
+
+    & li {
+      margin-bottom: 1.4rem;
+    }
+  }
+
+  .playlist-img {
+    opacity: 0.3;
+    visibility: hidden;
+
+    &,
+    &::before {
+      background-size: cover;
+      background-position: center;
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    &::before {
+      content: '';
+      background-image: url(/assets/images/effect-static.gif);
+      transition: opacity 0.4s;
+
+      html.webp & {
+        background-image: url(/assets/images/effect-static.webp);
+      }
+    }
+
+    .playlist-link:is(:hover, :focus) + & {
+      visibility: visible;
+      background-image: var(--image);
+
+      &::before {
+        opacity: 0.2;
+      }
+    }
+  }
+</style>

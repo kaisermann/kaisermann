@@ -1,0 +1,11 @@
+---
+import TVLayout from '../layouts/TVLayout.astro'
+import { projects } from '../modules/projects'
+import ProjectList from '../components/ProjectList.astro'
+---
+
+<TVLayout title="Websites">
+  <article>
+  <ProjectList items={projects.sites} />
+  </article>
+</TVLayout>

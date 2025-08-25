@@ -1,0 +1,180 @@
+---
+import Header from '../Header.astro'
+import Footer from '../Footer.astro'
+import Starfield from './Starfield.astro'
+import TVEffects from './TVEffects.astro'
+import Screen from './svelte/Screen.svelte'
+import Remote from './svelte/Remote.svelte'
+---
+
+<div class="space">
+  <Starfield />
+  <div class="spaceship">
+    <div class="tv js-tv">
+      <div class="tv-screen js-screen" transition:persist>
+        <TVEffects />
+        <Screen client:only transition:persist />
+        <div class="tv-content" transition:persist>
+          <a class="skip-link" href="#content">Skip to content</a>
+          <div class="page-container glitchy-text" data-swap-container>
+            <Header />
+            <div class="page-content" id="content">
+              <slot />
+            </div>
+            <Footer />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<Remote client:only transition:persist />
+
+<style>
+  body:not([data-tv-on]) {
+    & .tv-screen {
+      animation:
+        turn-on-transform 0.4s,
+        turn-on-filter 1s;
+    }
+  }
+
+  .tv-content {
+    position: absolute;
+    inset: 0;
+    z-index: var(--layer-content);
+    overflow: hidden auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .space {
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+  }
+
+  .spaceship {
+    body[data-space='floating']& {
+      animation: float 6s ease-in-out infinite;
+    }
+  }
+
+  .tv {
+    --spaceIntro: 0.8s;
+    --spaceOutroDelay: 0.2s;
+
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+    margin: 0 auto;
+
+    transform-origin: center 10%;
+    transition: box-shadow 0.6s ease-out;
+
+    body[data-space] & {
+      --scale: 0.6;
+      --startTransform: scale(1) translateY(0);
+      --endTransform: scale(var(--scale)) translateY(80px);
+      animation-duration: var(--spaceIntro);
+      animation-timing-function: cubic-bezier(0.72, 0.27, 0, 1);
+      animation-fill-mode: both;
+
+      @media (max-width: 900px) {
+        --scale: 0.9;
+        transition:
+          box-shadow 0.6s ease-out,
+          height var(--spaceIntro) ease;
+        will-change: height, transform;
+      }
+    }
+
+    body:is([data-space='floating'], [data-space='exiting']) & {
+      box-shadow: 0px 0px 50px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Only play intro animation while entering. Keep final transform static while floating to avoid replay on page navigations. */
+    body[data-space='entering'] & {
+      animation-name: go-to-space;
+
+      @media (max-width: 900px) {
+        height: calc(90vw / 16 * 10);
+      }
+    }
+
+    body[data-space='floating'] & {
+      /* End state without re-triggering animation on subsequent page swaps */
+      transform: var(--endTransform);
+
+      @media (max-width: 900px) {
+        height: calc(90vw / 16 * 10);
+      }
+    }
+
+    body[data-space='exiting'] & {
+      transform: var(--endTransform);
+      animation-name: exit-space;
+      animation-delay: var(--spaceOutroDelay);
+
+      @media (max-width: 900px) {
+        transition-delay: var(--spaceOutroDelay);
+      }
+    }
+  }
+
+  body[data-loading-channel] {
+    & .tv-screen {
+      filter: brightness(3) saturate(0.15) contrast(1.2);
+    }
+  }
+
+  body[data-loading-page] {
+    & .tv-screen {
+      filter: brightness(3) grayscale(1) contrast(1.2);
+    }
+
+    & .page-container {
+      filter: blur(5px);
+      pointer-events: none;
+    }
+  }
+</style>
+
+<script>
+  const screen = document.querySelector('.js-screen')
+  if (screen) {
+    screen.addEventListener(
+      'animationend',
+      () => {
+        if (!document.body.hasAttribute('data-tv-on')) {
+          document.body.setAttribute('data-tv-on', '')
+        }
+      },
+      { once: true }
+    )
+  }
+
+  // Persist & apply stars animation offset through a CSS variable so restarts are seamless.
+  // Use astro:page-load instead of before-swap so we always update after any DOM replacement.
+  const stars = document.querySelector('.stars') as HTMLElement | null
+  if (stars) {
+    if (!stars.dataset.starsStart) {
+      stars.dataset.starsStart = performance.now().toString()
+    }
+
+    const applyOffset = () => {
+      const start = Number(stars.dataset.starsStart)
+      if (!Number.isFinite(start)) return
+      const elapsed = performance.now() - start
+      // Limit to one animation cycle length (117s) to keep delay reasonable
+      const cycle = 117_000
+      const offset = (elapsed % cycle) / 1000
+      stars.style.setProperty('--stars-offset', offset.toFixed(3) + 's')
+    }
+
+    // Apply now
+    applyOffset()
+    // Re-apply right after each client navigation completes
+    document.addEventListener('astro:page-load', applyOffset)
+  }
+</script>

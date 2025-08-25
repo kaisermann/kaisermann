@@ -1,0 +1,128 @@
+<div class="tv-effects">
+  <div class="tv-effect --decontrast"></div>
+  <div class="tv-effect --static"></div>
+  <div class="tv-effect --artifacts"></div>
+  <div class="tv-effect --vignette"></div>
+  <div class="tv-effect --crt"></div>
+</div>
+
+<style>
+  .tv-effect {
+    position: absolute;
+    z-index: var(--layer-tv-effects);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* colors */
+  .tv-effect.--static {
+    background-size: cover;
+    opacity: 0.1;
+    background-image: url(/assets/images/effect-static.gif);
+    body:is([data-channel='0'], :not([channel])) & {
+      opacity: 0.2;
+    }
+
+    html.webp & {
+      background-image: url(/assets/images/effect-static.webp);
+    }
+
+    /* todo: animated avif not supported right now */
+  }
+
+  /* static/noise effect */
+  .tv-effect.--artifacts {
+    background-image: url(/assets/images/effect-artifacts.gif);
+    background-size: cover;
+    opacity: 0.4;
+    html.webp & {
+      background-image: url(/assets/images/effect-artifacts.webp);
+    }
+
+    /* todo: animated avif not supported right now */
+  }
+
+  /* vignette */
+  .tv-effect.--vignette {
+    background:
+      radial-gradient(circle, transparent 60%, black 100%), transparent;
+  }
+
+  /* remove some contrast from the webcam */
+  .tv-effect.--decontrast {
+    background-color: #fff;
+    opacity: 0.2;
+    body:not([data-camera]) & {
+      display: none;
+    }
+  }
+
+  /* horizontal lines + scan line*/
+  .tv-effect.--crt {
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: var(--layer-tv-effects);
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    &::before {
+      height: 90px;
+      background: linear-gradient(
+        180deg,
+        transparent 0,
+        #fffafa26 50%,
+        transparent
+      );
+      animation: vline 8s linear infinite;
+    }
+
+    &::after {
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 6px,
+        rgba(255, 255, 255, 0.03) 6px,
+        rgba(255, 255, 255, 0.03) 12px
+      );
+    }
+  }
+
+  body[data-loading-channel] {
+    & .tv-effect.--static {
+      opacity: 0.4;
+    }
+
+    & .tv-effect.--artifacts {
+      opacity: 0.7;
+    }
+  }
+
+  body[data-loading-page] {
+    & .tv-effect.--decontrast {
+      display: block;
+      opacity: 0.2;
+    }
+
+    & .tv-effect.--static {
+      opacity: 0.3;
+    }
+
+    & .tv-effect.--artifacts {
+      opacity: 0.8;
+    }
+
+    & .tv-effect.--crt {
+      &::before {
+        animation-duration: 0.8s;
+      }
+    }
+  }
+</style>

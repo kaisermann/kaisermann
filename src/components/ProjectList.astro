@@ -1,0 +1,50 @@
+---
+/**
+ * Reusable project list component shared by Open Source & Websites pages.
+ */
+type ProjectItem = {
+  url: string
+  name: string
+  description: string
+}
+
+type Props = { items: ProjectItem[] }
+const { items } = Astro.props as Props
+---
+
+<ul class="project-list">
+  {
+    items.map((project) => (
+      <li>
+        <a href={project.url} target="_blank" rel="noopener noreferrer">
+          {project.name}
+        </a>
+        <small set:html={project.description} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.4rem;
+
+    & a {
+      font-size: var(--font-size-secondary);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    & small {
+      display: block;
+      color: var(--text-primary);
+      font-size: var(--font-size-primary);
+    }
+
+    @media (min-width: 580px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

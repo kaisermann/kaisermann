@@ -1,0 +1,128 @@
+---
+import '../styles/main.css'
+import { ClientRouter } from 'astro:transitions'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const env = (dev: string, prod = dev) =>
+  import.meta.env.MODE === 'development' ? dev : prod
+
+const site = {
+  name: 'kaisermann',
+  tagline: 'web engineer',
+  description: 'Coding for humans. Come say hi 🌳',
+  twitter: 'kiwistian',
+  baseUrl: env('http://localhost:4321', 'https://kaisermann.me'),
+  thumb: '/assets/images/big-rainbow-static.jpg',
+}
+
+const { title, description, image }: Props = Astro.props
+const path = Astro.url?.pathname || '/'
+
+const pageTitle = title
+  ? `${site.name} | ${title}`
+  : `${site.name} | ${site.tagline}`
+const metaDescription = (description || site.description).trim()
+const socialDescription =
+  metaDescription.length > 196
+    ? metaDescription.slice(0, 193) + '…'
+    : metaDescription
+const canonicalUrl = site.baseUrl + path
+const socialImage = image || site.thumb
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content={metaDescription} />
+
+  <meta
+    name="google-site-verification"
+    content="-AeO98ZKBiyBlJ-1-XKUIaKp1tCLlz6zydEQ-X7P1m8"
+  />
+
+  <!-- Schema / OpenGraph -->
+  <link rel="author" href={site.baseUrl} />
+  <link rel="publisher" href={site.baseUrl} />
+  <meta itemprop="name" content={pageTitle} />
+  <meta itemprop="description" content={socialDescription} />
+  <meta itemprop="image" content={site.baseUrl + socialImage} />
+
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:image" content={site.baseUrl + socialImage} />
+  <meta property="og:description" content={socialDescription} />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:locale" content="en_US" />
+  <meta property="article:author" content={site.baseUrl} />
+
+  <!-- Preloads -->
+  <link
+    rel="preload"
+    href="/assets/fonts/VCROSDMono.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  />
+  <link rel="preload" as="image" href="/assets/images/rainbow-static.webp" />
+  <link rel="preload" as="image" href="/assets/images/effect-static.webp" />
+  <link rel="preload" as="image" href="/assets/images/effect-artifacts.webp" />
+  <link rel="preload" as="image" href="/assets/images/cursor-default.png" />
+  <link rel="preload" as="image" href="/assets/images/cursor-pointer.png" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/assets/images/favicon.png" />
+
+  <title>{pageTitle}</title>
+
+  <!-- from https://github.com/djpogo/avif-webp-css-support/ -->
+  <script>
+    const webpImage =
+      'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wA' +
+      'iMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA'
+    const avifImage =
+      'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUEAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAF0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgS0AAAAAABNjb2xybmNseAACAAIAAIAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAGVtZGF0EgAKBzgAPtAgIAkyUBAAAPWc41TP///4gHBX9H8XVK7gGeDllq8TYARA+8Tfsv7L+zPE24eIoIzE0WhHbrqcrTK9VEgEG/hwgB5rdCbvP8g3KYPdV88CvPJnptgQ'
+
+    function alreadyTested(format: string) {
+      if (!!window.sessionStorage) {
+        return JSON.parse(
+          window.sessionStorage.getItem(format + 'Support') ?? 'null'
+        )
+      }
+      return null
+    }
+
+    function addClass(format: string, support: boolean) {
+      if (support) {
+        document.documentElement.classList.add(format)
+      }
+      window.sessionStorage.setItem(format + 'Support', JSON.stringify(support))
+    }
+
+    function testFormat(
+      format: string,
+      imageSrc: string,
+      callback: (format: string, support: boolean) => void
+    ) {
+      const tested = alreadyTested(format)
+      if (tested === null) {
+        const image = new Image()
+        image.onload = image.onerror = function () {
+          callback(format, image.height === 2)
+        }
+        image.src = imageSrc
+        return
+      }
+      addClass(format, tested)
+    }
+    testFormat('webp', webpImage, addClass)
+    testFormat('avif', avifImage, addClass)
+  </script>
+
+  <ClientRouter />
+</head>

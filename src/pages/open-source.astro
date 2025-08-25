@@ -1,0 +1,11 @@
+---
+import TVLayout from '../layouts/TVLayout.astro'
+import { projects } from '../modules/projects'
+import ProjectList from '../components/ProjectList.astro'
+---
+
+<TVLayout title="Open-Source">
+  <article>
+    <ProjectList items={projects.opensource} />
+  </article>
+</TVLayout>
