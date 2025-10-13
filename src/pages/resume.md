@@ -29,7 +29,7 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 
 ### Working Experience
 
-**[Circuit Routing](<[https:///](https://getcircuit.com/)>)**: Staff Software Engineer (2021/01 - now)
+**[Circuit Routing](<[https:///](https://getcircuit.com/)>)**: Principal Engineer (2021/01 - now)
 
 **[VTEX](https://vtex.com/)**: Software Engineer (2019/05 - 2020/12)
 
