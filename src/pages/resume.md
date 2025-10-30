@@ -6,7 +6,7 @@ textNav:
 
 # Christian Kaisermann
 
-I'm a Web Engineer with over a decade of experience, passionate about open-source, developer tooling, and crafting scalable front-end architectures. Currently, I work at Circuit Routing, enhancing the last-mile delivery experience by improving our front-end infrastructure and developer experience. I have a strong background in TypeScript, Svelte, React, and CSS, and I'm an advocate for clean, maintainable code. Beyond work, I'm a contributor to the Svelte ecosystem and the author of several open-source libraries. I thrive in collaborative environments and love sharing knowledge through mentorship and open-source contributions.
+I'm a Web Engineer with over a decade of experience, passionate about open-source, developer tooling, and crafting scalable front-end architectures. Currently, I work at Spoke, enhancing the last-mile delivery experience by improving our front-end infrastructure and developer experience. I have a strong background in TypeScript, Svelte, React, and CSS, and I'm an advocate for clean, maintainable code. Beyond work, I'm a contributor to the Svelte ecosystem and the author of several open-source libraries. I thrive in collaborative environments and love sharing knowledge through mentorship and open-source contributions.
 
 [GitHub](https://github.com/kaisermann)
 <br>
@@ -29,7 +29,7 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 
 ### Working Experience
 
-**[Circuit Routing](<[https:///](https://getcircuit.com/)>)**: Principal Engineer (2021/01 - now)
+**[Spoke](https://www.spoke.com/)**: Principal Engineer (2021/01 - now)
 
 **[VTEX](https://vtex.com/)**: Software Engineer (2019/05 - 2020/12)
 
