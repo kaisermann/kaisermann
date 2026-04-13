@@ -31,6 +31,11 @@ My peers usually think I'm easy-going, communicative, a fast learner, and a refe
 
 **[Spoke](https://www.spoke.com/)**: Principal Engineer (2021/01 - now)
 
+- Lead engineering work across product, platform, and architecture, with a focus on scale, performance, shared systems, and long-term technical direction.
+- Drive large technical initiatives that reduce complexity, improve reliability, and create reusable foundations across web applications, shared packages, and backend services.
+- Improve product and developer outcomes through data-loading redesign, performance work, migrations, testing infrastructure, and repo/build/release systems.
+- Shape technical decisions across engineering, product, and design by making tradeoffs, rollout risks, and system constraints explicit early.
+
 **[VTEX](https://vtex.com/)**: Software Engineer (2019/05 - 2020/12)
 
 - Improve the workflow of front-end related tasks via private and open-source contributions; automating code review assignments between teams; and sharing knowledge in weekly meetings.
